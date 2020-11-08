@@ -5,7 +5,7 @@ export default createGlobalStyle`
     --content-padding: 50px;
     
     --color-main-background: #fff;
-    --color-text-main: #000;
+    --color-text-main: #2f2b27;
     --color-text-sub: #4c505b;
     --color-box-background: #efefef;
 

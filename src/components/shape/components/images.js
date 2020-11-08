@@ -39,7 +39,7 @@ export default function Images({ images }) {
   if (images.length === 1) {
     return (
       <Outer>
-        <Image {...images[0]} sizes="80vw" />
+        <Image {...images[0]} sizes="30vw" />
       </Outer>
     );
   }
@@ -48,7 +48,7 @@ export default function Images({ images }) {
     <Outer>
       <List>
         {images.map((image, index) => (
-          <Image key={index} {...image} sizes="80vw" />
+          <Image key={index} {...image} sizes="8vw" />
         ))}
       </List>
     </Outer>
