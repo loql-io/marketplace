@@ -121,7 +121,7 @@ export default function StripeWrapper({ paymentModel, ...props }) {
   }, [paymentModel]);
 
   return (
-    <Elements locale="en" stripe={stripePromise}>
+    <Elements locale="en-GB" stripe={stripePromise}>
       <Form
         {...props}
         paymentModel={paymentModel}
