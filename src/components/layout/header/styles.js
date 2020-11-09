@@ -10,8 +10,7 @@ export const Outer = styled.header`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin: 20px auto 0;
-
+  margin: 0 auto 0;
   ${responsive.smAndLess} {
     padding: 10px 90px 10px 20px;
     justify-content: space-between;
@@ -132,8 +131,8 @@ export const BasketQuantity = styled.div`
 
 export const NavActions = styled.div`
   margin: 8px 10px 0;
-  
-  text-transform: none;
+  display: flex;
+  text-transform: uppercase;
   align-items: center;
 
   button,
@@ -180,7 +179,5 @@ export const PreviewBar = styled.div`
 `;
 export const IconBar = styled.div`
   display: flex;
-  position: absolute;
-  right: 5px;
-  padding: 0;
+  right: 20px;
 `;
