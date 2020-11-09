@@ -10,7 +10,8 @@ export const Outer = styled.header`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin: 0 auto 0;
+  margin: 0 auto;
+  
   ${responsive.smAndLess} {
     padding: 10px 90px 10px 20px;
     justify-content: space-between;
@@ -18,16 +19,14 @@ export const Outer = styled.header`
 `;
 
 export const Logo = styled.a`
-  height: 84px;
-  display:  none;
+  height: 34px;
   object-fit: contain;
-
-  position: relative;
   z-index: 99;
   img,
   svg {
     height: 100%;
   }
+  
 `;
 
 export const Nav = styled.nav`
@@ -179,5 +178,5 @@ export const PreviewBar = styled.div`
 `;
 export const IconBar = styled.div`
   display: flex;
-  right: 20px;
+  right: 10px;
 `;

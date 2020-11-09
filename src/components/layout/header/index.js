@@ -10,6 +10,7 @@ import BurgerButton from './burger-button';
 import BasketButton from './basket-button';
 import LocaleSwitcher from './locale-switcher';
 import Search from './search';
+import Login from './login';
 import {
   Outer,
   Nav,
@@ -41,11 +42,11 @@ export default function Header({ simple, preview }) {
         </PreviewBar>
       )}
       <Outer simple={simple}>
-        <Link href="/" passHref>
-          <Logo>
-            <img src="/static/shop-logo.svg" alt="" />
-          </Logo>
-        </Link>
+      <Link href="/" passHref>
+      <Logo>
+        <img src="/static/Berko_Loql.png" alt="" />
+      </Logo>
+    </Link>
         <Nav open={navOpen}>
           <NavList>
             {mainNavigation?.map((category) => (
@@ -57,6 +58,7 @@ export default function Header({ simple, preview }) {
             ))}
           </NavList>
         </Nav>
+
         <NavActions open={navOpen}>
           <LocaleSwitcher />
           {auth.isLoggedIn ? (
@@ -69,12 +71,14 @@ export default function Header({ simple, preview }) {
             </Link>
           )}
         </NavActions>
+     
         {!simple && (
           <IconBar>
-            <Search />
+            <Login />
             <BasketButton />
           </IconBar>
         )}
+        
         <BurgerButton active={navOpen} onClick={() => setNavOpen(!navOpen)} />
       </Outer>
     </>

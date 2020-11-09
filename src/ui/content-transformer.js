@@ -25,7 +25,7 @@ const ContentTransformerOuter = styled.div`
   h5,
   h6 {
     margin: 0 auto;
-    text-align: left;
+    text-align: center;
     max-width: ${maxWidth};
   }
   h3 {
@@ -38,7 +38,8 @@ const ContentTransformerOuter = styled.div`
   }
 
   p {
-    margin: 0 0 0.5em;
+    margin: auto;
+    text-align: left;
     line-height: 1.8;
   }
 

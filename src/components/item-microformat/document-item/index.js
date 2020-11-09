@@ -14,7 +14,7 @@ import {
   Description
 } from './styles';
 
-export default function DocumentItem({ data, colSpan = '4' }) {
+export default function DocumentItem({ data, colSpan = '12' }) {
   if (!data) {
     return null;
   }

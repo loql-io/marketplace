@@ -31,9 +31,9 @@ export const Img = styled(Image)`
 export const List = styled.div`
   display: grid;
   grid-gap: 5px;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   ${responsive.md} {
-    grid-template-columns: repeat(9, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
   ${responsive.sm} {
     grid-template-columns: repeat(6, 1fr);

@@ -61,4 +61,6 @@ export const Description = styled.div`
   margin-top: 10px;
   line-height: 1.2rem;
   color: inherit;
+  text-align: center;
+  
 `;
