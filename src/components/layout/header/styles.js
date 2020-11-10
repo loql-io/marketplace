@@ -19,6 +19,7 @@ export const Outer = styled.header`
 `;
 
 export const Logo = styled.a`
+ margin: 0 auto;
   height: 34px;
   object-fit: contain;
   z-index: 99;
@@ -179,4 +180,5 @@ export const PreviewBar = styled.div`
 export const IconBar = styled.div`
   display: flex;
   right: 10px;
+  position: absolute;
 `;
