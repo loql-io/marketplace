@@ -33,7 +33,7 @@ export default function Footer() {
           </FooterText>
         </Grid>
         <Grid item xs style={{ textAlign: 'center' }}>
-          <FindOurMoreButton variant="contained" href="http://loql.ly" passHref>
+          <FindOurMoreButton variant="contained" href="http://loql.ly">
             Find out more
           </FindOurMoreButton>
           <FooterLinks>
