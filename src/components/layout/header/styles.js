@@ -25,6 +25,7 @@ export const Logo = styled.a`
   height: 34px;
   object-fit: contain;
   z-index: 99;
+  margin-top: 14px;
   img,
   svg {
     height: 100%;
@@ -135,6 +136,9 @@ export const NavActions = styled.div`
   display: flex;
   text-transform: uppercase;
   align-items: center;
+  right: 63px;
+  position: absolute;
+  top: 8px;
 
   button,
   a {
@@ -181,6 +185,7 @@ export const PreviewBar = styled.div`
 export const IconBar = styled.div`
   display: flex;
   right: 10px;
+  top: 6px;
   position: absolute;
 `;
 
