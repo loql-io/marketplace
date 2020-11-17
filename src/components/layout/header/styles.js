@@ -194,3 +194,9 @@ export const StyledAppBar = styled(AppBar)`
   background-color: #fff !important;
   box-shadow: 0 2px 2px #c0a9a8;
 `;
+
+export const ShopNav = styled.div`
+  background: #2f2b27;
+  height: 60px;
+  z-index: 10;
+`;

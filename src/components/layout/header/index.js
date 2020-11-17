@@ -6,8 +6,16 @@ import { useT } from 'lib/i18n';
 
 import BurgerButton from './burger-button';
 import BasketButton from './basket-button';
+import { Sticky } from 'react-sticky';
 
-import { Logo, PreviewBar, NavActions, IconBar, StyledAppBar } from './styles';
+import {
+  Logo,
+  PreviewBar,
+  NavActions,
+  IconBar,
+  StyledAppBar,
+  ShopNav
+} from './styles';
 
 export default function Header({ simple, preview }) {
   const t = useT();
@@ -27,7 +35,7 @@ export default function Header({ simple, preview }) {
           )
         </PreviewBar>
       )}
-      <StyledAppBar position="fixed">
+      <StyledAppBar position="static">
         <Link href="/" passHref>
           <Logo>
             <img src="/static/berko.svg" alt="" />
@@ -68,6 +76,9 @@ export default function Header({ simple, preview }) {
 
         <BurgerButton active={navOpen} onClick={() => setNavOpen(!navOpen)} />
       </StyledAppBar>
+      <Sticky topOffset={60}>
+        {({ style }) => <ShopNav style={style}></ShopNav>}
+      </Sticky>
     </>
   );
 }
