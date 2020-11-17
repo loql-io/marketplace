@@ -5,6 +5,9 @@ import CrystallizeLayout from '@crystallize/react-layout';
 import { Spinner } from 'ui';
 import GlobalStyle from 'ui/global';
 
+import { CssBaseline } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/core/styles';
+
 import Aside from './aside';
 import Header from './header';
 import Footer from './footer';
@@ -14,6 +17,8 @@ import {
   SpinnerWrapper,
   LoadingTextWrapper
 } from './styles';
+
+import theme from '../../ui/theme';
 
 function Loader({ children }) {
   return (
@@ -39,6 +44,7 @@ export default function Layout({
   return (
     <>
       <Head>
+        <meta name="theme-color" content={theme.palette.primary.main} />
         <title key="title">{title || ''}</title>
         {description && (
           <meta key="description" name="description" content={description} />
@@ -49,21 +55,23 @@ export default function Layout({
         <link rel="apple-touch-icon" href="/static/apple-touch-icon.png" />
         <link rel="manifest" href="/static/manifest.json" />
       </Head>
-      <GlobalStyle />
-
-      {simple ? (
-        <>
-          <Header simple={simple} preview={preview} />
-          <Main>{loading ? <Loader /> : children}</Main>
-          <Footer />
-        </>
-      ) : (
-        <CrystallizeLayout right={Aside}>
-          <Header simple={simple} preview={preview} />
-          <Main>{loading ? <Loader /> : children}</Main>
-          <Footer />
-        </CrystallizeLayout>
-      )}
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <GlobalStyle />
+        {simple ? (
+          <>
+            <Header simple={simple} preview={preview} />
+            <Main>{loading ? <Loader /> : children}</Main>
+            <Footer />
+          </>
+        ) : (
+          <CrystallizeLayout right={Aside}>
+            <Header simple={simple} preview={preview} />
+            <Main>{loading ? <Loader /> : children}</Main>
+            <Footer />
+          </CrystallizeLayout>
+        )}
+      </ThemeProvider>
     </>
   );
 }
