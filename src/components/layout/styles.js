@@ -5,6 +5,7 @@ export const Main = styled.main`
   padding-bottom: 50px;
   border-style: solid;
   border-color: var(--color-main-background);
+  margin-top: 60px;
 `;
 
 export const LoadingWrapper = styled.div`
