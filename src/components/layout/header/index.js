@@ -3,21 +3,11 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useAuth } from 'components/auth-context';
 import { useT } from 'lib/i18n';
-import { makeStyles } from '@material-ui/core/styles';
+
 import BurgerButton from './burger-button';
 import BasketButton from './basket-button';
 
-import { AppBar } from '@material-ui/core';
-
-import { Logo, PreviewBar, NavActions, IconBar } from './styles';
-
-const useStyles = makeStyles(() => ({
-  appBar: {
-    height: 60,
-    background: '#fff',
-    boxShadow: '0 2px 2px #C0A9a8 '
-  }
-}));
+import { Logo, PreviewBar, NavActions, IconBar, StyledAppBar } from './styles';
 
 export default function Header({ simple, preview }) {
   const t = useT();
@@ -25,7 +15,6 @@ export default function Header({ simple, preview }) {
   const router = useRouter();
 
   const [navOpen, setNavOpen] = useState(false);
-  const classes = useStyles();
 
   return (
     <>
@@ -38,7 +27,7 @@ export default function Header({ simple, preview }) {
           )
         </PreviewBar>
       )}
-      <AppBar className={classes.appBar} position="fixed">
+      <StyledAppBar position="fixed">
         <Link href="/" passHref>
           <Logo>
             <img src="/static/berko.svg" alt="" />
@@ -78,7 +67,7 @@ export default function Header({ simple, preview }) {
         )}
 
         <BurgerButton active={navOpen} onClick={() => setNavOpen(!navOpen)} />
-      </AppBar>
+      </StyledAppBar>
     </>
   );
 }

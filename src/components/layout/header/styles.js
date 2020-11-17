@@ -185,9 +185,7 @@ export const IconBar = styled.div`
 `;
 
 export const StyledAppBar = styled(AppBar)`
-  & .MuiAppBar-root {
-    height: 60px;
-    background: #fff;
-    box-shadow: 0 2px 2px #c0a9a8;
-  }
+  height: 60px;
+  background-color: #fff !important;
+  box-shadow: 0 2px 2px #c0a9a8;
 `;
