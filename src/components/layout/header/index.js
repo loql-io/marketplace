@@ -1,34 +1,31 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-
 import { useAuth } from 'components/auth-context';
-import { useSettings } from 'components/settings-context';
 import { useT } from 'lib/i18n';
-
+import { makeStyles } from '@material-ui/core/styles';
 import BurgerButton from './burger-button';
 import BasketButton from './basket-button';
-import LocaleSwitcher from './locale-switcher';
-import Search from './search';
-import Login from './login';
-import {
-  Outer,
-  Nav,
-  Logo,
-  NavActions,
-  NavList,
-  NavListItem,
-  PreviewBar,
-  IconBar
-} from './styles';
+
+import { AppBar } from '@material-ui/core';
+
+import { Logo, PreviewBar, NavActions, IconBar } from './styles';
+
+const useStyles = makeStyles(() => ({
+  appBar: {
+    height: 60,
+    background: '#fff',
+    boxShadow: '0 2px 2px #C0A9a8 '
+  }
+}));
 
 export default function Header({ simple, preview }) {
   const t = useT();
-  const { mainNavigation } = useSettings();
   const auth = useAuth();
   const router = useRouter();
 
   const [navOpen, setNavOpen] = useState(false);
+  const classes = useStyles();
 
   return (
     <>
@@ -41,26 +38,28 @@ export default function Header({ simple, preview }) {
           )
         </PreviewBar>
       )}
-      <Outer simple={simple}>
-      <Link href="/" passHref>
-      <Logo>
-        <img src="/static/Berko_Loql.png" alt="" />
-      </Logo>
-    </Link>
-        <Nav open={navOpen}>
-          <NavList>
-            {mainNavigation?.map((category) => (
-              <NavListItem key={category.path}>
-                <Link href={category.path}>
-                  <a onClick={() => setNavOpen(false)}>{category.name}</a>
-                </Link>
-              </NavListItem>
-            ))}
-          </NavList>
-        </Nav>
+      <AppBar className={classes.appBar} position="fixed">
+        <Link href="/" passHref>
+          <Logo>
+            <img src="/static/berko.svg" alt="" />
+          </Logo>
+        </Link>
+
+        {/*
+      <Nav open={navOpen}>
+        <NavList>
+          {mainNavigation?.map((category) => (
+            <NavListItem key={category.path}>
+              <Link href={category.path}>
+                <a onClick={() => setNavOpen(false)}>{category.name}</a>
+              </Link>
+            </NavListItem>
+          ))}
+        </NavList>
+      </Nav>
+      */}
 
         <NavActions open={navOpen}>
-          <LocaleSwitcher />
           {auth.isLoggedIn ? (
             <button type="button" onClick={auth.logout}>
               Logout
@@ -71,16 +70,15 @@ export default function Header({ simple, preview }) {
             </Link>
           )}
         </NavActions>
-     
+
         {!simple && (
           <IconBar>
-            <Login />
             <BasketButton />
           </IconBar>
         )}
-        
+
         <BurgerButton active={navOpen} onClick={() => setNavOpen(!navOpen)} />
-      </Outer>
+      </AppBar>
     </>
   );
 }
