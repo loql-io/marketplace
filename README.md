@@ -34,7 +34,7 @@ Simply run the following command (>= Node 8 required):
 ```sh
 npx @crystallize/cli my-project
 ```
-
+ 
 This will walk you through the steps of specifying your tenant, choosing the
 template (Next.js + React) and adding additional features such as Vercel.
 
