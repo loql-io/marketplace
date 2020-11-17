@@ -37,6 +37,12 @@ export default function DocumentPage({ document, preview }) {
     (c) => !['Intro', 'Title', 'Image', 'Products'].includes(c.name)
   );
 
+  //console.log('here', relatedProducts?.content?.items[0])
+  /*
+relatedProducts?.content?.items?.map((item, i) => (
+    console.log('item', item)
+))
+*/
   return (
     <Layout title={title || document.name} preview={preview}>
       <Outer>
@@ -60,11 +66,11 @@ export default function DocumentPage({ document, preview }) {
         <Related>
           <H2>
             {t('product.relatedProduct', {
-              count: relatedProducts.content.items.length
+              count: relatedProducts?.content?.items?.length
             })}
           </H2>
           <List>
-            {relatedProducts.content.items.map((item, i) => (
+            {relatedProducts?.content?.items?.map((item, i) => (
               <ItemMicroformat key={i} item={item} />
             ))}
           </List>
