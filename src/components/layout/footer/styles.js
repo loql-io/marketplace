@@ -1,17 +1,32 @@
 import styled from 'styled-components';
 
+import { Button } from '@material-ui/core';
+
 export const Outer = styled.footer`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  max-width: 1600px;
-  margin: 50px auto;
-  border-top: 2px solid var(--color-box-background);
+  height: 200px;
   padding: 50px 50px;
-  justify-content: space-between;
+  background-color: #2f2b27;
 `;
 
 export const Logo = styled.div`
   width: 70px;
+`;
+
+export const NavList = styled.footer`
+  list-style: none;
+  font-weight: 500;
+  font-size: 1rem;
+  display: block;
+  margin: 0 0 0 auto;
+
+  li {
+    line-height: 1.5rem;
+  }
+  h5 {
+    font-size: 0.7rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
 `;
 
 export const Powered = styled.div`
@@ -31,19 +46,28 @@ export const Powered = styled.div`
   }
 `;
 
-export const NavList = styled.footer`
-  list-style: none;
-  font-weight: 500;
-  font-size: 1rem;
-  display: block;
-  margin: 0 0 0 auto;
+export const FooterText = styled.div`
+  color: #fff;
+`;
 
-  li {
-    line-height: 1.5rem;
-  }
-  h5 {
-    font-size: 0.7rem;
-    font-weight: 400;
-    margin-bottom: 10px;
+export const FindOurMoreButton = styled(Button)`
+  height: 28px;
+  width: 140px;
+  left: 0px;
+  top: 0px;
+  border-radius: 6px;
+  color: #2f2b27;
+  font-size: 14px !important;
+`;
+
+export const FooterLinks = styled.div`
+  color: #c0a9a8;
+  ul {
+    list-style: none;
+    float: right;
+    li {
+      float: left;
+      margin-right: 20px;
+    }
   }
 `;
