@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import { Button } from '@material-ui/core';
 
 export const Outer = styled.footer`
-  height: 200px;
+  min-height: 200px;
   padding: 50px 50px;
   background-color: #2f2b27;
 `;
 
 export const Logo = styled.div`
-  width: 70px;
+  text-align: center;
 `;
 
 export const NavList = styled.footer`
@@ -62,12 +62,14 @@ export const FindOurMoreButton = styled(Button)`
 
 export const FooterLinks = styled.div`
   color: #c0a9a8;
-  ul {
-    list-style: none;
-    float: right;
-    li {
-      float: left;
-      margin-right: 20px;
-    }
+  margin-top: 60px;
+  span {
+    margin-right: 20px;
   }
+`;
+
+export const Copyright = styled.span`
+  color: #c0a9a8;
+  margin-top: 20px;
+  display: inline-block;
 `;
