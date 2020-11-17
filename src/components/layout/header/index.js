@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useAuth } from 'components/auth-context';
-import { useT } from 'lib/i18n';
+//import { useAuth } from 'components/auth-context';
+//import { useT } from 'lib/i18n';
 
 import BurgerButton from './burger-button';
 import BasketButton from './basket-button';
@@ -11,15 +11,16 @@ import { Sticky } from 'react-sticky';
 import {
   Logo,
   PreviewBar,
-  NavActions,
+  //NavActions,
   IconBar,
   StyledAppBar,
-  ShopNav
+  ShopNav,
+  ShopBadge
 } from './styles';
 
 export default function Header({ simple, preview }) {
-  const t = useT();
-  const auth = useAuth();
+  //const t = useT();
+  //const auth = useAuth();
   const router = useRouter();
 
   const [navOpen, setNavOpen] = useState(false);
@@ -56,28 +57,32 @@ export default function Header({ simple, preview }) {
       </Nav>
       */}
 
-        <NavActions open={navOpen}>
-          {auth.isLoggedIn ? (
-            <button type="button" onClick={auth.logout}>
-              Logout
-            </button>
-          ) : (
-            <Link href="/login">
-              <a>{t('customer.login.title')}</a>
-            </Link>
-          )}
-        </NavActions>
-
-        {!simple && (
-          <IconBar>
-            <BasketButton />
-          </IconBar>
-        )}
-
         <BurgerButton active={navOpen} onClick={() => setNavOpen(!navOpen)} />
       </StyledAppBar>
       <Sticky topOffset={60}>
-        {({ style }) => <ShopNav style={style}></ShopNav>}
+        {({ style }) => (
+          <ShopNav style={style}>
+            <ShopBadge src="/static/shopBadge.svg" alt="" />
+            {/*
+            <NavActions open={navOpen}>
+              {auth.isLoggedIn ? (
+                <button type="button" onClick={auth.logout}>
+                  Logout
+                </button>
+              ) : (
+                <Link href="/login">
+                  <a>{t('customer.login.title')}</a>
+                </Link>
+              )}
+            </NavActions>
+*/}
+            {!simple && (
+              <IconBar>
+                <BasketButton />
+              </IconBar>
+            )}
+          </ShopNav>
+        )}
       </Sticky>
     </>
   );

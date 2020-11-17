@@ -24,8 +24,7 @@ export const Logo = styled.a`
   margin: 0 auto;
   height: 34px;
   object-fit: contain;
-  z-index: 99;
-  margin-top: 14px;
+  margin-top: 8px;
   img,
   svg {
     height: 100%;
@@ -124,11 +123,17 @@ export const Btn = styled.button`
 
 export const BasketQuantity = styled.div`
   position: absolute;
-  font-weight: 500;
-  font-size: 14px;
-  top: 50%;
-  left: 50%;
+  font-size: 10px;
+  top: 18px;
+  right: -4px;
   transform: translate(-50%, -25%);
+  color: #fff;
+  background-color: #f26889;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  font-weight: 800;
+  line-height: 15px;
 `;
 
 export const NavActions = styled.div`
@@ -185,18 +190,26 @@ export const PreviewBar = styled.div`
 export const IconBar = styled.div`
   display: flex;
   right: 10px;
-  top: 6px;
+  top: 12px;
   position: absolute;
 `;
 
 export const StyledAppBar = styled(AppBar)`
-  height: 60px;
+  height: 48px;
   background-color: #fff !important;
   box-shadow: 0 2px 2px #c0a9a8;
+  position: relative !important;
 `;
 
 export const ShopNav = styled.div`
   background: #2f2b27;
-  height: 60px;
-  z-index: 10;
+  height: 68px;
+  z-index: 1;
+  position: relative;
+`;
+
+export const ShopBadge = styled.img`
+  width: 124px;
+  margin-left: 40px;
+  margin-top: -20px;
 `;
