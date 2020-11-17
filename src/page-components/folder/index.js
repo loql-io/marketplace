@@ -19,7 +19,7 @@ export async function getData({ asPath, language, preview = null }) {
       version: preview ? 'draft' : 'published'
     }
   });
-
+  console.log(data);
   return { ...data, preview };
 }
 
