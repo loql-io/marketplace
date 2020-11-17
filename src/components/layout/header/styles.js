@@ -204,7 +204,7 @@ export const StyledAppBar = styled(AppBar)`
 export const ShopNav = styled.div`
   background: #2f2b27;
   height: 68px;
-  z-index: 1;
+  z-index: 100;
   position: relative;
 `;
 
