@@ -3,6 +3,8 @@ import is from 'styled-is';
 
 import { responsive } from 'ui';
 
+import { AppBar } from '@material-ui/core';
+
 export const Outer = styled.header`
   text-align: center;
   padding: 20px 75px;
@@ -11,7 +13,7 @@ export const Outer = styled.header`
   justify-content: flex-start;
   align-items: center;
   margin: 0 auto;
-  
+
   ${responsive.smAndLess} {
     padding: 10px 90px 10px 20px;
     justify-content: space-between;
@@ -19,7 +21,7 @@ export const Outer = styled.header`
 `;
 
 export const Logo = styled.a`
- margin: 0 auto;
+  margin: 0 auto;
   height: 34px;
   object-fit: contain;
   z-index: 99;
@@ -27,7 +29,6 @@ export const Logo = styled.a`
   svg {
     height: 100%;
   }
-  
 `;
 
 export const Nav = styled.nav`
@@ -181,4 +182,12 @@ export const IconBar = styled.div`
   display: flex;
   right: 10px;
   position: absolute;
+`;
+
+export const StyledAppBar = styled(AppBar)`
+  & .MuiAppBar-root {
+    height: 60px;
+    background: #fff;
+    box-shadow: 0 2px 2px #c0a9a8;
+  }
 `;
