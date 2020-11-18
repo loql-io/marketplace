@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { responsive } from '../../../ui/responsive';
 
+export const GridContainer = styled.div``;
+
 export const SectionTitle = styled.h1`
   font-size: 32px !important;
   line-height: 36px !important;
