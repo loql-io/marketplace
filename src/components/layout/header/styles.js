@@ -133,7 +133,7 @@ export const BasketQuantity = styled.div`
   width: 16px;
   height: 16px;
   font-weight: 800;
-  line-height: 15px;
+  line-height: 17px;
 `;
 
 export const NavActions = styled.div`

@@ -3,8 +3,6 @@ import styled from 'styled-components';
 
 export const Main = styled.main`
   padding-bottom: 50px;
-  border-style: solid;
-  border-color: var(--color-main-background);
 `;
 
 export const LoadingWrapper = styled.div`

@@ -59,7 +59,7 @@ export default function Header({ simple, preview }) {
 
         <BurgerButton active={navOpen} onClick={() => setNavOpen(!navOpen)} />
       </StyledAppBar>
-      <Sticky topOffset={60}>
+      <Sticky topOffset={48}>
         {({ style }) => (
           <ShopNav style={style}>
             <Link href="/" passHref>

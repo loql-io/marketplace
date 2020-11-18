@@ -5,7 +5,7 @@ import { simplyFetchFromGraph } from 'lib/graph';
 import fragments from 'lib/graph/fragments';
 import { Header } from 'ui';
 import { Outer } from './styles';
-import ShapeComponents from 'components/shape/components';
+import ShapeComponentsHome from 'components/shape/componentsHome';
 
 export async function getData({ language, preview = null }) {
   try {
@@ -41,7 +41,7 @@ export default function FrontPage({ catalogue, preview }) {
     <Layout title={catalogue.name} preview={preview}>
       <Outer>
         <Header centerContent>
-          <ShapeComponents components={componentsRest} />
+          <ShapeComponentsHome components={componentsRest} />
         </Header>
       </Outer>
     </Layout>

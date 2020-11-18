@@ -56,6 +56,10 @@ export default function Layout({
         <link rel="mask-icon" href="/static/mask-icon.svg" color="#5bbad5" />
         <link rel="apple-touch-icon" href="/static/apple-touch-icon.png" />
         <link rel="manifest" href="/static/manifest.json" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />

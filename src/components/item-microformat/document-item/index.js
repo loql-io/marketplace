@@ -1,16 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { screen, H3 } from 'ui';
+import { H3 } from 'ui';
 import ContentTransformer from 'ui/content-transformer';
-import VideoPlayer from 'components/video-player';
+// import VideoPlayer from 'components/video-player';
 
 import {
   Outer,
   Text,
   MediaWrapper,
   MediaInner,
-  Img,
+  //Img,
   Description
 } from './styles';
 
@@ -27,9 +27,10 @@ export default function DocumentItem({ data, colSpan = '12' }) {
   const description = data.components?.find((c) => c.name === 'Intro');
   const video = data.components?.find((c) => c.name === 'Video');
 
-  let media;
+  //let media;
 
   if (video?.content?.videos?.length) {
+    /*
     media = (
       <VideoPlayer
         {...video.content.videos[0]}
@@ -37,8 +38,9 @@ export default function DocumentItem({ data, colSpan = '12' }) {
         loop
         controls={false}
       />
-    );
+    );*/
   } else if (image) {
+    /*
     media = (
       <Img
         {...image}
@@ -46,6 +48,7 @@ export default function DocumentItem({ data, colSpan = '12' }) {
         sizes={`(min-width ${screen.md}px) 33vw, 100vw`}
       />
     );
+    */
   } else {
     return (
       <Link href={path} passHref>
@@ -65,7 +68,12 @@ export default function DocumentItem({ data, colSpan = '12' }) {
     <Link href={path} passHref>
       <Outer span={colSpan}>
         <MediaWrapper>
-          <MediaInner>{media && media}</MediaInner>
+          <MediaInner
+            style={{
+              backgroundImage: `linear-gradient(to bottom, rgba(252, 252, 252, 0), rgba(47, 43, 39, 1)),
+              url(${image.url})`
+            }}
+          />
         </MediaWrapper>
         <Text>
           <H3>{name}</H3>

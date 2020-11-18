@@ -7,12 +7,14 @@ import WidescreenRatio from 'ui/widescreen-ratio';
 export const Outer = styled.a`
   display: flex;
   flex-direction: column;
-  height: 100%;
-
+  margin-top: -12px;
   ${(p) => (p.span ? `grid-column-end: span ${p.span}` : null)};
 
   ${responsive.xs} {
-    margin-bottom: 15px;
+    /*margin-bottom: 15px;*/
+  }
+  &:hover {
+    text-decoration: none;
   }
 `;
 
@@ -22,6 +24,10 @@ export const MediaWrapper = styled(WidescreenRatio)`
 
 export const MediaInner = styled.div`
   flex: 1 1 100%;
+  margin: 0;
+  background-size: cover;
+  width: 100%;
+  border: solid 1px #2f2b27;
 `;
 
 export const Img = styled(Image)`
@@ -42,17 +48,24 @@ export const Img = styled(Image)`
 export const Text = styled.div`
   flex: 1 1 auto;
   color: var(--color-text-main);
-  background: var(--color-box-background);
+  /*background: var(--color-box-background);*/
   width: 100%;
   display: flex;
   flex-direction: column;
   text-align: center;
   padding: 3em var(--content-padding);
+  color: #fff;
+  margin-top: -148px;
+  z-index: 2;
 
   h3 {
-    font-size: 1.6em;
     color: inherit;
     margin: 0;
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 27px;
   }
 `;
 
@@ -62,5 +75,4 @@ export const Description = styled.div`
   line-height: 1.2rem;
   color: inherit;
   text-align: center;
-  
 `;
