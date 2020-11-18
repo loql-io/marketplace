@@ -7,15 +7,35 @@ const commonTransfomerOverrides = {
   link({ metadata, renderNode, ...rest }) {
     const { href } = metadata;
 
-    return (
-      <a className="fancy-link" href={href}>
-        {renderNode(rest)}
-      </a>
-    );
-  },
+    //console.log( rest.children[0].textContent)
+
+    if (rest.children[0].textContent === '[twitter]') {
+      return (
+        <SocialLink className="social" href={href}>
+          <img src="/static/TW.svg" />
+        </SocialLink>
+      );
+    } else if (rest.children[0].textContent === '[linkedin]') {
+      return (
+        <SocialLink className="social" href={href}>
+          <img src="/static/LI.svg" />
+        </SocialLink>
+      );
+    } else {
+      return (
+        <a className="fancy-link" href={href}>
+          {renderNode(rest)}
+        </a>
+      );
+    }
+  }
 };
 
 const maxWidth = '600px';
+
+const SocialLink = styled.a`
+  border-bottom: none;
+`;
 
 const ContentTransformerOuter = styled.div`
   p,
