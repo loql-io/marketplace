@@ -39,16 +39,15 @@ export async function getData({ language, preview = null }) {
 
 export default function FrontPage({ catalogue, preview }) {
   //const t = useT();
-  const [grid] =
-    catalogue?.components?.find((c) => c.type === 'gridRelations')?.content
-      ?.grids || [];
 
   const { children } = catalogue;
+
   const gridRelations = catalogue.components
     ?.filter((c) => c.type === 'gridRelations')
     ?.reduce((acc, g) => [...acc, ...(g?.content?.grids || [])], []);
   const rest = catalogue.components?.filter((c) => c.type !== 'gridRelations');
-  //console.log(rest);
+
+  //console.log(gridRelations);
 
   return (
     <Layout title={catalogue.name} preview={preview}>
@@ -56,6 +55,8 @@ export default function FrontPage({ catalogue, preview }) {
         <Header centerContent>
           <ShapeComponents components={rest} />
         </Header>
+      </Outer>
+      <Outer>
         {gridRelations?.length > 0
           ? gridRelations?.map((grid, index) => (
               <Grid
@@ -73,16 +74,6 @@ export default function FrontPage({ catalogue, preview }) {
                 ))}
               </List>
             )}
-      </Outer>
-      <Outer>
-        {grid && (
-          <Grid
-            model={grid}
-            cellComponent={({ cell }) => (
-              <GridItem data={cell.item} gridCell={cell} />
-            )}
-          />
-        )}
       </Outer>
     </Layout>
   );
