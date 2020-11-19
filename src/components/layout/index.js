@@ -35,6 +35,14 @@ function Loader({ children }) {
   );
 }
 
+const formatTitle = (str) => {
+  return str
+    .replace(/-/g, ' ')
+    .trim()
+    .toLowerCase()
+    .replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
+};
+
 export default function Layout({
   children,
   title,
@@ -47,7 +55,9 @@ export default function Layout({
     <>
       <Head>
         <meta name="theme-color" content={theme.palette.primary.main} />
-        <title key="title">{title || ''}</title>
+        <title key="title">{`${formatTitle(
+          process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER
+        )} - ${title}`}</title>
         {description && (
           <meta key="description" name="description" content={description} />
         )}
