@@ -27,10 +27,12 @@ export const Img = styled(Image)`
 `;
 
 export const Title = styled(H3)`
-  font-size: 2.5rem;
-  text-transform: uppercase;
   color: var(--color-text-main);
   font-weight: 900;
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 22px;
 `;
 
 export const Text = styled.div`
@@ -45,15 +47,17 @@ export const Text = styled.div`
 `;
 
 export const Price = styled.span`
-  color: inherit;
-  font-size: 1.5rem;
-  color: var(--color-price);
+  font-family: Nunito Sans;
+  font-style: normal;
   font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--color-text-main);
 `;
 
 export const Outer = styled.a`
   position: relative;
-  background: var(--color-box-background);
+  background: #fff;
   height: 100%;
   display: flex;
   padding: 0 50px;

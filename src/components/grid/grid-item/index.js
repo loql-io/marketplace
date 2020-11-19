@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 
 import DocumentItem from 'components/item-microformat/document-item';
-import { screen, Button } from 'ui';
+import { screen } from 'ui';
 import { useT } from 'lib/i18n';
 import { useLocale } from 'lib/app-config';
 
@@ -54,14 +54,14 @@ export default function GridItem({ data, gridCell }) {
     image = i;
     text = (
       <div>
+        <Title>{name}</Title>
         <Price>
           {t('common.price', {
             value: price,
             currency
           })}
         </Price>
-        <Title>{name}</Title>
-        <Button>{t('product.buy')}</Button>
+        {/*<Button>{t('product.buy')}</Button> */}
       </div>
     );
   }

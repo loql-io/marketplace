@@ -6,7 +6,8 @@ import ContentTransformer from 'ui/content-transformer';
 import { responsive } from 'ui';
 
 import ParagraphCollection from './paragraph-collection';
-import ParagraphCollectionHero from './paragraph-collection-hero';
+import ParagraphCollectionHome from './paragraph-collection-home';
+import ParagraphCollectionTeam from './paragraph-collection-team';
 import PropertiesTable from './properties-table';
 import Images from './images';
 import Videos from './videos';
@@ -25,7 +26,7 @@ const ShapeComponents = ({ components, overrides }) => {
   if (!components || !Array.isArray(components)) {
     return null;
   }
-
+  //console.log('components', components)
   return (
     <div>
       {components
@@ -47,8 +48,19 @@ const ShapeComponents = ({ components, overrides }) => {
               return null;
             }
 
-            Component = Component || ParagraphCollectionHero;
+            Component = Component || ParagraphCollectionHome;
 
+            return (
+              <Component key={key} paragraphs={component.content.paragraphs} />
+            );
+          }
+
+          if (component.name === 'Team' && type === 'paragraphCollection') {
+            if (!component.content.paragraphs) {
+              return null;
+            }
+
+            Component = Component || ParagraphCollectionTeam;
             return (
               <Component key={key} paragraphs={component.content.paragraphs} />
             );
@@ -60,7 +72,7 @@ const ShapeComponents = ({ components, overrides }) => {
             }
 
             Component = Component || ParagraphCollection;
-
+            //console.log(component.content.paragraphs)
             return (
               <Component key={key} paragraphs={component.content.paragraphs} />
             );

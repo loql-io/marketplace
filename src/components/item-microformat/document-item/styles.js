@@ -47,25 +47,28 @@ export const Img = styled(Image)`
 
 export const Text = styled.div`
   flex: 1 1 auto;
-  color: var(--color-text-main);
+  /*color: var(--color-text-main);*/
   /*background: var(--color-box-background);*/
   width: 100%;
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding: 3em var(--content-padding);
-  color: #fff;
-  margin-top: -148px;
+  /*padding: 3em var(--content-padding);*/
+  /*margin-top: -148px;*/
   z-index: 2;
-
   h3 {
-    color: inherit;
-    margin: 0;
+    color: #fff;
+    margin-top: -100px;
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: 800;
     font-size: 24px;
     line-height: 27px;
+    padding: 0 20px;
+    ${responsive.md} {
+      font-size: 19px;
+      line-height: 20px;
+    }
   }
 `;
 
