@@ -9,7 +9,6 @@ export const Outer = styled.div`
   margin: 0;
   width: 200px;
   display: inline-block;
-  height: 200px;
 `;
 
 export const Title = styled.div`

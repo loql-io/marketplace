@@ -3,6 +3,7 @@ import Grid from 'components/grid';
 import { responsive } from '../../../ui/responsive';
 
 export const GridContainer = styled.div`
+  background-color: #fff;
   &:nth-child(2) > h1 {
     background-color: #2f2b27;
     color: #fff !important;
@@ -22,6 +23,6 @@ export const SectionTitle = styled.h1`
   }
 `;
 export const GridDiv = styled(Grid)`
-  background-color: var(--color-text-main);
-  margin-top: -12px;
+  /*background-color: var(--color-text-main);*/
+  /*margin-top: -12px;*/
 `;

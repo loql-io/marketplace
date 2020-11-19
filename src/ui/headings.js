@@ -16,7 +16,7 @@ export const H1 = styled.h1`
 export const H2 = styled.h2`
   color: var(--color-text-main);
   font-size: 2rem;
-  margin: 1rem 0;
+  /*margin: 1rem 0;*/
 
   ${responsive.smAndLess} {
     font-size: 1.5rem;
@@ -26,7 +26,8 @@ export const H2 = styled.h2`
 export const H3 = styled.h3`
   color: var(--color-text-main);
   font-size: 1.4rem;
-  margin: 1rem 0;
+  /*margin: 1rem 0;*/
+  margin-bottom: 0;
 
   ${responsive.smAndLess} {
     font-size: 1.2rem;

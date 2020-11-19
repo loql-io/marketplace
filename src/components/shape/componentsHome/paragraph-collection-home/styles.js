@@ -29,7 +29,8 @@ export const Title = styled.div`
 `;
 
 export const Body = styled.div`
-  margin: 1em var(--content-padding);
+  /*margin: 1em var(--content-padding);*/
+  /*margin-top: -60px;*/
 `;
 
 export const Text = styled.div`

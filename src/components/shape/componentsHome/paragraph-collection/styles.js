@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 
-export const Paragraphs = styled.div``;
+export const Paragraphs = styled.div`
+  font-size: 32px !important;
+  line-height: 36px !important;
+  color: #2f2b27 !important;
+  background-color: #fff;
+  padding: 24px 0;
+  font-weight: 900;
+`;
 
 export const Outer = styled.div`
   margin: 0;

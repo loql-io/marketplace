@@ -16,9 +16,16 @@ import GridRelations from './grid-relations';
 
 const ContentOuter = styled.div`
   margin: 1em var(--content-padding);
-
   ${responsive.xs} {
     margin: 0;
+  }
+
+  & .sectionHeader {
+    font-size: 32px !important;
+    line-height: 36px !important;
+    color: #2f2b27 !important;
+    padding: 24px 0;
+    font-weight: 900;
   }
 `;
 
@@ -26,7 +33,7 @@ const ShapeComponents = ({ components, overrides }) => {
   if (!components || !Array.isArray(components)) {
     return null;
   }
-  //console.log('components', components)
+
   return (
     <div>
       {components
@@ -101,6 +108,17 @@ const ShapeComponents = ({ components, overrides }) => {
               <ContentOuter key={key}>
                 <Component>
                   <ContentTransformer {...component.content.json} />
+                </Component>
+              </ContentOuter>
+            );
+          }
+
+          if (type === 'singleLine' && component.name === 'Team header') {
+            Component = Component || 'div';
+            return (
+              <ContentOuter key={key}>
+                <Component className="sectionHeader">
+                  {component.content.text}
                 </Component>
               </ContentOuter>
             );

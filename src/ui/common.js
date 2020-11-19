@@ -5,8 +5,9 @@ import { responsive } from './responsive';
 export const Outer = styled.div`
   margin-bottom: 30px;
   /*max-width: 1600px;*/
-  padding: 0 0;
-  margin: -16px auto 0 auto;
+  padding: 0;
+  margin: 0 auto;
+  /*margin: -16px auto 0 auto;*/
   display: block;
   min-height: 75vh;
   ${responsive.smAndLess} {

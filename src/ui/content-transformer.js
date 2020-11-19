@@ -6,9 +6,6 @@ const commonTransfomerOverrides = {
   // Example of a link override
   link({ metadata, renderNode, ...rest }) {
     const { href } = metadata;
-
-    //console.log( rest.children[0].textContent)
-
     if (rest.children[0].textContent === '[twitter]') {
       return (
         <SocialLink className="social" href={href}>
@@ -28,6 +25,21 @@ const commonTransfomerOverrides = {
         </a>
       );
     }
+  },
+
+  paragraph({ metadata, renderNode, ...rest }) {
+    if (rest.children[0].textContent?.includes('[icon-phone]')) {
+      return (
+        <PhoneContainer>
+          <PhoneIcon src="/static/phone.svg" />
+          <PhoneNumber>
+            {rest.children[0].textContent.replace('[icon-phone]', '')}
+          </PhoneNumber>
+        </PhoneContainer>
+      );
+    } else {
+      return <p>{renderNode(rest)}</p>;
+    }
   }
 };
 
@@ -35,6 +47,24 @@ const maxWidth = '600px';
 
 const SocialLink = styled.a`
   border-bottom: none;
+`;
+
+const PhoneContainer = styled.div`
+  display: inline-flex;
+  margin-bottom: 30px;
+`;
+
+const PhoneNumber = styled.div`
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 25px;
+`;
+
+const PhoneIcon = styled.img`
+  display: inline-block;
+  margin: -2px 10px 0 0;
 `;
 
 const ContentTransformerOuter = styled.div`
