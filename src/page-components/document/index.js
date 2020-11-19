@@ -5,11 +5,19 @@ import { H1, Header, Outer } from 'ui';
 import Layout from 'components/layout';
 import { simplyFetchFromGraph } from 'lib/graph';
 import ShapeComponents from 'components/shape/components';
-import ItemMicroformat from 'components/item-microformat';
+
 import { useT } from 'lib/i18n';
 
 import query from './query';
-import { HeroImage, Img, List, H2, Related } from './styles';
+import {
+  HeroImage,
+  Img,
+  List,
+  H2,
+  Related,
+  ListItem,
+  ImageWrapper
+} from './styles';
 
 export async function getData({ asPath, language, preview = null }) {
   const { data } = await simplyFetchFromGraph({
@@ -70,8 +78,19 @@ relatedProducts?.content?.items?.map((item, i) => (
             })}
           </H2>
           <List>
-            {relatedProducts?.content?.items?.map((item, i) => (
-              <ItemMicroformat key={i} item={item} />
+            {relatedProducts?.content?.items?.map((item) => (
+              <ListItem key={item.id}>
+                {console.log(item?.variants?.[0])}
+                <a as={item?.path} href={item?.path}>
+                  <h4>{item?.name}</h4>
+                  <span>£{item?.variants?.[0].priceVariants[0].price}</span>
+                  <ImageWrapper>
+                    {item?.variants?.[0].image?.url && (
+                      <Img {...item?.variants[0].image} sizes="8vw" />
+                    )}
+                  </ImageWrapper>
+                </a>
+              </ListItem>
             ))}
           </List>
         </Related>

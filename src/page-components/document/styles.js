@@ -63,3 +63,11 @@ export const Related = styled.div`
     padding: 50px;
   }
 `;
+export const ListItem = styled.li``;
+export const ImageWrapper = styled.div`
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  width: 100%;
+  height: 250px;
+`;
