@@ -13,6 +13,7 @@ export const Outer = styled.a`
   background: var(--color-box-background);
   transition: all 0.1s ease-in-out;
   grid-column-end: span 3;
+
   ${responsive.xs} {
     margin-bottom: 15px;
   }
