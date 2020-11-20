@@ -28,12 +28,12 @@ const commonTransfomerOverrides = {
   },
 
   paragraph({ metadata, renderNode, ...rest }) {
-    if (rest.children[0].textContent?.includes('[icon-phone]')) {
+    if (rest.children[0]?.textContent?.includes('[icon-phone]')) {
       return (
         <PhoneContainer>
           <PhoneIcon src="/static/phone.svg" />
           <PhoneNumber>
-            {rest.children[0].textContent.replace('[icon-phone]', '')}
+            {rest.children[0]?.textContent?.replace('[icon-phone]', '')}
           </PhoneNumber>
         </PhoneContainer>
       );
@@ -88,9 +88,13 @@ const ContentTransformerOuter = styled.div`
   }
 
   p {
-    margin: auto;
     text-align: left;
-    line-height: 1.8;
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 20px;
   }
 
   ul {

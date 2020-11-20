@@ -92,7 +92,6 @@ export default function VariantSelector({
     if (variant) {
       onVariantChange(variant);
     }
-    console.log(variant);
   }
 
   return (

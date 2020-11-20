@@ -20,8 +20,8 @@ export const Loader = styled.div`
 
 export const Sections = styled.div`
   display: flex;
-  align-items: center;
-  background: var(--color-box-background);
+  align-items: initial;
+  /*background: var(--color-box-background);*/
   padding: 50px;
   /*flex-direction: row-reverse;*/
   justify-content: center;
@@ -54,10 +54,12 @@ export const Specs = styled.div`
 `;
 
 export const Description = styled.div`
+  /*
   color: var(--color-text-sub);
   flex: 0 1 100%;
   background: var(--color-box-background);
   padding: 5rem 0;
+*/
   h2:empty {
     display: none;
   }
@@ -75,7 +77,7 @@ export const Description = styled.div`
 export const Media = styled.div`
   flex: 0 0 65%;
   position: relative;
-  padding: 3rem;
+  /*padding: 3rem;*/
   ${responsive.mdAndLess} {
     display: block;
     padding: 0;
@@ -109,9 +111,11 @@ export const Info = styled.div`
   }
 `;
 export const Name = styled(H1)`
-  font-size: 2rem;
+  font-family: Nunito Sans;
+  font-style: normal;
   font-weight: 900;
-  text-transform: uppercase;
+  font-size: 36px;
+  line-height: 37px;
 `;
 
 export const Summary = styled.div`
@@ -124,9 +128,9 @@ export const Summary = styled.div`
 export const ProductFooter = styled.div`
   display: flex;
   flex-wrap: wrap;
-  padding: 45px 0 0;
+  padding: 0;
   justify-content: space-between;
-  border-top: 1px solid #cecece;
+  /*border-top: 1px solid #cecece;*/
   align-items: center;
 
   ${responsive.xs} {
@@ -211,3 +215,50 @@ export const Img = styled(Image)`
     overflow: hidden;
   }
 `;
+
+export const VariantSelectorOuter = styled.div`
+  background: #faf6f6;
+  padding: 30px;
+`;
+
+/*
+export const StyledButton = styled(Button)`
+    display: 'flex';
+    alignItems: 'center';
+    justifyContent: 'center';
+
+    width: 345px;
+    height: 44px;
+
+    boxShadow: 0px 1px #C0A9A8;
+    background: red;
+    border: 3px solid red;
+    borderRadius: 8px;
+
+    color: '#2F2B27';
+    fontSize: 18;
+    fontWeight: 800;
+    padding: 0;
+    textTransform: 'initial';
+
+    transition: all ease-in-out 0.2s;
+
+    &:disabled: {
+      boxShadow: 0px 0px;
+      backgroundColor: '#EEEEEE',
+      border: '#EEEEEE',
+      color: '#C4C4C4',
+    },
+
+    &:focus: {
+      border: '2px solid';
+      borderColor: red;
+    },
+
+    &:hover: {
+      borderColor: red;
+      backgroundColor: red;
+      color: '#fff';
+    }
+`;
+*/

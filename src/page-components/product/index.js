@@ -28,7 +28,8 @@ import {
   H2,
   List,
   ListItem,
-  ImageWrapper
+  ImageWrapper,
+  VariantSelectorOuter
 } from './styles';
 
 export async function getData({ asPath, language, preview = null }) {
@@ -112,14 +113,15 @@ export default function ProductPage({ product, preview }) {
             )}
 
             {product.variants?.length > 1 && (
-              <VariantSelector
-                variants={product.variants}
-                selectedVariant={selectedVariant}
-                onVariantChange={onVariantChange}
-              />
+              <VariantSelectorOuter>
+                <VariantSelector
+                  variants={product.variants}
+                  selectedVariant={selectedVariant}
+                  onVariantChange={onVariantChange}
+                />
+                <Buy product={product} selectedVariant={selectedVariant} />
+              </VariantSelectorOuter>
             )}
-
-            <Buy product={product} selectedVariant={selectedVariant} />
           </Info>
         </Sections>
 
