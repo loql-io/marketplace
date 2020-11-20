@@ -13,17 +13,20 @@ import ItemRelations from './item-relations';
 import GridRelations from './grid-relations';
 
 const ContentOuter = styled.div`
-  margin: 1em var(--content-padding);
+  /*margin: 1em var(--content-padding);*/
 
   ${responsive.xs} {
     margin: 0;
   }
 `;
 
-const ShapeComponents = ({ components, overrides }) => {
+const ShapeComponents = ({ components, overrides, pageType }) => {
   if (!components || !Array.isArray(components)) {
     return null;
   }
+
+  const columns =
+    pageType === 'product' ? { width: '50%', display: 'inline-grid' } : '';
 
   return (
     <div>
@@ -46,7 +49,11 @@ const ShapeComponents = ({ components, overrides }) => {
             Component = Component || ParagraphCollection;
 
             return (
-              <Component key={key} paragraphs={component.content.paragraphs} />
+              <Component
+                key={key}
+                paragraphs={component.content.paragraphs}
+                name={component.name}
+              />
             );
           }
 
@@ -90,7 +97,7 @@ const ShapeComponents = ({ components, overrides }) => {
           if (type === 'propertiesTable') {
             Component = Component || PropertiesTable;
             return (
-              <ContentOuter key={key}>
+              <ContentOuter key={key} style={columns}>
                 <Component {...component.content} />
               </ContentOuter>
             );
@@ -98,7 +105,11 @@ const ShapeComponents = ({ components, overrides }) => {
 
           if (type === 'itemRelations') {
             Component = Component || ItemRelations;
-            return <Component key={key} items={component.content.items} />;
+            return (
+              <div key={key} style={columns}>
+                <Component items={component.content.items} />;
+              </div>
+            );
           }
 
           if (type === 'gridRelations') {

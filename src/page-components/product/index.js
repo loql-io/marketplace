@@ -12,7 +12,7 @@ import VariantSelector from './variant-selector';
 import Buy from './buy';
 import query from './query';
 //import Topics from 'components/topics';
-import { useT } from 'lib/i18n';
+
 import {
   Outer,
   Sections,
@@ -24,11 +24,6 @@ import {
   Content,
   Specs,
   Description,
-  Related,
-  H2,
-  List,
-  ListItem,
-  ImageWrapper,
   VariantSelectorOuter
 } from './styles';
 
@@ -46,7 +41,7 @@ export async function getData({ asPath, language, preview = null }) {
 }
 
 export default function ProductPage({ product, preview }) {
-  const t = useT();
+  //const t = useT();
   // Set the selected variant to the default
   const [selectedVariant, setSelectedVariant] = useState(
     product.variants.find((v) => v.isDefault)
@@ -65,10 +60,6 @@ export default function ProductPage({ product, preview }) {
   const specs = product.components?.find((c) => c.name === 'Specs');
   const componentsRest = product.components?.filter(
     (c) => !['Summary', 'Description', 'Specs'].includes(c.name)
-  );
-
-  const relatedProducts = product?.components?.find(
-    (c) => c.type === 'itemRelations'
   );
 
   return (
@@ -127,33 +118,7 @@ export default function ProductPage({ product, preview }) {
 
         {/*product?.topics?.length && <Topics topicMaps={product.topics} />*/}
 
-        {<ShapeComponents components={componentsRest} />}
-
-        {relatedProducts?.content?.items?.length && (
-          <Related>
-            <H2>
-              {t('product.relatedProduct', {
-                count: relatedProducts?.content?.items?.length
-              })}
-            </H2>
-            <List>
-              {relatedProducts?.content?.items?.map((item) => (
-                <ListItem key={item.id}>
-                  {/*console.log(item?.variants?.[0])*/}
-                  <a as={item?.path} href={item?.path}>
-                    <h4>{item?.name}</h4>
-                    <span>£{item?.variants?.[0].priceVariants[0].price}</span>
-                    <ImageWrapper>
-                      {item?.variants?.[0].image?.url && (
-                        <Img {...item?.variants[0].image} sizes="8vw" />
-                      )}
-                    </ImageWrapper>
-                  </a>
-                </ListItem>
-              ))}
-            </List>
-          </Related>
-        )}
+        {<ShapeComponents components={componentsRest} pageType="product" />}
       </Outer>
     </Layout>
   );
