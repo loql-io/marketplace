@@ -23,7 +23,7 @@ export const Sections = styled.div`
   align-items: center;
   background: var(--color-box-background);
   padding: 50px;
-  flex-direction: row-reverse;
+  /*flex-direction: row-reverse;*/
   justify-content: center;
 
   ${responsive.smAndLess} {
