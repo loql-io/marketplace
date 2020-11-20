@@ -92,7 +92,7 @@ export const MediaInner = styled.div`
 
   img {
     object-fit: contain;
-    max-height: 80vh;
+    max-height: 45vh;
     width: 100%;
     height: 100%;
 
@@ -220,45 +220,3 @@ export const VariantSelectorOuter = styled.div`
   background: #faf6f6;
   padding: 30px;
 `;
-
-/*
-export const StyledButton = styled(Button)`
-    display: 'flex';
-    alignItems: 'center';
-    justifyContent: 'center';
-
-    width: 345px;
-    height: 44px;
-
-    boxShadow: 0px 1px #C0A9A8;
-    background: red;
-    border: 3px solid red;
-    borderRadius: 8px;
-
-    color: '#2F2B27';
-    fontSize: 18;
-    fontWeight: 800;
-    padding: 0;
-    textTransform: 'initial';
-
-    transition: all ease-in-out 0.2s;
-
-    &:disabled: {
-      boxShadow: 0px 0px;
-      backgroundColor: '#EEEEEE',
-      border: '#EEEEEE',
-      color: '#C4C4C4',
-    },
-
-    &:focus: {
-      border: '2px solid';
-      borderColor: red;
-    },
-
-    &:hover: {
-      borderColor: red;
-      backgroundColor: red;
-      color: '#fff';
-    }
-`;
-*/
