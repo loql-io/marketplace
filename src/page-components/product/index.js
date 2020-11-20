@@ -77,7 +77,7 @@ export default function ProductPage({ product, preview }) {
           <Media>
             <MediaInner>
               <Carousel autoPlay={false}>
-                {selectedVariant.images.map((item, i) => (
+                {selectedVariant?.images?.map((item, i) => (
                   <Img
                     key={i}
                     {...item}
