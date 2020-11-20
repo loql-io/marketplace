@@ -31,22 +31,45 @@ export const H3 = styled(H)`
   }
 `;
 
-export const List = styled.div`
-  display: grid;
-  grid-gap: 5px;
-  grid-template-columns: repeat(1, 1fr);
-  ${responsive.md} {
-    grid-template-columns: repeat(1, 1fr);
-  }
-  ${responsive.sm} {
-    grid-template-columns: repeat(6, 1fr);
-  }
+export const H4 = styled(H)`
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  margin-bottom: 10px;
   ${responsive.xs} {
-    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
   }
 `;
 
-export const ListItem = styled.li``;
+export const RelatedPrice = styled.span`
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  ${responsive.xs} {
+    text-align: center;
+  }
+`;
+
+export const List = styled.ul`
+  list-style: none;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(2, 1fr);
+  ${responsive.md} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  ${responsive.sm} {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  ${responsive.xs} {
+    grid-template-columns: repeat(1, 1fr);
+  }
+`;
+
+export const ListItem = styled.li`
+  width: 100%;
+  padding: 20px;
+`;
 
 export const ImageWrapper = styled.div`
   position: relative;
@@ -63,7 +86,7 @@ export const Img = styled(Image)`
 
   > img {
     display: block;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
     width: 100%;
     height: 100%;

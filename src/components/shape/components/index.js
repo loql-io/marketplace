@@ -20,14 +20,49 @@ const ContentOuter = styled.div`
   }
 `;
 
+const ProductFooter = styled.div`
+  /*margin: 1em var(--content-padding);*/
+  width: 50%;
+  display: inline-grid;
+  ${responsive.xs} {
+    width: 100%;
+  }
+`;
+
 const ShapeComponents = ({ components, overrides, pageType }) => {
   if (!components || !Array.isArray(components)) {
     return null;
   }
 
-  const columns = (pageType) => {
+  const productFooterTable = (pageType, component, key) => {
     if (pageType === 'product') {
-      return { width: '50%', display: 'inline-grid' };
+      return (
+        <ProductFooter key={key}>
+          <PropertiesTable {...component.content} />
+        </ProductFooter>
+      );
+    } else {
+      return (
+        <ContentOuter key={key}>
+          <PropertiesTable {...component.content} />
+        </ContentOuter>
+      );
+    }
+  };
+
+  const productFooterRelated = (pageType, component, key) => {
+    if (pageType === 'product') {
+      return (
+        <ProductFooter key={key}>
+          <ItemRelations {...component.content} />
+        </ProductFooter>
+      );
+    } else {
+      return (
+        <div key={key}>
+          <ItemRelations items={component.content.items} />;
+        </div>
+      );
     }
   };
 
@@ -98,21 +133,11 @@ const ShapeComponents = ({ components, overrides, pageType }) => {
           }
 
           if (type === 'propertiesTable') {
-            Component = Component || PropertiesTable;
-            return (
-              <ContentOuter key={key} style={columns(pageType)}>
-                <Component {...component.content} />
-              </ContentOuter>
-            );
+            return productFooterTable(pageType, component, key);
           }
 
           if (type === 'itemRelations') {
-            Component = Component || ItemRelations;
-            return (
-              <div key={key} style={columns(pageType)}>
-                <Component items={component.content.items} />;
-              </div>
-            );
+            return productFooterRelated(pageType, component, key);
           }
 
           if (type === 'gridRelations') {

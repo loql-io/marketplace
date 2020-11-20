@@ -1,6 +1,15 @@
 import { useT } from 'lib/i18n';
 
-import { Related, H3, List, ListItem, ImageWrapper, Img } from './styles';
+import {
+  Related,
+  H3,
+  List,
+  ListItem,
+  ImageWrapper,
+  Img,
+  RelatedPrice,
+  H4
+} from './styles';
 
 export default function ItemRelations({ items }) {
   const t = useT();
@@ -28,11 +37,13 @@ export default function ItemRelations({ items }) {
             <a as={item?.path} href={item?.path}>
               <ImageWrapper>
                 {item?.variants?.[0].image?.url && (
-                  <Img {...item?.variants?.[0].image} sizes="8vw" />
+                  <Img {...item?.variants?.[0].image} sizes="4vw" />
                 )}
               </ImageWrapper>
-              <h4>{item?.name}</h4>
-              <span>{getPrice(item?.variants?.[0].priceVariants?.[0])}</span>
+              <H4>{item?.name}</H4>
+              <RelatedPrice>
+                {getPrice(item?.variants?.[0].priceVariants?.[0])}
+              </RelatedPrice>
             </a>
           </ListItem>
         ))}

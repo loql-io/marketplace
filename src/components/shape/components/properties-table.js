@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-
-import { H3 } from 'ui';
+import { H3, responsive } from 'ui';
 
 const Section = styled.div`
   margin: 30px;
@@ -12,6 +11,9 @@ const Section = styled.div`
     font-size: 32px;
     line-height: 36px;
     margin-bottom: 20px;
+    ${responsive.xs} {
+      text-align: center;
+    }
   }
 `;
 

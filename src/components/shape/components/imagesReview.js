@@ -4,7 +4,7 @@ import Image from '@crystallize/react-image';
 import { responsive } from 'ui';
 
 const Outer = styled.div`
-  margin: 40px 30px 40px 0;
+  margin: 40px 30px 10px 0;
   float: left;
 `;
 

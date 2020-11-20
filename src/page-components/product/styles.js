@@ -220,3 +220,10 @@ export const VariantSelectorOuter = styled.div`
   background: #faf6f6;
   padding: 30px;
 `;
+
+export const ProductPrice = styled.div`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 26px;
+`;

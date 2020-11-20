@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Img from '@crystallize/react-image';
 import ContentTransformer from 'ui/content-transformer';
-
+import { useT } from 'lib/i18n';
 import { simplyFetchFromGraph } from 'lib/graph';
 import { screen } from 'ui';
 import Layout from 'components/layout';
@@ -24,7 +24,8 @@ import {
   Content,
   Specs,
   Description,
-  VariantSelectorOuter
+  VariantSelectorOuter,
+  ProductPrice
 } from './styles';
 
 export async function getData({ asPath, language, preview = null }) {
@@ -41,14 +42,29 @@ export async function getData({ asPath, language, preview = null }) {
 }
 
 export default function ProductPage({ product, preview }) {
-  //const t = useT();
+  const t = useT();
   // Set the selected variant to the default
   const [selectedVariant, setSelectedVariant] = useState(
     product.variants.find((v) => v.isDefault)
   );
 
+  const [price, setPrice] = useState(
+    selectedVariant.priceVariants.find((c) => c.identifier === 'default').price
+  );
+
+  const [currency, setCurrency] = useState(
+    selectedVariant.priceVariants.find((c) => c.identifier === 'default')
+      .currency
+  );
+
   function onVariantChange(variant) {
     setSelectedVariant(variant);
+    setPrice(
+      variant.priceVariants.find((c) => c.identifier === 'default').price
+    );
+    setCurrency(
+      variant.priceVariants.find((c) => c.identifier === 'default').currency
+    );
   }
 
   const summaryComponent = product.components?.find(
@@ -82,6 +98,12 @@ export default function ProductPage({ product, preview }) {
           </Media>
           <Info>
             <Name>{product.name}</Name>
+            <ProductPrice>
+              {t('common.price', {
+                value: price,
+                currency
+              })}
+            </ProductPrice>
             <Content>
               {descriptionComponent && (
                 <Description>
