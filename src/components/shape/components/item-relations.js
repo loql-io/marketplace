@@ -10,8 +10,8 @@ export default function ItemRelations({ items }) {
   }
 
   const getPrice = (item) => {
-    const price = item.price;
-    const currency = item.currency;
+    const price = item?.price || 0;
+    const currency = item?.currency || 'gbp';
     return `${t('common.price', { value: price, currency })}`;
   };
 
