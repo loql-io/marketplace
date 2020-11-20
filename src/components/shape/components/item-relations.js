@@ -27,12 +27,12 @@ export default function ItemRelations({ items }) {
           <ListItem key={item.id}>
             <a as={item?.path} href={item?.path}>
               <ImageWrapper>
-                {item?.variants?.[0].image?.url && (
-                  <Img {...item?.variants[0].image} sizes="8vw" />
+                {item?.variants?.[0]?.image?.url && (
+                  <Img {...item?.variants[0]?.image} sizes="8vw" />
                 )}
               </ImageWrapper>
               <h4>{item?.name}</h4>
-              <span>{getPrice(item?.variants[0].priceVariants[0])}</span>
+              <span>{getPrice(item?.variants[0]?.priceVariants?.[0])}</span>
             </a>
           </ListItem>
         ))}
