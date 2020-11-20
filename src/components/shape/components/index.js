@@ -25,8 +25,11 @@ const ShapeComponents = ({ components, overrides, pageType }) => {
     return null;
   }
 
-  const columns =
-    pageType === 'product' ? { width: '50%', display: 'inline-grid' } : '';
+  const columns = (pageType) => {
+    if (pageType === 'product') {
+      return { width: '50%', display: 'inline-grid' };
+    }
+  };
 
   return (
     <div>
@@ -97,7 +100,7 @@ const ShapeComponents = ({ components, overrides, pageType }) => {
           if (type === 'propertiesTable') {
             Component = Component || PropertiesTable;
             return (
-              <ContentOuter key={key} style={columns}>
+              <ContentOuter key={key} style={columns(pageType)}>
                 <Component {...component.content} />
               </ContentOuter>
             );
@@ -106,7 +109,7 @@ const ShapeComponents = ({ components, overrides, pageType }) => {
           if (type === 'itemRelations') {
             Component = Component || ItemRelations;
             return (
-              <div key={key} style={columns}>
+              <div key={key} style={columns(pageType)}>
                 <Component items={component.content.items} />;
               </div>
             );
