@@ -3,8 +3,6 @@ import is from 'styled-is';
 
 import { responsive } from 'ui';
 
-import { AppBar } from '@material-ui/core';
-
 export const Outer = styled.header`
   text-align: center;
   padding: 20px 75px;
@@ -194,11 +192,19 @@ export const IconBar = styled.div`
   position: absolute;
 `;
 
-export const StyledAppBar = styled(AppBar)`
+export const StyledAppBar = styled.header`
   height: 48px;
-  background-color: #fff !important;
-  box-shadow: 0 2px 2px #c0a9a8;
-  position: relative !important;
+  background-color: #fff;
+  position: relative;
+  width: 100%;
+  display: flex;
+  z-index: 1100;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  flex-direction: column;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 `;
 
 export const ShopNav = styled.div`
