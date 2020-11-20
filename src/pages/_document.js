@@ -1,15 +1,14 @@
-import * as React from 'react';
+import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { ServerStyleSheets } from '@material-ui/core/styles';
-import flush from 'styled-jsx/server';
+import { ServerStyleSheets } from '@material-ui/styles';
 import theme from '../ui/theme';
 
 const GTM_ID = process.env.GATAG_ID;
 
-class MyDocument extends Document {
+export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en" dir="ltr">
+      <Html lang="en">
         <Head>
           <script
             dangerouslySetInnerHTML={{
@@ -20,17 +19,7 @@ class MyDocument extends Document {
                     })(window,document,'script','dataLayer','${GTM_ID}');`
             }}
           />
-          <meta charSet="utf-8" />
-          <link
-            rel="shortcut icon"
-            href="/favicon.ico"
-            type="image/x-icon"
-          ></link>
           <meta name="theme-color" content={theme.palette.primary.main} />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-          />
         </Head>
         <body>
           <noscript
@@ -59,13 +48,9 @@ MyDocument.getInitialProps = async (ctx) => {
 
   return {
     ...initialProps,
-    styles: (
-      <React.Fragment>
-        {sheets.getStyleElement()}
-        {flush() || null}
-      </React.Fragment>
-    )
+    styles: [
+      sheets.getStyleElement(),
+      ...React.Children.toArray(initialProps.styles)
+    ]
   };
 };
-
-export default MyDocument;
