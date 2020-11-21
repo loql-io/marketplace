@@ -45,6 +45,21 @@ const styles = makeStyles((theme) =>
         color: '#fff'
       }
     },
+
+    '@media screen and (min-width: 769px) and (max-width: 1023px)': {
+      button: {
+        width: '50%',
+        margin: '0 auto'
+      }
+    },
+
+    '@media screen and (max-width: 768px)': {
+      button: {
+        width: '100%',
+        margin: '0 auto'
+      }
+    },
+
     icon: { fontSize: 30, position: 'absolute', left: 4 }
   })
 );

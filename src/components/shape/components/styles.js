@@ -3,9 +3,7 @@ import Image from '@crystallize/react-image';
 import { H2 as H, responsive } from 'ui';
 
 export const Related = styled.div`
-  margin: 30px;
   ${responsive.smAndLess} {
-    padding: 50px;
   }
 `;
 
@@ -45,30 +43,33 @@ export const RelatedPrice = styled.span`
   font-weight: normal;
   font-size: 16px;
   line-height: 22px;
-  ${responsive.xs} {
-    text-align: center;
-  }
 `;
 
 export const List = styled.ul`
   list-style: none;
   display: grid;
   grid-gap: 5px;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   ${responsive.md} {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   ${responsive.sm} {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
   ${responsive.xs} {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 `;
 
 export const ListItem = styled.li`
   width: 100%;
   padding: 20px;
+  ${responsive.sm} {
+    text-align: center;
+  }
+  ${responsive.xs} {
+    text-align: center;
+  }
 `;
 
 export const ImageWrapper = styled.div`
@@ -76,12 +77,10 @@ export const ImageWrapper = styled.div`
   z-index: 1;
   overflow: hidden;
   width: 100%;
-  height: 250px;
 `;
 
 export const Img = styled(Image)`
   width: 100%;
-  height: 100%;
   overflow: hidden;
 
   > img {
@@ -89,7 +88,11 @@ export const Img = styled(Image)`
     object-fit: contain;
     object-position: center;
     width: 100%;
-    height: 100%;
     overflow: hidden;
+    height: 180px;
+    ${responsive.xs} {
+      height: 120px;
+      margin-bottom: 10px;
+    }
   }
 `;

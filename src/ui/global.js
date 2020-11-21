@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 export default createGlobalStyle`
   :root {
     --content-padding: 50px;
-    
+
     --color-main-background: #fff;
     --color-text-main: #2f2b27;
     --color-text-sub: #4c505b;
@@ -22,7 +22,7 @@ export default createGlobalStyle`
       --color-box-background: #555;
     }
   } */
-  
+
   html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
@@ -33,7 +33,7 @@ export default createGlobalStyle`
     font: 16px/1 Helvetica, Arial, Verdana, sans-serif;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    background: var(--color-main-background);
+    background: white !important;
     color: var(--color-text-sub);
   }
 

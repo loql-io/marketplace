@@ -43,6 +43,20 @@ export default makeStyles(() =>
         height: 40,
         top: 10
       }
+    },
+
+    '@media screen and (min-width: 769px) and (max-width: 1023px)': {
+      inputSelect: {
+        width: '50%',
+        margin: '0 auto'
+      }
+    },
+
+    '@media screen and (max-width: 768px)': {
+      inputSelect: {
+        width: '100%',
+        margin: '0 auto'
+      }
     }
   })
 );

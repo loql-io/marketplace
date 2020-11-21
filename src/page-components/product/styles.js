@@ -37,7 +37,6 @@ export const Content = styled.div`
   display: flex;
   margin-top: 15px;
   ${responsive.xs} {
-    margin: 10px 10px 0;
     display: block;
   }
 `;
@@ -54,12 +53,9 @@ export const Specs = styled.div`
 `;
 
 export const Description = styled.div`
-  /*
-  color: var(--color-text-sub);
-  flex: 0 1 100%;
-  background: var(--color-box-background);
-  padding: 5rem 0;
-*/
+  ${responsive.smAndLess} {
+    margin: 0 auto;
+  }
   h2:empty {
     display: none;
   }
@@ -81,7 +77,6 @@ export const Media = styled.div`
   ${responsive.mdAndLess} {
     display: block;
     padding: 0;
-    margin-bottom: 2em;
   }
 `;
 
@@ -104,10 +99,11 @@ export const MediaInner = styled.div`
 
 export const Info = styled.div`
   flex: 1 1 auto;
-  margin: 0 50px 0 50px;
+  margin: 0;
 
   ${responsive.smAndLess} {
-    margin: 2em;
+    margin: 0;
+    text-align: center;
   }
 `;
 export const Name = styled(H1)`

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Images from '../imagesReview';
-
+import { responsive } from 'ui';
 export const Paragraphs = styled.div``;
 
 export const Outer = styled.div`
@@ -25,6 +25,9 @@ export const Media = styled.div`
 export const OuterReview = styled.div`
   background: #faf6f6;
   min-height: 200px;
+  ${responsive.smAndLess} {
+    padding: 10px 0;
+  }
 `;
 
 export const BodyReview = styled.div`
@@ -54,4 +57,7 @@ export const ReviewText = styled.div`
 export const ReviewTitle = styled.div`
   margin: 20px 0;
   padding-top: 40px;
+  ${responsive.smAndLess} {
+    padding-top: 0px;
+  }
 `;
