@@ -64,9 +64,14 @@ function Checkout() {
       <Inner>
         <Container>
           <CurrentChildren onPrevious={handlePrevious} onNext={handleNext} />
-          <a href="#" onClick={() => alert('implement, clean basket redirect')}>
-            Cancel order and return to Menu
-          </a>
+          <div style={{ margin: '28px 0', textAlign: 'center', maxWidth: 345 }}>
+            <a
+              href="#"
+              onClick={() => alert('implement, clean basket redirect')}
+            >
+              Cancel order and return to Menu
+            </a>
+          </div>
         </Container>
       </Inner>
     </Outer>

@@ -13,10 +13,6 @@ const DetailsContainer = styled.div`
     flex-direction: column;
     max-width: 345px;
   }
-
-  div + div {
-    margin-top: 24px;
-  }
 `;
 
 export function DeliveryDetails({ onNext }) {

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'ui';
 
 import styled from 'styled-components';
 
@@ -14,6 +13,9 @@ const ButtonContainer = styled.div`
   }
 `;
 
+import SecondaryButton from 'components/custom-fields/secondary-button';
+import PrimaryButton from 'components/custom-fields/primary-button';
+
 export default function FooterButtons({
   previousText = 'back',
   nextText = 'next',
@@ -23,12 +25,20 @@ export default function FooterButtons({
   return (
     <ButtonContainer>
       {onPrevious ? (
-        <Button onClick={onPrevious}>{previousText}</Button>
+        <SecondaryButton
+          text={previousText}
+          onClick={onPrevious}
+          style={{ width: 150 }}
+        />
       ) : (
-        <div />
+        <div style={{ width: 150 }} />
       )}
 
-      <Button onClick={onNext}>{nextText}</Button>
+      <PrimaryButton
+        text={nextText}
+        onClick={onNext}
+        style={{ width: 150, margin: 0 }}
+      />
     </ButtonContainer>
   );
 }
