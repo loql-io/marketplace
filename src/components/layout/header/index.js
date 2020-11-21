@@ -62,11 +62,11 @@ export default function Header({ simple, preview }) {
       <Sticky topOffset={48}>
         {({ style }) => (
           <ShopNav style={style}>
-            <Link href="/" passHref>
-              <a>
-                <ShopBadge src="/static/shopBadge.svg" alt="" />
-              </a>
-            </Link>
+            <a href="/">
+              <ShopBadge
+                style={{ background: 'url(/static/logo-pages.fw_.png) #fff' }}
+              />
+            </a>
             {/*
             <NavActions open={navOpen}>
               {auth.isLoggedIn ? (

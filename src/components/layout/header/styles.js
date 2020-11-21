@@ -217,8 +217,17 @@ export const ShopNav = styled.div`
   -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 `;
 
-export const ShopBadge = styled.img`
-  width: 124px;
-  margin-left: 40px;
+export const ShopBadge = styled.div`
   margin-top: -20px;
+  width: 126px;
+  height: 126px;
+  display: inline-block;
+  margin-left: 20px;
+  border-radius: 50%;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  background-size: 90% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
 `;
