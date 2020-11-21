@@ -34,7 +34,7 @@ export default createGlobalStyle`
     font-family: 'Nunito Sans', 'sans-serif';
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    background: white !important;
+    /*background: white !important;*/
     color: var(--color-text-sub);
   }
 
