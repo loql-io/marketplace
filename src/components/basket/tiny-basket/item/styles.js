@@ -31,6 +31,7 @@ export const ItemDelete = styled.button`
   right: 2px;
   font-size: 0px;
   display: none;
+  height: 24px;
 
   &:before {
     content: '+';
@@ -139,9 +140,7 @@ export const SubInfoLine = styled.div`
   margin-top: 5px;
 `;
 export const IconButton = styled.button`
-  border: solid 2px #2f2b27;
-  border-radius: 50%;
-  width: 26px;
-  height: 26px;
-  font-weight: 900;
+  &:disabled svg {
+    color: #c1c1c1;
+  }
 `;

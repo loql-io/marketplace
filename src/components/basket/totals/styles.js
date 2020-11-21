@@ -14,8 +14,10 @@ export const Rows = styled.div`
 export const Row = styled.div`
   display: grid;
   grid-template-columns: 2fr 1fr;
-  font-size: 13px;
+  font-size: 16px;
+  line-height: 22px;
   font-weight: bold;
+  margin: 20px 0;
   &:not(:last-child) {
     margin-bottom: 5px;
   }

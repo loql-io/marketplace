@@ -4,6 +4,11 @@ import AttributeList from 'components/attribute-list';
 import { useT } from 'lib/i18n';
 
 import {
+  ControlPointRounded,
+  RemoveCircleOutlineRounded
+} from '@material-ui/icons';
+
+import {
   Item,
   Row,
   ItemInfo,
@@ -91,11 +96,11 @@ export default function TinyBasketItem({ actions, item }) {
               type="button"
               disabled={item.quantity === 1}
             >
-              -
+              <RemoveCircleOutlineRounded />
             </IconButton>
             <ItemQuantity>{item.quantity}</ItemQuantity>
             <IconButton onClick={increment} type="button">
-              +
+              <ControlPointRounded />
             </IconButton>
           </ItemQuantityChanger>
         </div>
