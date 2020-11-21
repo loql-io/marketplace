@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import { Paragraphs } from './styles';
 import Paragraph from './paragraph';
 
-const ParagraphCollection = ({ paragraphs }) => {
+const ParagraphCollection = ({ paragraphs, name }) => {
   if (!paragraphs) {
     return null;
   }
-
   return (
     <Paragraphs>
       {paragraphs.map((paragraph, index) => (
-        <Paragraph key={index} {...paragraph} />
+        <Paragraph key={index} {...paragraph} name={name} />
       ))}
     </Paragraphs>
   );

@@ -80,7 +80,7 @@ relatedProducts?.content?.items?.map((item, i) => (
           <List>
             {relatedProducts?.content?.items?.map((item) => (
               <ListItem key={item.id}>
-                {console.log(item?.variants?.[0])}
+                {/*console.log(item?.variants?.[0])*/}
                 <a as={item?.path} href={item?.path}>
                   <h4>{item?.name}</h4>
                   <span>£{item?.variants?.[0].priceVariants[0].price}</span>

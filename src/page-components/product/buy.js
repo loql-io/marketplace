@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import { LayoutContext } from '@crystallize/react-layout';
 
-import { Button } from 'ui';
+//import { Button } from 'ui';
 import { useBasket } from 'components/basket';
 import { useT } from 'lib/i18n';
 import { useLocale } from 'lib/app-config';
 
-import { ProductFooter, Price } from './styles';
+import { ProductFooter } from './styles';
+
+import { Button } from '@material-ui/core';
+import styles from '../../ui/mui/primaryButton';
 
 export default function BuyButton({ product, selectedVariant }) {
   const basket = useBasket();
@@ -14,7 +17,7 @@ export default function BuyButton({ product, selectedVariant }) {
   const t = useT();
   const locale = useLocale();
 
-  const { identifier, price, currency } =
+  const { identifier, currency } =
     selectedVariant.priceVariants.find(
       (pv) => pv.identifier === locale.crystallizePriceVariant
     ) || {};
@@ -29,12 +32,21 @@ export default function BuyButton({ product, selectedVariant }) {
     });
   }
 
+  const classes = styles();
+
   return (
     <ProductFooter>
+      {/*
       <Price>
         <strong>{t('common.price', { value: price, currency })}</strong>
       </Price>
-      <Button width="200px" onClick={buy} disabled={!currency}>
+*/}
+      <Button
+        onClick={buy}
+        disabled={!currency}
+        variant="outlined"
+        className={classes.button}
+      >
         {t('product.addToBasket')}
       </Button>
     </ProductFooter>

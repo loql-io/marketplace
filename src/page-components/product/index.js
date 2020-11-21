@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import Img from '@crystallize/react-image';
 import ContentTransformer from 'ui/content-transformer';
-
+import { useT } from 'lib/i18n';
 import { simplyFetchFromGraph } from 'lib/graph';
 import { screen } from 'ui';
 import Layout from 'components/layout';
 import ShapeComponents from 'components/shape/components';
+import Carousel from 'react-material-ui-carousel';
 
 import VariantSelector from './variant-selector';
 import Buy from './buy';
 import query from './query';
-import Topics from 'components/topics';
-import { useT } from 'lib/i18n';
+//import Topics from 'components/topics';
+
 import {
   Outer,
   Sections,
@@ -23,11 +24,8 @@ import {
   Content,
   Specs,
   Description,
-  Related,
-  H2,
-  List,
-  ListItem,
-  ImageWrapper
+  VariantSelectorOuter,
+  ProductPrice
 } from './styles';
 
 export async function getData({ asPath, language, preview = null }) {
@@ -50,8 +48,23 @@ export default function ProductPage({ product, preview }) {
     product.variants.find((v) => v.isDefault)
   );
 
+  const [price, setPrice] = useState(
+    selectedVariant.priceVariants.find((c) => c.identifier === 'default').price
+  );
+
+  const [currency, setCurrency] = useState(
+    selectedVariant.priceVariants.find((c) => c.identifier === 'default')
+      .currency
+  );
+
   function onVariantChange(variant) {
     setSelectedVariant(variant);
+    setPrice(
+      variant.priceVariants.find((c) => c.identifier === 'default').price
+    );
+    setCurrency(
+      variant.priceVariants.find((c) => c.identifier === 'default').currency
+    );
   }
 
   const summaryComponent = product.components?.find(
@@ -65,27 +78,47 @@ export default function ProductPage({ product, preview }) {
     (c) => !['Summary', 'Description', 'Specs'].includes(c.name)
   );
 
-  const relatedProducts = product?.components?.find(
-    (c) => c.type === 'itemRelations'
-  );
-
-  //console.log('--', relatedProducts.content.items.variants)
-
   return (
     <Layout title={product.name} preview={preview}>
       <Outer>
         <Sections>
           <Media>
             <MediaInner>
-              <Img
-                {...selectedVariant.images?.[0]}
-                sizes={`(max-width: ${screen.sm}px) 400px, 60vw`}
-                alt={product.name}
-              />
+              <Carousel autoPlay={false}>
+                {selectedVariant?.images?.map((item, i) => (
+                  <Img
+                    key={i}
+                    {...item}
+                    sizes={`(max-width: ${screen.sm}px) 400px, 60vw`}
+                    alt={product.name}
+                  />
+                ))}
+              </Carousel>
             </MediaInner>
           </Media>
           <Info>
             <Name>{product.name}</Name>
+            <ProductPrice>
+              {t('common.price', {
+                value: price,
+                currency
+              })}
+            </ProductPrice>
+            <Content>
+              {descriptionComponent && (
+                <Description>
+                  <ShapeComponents
+                    className="description"
+                    components={[descriptionComponent]}
+                  />
+                </Description>
+              )}
+              {specs && (
+                <Specs>
+                  <ShapeComponents components={[specs]} />
+                </Specs>
+              )}
+            </Content>
             {summaryComponent && (
               <Summary>
                 <ContentTransformer {...summaryComponent?.content?.json} />
@@ -93,61 +126,21 @@ export default function ProductPage({ product, preview }) {
             )}
 
             {product.variants?.length > 1 && (
-              <VariantSelector
-                variants={product.variants}
-                selectedVariant={selectedVariant}
-                onVariantChange={onVariantChange}
-              />
+              <VariantSelectorOuter>
+                <VariantSelector
+                  variants={product.variants}
+                  selectedVariant={selectedVariant}
+                  onVariantChange={onVariantChange}
+                />
+                <Buy product={product} selectedVariant={selectedVariant} />
+              </VariantSelectorOuter>
             )}
-
-            <Buy product={product} selectedVariant={selectedVariant} />
           </Info>
         </Sections>
-        <Content>
-          {descriptionComponent && (
-            <Description>
-              <ShapeComponents
-                className="description"
-                components={[descriptionComponent]}
-              />
-            </Description>
-          )}
-          {specs && (
-            <Specs>
-              <ShapeComponents components={[specs]} />
-            </Specs>
-          )}
-        </Content>
 
-        {product?.topics?.length && <Topics topicMaps={product.topics} />}
+        {/*product?.topics?.length && <Topics topicMaps={product.topics} />*/}
 
-        <ShapeComponents components={componentsRest} />
-
-        {relatedProducts?.content?.items?.length && (
-          <Related>
-            <H2>
-              {t('product.relatedProduct', {
-                count: relatedProducts?.content?.items?.length
-              })}
-            </H2>
-            <List>
-              {relatedProducts?.content?.items?.map((item) => (
-                <ListItem key={item.id}>
-                  {console.log(item?.variants?.[0])}
-                  <a as={item?.path} href={item?.path}>
-                    <h4>{item?.name}</h4>
-                    <span>£{item?.variants?.[0].priceVariants[0].price}</span>
-                    <ImageWrapper>
-                      {item?.variants?.[0].image?.url && (
-                        <Img {...item?.variants[0].image} sizes="8vw" />
-                      )}
-                    </ImageWrapper>
-                  </a>
-                </ListItem>
-              ))}
-            </List>
-          </Related>
-        )}
+        {<ShapeComponents components={componentsRest} pageType="product" />}
       </Outer>
     </Layout>
   );

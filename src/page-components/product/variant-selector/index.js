@@ -1,14 +1,22 @@
+import React from 'react';
 import isEqual from 'lodash/isEqual';
 
 import {
   Outer,
   // AttributeName,
   AttributeSelector,
-  AttributeButton,
-  Variant,
-  Values,
-  Button
+  AttributeButton
+  //Variant,
+  //Values,
+  //Button
 } from './styles';
+
+//import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
+import styles from '../../../ui/mui/inputSelect';
 
 function reduceAttributes(variants) {
   return variants.reduce((acc, variant) => {
@@ -44,24 +52,38 @@ export default function VariantSelector({
   onVariantChange
 }) {
   const attributes = reduceAttributes(variants);
+  const classes = styles();
+
+  const [selected, setSelected] = React.useState(selectedVariant.id);
+
+  const handleChange = (event) => {
+    setSelected(event.target.value);
+    onVariantChange(variants.find((item) => item.id === event.target.value));
+  };
 
   if (!Object.keys(attributes).length) {
     return (
-      <Outer>
-        {variants.map((variant) => (
-          <Variant key={variant.id}>
-            <Values>
-              <Button
-                key={variant.id}
-                selected={variant.id === selectedVariant.id}
-                onClick={() => onVariantChange(variant)}
-              >
-                {variant.name}
-              </Button>
-            </Values>
-          </Variant>
-        ))}
-      </Outer>
+      <FormControl
+        className={classes.inputSelect}
+        style={{ marginBottom: '20px' }}
+      >
+        <Select
+          variant="outlined"
+          value={selected}
+          onChange={(e) => handleChange(e)}
+          displayEmpty
+          name="variant"
+        >
+          <MenuItem value="" disabled>
+            Select an option
+          </MenuItem>
+          {variants.map((variant) => (
+            <MenuItem key={variant.id} value={variant.id}>
+              {variant.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     );
   }
 

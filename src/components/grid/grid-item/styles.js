@@ -60,7 +60,8 @@ export const Outer = styled.a`
   background: #fff;
   height: 100%;
   display: flex;
-  padding: 0 50px;
+  padding: 0 20px;
+  flex-direction: column-reverse;
 
   &:hover {
     text-decoration: none;

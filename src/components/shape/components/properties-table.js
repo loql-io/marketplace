@@ -1,13 +1,19 @@
 import styled from 'styled-components';
-
-import { H3 } from 'ui';
+import { H3, responsive } from 'ui';
 
 const Section = styled.div`
-  margin: 3em 0;
+  margin: 30px;
 
   h3 {
-    margin: 0 0 0.5em 0;
-    font-size: 1.2rem;
+    font-family: Nunito Sans;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 32px;
+    line-height: 36px;
+    margin-bottom: 20px;
+    ${responsive.xs} {
+      text-align: center;
+    }
   }
 `;
 
@@ -19,11 +25,24 @@ const PropertiesOuter = styled.div`
 const Properties = styled.table`
   width: 100%;
   border-collapse: collapse;
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #2f2b27;
+
+  tr:not(:last-child) {
+    border-bottom: 2px solid #ebebeb;
+  }
 
   td {
-    width: 50%;
-    padding: 1em 0;
+    padding: 10px 0;
     border: 0px solid var(--color-main-background);
+  }
+
+  td:first-child {
+    font-weight: 800;
+    width: 36%;
   }
 
   tr:not(:first-child) td {

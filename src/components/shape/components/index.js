@@ -13,17 +13,58 @@ import ItemRelations from './item-relations';
 import GridRelations from './grid-relations';
 
 const ContentOuter = styled.div`
-  margin: 1em var(--content-padding);
+  /*margin: 1em var(--content-padding);*/
 
   ${responsive.xs} {
     margin: 0;
   }
 `;
 
-const ShapeComponents = ({ components, overrides }) => {
+const ProductFooter = styled.div`
+  /*margin: 1em var(--content-padding);*/
+  width: 50%;
+  display: inline-grid;
+  ${responsive.xs} {
+    width: 100%;
+  }
+`;
+
+const ShapeComponents = ({ components, overrides, pageType }) => {
   if (!components || !Array.isArray(components)) {
     return null;
   }
+
+  const productFooterTable = (pageType, component, key) => {
+    if (pageType === 'product') {
+      return (
+        <ProductFooter key={key}>
+          <PropertiesTable {...component.content} />
+        </ProductFooter>
+      );
+    } else {
+      return (
+        <ContentOuter key={key}>
+          <PropertiesTable {...component.content} />
+        </ContentOuter>
+      );
+    }
+  };
+
+  const productFooterRelated = (pageType, component, key) => {
+    if (pageType === 'product') {
+      return (
+        <ProductFooter key={key}>
+          <ItemRelations {...component.content} />
+        </ProductFooter>
+      );
+    } else {
+      return (
+        <div key={key}>
+          <ItemRelations items={component.content.items} />;
+        </div>
+      );
+    }
+  };
 
   return (
     <div>
@@ -46,7 +87,11 @@ const ShapeComponents = ({ components, overrides }) => {
             Component = Component || ParagraphCollection;
 
             return (
-              <Component key={key} paragraphs={component.content.paragraphs} />
+              <Component
+                key={key}
+                paragraphs={component.content.paragraphs}
+                name={component.name}
+              />
             );
           }
 
@@ -88,17 +133,11 @@ const ShapeComponents = ({ components, overrides }) => {
           }
 
           if (type === 'propertiesTable') {
-            Component = Component || PropertiesTable;
-            return (
-              <ContentOuter key={key}>
-                <Component {...component.content} />
-              </ContentOuter>
-            );
+            return productFooterTable(pageType, component, key);
           }
 
           if (type === 'itemRelations') {
-            Component = Component || ItemRelations;
-            return <Component key={key} items={component.content.items} />;
+            return productFooterRelated(pageType, component, key);
           }
 
           if (type === 'gridRelations') {
