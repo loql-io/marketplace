@@ -4,15 +4,19 @@ import { useBasket } from 'components/basket';
 import Layout from 'components/layout';
 import { useT } from 'lib/i18n';
 
-import { Outer, Inner, Container } from './styles';
+import { Outer, Inner, Container, SectionHeader } from './styles';
 
 import Order from './order';
 import Payment from './payment';
 import CheckoutProgress from './checkout-progress';
+import OrderItems from 'components/order-items';
+import { Totals } from 'components/basket/totals';
 
 function Checkout() {
   const basket = useBasket();
   const t = useT();
+
+  const newCheckout = false;
 
   const checkoutChildren = [Order, Payment];
 
@@ -30,24 +34,6 @@ function Checkout() {
     return <Outer center>{t('basket.empty', { context: 'inCheckout' })}</Outer>;
   }
 
-  // return (
-  //   <Outer>
-  //     <Inner>
-  //       <Container>
-  //         <SectionHeader>{t('checkout.title')}</SectionHeader>
-  //         <Payment />
-  //       </Container>
-  //       <Container>
-  //         <SectionHeader>{t('basket.title')}</SectionHeader>
-  //         <OrderItems cart={cart} />
-  //         <div style={{ padding: '0 15px' }}>
-  //           <Totals />
-  //         </div>
-  //       </Container>
-  //     </Inner>
-  //   </Outer>
-  // );
-
   function handlePrevious() {
     if (step > 0) {
       setStep(step - 1);
@@ -58,6 +44,26 @@ function Checkout() {
     if (step < checkoutChildren.length - 1) {
       setStep(step + 1);
     }
+  }
+
+  if (!newCheckout) {
+    return (
+      <Outer>
+        <Inner>
+          <Container>
+            <SectionHeader>{t('checkout.title')}</SectionHeader>
+            <Payment />
+          </Container>
+          <Container>
+            <SectionHeader>{t('basket.title')}</SectionHeader>
+            <OrderItems cart={cart} />
+            <div style={{ padding: '0 15px' }}>
+              <Totals />
+            </div>
+          </Container>
+        </Inner>
+      </Outer>
+    );
   }
 
   return (
