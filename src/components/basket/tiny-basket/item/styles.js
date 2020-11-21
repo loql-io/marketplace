@@ -42,7 +42,7 @@ export const ItemDelete = styled.button`
 
 export const Item = styled.div`
   display: grid;
-  grid-template-columns: 1fr 2fr 0.5fr;
+  grid-template-columns: 1fr 1fr;
   padding: 15px 0;
   border-bottom: 1px solid #eee;
   position: relative;
@@ -69,9 +69,9 @@ export const ItemInfo = styled.span`
 export const ItemInfoText = styled.div``;
 
 export const ItemImage = styled(CrystallizeImage).attrs(() => ({
-  sizes: '50px'
+  sizes: '100px'
 }))`
-  width: 50px;
+  width: 100px;
   position: relative;
 
   img {
@@ -83,9 +83,9 @@ export const ItemImage = styled(CrystallizeImage).attrs(() => ({
 `;
 
 export const ItemName = styled.div`
-  text-transform: uppercase;
-  font-size: 14px;
-  font-weight: 600;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
 `;
 
 export const ItemQuantityChanger = styled.span`
@@ -102,6 +102,9 @@ export const ItemQuantity = styled.span`
   margin: 0 3px;
   min-width: 23px;
   text-align: center;
+  font-weight: 800;
+  font-size: 24px;
+  line-height: 27px;
 `;
 
 export const PriceWrapper = styled.div`
@@ -115,13 +118,17 @@ export const PriceWrap = styled.div`
 `;
 
 export const Price = styled.div`
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
   ${(p) => p.isDiscounted && 'text-decoration: line-through'};
 `;
 
 export const PriceVat = styled.div`
-  display: block;
-  font-size: 12px;
-  padding-top: 4px;
+  padding-top: 6px;
+  font-size: 14px;
+  line-height: 19px;
+  color: #816e68;
 `;
 
 export const SubInfoOuter = styled.div`
@@ -130,4 +137,11 @@ export const SubInfoOuter = styled.div`
 
 export const SubInfoLine = styled.div`
   margin-top: 5px;
+`;
+export const IconButton = styled.button`
+  border: solid 2px #2f2b27;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  font-weight: 900;
 `;

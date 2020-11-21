@@ -16,7 +16,8 @@ import {
   PriceWrap,
   Price,
   PriceVat,
-  drawAttentionDuration
+  drawAttentionDuration,
+  IconButton
 } from './styles';
 
 export default function TinyBasketItem({ actions, item }) {
@@ -85,17 +86,17 @@ export default function TinyBasketItem({ actions, item }) {
         </PriceWrapper>
         <div>
           <ItemQuantityChanger>
-            <button
+            <IconButton
               onClick={decrement}
               type="button"
               disabled={item.quantity === 1}
             >
               -
-            </button>
+            </IconButton>
             <ItemQuantity>{item.quantity}</ItemQuantity>
-            <button onClick={increment} type="button">
+            <IconButton onClick={increment} type="button">
               +
-            </button>
+            </IconButton>
           </ItemQuantityChanger>
         </div>
       </ItemInfo>

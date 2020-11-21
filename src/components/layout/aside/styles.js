@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
 export const Header = styled.h4`
-  flex: 0 0 100px;
-  padding: 50px 0;
+  font-family: Nunito Sans;
+  margin-top: 30px;
   align-items: center;
   position: relative;
+  font-weight: 900;
+  font-size: 32px;
+  line-height: 36px;
+  color: #2f2b27;
 `;
 
 export const Basket = styled.div`
@@ -14,10 +18,11 @@ export const Basket = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  background: var(--color-main-background);
+  background: #faf6f6;
   z-index: 15;
 `;
 
 export const Footer = styled.div`
   padding: 0px 0 50px;
+  background: #faf6f6;
 `;

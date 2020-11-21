@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Outer = styled.div`
   flex-grow: 1;
+  margin-bottom: 20px;
 `;
 
 export const Rows = styled.div`
