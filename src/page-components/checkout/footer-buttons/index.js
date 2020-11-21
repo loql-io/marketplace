@@ -1,5 +1,7 @@
 import React from 'react';
 
+import ChevronLeftRoundedIcon from '@material-ui/icons/ChevronLeftRounded';
+
 import styled from 'styled-components';
 
 const ButtonContainer = styled.div`
@@ -17,22 +19,19 @@ import SecondaryButton from 'components/custom-fields/secondary-button';
 import PrimaryButton from 'components/custom-fields/primary-button';
 
 export default function FooterButtons({
-  previousText = 'back',
-  nextText = 'next',
+  previousText = 'Back',
+  nextText = 'Next',
   onNext,
   onPrevious
 }) {
   return (
     <ButtonContainer>
-      {onPrevious ? (
-        <SecondaryButton
-          text={previousText}
-          onClick={onPrevious}
-          style={{ width: 150 }}
-        />
-      ) : (
-        <div style={{ width: 150 }} />
-      )}
+      <SecondaryButton
+        text={previousText}
+        onClick={onPrevious}
+        style={{ width: 150 }}
+        startIcon={<ChevronLeftRoundedIcon />}
+      />
 
       <PrimaryButton
         text={nextText}

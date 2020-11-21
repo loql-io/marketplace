@@ -21,6 +21,7 @@ const DetailsContainer = styled.div`
   .checkbox-label {
     background: white;
     padding: 27px 0 27px 20px;
+    box-shadow: 0 1px 1px rgba(192, 169, 168, 0.25);
   }
 `;
 
@@ -83,7 +84,7 @@ export function CollectionDetails({ onNext }) {
               value="businessNews"
               control={<CustomCheckbox />}
               label="Tick this box if you do want to receive emails from the business you order with."
-              style={{ margin: '16px 0' }}
+              style={{ margin: '0 0' }}
             />
             <FormControlLabel
               className="checkbox-label"
@@ -91,7 +92,7 @@ export function CollectionDetails({ onNext }) {
               value="loqlNews"
               control={<CustomCheckbox />}
               label="Tick this box if you do want to receive emails from Loql."
-              style={{ margin: '16px 0' }}
+              style={{ margin: '1px 0' }}
             />
             <FooterButtons onNext={submitForm} />
           </Form>

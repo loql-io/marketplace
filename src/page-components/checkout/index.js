@@ -8,6 +8,7 @@ import { Outer, Inner, Container } from './styles';
 
 import Order from './order';
 import Payment from './payment';
+import CheckoutProgress from './checkout-progress';
 
 function Checkout() {
   const basket = useBasket();
@@ -63,6 +64,7 @@ function Checkout() {
     <Outer>
       <Inner>
         <Container>
+          <CheckoutProgress currentStep={step} />
           <CurrentChildren onPrevious={handlePrevious} onNext={handleNext} />
           <div style={{ margin: '28px 0', textAlign: 'center', maxWidth: 345 }}>
             <a
