@@ -90,7 +90,6 @@ export const ItemName = styled.div`
 
 export const ItemQuantityChanger = styled.span`
   display: flex;
-  flex-direction: column-reverse;
   align-items: center;
   justify-content: space-between;
   button {

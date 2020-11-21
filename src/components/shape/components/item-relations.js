@@ -23,7 +23,7 @@ export default function ItemRelations({ items }) {
     const currency = item?.currency || 'gbp';
     return `${t('common.price', { value: price, currency })}`;
   };
-
+  // console.log('items', items[0])
   return (
     <Related>
       <H3>
@@ -36,14 +36,23 @@ export default function ItemRelations({ items }) {
           <ListItem key={item.id}>
             <a as={item?.path} href={item?.path}>
               <ImageWrapper>
-                {item?.variants?.[0].image?.url && (
-                  <Img {...item?.variants?.[0].image} sizes="4vw" />
+                {item?.variants?.[0].image?.url ? (
+                  <Img {...item?.variants?.[0].image} sizes="8vw" />
+                ) : (
+                  <Img
+                    {...items?.[0].components.filter(
+                      (c) => c.type === 'images'
+                    )[0]?.content?.images[0]}
+                    sizes="8vw"
+                  />
                 )}
               </ImageWrapper>
               <H4>{item?.name}</H4>
-              <RelatedPrice>
-                {getPrice(item?.variants?.[0].priceVariants?.[0])}
-              </RelatedPrice>
+              {items[0].variants && (
+                <RelatedPrice>
+                  {getPrice(item?.variants?.[0].priceVariants?.[0])}
+                </RelatedPrice>
+              )}
             </a>
           </ListItem>
         ))}

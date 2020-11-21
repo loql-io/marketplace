@@ -2,10 +2,10 @@ import React from 'react';
 import isEqual from 'lodash/isEqual';
 
 import {
-  Outer,
+  Outer
   // AttributeName,
-  AttributeSelector,
-  AttributeButton
+  //AttributeSelector,
+  //AttributeButton
   //Variant,
   //Values,
   //Button
@@ -56,9 +56,19 @@ export default function VariantSelector({
 
   const [selected, setSelected] = React.useState(selectedVariant.id);
 
+  const [selectedAttrName] = React.useState(
+    selectedVariant.attributes.find((item) => item.attribute)?.attribute
+  );
+
   const handleChange = (event) => {
     setSelected(event.target.value);
     onVariantChange(variants.find((item) => item.id === event.target.value));
+  };
+
+  const handleAttrChange = (event) => {
+    const value = event.target.value;
+    const attribute = selectedAttrName;
+    onAttributeSelect({ attribute, value });
   };
 
   if (!Object.keys(attributes).length) {
@@ -75,7 +85,7 @@ export default function VariantSelector({
           name="variant"
         >
           <MenuItem value="" disabled>
-            Select an option
+            Select a product
           </MenuItem>
           {variants.map((variant) => (
             <MenuItem key={variant.id} value={variant.id}>
@@ -118,7 +128,7 @@ export default function VariantSelector({
 
   return (
     <Outer>
-      {Object.keys(attributes).map((attribute) => {
+      {Object.keys(attributes).map((attribute, i) => {
         const attr = attributes[attribute];
         const selectedAttr = selectedVariant.attributes.find(
           (a) => a.attribute === attribute
@@ -129,25 +139,28 @@ export default function VariantSelector({
         }
 
         return (
-          <div key={attribute}>
-            <AttributeSelector>
+          <FormControl
+            key={i}
+            className={classes.inputSelect}
+            style={{ marginBottom: '20px' }}
+          >
+            <Select
+              variant="outlined"
+              value={selectedAttr.value}
+              onChange={(e) => handleAttrChange(e)}
+              displayEmpty
+              name="attribute"
+            >
+              <MenuItem value="" disabled>
+                Select {selectedAttrName}
+              </MenuItem>
               {attr.map((value) => (
-                <AttributeButton
-                  key={value}
-                  onClick={() =>
-                    onAttributeSelect({
-                      attribute,
-                      value
-                    })
-                  }
-                  type="button"
-                  selected={value === selectedAttr.value}
-                >
+                <MenuItem key={value} value={value}>
                   {value}
-                </AttributeButton>
+                </MenuItem>
               ))}
-            </AttributeSelector>
-          </div>
+            </Select>
+          </FormControl>
         );
       })}
     </Outer>
