@@ -23,6 +23,11 @@ export const Img = styled(Image)`
     object-position: center;
     width: 100%;
     height: 100%;
+
+    ${responsive.xs} {
+      height: 200px;
+      padding: 20px;
+    }
   }
 `;
 
@@ -43,26 +48,63 @@ export const Text = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1em;
+  padding: 1em 0;
 `;
 
 export const Price = styled.span`
-  font-family: Nunito Sans;
   font-style: normal;
-  font-weight: bold;
   font-size: 16px;
   line-height: 22px;
   color: var(--color-text-main);
 `;
+
+export const Extra = styled.div`
+  a {
+    display: inline-block;
+    text-align: left !important;
+  }
+  img {
+    max-height: 200px !important;
+  }
+
+  hr {
+    border: 0;
+    height: 1px;
+    background: #e9e2df;
+  }
+
+  h3 {
+    color: var(--color-text-main);
+    font-weight: 900;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 27px;
+  }
+
+  p {
+    max-width: 100%;
+  }
+
+  button {
+    margin-bottom: 30px !important;
+    width: 200px;
+    display: inherit;
+
+    ${responsive.xs} {
+      width: 100% !important;
+    }
+  }
+`;
+
+export const Paragraphs = styled.div``;
 
 export const Outer = styled.a`
   position: relative;
   background: #fff;
   height: 100%;
   display: flex;
-  padding: 0 20px;
+  padding: 20px;
   flex-direction: column-reverse;
-
   &:hover {
     text-decoration: none;
   }
@@ -70,22 +112,22 @@ export const Outer = styled.a`
   button {
     margin: 0 auto;
     min-width: 200px;
-    max-width: 80%;
   }
 
   ${responsive.xs} {
     flex-direction: column-reverse;
     text-align: center;
     margin-bottom: 15px;
-    padding: 50px;
+    padding: 0;
   }
 
   ${responsive.mdPlus} {
     /* Each grid type size generates a class "cell-COLUMNxROW" */
+
     &.cell-1x1 {
       flex-direction: column-reverse;
       justify-content: center;
-      padding-bottom: 50px;
+      /*  padding-bottom: 50px;*/
       text-align: center;
     }
     &.cell-1x2 {

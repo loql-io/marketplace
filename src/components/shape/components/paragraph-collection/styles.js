@@ -19,7 +19,7 @@ export const Text = styled.div`
   /*margin-bottom: 100px;*/
 `;
 export const Media = styled.div`
-  margin-bottom: 100px;
+  /* margin-bottom: 100px;*/
 `;
 
 export const OuterReview = styled.div`

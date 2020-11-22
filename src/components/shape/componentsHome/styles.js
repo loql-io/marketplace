@@ -4,6 +4,7 @@ import { responsive } from '../../../ui/responsive';
 
 export const GridContainer = styled.div`
   background-color: #fff;
+  margin-bottom: 20px;
   &:nth-child(2) > h1 {
     background-color: #2f2b27;
     color: #fff !important;

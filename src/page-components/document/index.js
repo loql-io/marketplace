@@ -1,22 +1,24 @@
 import React from 'react';
 import ContentTransformer from 'ui/content-transformer';
 
-import { H1, Header, Outer } from 'ui';
+import { Header, Outer } from 'ui';
 import Layout from 'components/layout';
 import { simplyFetchFromGraph } from 'lib/graph';
 import ShapeComponents from 'components/shape/components';
-
-import { useT } from 'lib/i18n';
+import ParagraphCollection from 'components/shape/components/paragraph-collection';
+import { format, parseISO } from 'date-fns';
 
 import query from './query';
 import {
   HeroImage,
   Img,
-  List,
-  H2,
-  Related,
-  ListItem,
-  ImageWrapper
+  H1,
+  Date,
+  Author,
+  ArticleContainer,
+  ArticleIntro,
+  Article,
+  ArticleData
 } from './styles';
 
 export async function getData({ asPath, language, preview = null }) {
@@ -32,32 +34,24 @@ export async function getData({ asPath, language, preview = null }) {
 }
 
 export default function DocumentPage({ document, preview }) {
-  const t = useT();
   const title = document?.components?.find((c) => c.name === 'Title')?.content
     ?.text;
   const description = document?.components?.find((c) => c.name === 'Intro');
   const images = document?.components?.find((c) => c.name === 'Image');
-  const relatedProducts = document?.components?.find(
-    (c) => c.name === 'Products'
-  );
-
+  const date = document?.components?.find((c) => c.name === 'Date')?.content
+    ?.datetime;
+  const author = document?.components?.find((c) => c.name === 'Author')?.content
+    ?.text;
   const componentsRest = document?.components?.filter(
-    (c) => !['Intro', 'Title', 'Image', 'Products'].includes(c.name)
+    (c) =>
+      !['Intro', 'Title', 'Image', 'Author', 'Subtitle', 'Body'].includes(
+        c.name
+      )
   );
-
-  //console.log('here', relatedProducts?.content?.items[0])
-  /*
-relatedProducts?.content?.items?.map((item, i) => (
-    console.log('item', item)
-))
-*/
   return (
     <Layout title={title || document.name} preview={preview}>
       <Outer>
-        <Header centerContent>
-          <H1>{title}</H1>
-          <ContentTransformer {...description?.content?.json} />
-        </Header>
+        <Header centerContent />
         <HeroImage>
           {images?.content?.images?.map((img, i) => (
             <Img
@@ -68,33 +62,39 @@ relatedProducts?.content?.items?.map((item, i) => (
             />
           ))}
         </HeroImage>
+        <H1>{title}</H1>
+        <ArticleData>
+          <Author>{author}</Author>
+          <Date>{format(parseISO(date), 'cccc do yyyy')}</Date>
+        </ArticleData>
+        <ArticleContainer>
+          <ArticleIntro>
+            <ContentTransformer {...description?.content?.json} />
+          </ArticleIntro>
+          <Article>
+            {document?.components?.map(({ type, ...component }, index) => {
+              if (type === 'paragraphCollection') {
+                let Component;
+
+                if (!component.content.paragraphs) {
+                  return null;
+                }
+
+                Component = Component || ParagraphCollection;
+
+                return (
+                  <Component
+                    key={index}
+                    paragraphs={component.content.paragraphs}
+                    name={component.name}
+                  />
+                );
+              }
+            })}
+          </Article>
+        </ArticleContainer>
         <ShapeComponents components={componentsRest} />
       </Outer>
-      {relatedProducts?.content?.items?.length && (
-        <Related>
-          <H2>
-            {t('product.relatedProduct', {
-              count: relatedProducts?.content?.items?.length
-            })}
-          </H2>
-          <List>
-            {relatedProducts?.content?.items?.map((item) => (
-              <ListItem key={item.id}>
-                {/*console.log(item?.variants?.[0])*/}
-                <a as={item?.path} href={item?.path}>
-                  <h4>{item?.name}</h4>
-                  <span>£{item?.variants?.[0].priceVariants[0].price}</span>
-                  <ImageWrapper>
-                    {item?.variants?.[0].image?.url && (
-                      <Img {...item?.variants[0].image} sizes="8vw" />
-                    )}
-                  </ImageWrapper>
-                </a>
-              </ListItem>
-            ))}
-          </List>
-        </Related>
-      )}
     </Layout>
   );
 }

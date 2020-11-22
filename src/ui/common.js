@@ -11,7 +11,7 @@ export const Outer = styled.div`
   display: block;
   min-height: 75vh;
   ${responsive.smAndLess} {
-    padding: 0 1rem;
+    /*padding: 0 1rem;*/
   }
 `;
 

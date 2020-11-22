@@ -11,7 +11,8 @@ import {
   MediaWrapper,
   MediaInner,
   //Img,
-  Description
+  Description,
+  Subtitle
 } from './styles';
 
 export default function DocumentItem({ data, colSpan = '12' }) {
@@ -26,6 +27,7 @@ export default function DocumentItem({ data, colSpan = '12' }) {
   image = images?.content?.images?.[0];
   const description = data.components?.find((c) => c.name === 'Intro');
   const video = data.components?.find((c) => c.name === 'Video');
+  const subtitle = data.components?.find((c) => c.name === 'Subtitle');
 
   //let media;
 
@@ -77,9 +79,9 @@ export default function DocumentItem({ data, colSpan = '12' }) {
         </MediaWrapper>
         <Text>
           <H3>{name}</H3>
-          <Description>
-            <ContentTransformer {...description?.content?.json} />
-          </Description>
+          {subtitle && subtitle.content.text && (
+            <Subtitle>{subtitle.content.text}</Subtitle>
+          )}
         </Text>
       </Outer>
     </Link>

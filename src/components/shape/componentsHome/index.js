@@ -149,7 +149,6 @@ const ShapeComponents = ({ components, overrides }) => {
 
           if (type === 'gridRelations') {
             Component = Component || GridRelations;
-
             return <Component key={key} grids={component.content.grids} />;
           }
 
