@@ -9,6 +9,10 @@ export const GridContainer = styled.div`
     background-color: #2f2b27;
     color: #fff !important;
   }
+  &:nth-child(2) > a {
+    background-color: #2f2b27;
+    color: #fff !important;
+  }
 `;
 
 export const SectionTitle = styled.h1`
@@ -26,4 +30,33 @@ export const SectionTitle = styled.h1`
 export const GridDiv = styled(Grid)`
   /*background-color: var(--color-text-main);*/
   /*margin-top: -12px;*/
+`;
+
+export const More = styled.a`
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  text-decoration: underline;
+  float: right;
+  right: 20px;
+  margin-top: 6px;
+  position: absolute;
+  ${responsive.xs} {
+    display: none;
+  }
+`;
+
+export const MoreMobile = styled.a`
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  text-decoration: underline;
+  background-color: #fff;
+  text-align: center;
+  display: block;
+  padding: 20px 0;
+
+  ${responsive.smPlus} {
+    display: none;
+  }
 `;
