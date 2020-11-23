@@ -11,6 +11,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { StickyContainer } from 'react-sticky';
 
 import Aside from './aside';
+import AsideL from './asideL';
 import Header from './header';
 import Footer from './footer';
 import {
@@ -90,7 +91,7 @@ export default function Layout({
               <Footer />
             </>
           ) : (
-            <CrystallizeLayout right={Aside}>
+            <CrystallizeLayout right={Aside} left={AsideL}>
               <Header simple={simple} preview={preview} />
               <Main style={{ background: 'white' }}>
                 {loading ? <Loader /> : children}

@@ -43,11 +43,11 @@ export const ItemDelete = styled.button`
 
 export const Item = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 90px auto;
   padding: 15px 0;
   border-bottom: 1px solid #eee;
   position: relative;
-  grid-gap: 10px;
+  grid-gap: 16px;
   ${(p) =>
     p.animate &&
     css`
@@ -70,9 +70,9 @@ export const ItemInfo = styled.span`
 export const ItemInfoText = styled.div``;
 
 export const ItemImage = styled(CrystallizeImage).attrs(() => ({
-  sizes: '100px'
+  sizes: '90px'
 }))`
-  width: 100px;
+  width: 90px;
   position: relative;
 
   img {
@@ -93,19 +93,27 @@ export const ItemQuantityChanger = styled.span`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-left: -8px;
+
   button {
     margin: 6px 0;
+
+    svg {
+      font-size: 22px;
+    }
+
+    img {
+      width: 24px;
+    }
   }
 `;
 
 export const ItemQuantity = styled.span`
   display: inline-block;
-  margin: 0 3px;
-  min-width: 23px;
   text-align: center;
   font-weight: 800;
-  font-size: 24px;
-  line-height: 27px;
+  font-size: 18px;
+  margin-top: -2px;
 `;
 
 export const PriceWrapper = styled.div`

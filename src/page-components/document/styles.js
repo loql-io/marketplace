@@ -101,10 +101,12 @@ export const ArticleContainer = styled.div`
   }
 `;
 export const ArticleIntro = styled.div`
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 26px;
   padding: 0 20px;
+  p {
+    font-weight: normal;
+    font-size: 20px !important;
+    line-height: 26px;
+  }
 `;
 export const Article = styled.div`
   padding: 0 20px;

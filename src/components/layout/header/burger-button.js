@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-
+import React from 'react';
 import { responsive } from 'ui';
-
+import { LayoutContext } from '@crystallize/react-layout';
 const Outer = styled.button.attrs(() => ({
-  type: 'button',
+  type: 'button'
 }))`
   appearance: none;
   display: none;
@@ -21,7 +21,7 @@ const Outer = styled.button.attrs(() => ({
     display: block;
   }
 `;
-
+/*
 const Lines = styled.div`
   width: 100%;
   position: absolute;
@@ -54,11 +54,14 @@ const Lines = styled.div`
     top: ${(p) => (p.open ? '0' : '-14px')};
   }
 `;
+*/
+export default function BurgerButton({ active }) {
+  const layout = React.useContext(LayoutContext);
 
-export default function BurgerButton({ active, onClick }) {
   return (
-    <Outer open={active} onClick={onClick}>
-      <Lines open={active} />
+    <Outer open={active} onClick={layout.actions.showLeft}>
+      {/*<Lines open={active} /> */}
+      <img src="/static/burger.svg" />
     </Outer>
   );
 }

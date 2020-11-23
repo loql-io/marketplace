@@ -17,7 +17,6 @@ import {
   ItemName,
   ItemQuantityChanger,
   ItemQuantity,
-  ItemDelete,
   PriceWrap,
   Price,
   PriceVat,
@@ -102,11 +101,14 @@ export default function TinyBasketItem({ actions, item }) {
             <IconButton onClick={increment} type="button">
               <ControlPointRounded />
             </IconButton>
+            <IconButton onClick={remove} type="button">
+              <img src="/static/Delete.svg" />
+            </IconButton>
           </ItemQuantityChanger>
         </div>
       </ItemInfo>
 
-      <ItemDelete onClick={remove}>{t('basket.removeItem', item)}</ItemDelete>
+      {/*}<ItemDelete onClick={remove}>{t('basket.removeItem', item)}</ItemDelete> */}
     </Item>
   );
 }
