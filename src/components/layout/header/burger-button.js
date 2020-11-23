@@ -13,7 +13,7 @@ const Outer = styled.button.attrs(() => ({
   height: 40px;
   position: absolute;
   margin-right: 15px;
-  margin-top: 5px;
+  margin-top: 8px;
   z-index: 100;
   padding: 0;
 
@@ -60,8 +60,7 @@ export default function BurgerButton({ active }) {
 
   return (
     <Outer open={active} onClick={layout.actions.showLeft}>
-      {/*<Lines open={active} /> */}
-      <img src="/static/burger.svg" />
+      <img src="/static/burger.svg" open={active} />
     </Outer>
   );
 }
