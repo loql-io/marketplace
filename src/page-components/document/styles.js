@@ -85,6 +85,10 @@ export const ArticleContainer = styled.div`
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 20px;
   grid-template-columns: 33.33% auto;
+  border-bottom: 1px solid #e9e2df;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+
   ${responsive.xs} {
     grid-template-columns: repeat(1, 1fr);
     grid-template-columns: auto;

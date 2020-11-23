@@ -47,7 +47,7 @@ export const Item = styled.div`
   padding: 15px 0;
   border-bottom: 1px solid #eee;
   position: relative;
-
+  grid-gap: 10px;
   ${(p) =>
     p.animate &&
     css`

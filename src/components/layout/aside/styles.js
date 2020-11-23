@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { responsive } from 'ui';
 
 export const Header = styled.h4`
   font-family: Nunito Sans;
@@ -20,6 +21,9 @@ export const Basket = styled.div`
   position: relative;
   background: #faf6f6;
   z-index: 15;
+  ${responsive.xs} {
+    padding: 0 12px !important;
+  }
 `;
 
 export const Footer = styled.div`
