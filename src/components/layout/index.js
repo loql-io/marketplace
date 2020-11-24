@@ -49,7 +49,8 @@ export default function Layout({
   description,
   simple,
   loading,
-  preview
+  preview,
+  hideHeader = false
 }) {
   return (
     <>
@@ -82,16 +83,17 @@ export default function Layout({
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <GlobalStyle />
+
         <StickyContainer>
           {simple ? (
             <>
-              <Header simple={simple} preview={preview} />
+              {!hideHeader && <Header simple={simple} preview={preview} />}
               <Main>{loading ? <Loader /> : children}</Main>
               <Footer />
             </>
           ) : (
             <CrystallizeLayout right={Aside}>
-              <Header simple={simple} preview={preview} />
+              {!hideHeader && <Header simple={simple} preview={preview} />}
               <Main>{loading ? <Loader /> : children}</Main>
               <Footer />
             </CrystallizeLayout>

@@ -11,12 +11,13 @@ import Payment from './payment';
 import CheckoutProgress from './checkout-progress';
 import OrderItems from 'components/order-items';
 import { Totals } from 'components/basket/totals';
+import { Button } from '@material-ui/core';
 
 function Checkout() {
   const basket = useBasket();
   const t = useT();
 
-  const newCheckout = false;
+  const newCheckout = true;
 
   const checkoutChildren = [Order, Payment];
 
@@ -68,20 +69,19 @@ function Checkout() {
 
   return (
     <Outer>
-      <Inner>
-        <Container>
-          <CheckoutProgress currentStep={step} />
-          <CurrentChildren onPrevious={handlePrevious} onNext={handleNext} />
-          <div style={{ margin: '28px 0', textAlign: 'center', maxWidth: 345 }}>
-            <a
-              href="#"
-              onClick={() => alert('implement, clean basket redirect')}
-            >
-              Cancel order and return to Menu
-            </a>
-          </div>
-        </Container>
-      </Inner>
+      <Container>
+        <img src="static/shopBadge.svg" alt="Shop logo" width="60" />
+        <CheckoutProgress currentStep={step} />
+        <CurrentChildren onPrevious={handlePrevious} onNext={handleNext} />
+        <div style={{ margin: '28px 0', textAlign: 'center', maxWidth: 345 }}>
+          <Button
+            variant="text"
+            onClick={() => alert('implement, clean basket redirect')}
+          >
+            Cancel order and return to Menu
+          </Button>
+        </div>
+      </Container>
     </Outer>
   );
 }
@@ -90,7 +90,7 @@ export default function CheckoutWithLayout(props) {
   const t = useT();
 
   return (
-    <Layout title={t('checkout.title')} simple>
+    <Layout title={t('checkout.title')} hideHeader>
       <Checkout {...props} />
     </Layout>
   );
