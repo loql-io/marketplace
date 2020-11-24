@@ -43,7 +43,7 @@ const commonTransfomerOverrides = {
   }
 };
 
-const maxWidth = '600px';
+const maxWidth = '100%';
 
 const SocialLink = styled.a`
   border-bottom: none;
@@ -77,6 +77,7 @@ const ContentTransformerOuter = styled.div`
     margin: 0 auto;
     text-align: center;
     max-width: ${maxWidth};
+    color: #2f2b27;
   }
   h3 {
     font-size: 2rem;

@@ -9,7 +9,6 @@ export const Outer = styled.div`
 
     ${is('$show')`
       display: block;
-      background: #fff;
       position: fixed;
       z-index: 999;
       top: 0;
@@ -18,6 +17,7 @@ export const Outer = styled.div`
       width: 100%;
       overflow-y: auto;
       padding: 50px 15px 85px;
+      background: #FAF6F6;
     `};
   }
   ${responsive.mdPlus} {

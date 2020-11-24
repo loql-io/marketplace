@@ -30,10 +30,11 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
-    font: 16px/1 Helvetica, Arial, Verdana, sans-serif;
+    font-size: 16px/1;
+    font-family: 'Nunito Sans', 'sans-serif';
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    background: white !important;
+    /*background: white !important;*/
     color: var(--color-text-sub);
   }
 

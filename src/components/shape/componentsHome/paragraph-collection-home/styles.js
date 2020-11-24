@@ -20,7 +20,8 @@ export const Title = styled.div`
     text-align: center;
     letter-spacing: -0.02em;
     color: #2f2b27;
-    padding-top: 142px;
+    padding-top: 162px;
+    margin-bottom: 20px;
     ${responsive.xs} {
       font-size: 30px;
       line-height: 30px;
@@ -31,6 +32,7 @@ export const Title = styled.div`
 export const Body = styled.div`
   /*margin: 1em var(--content-padding);*/
   /*margin-top: -60px;*/
+  margin: 0 20px;
 `;
 
 export const Text = styled.div`

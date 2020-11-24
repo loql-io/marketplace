@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Image from '@crystallize/react-image';
 import { H2 as H, responsive } from 'ui';
+import Grid from 'components/grid';
 
 export const Related = styled.div`
   ${responsive.smAndLess} {
@@ -95,4 +96,40 @@ export const Img = styled(Image)`
       margin-bottom: 10px;
     }
   }
+`;
+
+export const GridContainer = styled.div`
+  background-color: #fff;
+  padding: 20px;
+  ${responsive.sm} {
+    padding: 0;
+  }
+  ${responsive.md} {
+    padding: 0;
+  }
+`;
+
+export const SectionTitle = styled.h1`
+  font-size: 32px !important;
+  line-height: 36px !important;
+  color: #2f2b27 !important;
+  background-color: #fff;
+  padding: 20px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  ${responsive.xs} {
+    font-size: 28px !important;
+    line-height: 28px !important;
+    padding: 20px 0;
+  }
+`;
+export const GridDiv = styled(Grid)`
+  /*background-color: var(--color-text-main);*/
+  /*margin-top: -12px;*/
+`;
+
+export const Hr = styled.h1`
+  border: 0;
+  height: 1px;
+  background: #e9e2df;
 `;

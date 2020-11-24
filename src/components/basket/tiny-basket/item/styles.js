@@ -31,6 +31,7 @@ export const ItemDelete = styled.button`
   right: 2px;
   font-size: 0px;
   display: none;
+  height: 24px;
 
   &:before {
     content: '+';
@@ -42,11 +43,11 @@ export const ItemDelete = styled.button`
 
 export const Item = styled.div`
   display: grid;
-  grid-template-columns: 1fr 2fr 0.5fr;
+  grid-template-columns: 90px auto;
   padding: 15px 0;
   border-bottom: 1px solid #eee;
   position: relative;
-
+  grid-gap: 16px;
   ${(p) =>
     p.animate &&
     css`
@@ -69,9 +70,9 @@ export const ItemInfo = styled.span`
 export const ItemInfoText = styled.div``;
 
 export const ItemImage = styled(CrystallizeImage).attrs(() => ({
-  sizes: '50px'
+  sizes: '90px'
 }))`
-  width: 50px;
+  width: 90px;
   position: relative;
 
   img {
@@ -83,26 +84,36 @@ export const ItemImage = styled(CrystallizeImage).attrs(() => ({
 `;
 
 export const ItemName = styled.div`
-  text-transform: uppercase;
-  font-size: 14px;
-  font-weight: 600;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
 `;
 
 export const ItemQuantityChanger = styled.span`
   display: flex;
-  flex-direction: column-reverse;
   align-items: center;
   justify-content: space-between;
+  margin-left: -8px;
+
   button {
     margin: 6px 0;
+
+    svg {
+      font-size: 22px;
+    }
+
+    img {
+      width: 24px;
+    }
   }
 `;
 
 export const ItemQuantity = styled.span`
   display: inline-block;
-  margin: 0 3px;
-  min-width: 23px;
   text-align: center;
+  font-weight: 800;
+  font-size: 18px;
+  margin-top: -2px;
 `;
 
 export const PriceWrapper = styled.div`
@@ -116,13 +127,17 @@ export const PriceWrap = styled.div`
 `;
 
 export const Price = styled.div`
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
   ${(p) => p.isDiscounted && 'text-decoration: line-through'};
 `;
 
 export const PriceVat = styled.div`
-  display: block;
-  font-size: 12px;
-  padding-top: 4px;
+  padding-top: 6px;
+  font-size: 14px;
+  line-height: 19px;
+  color: #816e68;
 `;
 
 export const SubInfoOuter = styled.div`
@@ -131,4 +146,9 @@ export const SubInfoOuter = styled.div`
 
 export const SubInfoLine = styled.div`
   margin-top: 5px;
+`;
+export const IconButton = styled.button`
+  &:disabled svg {
+    color: #c1c1c1;
+  }
 `;

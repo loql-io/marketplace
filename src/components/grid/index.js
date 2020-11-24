@@ -6,7 +6,7 @@ import { responsive } from 'ui';
 export { default as GridItem } from './grid-item';
 
 const StyledGrid = styled(GridRenderer)`
-  /*grid-gap: 2px;*/
+  /*grid-gap: 20px;*/
   /*grid-template-rows: 700px;*/
   ${responsive.sm} {
     display: grid !important;

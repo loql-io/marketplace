@@ -9,7 +9,7 @@ export const Outer = styled.a`
   flex-direction: column;
   margin-top: -12px;
   ${(p) => (p.span ? `grid-column-end: span ${p.span}` : null)};
-
+  background: #2f2b27;
   ${responsive.xs} {
     /*margin-bottom: 15px;*/
   }
@@ -52,22 +52,32 @@ export const Text = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  text-align: center;
+  text-align: left;
+  /*background: #2f2b27;*/
+  height: 100px;
+
   /*padding: 3em var(--content-padding);*/
-  /*margin-top: -148px;*/
+  margin-top: -110px;
+
   z-index: 2;
+
+  ${responsive.xs} {
+    padding-bottom: 20px;
+    height: auto;
+    margin-top: 0;
+  }
   h3 {
     color: #fff;
-    margin-top: -100px;
+    /*margin-top: -110px;*/
     font-family: Nunito Sans;
     font-style: normal;
     font-weight: 800;
     font-size: 24px;
     line-height: 27px;
     padding: 0 20px;
+    ${responsive.xs} {
+    }
     ${responsive.md} {
-      font-size: 19px;
-      line-height: 20px;
     }
   }
 `;
@@ -78,4 +88,12 @@ export const Description = styled.div`
   line-height: 1.2rem;
   color: inherit;
   text-align: center;
+`;
+
+export const Subtitle = styled.h4`
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  color: #ffffff;
+  margin: 10px 20px;
 `;

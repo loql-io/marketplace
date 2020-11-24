@@ -7,6 +7,7 @@ const ParagraphCollection = ({ paragraphs, name }) => {
   if (!paragraphs) {
     return null;
   }
+
   return (
     <Paragraphs>
       {paragraphs.map((paragraph, index) => (

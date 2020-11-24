@@ -5,6 +5,7 @@ export default makeStyles(() =>
     inputSelect: {
       width: '100%',
       height: 56,
+      background: '#fff',
 
       '&:select': {
         background: 'transparent'

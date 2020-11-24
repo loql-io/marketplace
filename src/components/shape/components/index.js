@@ -36,12 +36,14 @@ const ShapeComponents = ({ components, overrides, pageType }) => {
 
   const productFooterTable = (pageType, component, key) => {
     if (pageType === 'product') {
+      //console.log(1)
       return (
         <ProductFooter key={key}>
           <PropertiesTable {...component.content} />
         </ProductFooter>
       );
     } else {
+      //console.log(2)
       return (
         <ContentOuter key={key}>
           <PropertiesTable {...component.content} />
@@ -59,9 +61,9 @@ const ShapeComponents = ({ components, overrides, pageType }) => {
       );
     } else {
       return (
-        <div key={key}>
-          <ItemRelations items={component.content.items} />;
-        </div>
+        <ContentOuter key={key}>
+          <ItemRelations items={component.content.items} />
+        </ContentOuter>
       );
     }
   };
@@ -142,8 +144,16 @@ const ShapeComponents = ({ components, overrides, pageType }) => {
 
           if (type === 'gridRelations') {
             Component = Component || GridRelations;
-
             return <Component key={key} grids={component.content.grids} />;
+          }
+
+          if (type === 'datetime') {
+            Component = Component || 'div';
+            return (
+              <ContentOuter key={key}>
+                <Component>{component.content.text}</Component>
+              </ContentOuter>
+            );
           }
 
           if (process.env.NODE_ENV !== 'production') {

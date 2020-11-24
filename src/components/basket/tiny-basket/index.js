@@ -23,7 +23,7 @@ export function TinyBasket() {
       </Outer>
     );
   }
-
+  //console.log(cart)
   return (
     <Outer>
       <Items>

@@ -28,7 +28,7 @@ export default {
       relatedProduct: 'Related product',
       relatedProduct_plural: 'Related products',
       addToBasket: 'Add to Basket',
-      buy: 'BUY',
+      buy: 'Buy now',
       attributes: {
         color: 'Color',
         green: 'Green',

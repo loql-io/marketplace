@@ -31,8 +31,8 @@ const Properties = styled.table`
   line-height: 22px;
   color: #2f2b27;
 
-  tr:not(:last-child) {
-    border-bottom: 2px solid #ebebeb;
+  tr:not(:last-child) td {
+    border-bottom: 1px solid #ebebeb;
   }
 
   td {

@@ -7,6 +7,7 @@ export const Outer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background: #faf6f6;
 `;
 
 export const Items = styled.ul`

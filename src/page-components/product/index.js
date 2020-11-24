@@ -84,7 +84,11 @@ export default function ProductPage({ product, preview }) {
         <Sections>
           <Media>
             <MediaInner>
-              <Carousel autoPlay={false}>
+              <Carousel
+                autoPlay={false}
+                navButtonsAlwaysInvisible={true}
+                animation="slide"
+              >
                 {selectedVariant?.images?.map((item, i) => (
                   <Img
                     key={i}

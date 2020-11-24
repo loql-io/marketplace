@@ -185,8 +185,10 @@ export default `
               name
               type
               content {
+                ...singleLine
                 ...imageContent
                 ...videoContent
+                ...paragraphCollection
               }
             }
           }

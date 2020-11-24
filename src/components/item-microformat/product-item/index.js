@@ -32,7 +32,6 @@ export default function ProductItem({ data }) {
           <ImageWrapper>
             {images?.[0] && <Img {...images?.[0]} alt={name} sizes="250px" />}
           </ImageWrapper>
-
           <Text>
             <Price>
               {t('common.price', {

@@ -1,4 +1,5 @@
-import Grid, { GridItem } from 'components/grid';
+import { GridItem } from 'components/grid';
+import { GridContainer, SectionTitle, GridDiv } from './styles';
 
 export default function GridRelations({ grids }) {
   if (!grids) {
@@ -6,12 +7,14 @@ export default function GridRelations({ grids }) {
   }
 
   return grids.map((grid, index) => (
-    <Grid
-      key={index}
-      model={grid}
-      cellComponent={({ cell }) => (
-        <GridItem data={cell.item} gridCell={cell} />
-      )}
-    />
+    <GridContainer key={index}>
+      <SectionTitle>{grid.name}</SectionTitle>
+      <GridDiv
+        model={grid}
+        cellComponent={({ cell }) => (
+          <GridItem data={cell.item} gridCell={cell} extra={true} />
+        )}
+      />
+    </GridContainer>
   ));
 }

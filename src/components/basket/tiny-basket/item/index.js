@@ -4,6 +4,11 @@ import AttributeList from 'components/attribute-list';
 import { useT } from 'lib/i18n';
 
 import {
+  ControlPointRounded,
+  RemoveCircleOutlineRounded
+} from '@material-ui/icons';
+
+import {
   Item,
   Row,
   ItemInfo,
@@ -12,11 +17,11 @@ import {
   ItemName,
   ItemQuantityChanger,
   ItemQuantity,
-  ItemDelete,
   PriceWrap,
   Price,
   PriceVat,
-  drawAttentionDuration
+  drawAttentionDuration,
+  IconButton
 } from './styles';
 
 export default function TinyBasketItem({ actions, item }) {
@@ -83,23 +88,27 @@ export default function TinyBasketItem({ actions, item }) {
             </span>
           </PriceVat>
         </PriceWrapper>
+        <div>
+          <ItemQuantityChanger>
+            <IconButton
+              onClick={decrement}
+              type="button"
+              disabled={item.quantity === 1}
+            >
+              <RemoveCircleOutlineRounded />
+            </IconButton>
+            <ItemQuantity>{item.quantity}</ItemQuantity>
+            <IconButton onClick={increment} type="button">
+              <ControlPointRounded />
+            </IconButton>
+            <IconButton onClick={remove} type="button">
+              <img src="/static/Delete.svg" />
+            </IconButton>
+          </ItemQuantityChanger>
+        </div>
       </ItemInfo>
-      <div>
-        <ItemQuantityChanger>
-          <button
-            onClick={decrement}
-            type="button"
-            disabled={item.quantity === 1}
-          >
-            -
-          </button>
-          <ItemQuantity>{item.quantity}</ItemQuantity>
-          <button onClick={increment} type="button">
-            +
-          </button>
-        </ItemQuantityChanger>
-      </div>
-      <ItemDelete onClick={remove}>{t('basket.removeItem', item)}</ItemDelete>
+
+      {/*}<ItemDelete onClick={remove}>{t('basket.removeItem', item)}</ItemDelete> */}
     </Item>
   );
 }
