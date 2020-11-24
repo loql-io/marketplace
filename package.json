@@ -1,6 +1,6 @@
 {
   "name": "loql-marketplace",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "engines": {
     "node": ">=10.10"
