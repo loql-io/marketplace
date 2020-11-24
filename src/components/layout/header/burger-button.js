@@ -11,6 +11,7 @@ const Outer = styled.button.attrs(() => ({
   position: absolute;
   margin-right: 15px;
   margin-top: 5px;
+  margin-left: 5px;
   z-index: 100;
   padding: 0;
 `;
