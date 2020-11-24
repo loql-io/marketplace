@@ -73,7 +73,7 @@ export default async function sendOrderConfirmation(orderId) {
 
     await sendEmail({
       to: email,
-      from: 'example@crystallize.com',
+      from: 'orders@loql.ly',
       subject: 'Order Summary',
       html
     });
