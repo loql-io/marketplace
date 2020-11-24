@@ -3,12 +3,9 @@
 
 import React, { useState } from 'react';
 import { MenuItem, Typography, Button } from '@material-ui/core';
-import axios from 'axios';
 import CustomTextInputField from 'components/custom-fields/custom-text-input';
 import { Spinner } from 'ui';
-
-const LOQL_API =
-  'https://2g39n9ty3b.execute-api.us-east-1.amazonaws.com/staging';
+import { doGet } from 'lib/rest-api/helpers';
 
 const PostCodeForm = ({ formik }) => {
   const [loader, setLoader] = useState(false);
@@ -44,9 +41,10 @@ const PostCodeForm = ({ formik }) => {
     handleSetFieldValue('street', '');
     handleSetFieldValue('city', '');
 
-    axios
-      .get(`${LOQL_API}/postcode/${formik.values.postcode}`)
-      .then(({ data }) => {
+    const { postcode } = formik.values;
+
+    doGet(`/api/postcode/${postcode}`)
+      .then((data) => {
         setLoader(false);
         if (data) {
           setAddresses(data.addresses);
