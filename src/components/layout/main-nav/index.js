@@ -6,7 +6,8 @@ import {
   NavInner,
   NavItem,
   Logo,
-  Name
+  Name,
+  Spacer
 } from './styles';
 
 const MainNav = ({ data }) => {
@@ -16,7 +17,7 @@ const MainNav = ({ data }) => {
         section.map(({ type, content }, i) => (
           <NavSections key={i}>
             <NavInner>
-              <h3>{type}</h3>
+              {type !== 'footer' ? <h3>{type}</h3> : <Spacer />}
               {content.map(({ logo, name, url }, x) => (
                 <NavItem key={x}>
                   <a href={url}>

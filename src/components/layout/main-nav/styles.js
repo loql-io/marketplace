@@ -16,6 +16,9 @@ export const NavContainer = styled.div`
 export const NavSections = styled.div`
   border-bottom: solid 1px #e9e2df;
   margin: 10px 0 20px 0;
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
 export const NavInner = styled.div`
@@ -46,3 +49,8 @@ export const Name = styled.div`
 `;
 
 export const Hr = styled.hr``;
+
+export const Spacer = styled.div`
+  margin-top: 40px;
+  display: inline-block;
+`;

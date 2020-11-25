@@ -101,6 +101,8 @@ export const Img = styled(Image)`
 export const GridContainer = styled.div`
   background-color: #fff;
   padding: 20px;
+  margin: 0 auto 20px auto;
+  max-width: 940px;
   ${responsive.sm} {
     padding: 0;
   }
