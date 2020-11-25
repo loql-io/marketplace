@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+
 //import { useAuth } from 'components/auth-context';
 //import { useT } from 'lib/i18n';
 
@@ -67,9 +68,11 @@ export default function Header({ simple, preview }) {
           <ShopNav style={style}>
             <a href="/">
               <ShopBadge
-                style={{
-                  background: `url(${logoImage})`
-                }}
+                width={126}
+                height={126}
+                priority={true}
+                src={logoImage}
+                alt="logo"
               />
             </a>
             {/*
