@@ -24,7 +24,7 @@ export default function Header({ simple, preview }) {
   const router = useRouter();
 
   const [navOpen, setNavOpen] = useState(false);
-  const logoImage = `/static/logos/${process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER}-logo.png`;
+  const logoImage = `/img/logo.png`;
 
   return (
     <>
