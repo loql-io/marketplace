@@ -84,7 +84,7 @@ export default function GridItem({ data, gridCell, extra }) {
 
   if (extra) {
     return (
-      <Link href={path} passHref>
+      <Link href={path}>
         <Extra>
           <Outer className={cellSize} type={type}>
             <Text>{text}</Text>

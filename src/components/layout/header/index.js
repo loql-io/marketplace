@@ -64,7 +64,11 @@ export default function Header({ simple, preview }) {
           <ShopNav style={style}>
             <a href="/">
               <ShopBadge
-                style={{ background: 'url(/static/logo-pages.fw_.png) #fff' }}
+                style={{
+                  background: `url(${process.env.LOGO}) ${
+                    process.env.LOGO_BG_COLOR || '#fff'
+                  }`
+                }}
               />
             </a>
             {/*

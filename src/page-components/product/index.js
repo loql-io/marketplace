@@ -87,7 +87,7 @@ export default function ProductPage({ product, preview }) {
               <Carousel
                 autoPlay={false}
                 navButtonsAlwaysInvisible={true}
-                animation="slide"
+                animation="fade"
               >
                 {selectedVariant?.images?.map((item, i) => (
                   <Img
@@ -102,6 +102,7 @@ export default function ProductPage({ product, preview }) {
           </Media>
           <Info>
             <Name>{product.name}</Name>
+            {process.env.foo}
             <ProductPrice>
               {t('common.price', {
                 value: price,
