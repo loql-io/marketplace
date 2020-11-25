@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-
 //import { useAuth } from 'components/auth-context';
 //import { useT } from 'lib/i18n';
 
@@ -25,9 +24,7 @@ export default function Header({ simple, preview }) {
   const router = useRouter();
 
   const [navOpen, setNavOpen] = useState(false);
-  const logoImage = process.env.LOGO
-    ? process.env.LOGO
-    : '/static/default-logo.png';
+  const logoImage = `/static/logos/${process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER}-logo.png`;
 
   return (
     <>
@@ -68,11 +65,9 @@ export default function Header({ simple, preview }) {
           <ShopNav style={style}>
             <a href="/">
               <ShopBadge
-                width={126}
-                height={126}
-                priority={true}
-                src={logoImage}
-                alt="logo"
+                style={{
+                  background: `url(${logoImage})`
+                }}
               />
             </a>
             {/*
