@@ -24,6 +24,12 @@ export default function Header({ simple, preview }) {
   const router = useRouter();
 
   const [navOpen, setNavOpen] = useState(false);
+  const logoImage = process.env.LOGO
+    ? process.env.LOGO
+    : '/static/default-logo.png';
+  const logoBackgroundColor = process.env.LOGO_BG_COLOR
+    ? process.env.LOGO_BG_COLOR
+    : '#fff';
 
   return (
     <>
@@ -65,9 +71,7 @@ export default function Header({ simple, preview }) {
             <a href="/">
               <ShopBadge
                 style={{
-                  background: `url(${process.env.LOGO}) ${
-                    process.env.LOGO_BG_COLOR || '#fff'
-                  }`
+                  background: `url(${logoImage}) ${logoBackgroundColor}`
                 }}
               />
             </a>
