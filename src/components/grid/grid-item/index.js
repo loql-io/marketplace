@@ -99,6 +99,7 @@ export default function GridItem({ data, gridCell, extra }) {
               )}
             </ImageWrapper>
             <Paragraphs style={{ marginTop: 20 }}>
+              {console.log(paragraphs)}
               {paragraphs.map((paragraph, index) => (
                 <Paragraph key={index} {...paragraph} name={name} />
               ))}

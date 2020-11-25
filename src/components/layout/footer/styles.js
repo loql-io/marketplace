@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { responsive } from 'ui';
 import { Button } from '@material-ui/core';
 
 export const Outer = styled.footer`
@@ -48,6 +48,12 @@ export const Powered = styled.div`
 
 export const FooterText = styled.div`
   color: #fff;
+  text-align: left;
+  ${responsive.xs} {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 `;
 
 export const FindOurMoreButton = styled(Button)`
@@ -60,16 +66,41 @@ export const FindOurMoreButton = styled(Button)`
   font-size: 14px !important;
 `;
 
-export const FooterLinks = styled.div`
-  color: #c0a9a8;
-  margin-top: 60px;
-  span {
-    margin-right: 20px;
-  }
-`;
-
 export const Copyright = styled.span`
   color: #c0a9a8;
   margin-top: 20px;
   display: inline-block;
+`;
+
+export const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 20px;
+  grid-template-columns: 25% auto 25%;
+  ${responsive.xs} {
+    grid-template-columns: repeat(1, 1fr);
+  }
+`;
+
+export const GridItem = styled.div`
+  text-align: center;
+`;
+
+export const GridFooter = styled.div`
+  margin-right: 4.5%;
+  ${responsive.xs} {
+    margin-right: 0;
+  }
+`;
+export const FooterLinks = styled.div`
+  color: #c0a9a8;
+  text-align: right;
+  margin-top: -20px;
+  ${responsive.xs} {
+    text-align: center;
+    margin-top: 20px;
+  }
+  span {
+    margin-right: 20px;
+  }
 `;

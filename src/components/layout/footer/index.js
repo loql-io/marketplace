@@ -1,7 +1,4 @@
 import React from 'react';
-
-import { Grid } from '@material-ui/core';
-
 import Link from 'next/link';
 
 import {
@@ -10,32 +7,39 @@ import {
   FooterText,
   FindOurMoreButton,
   FooterLinks,
-  Copyright
+  Copyright,
+  Grid,
+  GridItem,
+  GridFooter
 } from './styles';
 
 export default function Footer() {
   return (
     <Outer>
-      <Grid container spacing={3}>
-        <Grid item xs style={{ textAlign: 'center' }}>
+      <Grid>
+        <GridItem>
           <a href="http://loql.ly">
             <Logo>
               <img src="/static/Dark-logo.svg" alt="" />
             </Logo>
-            <Copyright>©2020 Loql</Copyright>
           </a>
-        </Grid>
-        <Grid item sm={6}>
+          <Copyright>©2020 Loql</Copyright>
+        </GridItem>
+        <GridItem>
           <FooterText>
             Loql is a not for profit that helps high streets find resilience
             through high quality, low cost digital tools that can be shared and
             managed by the community.
           </FooterText>
-        </Grid>
-        <Grid item xs style={{ textAlign: 'center' }}>
+        </GridItem>
+        <GridItem>
           <FindOurMoreButton variant="contained" href="http://loql.ly">
             Find out more
           </FindOurMoreButton>
+        </GridItem>
+      </Grid>
+      <GridFooter>
+        <GridItem>
           <FooterLinks>
             <span>
               <Link href="https://app.termly.io/document/terms-and-conditions/f9ff0a97-03a4-49b8-aaab-94ac15fe4cb0">
@@ -53,8 +57,8 @@ export default function Footer() {
               </Link>
             </span>
           </FooterLinks>
-        </Grid>
-      </Grid>
+        </GridItem>
+      </GridFooter>
     </Outer>
   );
 }
