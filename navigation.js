@@ -5,9 +5,9 @@ const Navgation = [
         type: 'Shopping',
         content: [
           {
-            logo: '/static/logo-pages.fw_.png',
+            logo: '/static/logos/berko-sports-logo.png',
             name: 'Berkhamsted Sports',
-            url: 'http://www.google.com'
+            url: 'https://berko-sports.loql.ly'
           },
           {
             logo: '/static/logo-pages.fw_.png',
