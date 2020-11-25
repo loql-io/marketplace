@@ -27,9 +27,6 @@ export default function Header({ simple, preview }) {
   const logoImage = process.env.LOGO
     ? process.env.LOGO
     : '/static/default-logo.png';
-  const logoBackgroundColor = process.env.LOGO_BG_COLOR
-    ? process.env.LOGO_BG_COLOR
-    : '#fff';
 
   return (
     <>
@@ -71,7 +68,7 @@ export default function Header({ simple, preview }) {
             <a href="/">
               <ShopBadge
                 style={{
-                  background: `url(${logoImage}) ${logoBackgroundColor}`
+                  background: `url(${logoImage})`
                 }}
               />
             </a>
