@@ -37,7 +37,9 @@ export function CollectionDetails({ onNext }) {
       .required('Mobile number is required.')
       .matches(/^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/, {
         message: 'Mobile number is not valid.'
-      })
+      }),
+    businessNews: Yup.boolean(),
+    loqlNews: Yup.boolean()
   });
 
   return (
