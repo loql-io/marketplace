@@ -124,10 +124,14 @@ export const SectionTitle = styled.h1`
     line-height: 28px !important;
     padding: 20px 0;
   }
+  ${responsive.md} {
+    padding: 20px 0;
+  }
 `;
 export const GridDiv = styled(Grid)`
   /*background-color: var(--color-text-main);*/
   /*margin-top: -12px;*/
+  grid-gap: 20px;
 `;
 
 export const Hr = styled.h1`

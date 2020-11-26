@@ -5,7 +5,6 @@ export default function GridRelations({ grids }) {
   if (!grids) {
     return null;
   }
-
   return grids.map((grid, index) => (
     <GridContainer key={index}>
       <SectionTitle>{grid.name}</SectionTitle>

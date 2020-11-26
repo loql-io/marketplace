@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import Paragraph from '../../shape/components/paragraph-collection/paragraph';
 import DocumentItem from 'components/item-microformat/document-item';
 import { screen } from 'ui';
 import { useT } from 'lib/i18n';
@@ -9,6 +8,7 @@ import PrimaryButton from '../../custom-fields/primary-button';
 
 import {
   Outer,
+  Header,
   Text,
   ImageWrapper,
   Img,
@@ -32,6 +32,20 @@ function getImageSize({ variants } = {}) {
   return {};
 }
 
+export const truncate = (str, length, ending) => {
+  if (length == null) {
+    length = 100;
+  }
+  if (ending == null) {
+    ending = '...';
+  }
+  if (str?.length > length) {
+    return str?.substring(0, length - ending.length) + ending;
+  } else {
+    return str;
+  }
+};
+
 export default function GridItem({ data, gridCell, extra }) {
   const t = useT();
   const locale = useLocale();
@@ -43,8 +57,9 @@ export default function GridItem({ data, gridCell, extra }) {
   const { name, path, type, variants, defaultVariant = {} } = data;
   const imageMdWidth = 100 / (gridCell?.layout?.colspan ?? 1);
   const cellSize = `cell-${gridCell?.layout?.rowspan}x${gridCell?.layout?.colspan}`;
-  const paragraphs = data.components.find((i) => i.name === 'Description')
-    ?.content?.paragraphs;
+
+  const singleParagraph = data.components.find((i) => i.name === 'Description')
+    ?.content?.paragraphs?.[0].body?.json?.[0]?.children?.[0]?.textContent;
 
   let image;
   let text;
@@ -66,7 +81,7 @@ export default function GridItem({ data, gridCell, extra }) {
 
     image = i;
     text = (
-      <div>
+      <Header>
         <Title>{name}</Title>
         <Price>
           {t('common.price', {
@@ -74,7 +89,7 @@ export default function GridItem({ data, gridCell, extra }) {
             currency
           })}
         </Price>
-      </div>
+      </Header>
     );
   }
 
@@ -98,14 +113,9 @@ export default function GridItem({ data, gridCell, extra }) {
                 />
               )}
             </ImageWrapper>
-            <Paragraphs style={{ marginTop: 20 }}>
-              {console.log(paragraphs)}
-              {paragraphs.map((paragraph, index) => (
-                <Paragraph key={index} {...paragraph} name={name} />
-              ))}
-            </Paragraphs>
+            <Paragraphs>{truncate(singleParagraph, 150, '...')}</Paragraphs>
             <PrimaryButton text={t('product.buy')} />
-            <hr />
+            {/*<hr />*/}
           </Outer>
         </Extra>
       </Link>
