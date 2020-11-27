@@ -7,7 +7,7 @@ export const Paragraphs = styled.div``;
 
 export const Outer = styled.div`
   margin: 0;
-  height: 420px;
+  height: 360px;
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -23,17 +23,14 @@ export const Title = styled.div`
     letter-spacing: -0.02em;
     color: #fff;
     padding-top: 188px;
-    text-shadow: 1px 1px 2px rgb(0 0 0);
-
     margin: 0 auto 20px auto;
     width: 500px;
+
     ${responsive.xs} {
       padding-top: 210px !important;
       font-size: 30px;
       line-height: 30px;
       width: 300px;
-    }
-    ${responsive.md} {
     }
   }
 `;
