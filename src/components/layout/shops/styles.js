@@ -16,12 +16,15 @@ export const NavContainer = styled.div`
   a {
     display: flex;
   }
-
-  .shops,
   .eating {
     grid-gap: 20px;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .shops {
+    grid-gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 
     ${responsive.sm} {
       grid-template-columns: repeat(3, 1fr);
@@ -31,7 +34,6 @@ export const NavContainer = styled.div`
       grid-template-columns: repeat(2, 1fr);
     }
   }
-
   .collections {
     grid-gap: 2px;
     display: grid;
