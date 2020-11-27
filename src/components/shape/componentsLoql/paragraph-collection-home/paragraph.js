@@ -1,7 +1,7 @@
 import ContentTransformer from 'ui/content-transformer';
 import { H3 } from 'ui';
 
-import { Outer, Title, Body, Text, Button } from './styles';
+import { Outer, Title, Body, Text } from './styles';
 //import Images from '../images';
 //import Videos from '../videos';
 
@@ -28,7 +28,7 @@ const Paragraph = ({
             <ContentTransformer {...body.json} />
           </Body>
         )}
-        <Button text="Shop now" />
+        {/* <Button text="Shop now" /> */}
       </Text>
     </Outer>
   );

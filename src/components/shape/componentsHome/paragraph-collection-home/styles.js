@@ -7,7 +7,7 @@ export const Outer = styled.div`
   margin: 0;
   height: 300px;
   background-size: cover;
-  background-position: bottom;
+  background-position: center;
   width: 100%;
 `;
 

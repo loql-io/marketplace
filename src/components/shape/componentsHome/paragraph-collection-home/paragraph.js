@@ -15,7 +15,7 @@ const Paragraph = ({
     <Outer
       style={{
         backgroundImage: `linear-gradient(to bottom, rgba(252, 252, 252, 0), rgba(252, 252, 252, 1)),
-        url(${images[0].url})`
+        url(${images?.[0].url})`
       }}
     >
       <Text>
