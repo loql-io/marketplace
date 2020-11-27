@@ -30,7 +30,7 @@ const Navgation = [
         type: 'Eating',
         content: [
           {
-            logo: '/static/default-logo.png',
+            logo: 'https://loql-images.s3.us-east-1.amazonaws.com/GJWwv3hS-',
             name: 'The Meating Room',
             url: 'https://app.loql.io/order/the-meating-room'
           }
@@ -46,12 +46,12 @@ const Navgation = [
           {
             logo: '',
             name: 'About',
-            url: 'http://www.google.com'
+            url: '#'
           },
           {
             logo: '',
             name: 'Join',
-            url: 'http://www.google.com'
+            url: '#'
           }
         ]
       }
