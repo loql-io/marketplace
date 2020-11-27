@@ -1,19 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import {
-  CardElement,
   Elements,
-  useStripe,
-  useElements
+  CardCvcElement,
+  CardElement,
+  CardExpiryElement,
+  CardNumberElement,
+  useElements,
+  useStripe
 } from '@stripe/react-stripe-js';
 
+import { FormHelperText, Typography } from '@material-ui/core';
 import { doPost } from 'lib/rest-api/helpers';
-import { Button } from 'ui';
-import { useT } from 'lib/i18n';
+
+import styles from './styles';
+import FooterButtons from '../footer-buttons';
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
+
+const options = {
+  style: {
+    base: {
+      fontSize: '18px',
+      fontWeight: 'normal',
+      fontFamily: 'Nunito Sans, sans-serif',
+      '::placeholder': {
+        fontFamily: 'Nunito Sans, sans-serif',
+        color: '#2F2B27',
+        fontWeigh: '300'
+      }
+    },
+    invalid: {
+      color: '#9e2146'
+    }
+  }
+};
 
 // Persist by create order in Crystallize
 async function persistOrder({ paymentIntent, paymentModel }) {
@@ -30,11 +53,16 @@ async function persistOrder({ paymentIntent, paymentModel }) {
   return data.orders.create.id;
 }
 
-function Form({ clientSecret, paymentModel, onSuccess }) {
-  const t = useT();
+function Form({ clientSecret, paymentModel, onSuccess, onPrevious }) {
   const stripe = useStripe();
+
   const elements = useElements();
+
   const [status, setStatus] = useState('idle');
+
+  const classes = styles();
+
+  const formRef = useRef();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -84,19 +112,93 @@ function Form({ clientSecret, paymentModel, onSuccess }) {
     }
   }
 
+  console.log(status);
+
+  const checkError = (element) => {
+    let helperID = 'card-error';
+
+    switch (element) {
+      case CardCvcElement: {
+        helperID = 'cvc-error';
+        break;
+      }
+      case CardElement: {
+        helperID = 'card-error';
+        break;
+      }
+      case CardExpiryElement: {
+        helperID = 'expiry-error';
+        break;
+      }
+      default:
+        break;
+    }
+
+    elements.getElement(element).on('change', (event) => {
+      const helper = document.getElementById(helperID);
+      if (event.error) {
+        helper.textContent = event.error.message;
+        return;
+      }
+      helper.textContent = ' ';
+    });
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <CardElement />
-      <div style={{ marginTop: 25 }}>
-        <Button
-          type="submit"
-          state={status === 'confirming' ? 'loading' : null}
-          disabled={status === 'confirming'}
-        >
-          {t('checkout.payNow')}
-        </Button>
-      </div>
-    </form>
+    <div className={classes.formWrapper}>
+      <Typography
+        component="h1"
+        variant="h1"
+        align="center"
+        className={classes.title}
+      >
+        Payment
+      </Typography>
+
+      <form ref={formRef} onSubmit={handleSubmit} className={classes.form}>
+        <div className={classes.formGroup}>
+          <fieldset>
+            <CardNumberElement
+              id="cardNumber"
+              className={classes.inputs}
+              options={options}
+              onChange={() => checkError(CardNumberElement)}
+            />
+            <FormHelperText id="card-error" error />
+          </fieldset>
+        </div>
+        <div className={classes.formGroup}>
+          <fieldset>
+            <CardExpiryElement
+              id="cardExpiry"
+              onChange={() => checkError(CardExpiryElement)}
+              className={classes.inputs}
+              options={options}
+            />
+            <FormHelperText id="expiry-error" error />
+          </fieldset>
+        </div>
+        <div className={classes.formGroup}>
+          <fieldset>
+            <CardCvcElement
+              id="cardCvc"
+              className={classes.inputs}
+              options={options}
+              onChange={() => checkError(CardCvcElement)}
+            />
+            <FormHelperText id="cvc-error" error />
+          </fieldset>
+          <span className={classes.helpText}>
+            Last 3 digits on the back of your card
+          </span>
+        </div>
+        <FooterButtons
+          onPrevious={onPrevious}
+          onNext={() => formRef.current.submit()}
+          nextText="Place order"
+        />
+      </form>
+    </div>
   );
 }
 

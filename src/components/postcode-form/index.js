@@ -2,10 +2,11 @@
 /* eslint-disable react/prop-types */
 
 import React, { useState } from 'react';
-import { MenuItem, Typography, Button } from '@material-ui/core';
+import { MenuItem, Typography } from '@material-ui/core';
 import CustomTextInputField from 'components/custom-fields/custom-text-input';
 import { Spinner } from 'ui';
 import { doGet } from 'lib/rest-api/helpers';
+import SecondaryButton from 'components/custom-fields/secondary-button';
 
 const PostCodeForm = ({ formik }) => {
   const [loader, setLoader] = useState(false);
@@ -50,6 +51,7 @@ const PostCodeForm = ({ formik }) => {
           setAddresses(data.addresses);
           handleSetFieldValue('selectedAddress', '');
           handleSetFieldValue('postcode', data.postcode);
+          setManualInputText('Or enter it yourself');
         }
       })
       .catch(() => {
@@ -75,24 +77,30 @@ const PostCodeForm = ({ formik }) => {
     <>
       <CustomTextInputField
         style={{ marginBottom: 8 }}
+        value={formik.values.postcode}
         onChange={formik.handleChange('postcode')}
         helperText={formik.touched.postcode ? formik.errors.postcode : ''}
         error={formik.touched.postcode && !!formik.errors.postcode}
         label="Postcode"
       />
 
-      <Button
+      <SecondaryButton
         type="button"
         variant="contained"
-        text="Search"
+        text="Find address"
         style={{ margin: '20px 0' }}
         onClick={getAddress}
         disabled={Boolean(formik.errors.postcode)}
       >
         Search
-      </Button>
+      </SecondaryButton>
       {loader ? (
-        <Spinner message="Searching addresses..." inline />
+        <div>
+          <Typography variant="body2" component="span">
+            Searching...
+          </Typography>
+          <Spinner inline />
+        </div>
       ) : (
         <>
           {addresses.length > 0 && (

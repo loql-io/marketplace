@@ -33,7 +33,7 @@ export default function Payment() {
   const t = useT();
   const locale = useLocale();
   const router = useRouter();
-  const { cart, actions, metadata } = useBasket();
+  const { cart, metadata } = useBasket();
   const [selectedPaymentProvider, setSelectedPaymentProvider] = useState(null);
   const [state, setState] = useState({
     firstName: '',
@@ -96,7 +96,7 @@ export default function Payment() {
           />
         </PaymentProvider>
       )
-    },
+    }
   ];
 
   return (

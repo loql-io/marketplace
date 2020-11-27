@@ -15,26 +15,40 @@ const DetailsContainer = styled.div`
   }
 `;
 
-export function DeliveryDetails({ onNext }) {
-  function handleSubmit() {
-    onNext();
+export function DeliveryDetails({ onNext, checkoutState }) {
+  function handleSubmit(values) {
+    onNext(values);
   }
 
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required('First name is required.'),
     lastName: Yup.string().required('Surname is required.'),
+    email: Yup.string().email().required(),
     phone: Yup.string()
       .required('Mobile number is required.')
       .matches(/^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/, {
         message: 'Mobile number is not valid.'
-      })
+      }),
+    postcode: Yup.string().required(),
+    house: Yup.string().required(),
+    street: Yup.string().required(),
+    city: Yup.string().required()
   });
 
   return (
     <DetailsContainer>
       <Typography variant="h3">Delivery details</Typography>
       <Formik
-        initialValues={{ firstName: '', lastName: '', phone: '', postcode: '' }}
+        initialValues={{
+          firstName: checkoutState.firstName,
+          lastName: checkoutState.lastName,
+          email: checkoutState.email,
+          phone: checkoutState.phone,
+          postcode: checkoutState.postcode,
+          house: checkoutState.house,
+          street: checkoutState.street,
+          city: checkoutState.city
+        }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
@@ -42,6 +56,7 @@ export function DeliveryDetails({ onNext }) {
           <Form>
             <CustomTextInputField
               label="First name"
+              value={formik.values.firstName}
               onChange={formik.handleChange('firstName')}
               helperText={
                 formik.touched.firstName ? formik.errors.firstName : ''
@@ -50,17 +65,26 @@ export function DeliveryDetails({ onNext }) {
             />
             <CustomTextInputField
               label="Surname"
+              value={formik.values.lastName}
               onChange={formik.handleChange('lastName')}
               helperText={formik.touched.lastName ? formik.errors.lastName : ''}
               error={formik.touched.lastName && !!formik.errors.lastName}
             />
             <CustomTextInputField
+              value={formik.values.email}
+              label="Your email"
+              onChange={formik.handleChange('email')}
+              helperText={formik.touched.email ? formik.errors.email : ''}
+              error={formik.touched.email && !!formik.errors.email}
+            />
+            <CustomTextInputField
               label="Mobile number"
+              value={formik.values.phone}
               onChange={formik.handleChange('phone')}
               helperText={formik.touched.phone ? formik.errors.phone : ''}
               error={formik.touched.phone && !!formik.errors.phone}
             />
-            <PostCodeForm formik={formik} />
+            <PostCodeForm formik={formik} checkoutState={checkoutState} />
             <FooterButtons onNext={formik.submitForm} />
           </Form>
         )}

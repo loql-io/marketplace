@@ -1,14 +1,14 @@
 {
-   "locales": [
-      {
-         "locale": "en",
-         "displayName": "en",
-         "appLanguage": "en-US",
-         "crystallizeCatalogueLanguage": "en",
-         "crystallizePriceVariant": "default"
-      }
-   ],
-   "paymentProviders": [
-      "stripe"
-   ]
+  "locales": [
+    {
+      "locale": "en",
+      "displayName": "en",
+      "appLanguage": "en-GB",
+      "crystallizeCatalogueLanguage": "en",
+      "crystallizePriceVariant": "default"
+    }
+  ],
+  "paymentProviders": [
+    "stripe"
+  ]
 }

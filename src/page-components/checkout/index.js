@@ -12,14 +12,27 @@ import CheckoutProgress from './checkout-progress';
 import OrderItems from 'components/order-items';
 import { Totals } from 'components/basket/totals';
 import { Button } from '@material-ui/core';
+import Review from './review';
+import { useRouter } from 'next/router';
 
 function Checkout() {
   const basket = useBasket();
+
   const t = useT();
+
+  const router = useRouter();
+
+  const [checkoutState, setCheckoutState] = useState({
+    firstName: '',
+    lastName: '',
+    phone: '',
+    email: '',
+    checkoutType: 'collection'
+  });
 
   const newCheckout = true;
 
-  const checkoutChildren = [Order, Payment];
+  const checkoutChildren = [Order, Review, Payment];
 
   const [step, setStep] = useState(0);
 
@@ -41,10 +54,16 @@ function Checkout() {
     }
   }
 
-  function handleNext() {
+  function handleNext(newState) {
+    setCheckoutState({ ...checkoutState, ...newState });
     if (step < checkoutChildren.length - 1) {
       setStep(step + 1);
     }
+  }
+
+  function handleClearBasket() {
+    router.replace('/');
+    basket.actions.empty();
   }
 
   if (!newCheckout) {
@@ -72,12 +91,13 @@ function Checkout() {
       <Container>
         <img src="static/shopBadge.svg" alt="Shop logo" width="60" />
         <CheckoutProgress currentStep={step} />
-        <CurrentChildren onPrevious={handlePrevious} onNext={handleNext} />
+        <CurrentChildren
+          onPrevious={handlePrevious}
+          onNext={handleNext}
+          checkoutState={checkoutState}
+        />
         <div style={{ margin: '28px 0', textAlign: 'center', maxWidth: 345 }}>
-          <Button
-            variant="text"
-            onClick={() => alert('implement, clean basket redirect')}
-          >
+          <Button variant="text" onClick={handleClearBasket}>
             Cancel order and return to Menu
           </Button>
         </div>

@@ -31,6 +31,7 @@ export default function FooterButtons({
         onClick={onPrevious}
         style={{ width: 150 }}
         startIcon={<ChevronLeftRoundedIcon />}
+        disabled={!onPrevious}
       />
 
       <PrimaryButton

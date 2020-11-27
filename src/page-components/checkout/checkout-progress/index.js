@@ -11,11 +11,11 @@ export default function CheckoutProgress({ currentStep }) {
       </StepContainer>
       <StepContainer currentStep={currentStep === 1}>
         <img src="" alt="" />
-        <Typography variant="body2">Payment</Typography>
+        <Typography variant="body2">Review</Typography>
       </StepContainer>
       <StepContainer currentStep={currentStep === 2}>
         <img src="" alt="" />
-        <Typography variant="body2">Review</Typography>
+        <Typography variant="body2">Payment</Typography>
       </StepContainer>
     </ProgressContainer>
   );

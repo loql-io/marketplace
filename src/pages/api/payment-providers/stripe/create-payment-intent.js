@@ -2,14 +2,18 @@ import { getClient } from 'lib-api/payment-providers/stripe';
 import { validatePaymentModel } from 'lib-api/util/checkout';
 
 export default async (req, res) => {
+  const connectedAccountId = process.env.STRIPE_ACCOUNT_ID;
   try {
     const { paymentModel } = req.body;
     const validPaymentModel = await validatePaymentModel({ paymentModel });
 
-    const paymentIntent = await getClient().paymentIntents.create({
-      amount: validPaymentModel.total.gross * 100,
-      currency: validPaymentModel.total.currency
-    });
+    const paymentIntent = await getClient().paymentIntents.create(
+      {
+        amount: validPaymentModel.total.gross * 100,
+        currency: validPaymentModel.total.currency
+      },
+      { stripeAccount: connectedAccountId }
+    );
 
     return res.json(paymentIntent);
   } catch (error) {

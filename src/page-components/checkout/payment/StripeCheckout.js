@@ -1,12 +1,11 @@
 /* eslint-disable react/display-name */
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import styled from 'styled-components';
 
-import appConfig, { useLocale } from 'lib/app-config';
-import { useT } from 'lib/i18n';
+import { useLocale } from 'lib/app-config';
 import { useBasket } from 'components/basket';
 
 import { PaymentProviders, PaymentProvider } from '../styles';
@@ -15,17 +14,10 @@ const StripeCheckout = dynamic(() => import('./stripe'));
 
 const Inner = styled.div``;
 
-export default function Payment() {
-  const t = useT();
+export default function Payment({ checkoutState, onPrevious }) {
   const locale = useLocale();
   const router = useRouter();
   const { cart, metadata } = useBasket();
-  const [selectedPaymentProvider] = useState('stripe');
-  const [state] = useState({
-    firstName: '',
-    lastName: '',
-    email: ''
-  });
 
   // Handle locale with sub-path routing
   let multilingualUrlPrefix = '';
@@ -33,7 +25,7 @@ export default function Payment() {
     multilingualUrlPrefix = router.locale;
   }
 
-  const { firstName, lastName, email } = state;
+  const { firstName, lastName, email } = checkoutState;
 
   // Define the shared payment model for all payment providers
   const paymentModel = {
@@ -53,7 +45,7 @@ export default function Payment() {
     }
   };
 
-  const paymentProviders = [
+  const stripe = [
     {
       name: 'stripe',
       color: '#6773E6',
@@ -65,6 +57,8 @@ export default function Payment() {
           </Head>
           <StripeCheckout
             paymentModel={paymentModel}
+            onPrevious={onPrevious}
+            checkoutState={checkoutState}
             onSuccess={(orderId) => {
               if (multilingualUrlPrefix) {
                 router.push(
@@ -88,15 +82,7 @@ export default function Payment() {
   return (
     <Inner>
       <div>
-        {appConfig.paymentProviders.length === 0 ? (
-          <i>{t('checkout.noPaymentProvidersConfigured')}</i>
-        ) : (
-          <PaymentProviders>
-            {paymentProviders
-              .find((p) => p.name === selectedPaymentProvider)
-              ?.render()}
-          </PaymentProviders>
-        )}
+        <PaymentProviders>{stripe[0].render()}</PaymentProviders>
       </div>
     </Inner>
   );

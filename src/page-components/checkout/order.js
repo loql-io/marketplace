@@ -8,13 +8,19 @@ import {
 } from '@material-ui/core';
 import { CollectionDetails } from './collection-details';
 import { DeliveryDetails } from './delivery-details';
+import { useBasket } from 'components/basket';
 
-export default function Order({ onNext }) {
-  const [value, setValue] = useState('');
-
+export default function Order({ onNext, checkoutState }) {
+  const [value, setValue] = useState(checkoutState.checkoutType || '');
+  const basket = useBasket();
   const handleChange = (event) => {
     setValue(event.target.value);
   };
+
+  function handleNext(state) {
+    onNext({ ...state, checkoutType: value });
+    basket.actions.setMetadata({ additionalInformation: value });
+  }
 
   return (
     <div>
@@ -45,9 +51,19 @@ export default function Order({ onNext }) {
         </RadioGroup>
       </FormControl>
 
-      {value === 'collection' && <CollectionDetails onNext={onNext} />}
+      {value === 'collection' && (
+        <CollectionDetails
+          onNext={(state) => handleNext(state)}
+          checkoutState={checkoutState}
+        />
+      )}
 
-      {value === 'delivery' && <DeliveryDetails />}
+      {value === 'delivery' && (
+        <DeliveryDetails
+          onNext={(state) => handleNext(state)}
+          checkoutState={checkoutState}
+        />
+      )}
     </div>
   );
 }

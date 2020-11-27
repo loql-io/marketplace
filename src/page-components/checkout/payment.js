@@ -4,11 +4,15 @@ import React from 'react';
 
 import StripeCheckout from './payment/StripeCheckout';
 
-export default function Payment() {
+export default function Payment({ onPrevious, onNext, checkoutState }) {
   return (
     <div>
       <Typography>Payment</Typography>
-      <StripeCheckout />
+      <StripeCheckout
+        checkoutState={checkoutState}
+        onNext={onNext}
+        onPrevious={onPrevious}
+      />
     </div>
   );
 }

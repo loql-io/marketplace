@@ -25,14 +25,15 @@ const DetailsContainer = styled.div`
   }
 `;
 
-export function CollectionDetails({ onNext }) {
-  function handleSubmit() {
-    onNext();
+export function CollectionDetails({ onNext, checkoutState }) {
+  function handleSubmit(values) {
+    onNext(values);
   }
 
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required('First name is required.'),
     lastName: Yup.string().required('Surname is required.'),
+    email: Yup.string().email().required(),
     phone: Yup.string()
       .required('Mobile number is required.')
       .matches(/^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/, {
@@ -49,11 +50,13 @@ export function CollectionDetails({ onNext }) {
       </Typography>
       <Formik
         initialValues={{
-          firstName: '',
-          lastName: '',
-          phone: '',
-          businessNews: false,
-          loqlNews: false
+          firstName: checkoutState.firstName,
+          lastName: checkoutState.lastName,
+          email: checkoutState.email,
+          phone: checkoutState.phone,
+          postcode: checkoutState.postcode || '',
+          businessNews: checkoutState.businessNews || false,
+          loqlNews: checkoutState.loqlNews || false
         }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
@@ -61,7 +64,8 @@ export function CollectionDetails({ onNext }) {
         {({ handleChange, submitForm, ...formik }) => (
           <Form>
             <CustomTextInputField
-              placeholder="Your first name"
+              value={formik.values.firstName}
+              label="Your first name"
               onChange={handleChange('firstName')}
               helperText={
                 formik.touched.firstName ? formik.errors.firstName : ''
@@ -69,13 +73,22 @@ export function CollectionDetails({ onNext }) {
               error={formik.touched.firstName && !!formik.errors.firstName}
             />
             <CustomTextInputField
-              placeholder="Your surname"
+              value={formik.values.lastName}
+              label="Your surname"
               onChange={handleChange('lastName')}
               helperText={formik.touched.lastName ? formik.errors.lastName : ''}
               error={formik.touched.lastName && !!formik.errors.lastName}
             />
             <CustomTextInputField
-              placeholder="Your mobile number"
+              value={formik.values.email}
+              label="Your email"
+              onChange={handleChange('email')}
+              helperText={formik.touched.email ? formik.errors.email : ''}
+              error={formik.touched.email && !!formik.errors.email}
+            />
+            <CustomTextInputField
+              value={formik.values.phone}
+              label="Your mobile number"
               onChange={handleChange('phone')}
               helperText={formik.touched.phone ? formik.errors.phone : ''}
               error={formik.touched.phone && !!formik.errors.phone}
@@ -83,8 +96,10 @@ export function CollectionDetails({ onNext }) {
             <FormControlLabel
               className="checkbox-label"
               labelPlacement="start"
-              value="businessNews"
-              control={<CustomCheckbox />}
+              name="businessNews"
+              value={formik.values.businessNews}
+              onChange={handleChange('businessNews')}
+              control={<CustomCheckbox checked={formik.values.businessNews} />}
               label="Tick this box if you do want to receive emails from the business you order with."
               style={{ margin: '0 0' }}
             />
@@ -92,7 +107,8 @@ export function CollectionDetails({ onNext }) {
               className="checkbox-label"
               labelPlacement="start"
               value="loqlNews"
-              control={<CustomCheckbox />}
+              onChange={handleChange('loqlNews')}
+              control={<CustomCheckbox checked={formik.values.loqlNews} />}
               label="Tick this box if you do want to receive emails from Loql."
               style={{ margin: '1px 0' }}
             />
