@@ -10,29 +10,19 @@ const HomeNavgation = [
             url: 'https://berko-sports.loql.ly'
           },
           {
-            logo: 'https://creative-collective.loql.ly/img/logo.png',
-            name: 'Creative Collective',
-            url: 'https://creative-collective.loql.ly'
+            logo: 'https://petals.loql.ly/img/logo.png',
+            name: 'Petals',
+            url: 'https://petals.loql.ly'
           },
           {
             logo: 'https://hamlins.loql.ly/img/logo.png',
-            name: 'Hamlins Toys',
+            name: 'Hamlins',
             url: 'https://hamlins.loql.ly'
           },
           {
-            logo: 'https://petals.loql.ly/img/logo.png',
-            name: 'Petals Flowers',
-            url: 'https://petals.loql.ly/'
-          },
-          {
-            logo: '/static/default-logo.png',
-            name: 'Soden Style',
-            url: 'http://www.google.com'
-          },
-          {
-            logo: '/static/default-logo.png',
-            name: 'Soden Style',
-            url: 'http://www.google.com'
+            logo: 'https://creative-collective.loql.ly/img/logo.png',
+            name: 'Creative Collective',
+            url: 'https://creative-collective.loql.ly'
           }
         ]
       },
@@ -40,34 +30,9 @@ const HomeNavgation = [
         type: 'Eating',
         content: [
           {
-            logo: 'https://loql-images.s3.us-east-1.amazonaws.com/GJWwv3hS-',
+            logo: '/static/default-logo.png',
             name: 'The Meating Room',
             url: 'https://app.loql.io/order/the-meating-room'
-          },
-          {
-            logo: '/static/default-logo.png',
-            name: 'Tabure',
-            url: 'http://www.google.com'
-          },
-          {
-            logo: '/static/default-logo.png',
-            name: 'The Lamb',
-            url: 'http://www.google.com'
-          },
-          {
-            logo: '/static/default-logo.png',
-            name: 'The Olive Tree',
-            url: 'http://www.google.com'
-          },
-          {
-            logo: '/static/default-logo.png',
-            name: 'The Lamb',
-            url: 'http://www.google.com'
-          },
-          {
-            logo: '/static/default-logo.png',
-            name: 'The Olive Tree',
-            url: 'http://www.google.com'
           }
         ]
       },
