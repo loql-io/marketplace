@@ -16,7 +16,7 @@ const Navgation = [
           },
           {
             logo: 'https://hamlins.loql.ly/img/logo.png',
-            name: 'Hamlins',
+            name: 'Hamlins Toys',
             url: 'https://hamlins.loql.ly'
           },
           {
