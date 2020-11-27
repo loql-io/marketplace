@@ -60,7 +60,7 @@ export default function DocumentPage({ document, preview }) {
         <H1>{title}</H1>
         <ArticleData>
           <Author>{author}</Author>
-          <Date>{format(parseISO(date), 'cccc do yyyy')}</Date>
+          <Date>{date ? format(parseISO(date), 'cccc do yyyy') : null}</Date>
         </ArticleData>
         <ArticleContainer>
           <ArticleIntro>

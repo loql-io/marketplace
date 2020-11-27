@@ -63,13 +63,16 @@ export default function Header({ simple, preview }) {
       <Sticky topOffset={48}>
         {({ style }) => (
           <ShopNav style={style}>
-            <a href="/">
-              <ShopBadge
-                style={{
-                  background: `url(${logoImage})`
-                }}
-              />
-            </a>
+            {process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER !==
+              'loql' && (
+              <a href="/">
+                <ShopBadge
+                  style={{
+                    background: `url(${logoImage})`
+                  }}
+                />
+              </a>
+            )}
             {/*
             <NavActions open={navOpen}>
               {auth.isLoggedIn ? (
