@@ -72,7 +72,7 @@ export default function Layout({
         {description && (
           <meta key="description" name="description" content={description} />
         )}
-        <link rel="icon" href="/static/favicon.svg" />
+        <link rel="icon" href="/static/img/favicon.png" />
         <link rel="mask-icon" href="/static/mask-icon.svg" color="#5bbad5" />
         <link rel="apple-touch-icon" href="/static/apple-touch-icon.png" />
         <link rel="manifest" href="/static/manifest.json" />
