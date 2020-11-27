@@ -10,19 +10,19 @@ const Navgation = [
             url: 'https://berko-sports.loql.ly'
           },
           {
-            logo: '/static/default-logo.png',
-            name: 'Mad Squirrel',
-            url: 'http://www.google.com'
+            logo: 'https://creative-collective.loql.ly/img/logo.png',
+            name: 'Creative Collective',
+            url: 'https://creative-collective.loql.ly'
           },
           {
-            logo: '/static/default-logo.png',
-            name: 'Number Twenty',
-            url: 'http://www.google.com'
+            logo: 'https://hamlins.loql.ly/img/logo.png',
+            name: 'Hamlins',
+            url: 'https://hamlins.loql.ly'
           },
           {
             logo: 'https://petals.loql.ly/img/logo.png',
             name: 'Petals Flowers',
-            url: 'http://www.google.com'
+            url: 'https://petals.loql.ly/'
           },
           {
             logo: '/static/default-logo.png',
@@ -35,13 +35,13 @@ const Navgation = [
         type: 'Eating',
         content: [
           {
-            logo: '/static/default-logo.png',
-            name: 'Tabure',
-            url: 'http://www.google.com'
+            logo: 'https://loql-images.s3.us-east-1.amazonaws.com/GJWwv3hS-',
+            name: 'The Meating Room',
+            url: 'https://app.loql.io/order/the-meating-room'
           },
           {
             logo: '/static/default-logo.png',
-            name: 'The Meating Room',
+            name: 'Tabure',
             url: 'http://www.google.com'
           },
           {

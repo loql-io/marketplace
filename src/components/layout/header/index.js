@@ -86,11 +86,13 @@ export default function Header({ simple, preview }) {
               )}
             </NavActions>
 */}
-            {!simple && (
-              <IconBar>
-                <BasketButton />
-              </IconBar>
-            )}
+            {!simple &&
+              process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER !==
+                'loql' && (
+                <IconBar>
+                  <BasketButton />
+                </IconBar>
+              )}
           </ShopNav>
         )}
       </Sticky>
