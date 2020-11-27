@@ -4,7 +4,7 @@ import ContentTransformer from 'ui/content-transformer';
 import { Header, Outer } from 'ui';
 import Layout from 'components/layout';
 import { simplyFetchFromGraph } from 'lib/graph';
-import ShapeComponents from 'components/shape/components';
+import GridRelations from 'components/shape/components/grid-relations';
 import ParagraphCollection from 'components/shape/components/paragraph-collection';
 import { format, parseISO } from 'date-fns';
 
@@ -42,12 +42,7 @@ export default function DocumentPage({ document, preview }) {
     ?.datetime;
   const author = document?.components?.find((c) => c.name === 'Author')?.content
     ?.text;
-  const componentsRest = document?.components?.filter(
-    (c) =>
-      !['Intro', 'Title', 'Image', 'Author', 'Subtitle', 'Body'].includes(
-        c.name
-      )
-  );
+
   return (
     <Layout title={title || document.name} preview={preview}>
       <Outer>
@@ -65,7 +60,7 @@ export default function DocumentPage({ document, preview }) {
         <H1>{title}</H1>
         <ArticleData>
           <Author>{author}</Author>
-          <Date>{format(parseISO(date), 'cccc do yyyy')}</Date>
+          <Date>{date ? format(parseISO(date), 'cccc do yyyy') : null}</Date>
         </ArticleData>
         <ArticleContainer>
           <ArticleIntro>
@@ -93,7 +88,14 @@ export default function DocumentPage({ document, preview }) {
             })}
           </Article>
         </ArticleContainer>
-        <ShapeComponents components={componentsRest} />
+
+        {document?.components?.map(({ type, ...component }, index) => {
+          if (type === 'gridRelations') {
+            let Component;
+            Component = Component || GridRelations;
+            return <Component key={index} grids={component.content.grids} />;
+          }
+        })}
       </Outer>
     </Layout>
   );

@@ -6,6 +6,9 @@ import fragments from 'lib/graph/fragments';
 import { Header } from 'ui';
 import { Outer } from './styles';
 import ShapeComponentsHome from 'components/shape/componentsHome';
+import ShapeComponentsLoql from 'components/shape/componentsLoql';
+import ShopsData from '../../../shops-data';
+import Shops from '../../components/layout/shops';
 
 export async function getData({ language, preview = null }) {
   try {
@@ -42,7 +45,14 @@ export default function FrontPage({ catalogue, preview }) {
     <Layout title={catalogue.name} preview={preview}>
       <Outer>
         <Header centerContent>
-          <ShapeComponentsHome components={componentsRest} />
+          {process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER === 'loql' ? (
+            <>
+              <ShapeComponentsLoql components={componentsRest} />
+              <Shops data={ShopsData} />
+            </>
+          ) : (
+            <ShapeComponentsHome components={componentsRest} />
+          )}
         </Header>
       </Outer>
     </Layout>

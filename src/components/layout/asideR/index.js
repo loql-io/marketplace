@@ -6,7 +6,7 @@ import { useT } from 'lib/i18n';
 
 import { Basket, Header, Footer } from './styles';
 
-export default function Aside() {
+export default function AsideR() {
   const t = useT();
   const basket = useBasket();
 

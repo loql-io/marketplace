@@ -24,6 +24,7 @@ export default function Header({ simple, preview }) {
   const router = useRouter();
 
   const [navOpen, setNavOpen] = useState(false);
+  const logoImage = `/img/logo.png`;
 
   return (
     <>
@@ -62,11 +63,16 @@ export default function Header({ simple, preview }) {
       <Sticky topOffset={48}>
         {({ style }) => (
           <ShopNav style={style}>
-            <a href="/">
-              <ShopBadge
-                style={{ background: 'url(/static/logo-pages.fw_.png) #fff' }}
-              />
-            </a>
+            {process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER !==
+              'loql' && (
+              <a href="/">
+                <ShopBadge
+                  style={{
+                    background: `url(${logoImage})`
+                  }}
+                />
+              </a>
+            )}
             {/*
             <NavActions open={navOpen}>
               {auth.isLoggedIn ? (

@@ -7,7 +7,7 @@ export const ImageWrapper = styled.div`
   position: relative;
   z-index: 1;
   overflow: hidden;
-  height: 100%;
+  height: 200px;
   width: 100%;
 `;
 
@@ -31,6 +31,14 @@ export const Img = styled(Image)`
   }
 `;
 
+export const Header = styled.div`
+  margin-top: 10px;
+  min-height: 78px;
+  ${responsive.xs} {
+    text-align: center;
+  }
+`;
+
 export const Title = styled(H3)`
   color: var(--color-text-main);
   font-weight: 900;
@@ -49,6 +57,10 @@ export const Text = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 1em 0;
+
+  ${responsive.sm} {
+    /*min-height: 104px;*/
+  }
 `;
 
 export const Price = styled.span`
@@ -59,8 +71,9 @@ export const Price = styled.span`
 `;
 
 export const Extra = styled.div`
+  border-bottom: solid 1px #e9e2df;
   a {
-    display: inline-block;
+    display: initial;
     text-align: left !important;
   }
   img {
@@ -94,9 +107,25 @@ export const Extra = styled.div`
       width: 100% !important;
     }
   }
+  ${responsive.sm} {
+    padding: 0 20px;
+  }
 `;
 
-export const Paragraphs = styled.div``;
+export const Paragraphs = styled.div`
+  min-height: 24px;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  margin: 20px 0;
+  min-height: 70px;
+  ${responsive.xs} {
+    text-align: center;
+  }
+  ${responsive.sm} {
+    min-height: 110px;
+  }
+`;
 
 export const Outer = styled.a`
   position: relative;

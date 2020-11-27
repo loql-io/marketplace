@@ -15,7 +15,9 @@ export const H1 = styled(H)`
   font-weight: 900;
   font-size: 36px;
   line-height: 37px;
-  margin-left: 20px;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 940px;
 `;
 
 export const Img = styled(Image)`
@@ -87,7 +89,8 @@ export const ArticleContainer = styled.div`
   grid-template-columns: 33.33% auto;
   border-bottom: 1px solid #e9e2df;
   padding-bottom: 20px;
-  margin-bottom: 20px;
+  margin: 0 auto 20px auto;
+  max-width: 940px;
 
   ${responsive.xs} {
     grid-template-columns: repeat(1, 1fr);
@@ -117,6 +120,8 @@ export const ArticleData = styled.div`
   font-style: normal;
   font-size: 14px;
   line-height: 19px;
+  margin: -30px auto 20px auto;
+  max-width: 940px;
 `;
 export const Date = styled.span`
   font-weight: normal;

@@ -10,7 +10,8 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 import { StickyContainer } from 'react-sticky';
 
-import Aside from './aside';
+import AsideR from './asideR';
+import AsideL from './asideL';
 import Header from './header';
 import Footer from './footer';
 import {
@@ -49,8 +50,7 @@ export default function Layout({
   description,
   simple,
   loading,
-  preview,
-  hideHeader = false
+  preview
 }) {
   return (
     <>
@@ -84,17 +84,16 @@ export default function Layout({
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <GlobalStyle />
-
         <StickyContainer>
           {simple ? (
             <>
-              {!hideHeader && <Header simple={simple} preview={preview} />}
+              <Header simple={simple} preview={preview} />
               <Main>{loading ? <Loader /> : children}</Main>
               <Footer />
             </>
           ) : (
-            <CrystallizeLayout right={Aside}>
-              {!hideHeader && <Header simple={simple} preview={preview} />}
+            <CrystallizeLayout right={AsideR} left={AsideL}>
+              <Header simple={simple} preview={preview} />
               <Main>{loading ? <Loader /> : children}</Main>
               <Footer />
             </CrystallizeLayout>
