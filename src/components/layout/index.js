@@ -44,6 +44,10 @@ const formatTitle = (str) => {
     .replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
 };
 
+const shopName = process.env.SHOP_NAME
+  ? process.env.SHOP_NAME
+  : formatTitle(process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER);
+
 export default function Layout({
   children,
   title,
@@ -66,9 +70,7 @@ export default function Layout({
                    })(window,document,'script','dataLayer','GTM-KT6RKCV');`
           }}
         />
-        <title key="title">{`${formatTitle(
-          process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER
-        )} - ${title}`}</title>
+        <title key="title">{`${shopName} - ${title}`}</title>
         {description && (
           <meta key="description" name="description" content={description} />
         )}
