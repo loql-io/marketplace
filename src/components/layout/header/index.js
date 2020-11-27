@@ -60,11 +60,10 @@ export default function Header({ simple, preview }) {
 
         <BurgerButton active={navOpen} onClick={() => setNavOpen(!navOpen)} />
       </StyledAppBar>
-      <Sticky topOffset={48}>
-        {({ style }) => (
-          <ShopNav style={style}>
-            {process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER !==
-              'loql' && (
+      {process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER !== 'loql' && (
+        <Sticky topOffset={48}>
+          {({ style }) => (
+            <ShopNav style={style}>
               <a href="/">
                 <ShopBadge
                   style={{
@@ -72,8 +71,8 @@ export default function Header({ simple, preview }) {
                   }}
                 />
               </a>
-            )}
-            {/*
+
+              {/*
             <NavActions open={navOpen}>
               {auth.isLoggedIn ? (
                 <button type="button" onClick={auth.logout}>
@@ -85,17 +84,16 @@ export default function Header({ simple, preview }) {
                 </Link>
               )}
             </NavActions>
-*/}
-            {!simple &&
-              process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER !==
-                'loql' && (
+            */}
+              {!simple && (
                 <IconBar>
                   <BasketButton />
                 </IconBar>
               )}
-          </ShopNav>
-        )}
-      </Sticky>
+            </ShopNav>
+          )}
+        </Sticky>
+      )}
     </>
   );
 }

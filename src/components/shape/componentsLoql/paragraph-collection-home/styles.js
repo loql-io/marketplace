@@ -9,7 +9,7 @@ export const Outer = styled.div`
   margin: 0;
   height: 420px;
   background-size: cover;
-  background-position: bottom;
+  background-position: center;
   width: 100%;
 `;
 
@@ -22,12 +22,18 @@ export const Title = styled.div`
     text-align: center;
     letter-spacing: -0.02em;
     color: #fff;
-    padding-top: 162px;
-    margin-bottom: 20px;
+    padding-top: 188px;
     text-shadow: 1px 1px 2px rgb(0 0 0);
+
+    margin: 0 auto 20px auto;
+    width: 500px;
     ${responsive.xs} {
+      padding-top: 210px !important;
       font-size: 30px;
       line-height: 30px;
+      width: 300px;
+    }
+    ${responsive.md} {
     }
   }
 `;
@@ -38,6 +44,10 @@ export const Body = styled.div`
   margin: 0 20px;
   p {
     color: #fff;
+
+    ${responsive.xs} {
+      width: 300px;
+    }
   }
 `;
 

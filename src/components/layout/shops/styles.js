@@ -11,7 +11,6 @@ export const NavContainer = styled.div`
     font-size: 32px;
     line-height: 36px;
     margin-bottom: 10px;
-    margin-left: 20px;
   }
 
   a {
@@ -45,7 +44,7 @@ export const NavContainer = styled.div`
 
 export const NavSections = styled.div`
   margin: 10px 0 20px 0;
-  text-align: left;
+  text-align: center;
 
   ${responsive.xs} {
     text-align: center !important;
@@ -64,7 +63,10 @@ export const NavSections = styled.div`
 `;
 
 export const NavInner = styled.div`
-  padding-bottom: 10px;
+  margin: 0 auto;
+  max-width: 940px;
+
+  padding-bottom: 30px;
 `;
 
 export const NavItem = styled.div`
