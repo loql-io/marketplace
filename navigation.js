@@ -11,7 +11,7 @@ const Navgation = [
           },
           {
             logo: 'https://petals.loql.ly/img/logo.png',
-            name: 'Mad Squirrel',
+            name: 'Petals',
             url: 'https://petals.loql.ly'
           },
           {
