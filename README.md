@@ -26,8 +26,10 @@ You have a .env file with correct values see each shop repo for an example.
 
 Usage:
 
+### Step 1:
 [Create release and publish a new version](https://github.com/loql-io/marketplace/releases/new)
 
+### Step 2: 
 ```bash
 yarn bumpall <version>      without "v" eg. 0.0.2
 ```
