@@ -29,12 +29,12 @@ Usage:
 ### Step 1:
 [Create release and publish a new version](https://github.com/loql-io/marketplace/releases/new)
 
-### Step 2: 
+### Step 2:
 ```bash
 yarn bumpall <version>      without "v" eg. 0.0.2
 ```
 
-This will tag a new release and automatically bump all the shop repos to a specified version and then kick off a deployment.
+This will automatically bump all the shop repos to a specified version and then kick off a deployment.
 
 Assumptions:
 - Shop repos have been all cloned and in the same folder as this repo.
