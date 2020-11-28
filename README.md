@@ -29,7 +29,7 @@ Usage:
 [Create release and publish a new version](https://github.com/loql-io/marketplace/releases/new)
 
 ```bash
-yarn bumpall <version> (without "v")
+yarn bumpall <version>      without "v" eg. 0.0.2
 ```
 
 This will tag a new release and automatically bump all the shop repos to a specified version and then kick off a deployment.
