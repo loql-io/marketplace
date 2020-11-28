@@ -18,7 +18,8 @@
     "start-platformsh": "NODE_ENV=production next start -p $PORT",
     "prod": "npm run build && npm run start",
     "lint": "eslint .",
-    "validate": "lint-staged"
+    "validate": "lint-staged",
+    "bumpall": "source ./bumpall.sh"
   },
   "husky": {
     "hooks": {
@@ -84,6 +85,7 @@
     "handlebars": "^4.7.6",
     "husky": "^4.2.1",
     "lint-staged": "^10.2.2",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "dot-json": "^1.2.1"
   }
 }
