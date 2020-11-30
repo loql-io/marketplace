@@ -8,7 +8,12 @@ export const ImageWrapper = styled.div`
   z-index: 1;
   overflow: hidden;
   height: 200px;
-  width: 100%;
+  width: 220px;
+  ${responsive.xs} {
+    height: 200px;
+    width: 220px;
+    margin: 0 auto;
+  }
 `;
 
 export const Img = styled(Image)`
@@ -19,7 +24,7 @@ export const Img = styled(Image)`
 
   > img {
     display: block;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
     width: 100%;
     height: 100%;
@@ -36,6 +41,7 @@ export const Header = styled.div`
   min-height: 78px;
   ${responsive.xs} {
     text-align: center;
+    min-height: unset;
   }
 `;
 
