@@ -127,6 +127,9 @@ export const SectionTitle = styled.h1`
   ${responsive.md} {
     padding: 20px 0;
   }
+  ${responsive.lg} {
+    padding: 0;
+  }
 `;
 export const GridDiv = styled(Grid)`
   /*background-color: var(--color-text-main);*/
