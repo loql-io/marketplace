@@ -44,8 +44,8 @@ const formatTitle = (str) => {
     .replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
 };
 
-const shopName = process.env.SHOP_NAME
-  ? process.env.SHOP_NAME
+const shopName = process.env.NEXT_PUBLIC_SHOP_NAME
+  ? process.env.NEXT_PUBLIC_SHOP_NAME
   : formatTitle(process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER);
 
 export default function Layout({
