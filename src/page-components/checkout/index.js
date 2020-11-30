@@ -110,7 +110,7 @@ export default function CheckoutWithLayout(props) {
   const t = useT();
 
   return (
-    <Layout title={t('checkout.title')} hideHeader>
+    <Layout title={t('checkout.title')} hideHeader checkout={true}>
       <Checkout {...props} />
     </Layout>
   );

@@ -59,7 +59,7 @@ export const NavSections = styled.div`
   &:last-child > div > h3 {
     background-color: #2f2b27;
     color: #fff !important;
-    margin: -20px -20px -10px 0px;
+    margin: -20px 0px -10px 0px;
     padding: 20px;
   }
 `;

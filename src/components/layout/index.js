@@ -54,7 +54,8 @@ export default function Layout({
   description,
   simple,
   loading,
-  preview
+  preview,
+  checkout
 }) {
   return (
     <>
@@ -84,9 +85,9 @@ export default function Layout({
         <CssBaseline />
         <GlobalStyle />
         <StickyContainer>
-          {simple ? (
+          {simple || checkout ? (
             <>
-              <Header simple={simple} preview={preview} />
+              {!checkout && <Header simple={simple} preview={preview} />}
               <Main>{loading ? <Loader /> : children}</Main>
               <Footer />
             </>
