@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useBasket } from 'components/basket';
 import Layout from 'components/layout';
 import { useT } from 'lib/i18n';
 
-import { Outer, Inner, Container, SectionHeader } from './styles';
+import { Outer, Container } from './styles';
 
 import Order from './order';
 import Payment from './payment';
 import CheckoutProgress from './checkout-progress';
-import OrderItems from 'components/order-items';
-import { Totals } from 'components/basket/totals';
 import { Button } from '@material-ui/core';
 import Review from './review';
 import { useRouter } from 'next/router';
@@ -30,13 +28,23 @@ function Checkout() {
     checkoutType: 'collection'
   });
 
-  const newCheckout = true;
-
-  const checkoutChildren = [Order, Review, Payment];
+  const [checkoutChildren, setCheckoutChildren] = useState([Order, Review]);
 
   const [step, setStep] = useState(0);
 
+  const [checkoutProgressSteps, setCheckoutProgressSteps] = useState([
+    'Your order',
+    'Review'
+  ]);
+
   const CurrentChildren = checkoutChildren[step];
+
+  useEffect(() => {
+    if (process.env.NEXT_PUBLIC_STRIPE_ACCOUNT_ID) {
+      setCheckoutChildren((prevState) => [...prevState, Payment]);
+      setCheckoutProgressSteps((prevState) => [...prevState, 'Payment']);
+    }
+  }, []);
 
   if (basket.status !== 'ready') {
     return <Outer center>{t('basket.loading')}</Outer>;
@@ -66,31 +74,11 @@ function Checkout() {
     basket.actions.empty();
   }
 
-  if (!newCheckout) {
-    return (
-      <Outer>
-        <Inner>
-          <Container>
-            <SectionHeader>{t('checkout.title')}</SectionHeader>
-            <Payment />
-          </Container>
-          <Container>
-            <SectionHeader>{t('basket.title')}</SectionHeader>
-            <OrderItems cart={cart} />
-            <div style={{ padding: '0 15px' }}>
-              <Totals />
-            </div>
-          </Container>
-        </Inner>
-      </Outer>
-    );
-  }
-
   return (
     <Outer>
       <Container>
         <img src="static/shopBadge.svg" alt="Shop logo" width="60" />
-        <CheckoutProgress currentStep={step} />
+        <CheckoutProgress steps={checkoutProgressSteps} currentStep={step} />
         <CurrentChildren
           onPrevious={handlePrevious}
           onNext={handleNext}

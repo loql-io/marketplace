@@ -29,7 +29,12 @@ export function DeliveryDetails({ onNext, checkoutState }) {
       .matches(/^(\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/, {
         message: 'Mobile number is not valid.'
       }),
-    postcode: Yup.string().required(),
+    postcode: Yup.string()
+      .required('A valid postcode is required')
+      .matches(
+        /([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})/,
+        { message: 'Postcode is not valid.' }
+      ),
     house: Yup.string().required(),
     street: Yup.string().required(),
     city: Yup.string().required()

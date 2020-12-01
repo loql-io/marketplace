@@ -20,7 +20,6 @@ export default function Review({ onPrevious, onNext, checkoutState }) {
   return (
     <Container>
       <Typography variant="h1">Review</Typography>
-      {/* <pre>{JSON.stringify(basket, null, 2)}</pre> */}
       <CartItemsTable basket={basket} />
       {basket.metadata.additionalInformation === 'delivery' && (
         <>
@@ -32,8 +31,7 @@ export default function Review({ onPrevious, onNext, checkoutState }) {
       {basket.metadata.additionalInformation === 'collection' && (
         <>
           <StrongText variant="h4">Collection</StrongText>
-          <Typography variant="body1">{`${house} ${street} ${city}`}</Typography>
-          <Typography variant="body1">{phone}</Typography>
+          <Typography variant="body1">From store</Typography>
         </>
       )}
       <FooterButtons onPrevious={onPrevious} onNext={onNext} />

@@ -1,8 +1,8 @@
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 
 import React from 'react';
 
-import StripeCheckout from './payment/StripeCheckout';
+import StripeCheckout from './payment';
 
 export default function Payment({ onPrevious, onNext, checkoutState }) {
   return (

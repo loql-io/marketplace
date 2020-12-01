@@ -3,18 +3,28 @@ import { loadStripe } from '@stripe/stripe-js';
 import {
   Elements,
   CardCvcElement,
-  CardElement,
   CardExpiryElement,
   CardNumberElement,
   useElements,
   useStripe
 } from '@stripe/react-stripe-js';
 
-import { FormHelperText, Typography } from '@material-ui/core';
+import CustomCheckbox from 'components/custom-fields/custom-checkbox';
+import PostCodeForm from 'components/postcode-form';
+import { useFormik } from 'formik';
+
+import * as Yup from 'yup';
+import {
+  FormHelperText,
+  Typography,
+  FormControlLabel
+} from '@material-ui/core';
+
 import { doPost } from 'lib/rest-api/helpers';
 
 import styles from './styles';
 import FooterButtons from '../footer-buttons';
+import CustomTextInputField from 'components/custom-fields/custom-text-input';
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
@@ -38,6 +48,20 @@ const options = {
   }
 };
 
+const validationSchema = Yup.object().shape({
+  firstName: Yup.string().required('First name is required.'),
+  lastName: Yup.string().required('Surname is required.'),
+  postcode: Yup.string()
+    .required('A valid postcode is required')
+    .matches(
+      /([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})/,
+      { message: 'Postcode is not valid.' }
+    ),
+  house: Yup.string().required(),
+  street: Yup.string().required(),
+  city: Yup.string().required()
+});
+
 // Persist by create order in Crystallize
 async function persistOrder({ paymentIntent, paymentModel }) {
   const { data } = await doPost(
@@ -53,10 +77,24 @@ async function persistOrder({ paymentIntent, paymentModel }) {
   return data.orders.create.id;
 }
 
-function Form({ clientSecret, paymentModel, onSuccess, onPrevious }) {
+function Form({
+  clientSecret,
+  paymentModel,
+  onSuccess,
+  onPrevious,
+  checkoutState
+}) {
   const stripe = useStripe();
 
   const elements = useElements();
+
+  const [isBillingSame, setIsBillingSame] = useState(true);
+
+  const billingDetails = {
+    type: 'billing',
+    phone: checkoutState.phone,
+    email: checkoutState.email
+  };
 
   const [status, setStatus] = useState('idle');
 
@@ -64,8 +102,40 @@ function Form({ clientSecret, paymentModel, onSuccess, onPrevious }) {
 
   const formRef = useRef();
 
-  function handleSubmit(event) {
+  function formikSubmit(values) {
+    return {
+      ...billingDetails,
+      firstName: values.firstName,
+      lastName: values.lastName,
+      postalCode: values.postcode,
+      streetNumber: values.house,
+      street: values.street,
+      city: values.city
+    };
+  }
+
+  const formik = useFormik({
+    validationSchema: validationSchema,
+    initialValues: {
+      firstName: '',
+      lastName: '',
+      postcode: '',
+      house: '',
+      street: '',
+      city: ''
+    },
+    validateOnChange: true,
+    onSubmit: (values) => formikSubmit(values)
+  });
+
+  async function handleSubmit(event) {
     event.preventDefault();
+
+    let newBillingDetails = billingDetails;
+
+    if (!isBillingSame) {
+      newBillingDetails = await formik.submitForm();
+    } else if (!formik.isValid) return;
 
     setStatus('confirming');
 
@@ -77,15 +147,14 @@ function Form({ clientSecret, paymentModel, onSuccess, onPrevious }) {
         return;
       }
 
-      const { customer } = paymentModel;
-
       const { error, paymentIntent } = await stripe.confirmCardPayment(
         clientSecret,
         {
           payment_method: {
-            card: elements.getElement(CardElement),
+            card: elements.getElement(CardNumberElement),
             billing_details: {
-              name: `${customer.firstName} ${customer.lastName}`
+              name: `${newBillingDetails.firstName} ${newBillingDetails.lastName}`,
+              email: newBillingDetails.email
             }
           }
         }
@@ -100,9 +169,24 @@ function Form({ clientSecret, paymentModel, onSuccess, onPrevious }) {
           // execution. Set up a webhook or plugin to listen for the
           // payment_intent.succeeded event that handles any business critical
           // post-payment actions.
+          let finalPaymentModel = paymentModel;
+
+          if (!isBillingSame) {
+            finalPaymentModel = {
+              ...paymentModel,
+              customer: {
+                ...paymentModel.customer,
+                addresses: [
+                  ...paymentModel.customer.addresses,
+                  newBillingDetails
+                ]
+              }
+            };
+          }
+
           const orderId = await persistOrder({
             paymentIntent,
-            paymentModel
+            paymentModel: finalPaymentModel
           });
           if (orderId) {
             onSuccess(orderId);
@@ -122,7 +206,7 @@ function Form({ clientSecret, paymentModel, onSuccess, onPrevious }) {
         helperID = 'cvc-error';
         break;
       }
-      case CardElement: {
+      case CardNumberElement: {
         helperID = 'card-error';
         break;
       }
@@ -192,13 +276,52 @@ function Form({ clientSecret, paymentModel, onSuccess, onPrevious }) {
             Last 3 digits on the back of your card
           </span>
         </div>
+
+        {/*TODO Re-enable {checkoutState.checkoutType === 'delivery' && ( */}
+        <>
+          <FormControlLabel
+            className="checkbox-label"
+            labelPlacement="start"
+            value="billingDetails"
+            onChange={() => setIsBillingSame(!isBillingSame)}
+            control={<CustomCheckbox checked={isBillingSame} />}
+            label="Billing details same as delivery"
+            style={{ margin: '1px 0' }}
+          />
+
+          {!isBillingSame && <BillingDetails formik={formik} />}
+        </>
+        {/* )} */}
+
         <FooterButtons
           onPrevious={onPrevious}
-          onNext={() => formRef.current.submit()}
+          onNext={handleSubmit}
           nextText="Place order"
         />
       </form>
     </div>
+  );
+}
+
+function BillingDetails({ formik }) {
+  return (
+    <>
+      <CustomTextInputField
+        value={formik.values.firstName}
+        label="Your first name"
+        onChange={formik.handleChange('firstName')}
+        helperText={formik.touched.firstName ? formik.errors.firstName : ''}
+        error={formik.touched.firstName && !!formik.errors.firstName}
+      />
+      <CustomTextInputField
+        value={formik.values.lastName}
+        label="Your surname"
+        onChange={formik.handleChange('lastName')}
+        helperText={formik.touched.lastName ? formik.errors.lastName : ''}
+        error={formik.touched.lastName && !!formik.errors.lastName}
+      />
+      <PostCodeForm formik={formik} />
+    </>
   );
 }
 
