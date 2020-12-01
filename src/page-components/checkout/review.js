@@ -21,14 +21,14 @@ export default function Review({ onPrevious, onNext, checkoutState }) {
     <Container>
       <Typography variant="h1">Review</Typography>
       <CartItemsTable basket={basket} />
-      {basket.metadata.additionalInformation === 'delivery' && (
+      {checkoutState.checkoutType === 'delivery' && (
         <>
           <StrongText variant="h4">Delivery</StrongText>
           <Typography variant="body1">{`${house} ${street} ${city}`}</Typography>
           <Typography variant="body1">{phone}</Typography>
         </>
       )}
-      {basket.metadata.additionalInformation === 'collection' && (
+      {checkoutState.checkoutType === 'collection' && (
         <>
           <StrongText variant="h4">Collection</StrongText>
           <Typography variant="body1">From store</Typography>
