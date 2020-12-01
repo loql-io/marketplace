@@ -135,7 +135,9 @@ function Form({
 
     if (!isBillingSame) {
       newBillingDetails = await formik.submitForm();
-    } else if (!formik.isValid) return;
+    }
+
+    if (!formik.isValid) return;
 
     setStatus('confirming');
 
@@ -150,11 +152,12 @@ function Form({
       const { error, paymentIntent } = await stripe.confirmCardPayment(
         clientSecret,
         {
+          receipt_email: checkoutState.email,
           payment_method: {
             card: elements.getElement(CardNumberElement),
             billing_details: {
-              name: `${newBillingDetails.firstName} ${newBillingDetails.lastName}`,
-              email: newBillingDetails.email
+              name: `${checkoutState.firstName} ${checkoutState.lastName}`,
+              email: checkoutState.email
             }
           }
         }
@@ -169,25 +172,17 @@ function Form({
           // execution. Set up a webhook or plugin to listen for the
           // payment_intent.succeeded event that handles any business critical
           // post-payment actions.
-          let finalPaymentModel = paymentModel;
+          let finalPaymentModel = { ...paymentModel };
 
           if (!isBillingSame) {
-            finalPaymentModel = {
-              ...paymentModel,
-              customer: {
-                ...paymentModel.customer,
-                addresses: [
-                  ...paymentModel.customer.addresses,
-                  newBillingDetails
-                ]
-              }
-            };
+            finalPaymentModel.customer.addresses.push(newBillingDetails);
           }
 
           const orderId = await persistOrder({
             paymentIntent,
             paymentModel: finalPaymentModel
           });
+
           if (orderId) {
             onSuccess(orderId);
           }
@@ -277,21 +272,21 @@ function Form({
           </span>
         </div>
 
-        {/*TODO Re-enable {checkoutState.checkoutType === 'delivery' && ( */}
-        <>
-          <FormControlLabel
-            className="checkbox-label"
-            labelPlacement="start"
-            value="billingDetails"
-            onChange={() => setIsBillingSame(!isBillingSame)}
-            control={<CustomCheckbox checked={isBillingSame} />}
-            label="Billing details same as delivery"
-            style={{ margin: '1px 0' }}
-          />
+        {checkoutState.checkoutType === 'delivery' && (
+          <>
+            <FormControlLabel
+              className="checkbox-label"
+              labelPlacement="start"
+              value="billingDetails"
+              onChange={() => setIsBillingSame(!isBillingSame)}
+              control={<CustomCheckbox checked={isBillingSame} />}
+              label="Billing details same as delivery"
+              style={{ margin: '1px 0' }}
+            />
 
-          {!isBillingSame && <BillingDetails formik={formik} />}
-        </>
-        {/* )} */}
+            {!isBillingSame && <BillingDetails formik={formik} />}
+          </>
+        )}
 
         <FooterButtons
           onPrevious={onPrevious}

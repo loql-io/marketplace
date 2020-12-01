@@ -1,19 +1,15 @@
 /* eslint-disable react/display-name */
 import React from 'react';
 import { useRouter } from 'next/router';
-import dynamic from 'next/dynamic';
 import Head from 'next/head';
 
 import { useLocale } from 'lib/app-config';
 import { useBasket } from 'components/basket';
-
-const StripeCheckout = dynamic(() => import('./stripe'));
+import StripeCheckout from './stripe';
 
 export default function Payment({ checkoutState, onPrevious }) {
   const locale = useLocale();
-
   const router = useRouter();
-
   const { cart, metadata } = useBasket();
 
   // Handle locale with sub-path routing
@@ -22,7 +18,7 @@ export default function Payment({ checkoutState, onPrevious }) {
     multilingualUrlPrefix = router.locale;
   }
 
-  const { firstName, lastName, email, checkoutType: type } = checkoutState;
+  const { firstName, lastName, email, phone } = checkoutState;
 
   // Define the shared payment model for all payment providers
   const paymentModel = {
@@ -30,13 +26,17 @@ export default function Payment({ checkoutState, onPrevious }) {
     locale,
     cart,
     metadata,
+    additionalInformation: checkoutState.checkoutType,
     customer: {
       firstName,
       lastName,
+      identifier: email,
       addresses: [
         {
-          type,
+          type: 'delivery',
           email,
+          phone,
+          street: checkoutState?.street,
           postalCode: checkoutState?.postcode,
           streetNumber: checkoutState?.house,
           city: checkoutState?.city
@@ -48,7 +48,7 @@ export default function Payment({ checkoutState, onPrevious }) {
   return (
     <div>
       <Head>
-        <script key="stripe-js" src="https://js.stripe.com/v3/" async />
+        <script key="stripe-js" src="https://js.stripe.com/v3/" />
       </Head>
       <StripeCheckout
         paymentModel={paymentModel}
