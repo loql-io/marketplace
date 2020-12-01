@@ -44,13 +44,18 @@ const formatTitle = (str) => {
     .replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
 };
 
+const shopName = process.env.NEXT_PUBLIC_SHOP_NAME
+  ? process.env.NEXT_PUBLIC_SHOP_NAME
+  : formatTitle(process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER);
+
 export default function Layout({
   children,
   title,
   description,
   simple,
   loading,
-  preview
+  preview,
+  headless
 }) {
   return (
     <>
@@ -66,16 +71,11 @@ export default function Layout({
                    })(window,document,'script','dataLayer','GTM-KT6RKCV');`
           }}
         />
-        <title key="title">{`${formatTitle(
-          process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER
-        )} - ${title}`}</title>
+        <title key="title">{`${shopName} - ${title}`}</title>
         {description && (
           <meta key="description" name="description" content={description} />
         )}
-        <link rel="icon" href="/static/favicon.svg" />
-        <link rel="mask-icon" href="/static/mask-icon.svg" color="#5bbad5" />
-        <link rel="apple-touch-icon" href="/static/apple-touch-icon.png" />
-        <link rel="manifest" href="/static/manifest.json" />
+        <link rel="icon" href="/static/favicon.ico" />
         <link
           href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
           rel="stylesheet"
@@ -85,9 +85,9 @@ export default function Layout({
         <CssBaseline />
         <GlobalStyle />
         <StickyContainer>
-          {simple ? (
+          {simple || headless ? (
             <>
-              <Header simple={simple} preview={preview} />
+              {!headless && <Header simple={simple} preview={preview} />}
               <Main>{loading ? <Loader /> : children}</Main>
               <Footer />
             </>

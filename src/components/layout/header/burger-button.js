@@ -20,7 +20,7 @@ export default function BurgerButton({ active }) {
   const layout = React.useContext(LayoutContext);
 
   return (
-    <Outer open={active} onClick={layout.actions.showLeft}>
+    <Outer open={active} onClick={layout?.actions?.showLeft}>
       <img src="/static/burger.svg" />
     </Outer>
   );

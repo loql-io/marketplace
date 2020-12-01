@@ -98,7 +98,7 @@ export default function CheckoutWithLayout(props) {
   const t = useT();
 
   return (
-    <Layout title={t('checkout.title')} hideHeader>
+    <Layout title={t('checkout.title')} hideHeader headless={true}>
       <Checkout {...props} />
     </Layout>
   );

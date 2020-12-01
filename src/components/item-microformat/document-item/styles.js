@@ -54,7 +54,7 @@ export const Text = styled.div`
   flex-direction: column;
   text-align: left;
   /*background: #2f2b27;*/
-  height: 100px;
+  height: 100px !important;
 
   /*padding: 3em var(--content-padding);*/
   margin-top: -110px;
@@ -63,7 +63,7 @@ export const Text = styled.div`
 
   ${responsive.xs} {
     padding-bottom: 20px;
-    height: auto;
+    height: auto !important;
     margin-top: 0;
   }
   h3 {

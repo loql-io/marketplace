@@ -13,6 +13,14 @@ export const GridContainer = styled.div`
     background-color: #2f2b27;
     color: #fff !important;
   }
+  & > h1 {
+    padding: 20px !important;
+  }
+
+  & div > a > div:nth-child(2) {
+    height: 200px;
+    width: 100%;
+  }
 `;
 
 export const SectionTitle = styled.h1`

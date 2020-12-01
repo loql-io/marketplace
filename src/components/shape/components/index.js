@@ -23,6 +23,7 @@ const ContentOuter = styled.div`
 const ProductFooter = styled.div`
   /*margin: 1em var(--content-padding);*/
   width: 50%;
+  min-height: 55px;
   display: inline-grid;
   ${responsive.xs} {
     width: 100%;

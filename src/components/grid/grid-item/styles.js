@@ -7,8 +7,18 @@ export const ImageWrapper = styled.div`
   position: relative;
   z-index: 1;
   overflow: hidden;
-  height: 200px;
-  width: 100%;
+  height: 300px;
+  width: 300px;
+  ${responsive.xs} {
+    height: 300px;
+    width: 300px;
+    margin: 0 auto;
+  }
+  ${responsive.sm} {
+    height: 200px;
+    width: 200px;
+    margin: 0 auto;
+  }
 `;
 
 export const Img = styled(Image)`
@@ -23,11 +33,6 @@ export const Img = styled(Image)`
     object-position: center;
     width: 100%;
     height: 100%;
-
-    ${responsive.xs} {
-      height: 200px;
-      padding: 20px;
-    }
   }
 `;
 
@@ -36,6 +41,7 @@ export const Header = styled.div`
   min-height: 78px;
   ${responsive.xs} {
     text-align: center;
+    min-height: unset;
   }
 `;
 
@@ -77,7 +83,7 @@ export const Extra = styled.div`
     text-align: left !important;
   }
   img {
-    max-height: 200px !important;
+    max-height: 300px !important;
   }
 
   hr {
@@ -118,7 +124,7 @@ export const Paragraphs = styled.div`
   font-size: 16px;
   line-height: 22px;
   margin: 20px 0;
-  min-height: 70px;
+  min-height: 90px;
   ${responsive.xs} {
     text-align: center;
   }

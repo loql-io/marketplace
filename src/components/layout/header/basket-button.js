@@ -12,9 +12,11 @@ const BasketButton = () => {
 
   if (status === 'ready') {
     return (
-      <Btn onClick={layout.actions.showRight} type="button">
+      <Btn onClick={layout?.actions?.showRight} type="button">
         <IconBasket />
-        <BasketQuantity>{total.quantity}</BasketQuantity>
+        {total.quantity > 0 && (
+          <BasketQuantity>{total.quantity}</BasketQuantity>
+        )}
       </Btn>
     );
   }

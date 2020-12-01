@@ -11,18 +11,20 @@ export const NavContainer = styled.div`
     font-size: 32px;
     line-height: 36px;
     margin-bottom: 10px;
-    margin-left: 20px;
   }
 
   a {
     display: flex;
   }
-
-  .shops,
   .eating {
     grid-gap: 20px;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .shops {
+    grid-gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 
     ${responsive.sm} {
       grid-template-columns: repeat(3, 1fr);
@@ -32,7 +34,6 @@ export const NavContainer = styled.div`
       grid-template-columns: repeat(2, 1fr);
     }
   }
-
   .collections {
     grid-gap: 2px;
     display: grid;
@@ -45,7 +46,7 @@ export const NavContainer = styled.div`
 
 export const NavSections = styled.div`
   margin: 10px 0 20px 0;
-  text-align: left;
+  text-align: center;
 
   ${responsive.xs} {
     text-align: center !important;
@@ -58,13 +59,16 @@ export const NavSections = styled.div`
   &:last-child > div > h3 {
     background-color: #2f2b27;
     color: #fff !important;
-    margin: -20px -20px -10px 0px;
+    margin: -20px 0px -10px 0px;
     padding: 20px;
   }
 `;
 
 export const NavInner = styled.div`
-  padding-bottom: 10px;
+  margin: 0 auto;
+  max-width: 940px;
+
+  padding-bottom: 30px;
 `;
 
 export const NavItem = styled.div`

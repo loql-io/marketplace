@@ -130,7 +130,7 @@ export default function ProductPage({ product, preview }) {
               </Summary>
             )}
 
-            {product.variants?.length > 1 && (
+            {product.variants?.length > 1 ? (
               <VariantSelectorOuter>
                 <VariantSelector
                   variants={product.variants}
@@ -139,6 +139,8 @@ export default function ProductPage({ product, preview }) {
                 />
                 <Buy product={product} selectedVariant={selectedVariant} />
               </VariantSelectorOuter>
+            ) : (
+              <Buy product={product} selectedVariant={selectedVariant} />
             )}
           </Info>
         </Sections>
