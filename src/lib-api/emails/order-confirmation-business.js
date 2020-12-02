@@ -73,10 +73,14 @@ export default async function emailOrderConfirmationBusiness(orderId) {
     `);
 
     await sendEmail({
-      to: `${process.env.NEXT_PUBLIC_LOQL_EMAIL}, ${process.env.NEXT_PUBLIC_SHOP_EMAIL}`,
-      from: email,
+      to: [
+        `${process.env.NEXT_PUBLIC_LOQL_EMAIL}`,
+        `${process.env.NEXT_PUBLIC_SHOP_EMAIL}`
+      ],
+      from: 'orders@loql.ly',
       subject: subjectLine,
-      html
+      html,
+      isMultiple: true
     });
   } catch (error) {
     Promise.resolve(error.stack);
