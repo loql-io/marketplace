@@ -6,7 +6,7 @@ import { formatCurrency } from 'lib/currency';
 
 import { sendEmail } from './utils';
 
-export default async function sendOrderConfirmationBusiness(orderId) {
+export default async function emailOrderConfirmationBusiness(orderId) {
   try {
     const response = await callOrdersApi({
       query: QUERY_ORDER_BY_ID,
