@@ -23,10 +23,20 @@ export const Logo = styled.a`
   height: 34px;
   object-fit: contain;
   margin-top: 8px;
+  display: inline-flex;
+  &:hover {
+    text-decoration: none;
+  }
   img,
   svg {
     height: 100%;
   }
+`;
+export const Town = styled.div`
+  font-size: 24px;
+  font-weight: 900;
+  margin-top: 7px;
+  margin-right: 2px;
 `;
 
 export const Nav = styled.nav`

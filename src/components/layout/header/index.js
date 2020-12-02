@@ -15,7 +15,8 @@ import {
   IconBar,
   StyledAppBar,
   ShopNav,
-  ShopBadge
+  ShopBadge,
+  Town
 } from './styles';
 
 export default function Header({ simple, preview }) {
@@ -24,7 +25,6 @@ export default function Header({ simple, preview }) {
   const router = useRouter();
 
   const [navOpen, setNavOpen] = useState(false);
-  const logoImage = `/img/logo.png`;
 
   return (
     <>
@@ -40,7 +40,12 @@ export default function Header({ simple, preview }) {
       <StyledAppBar position="static">
         <Link href="/" passHref>
           <Logo>
-            <img src="/static/berko.svg" alt="" />
+            <Town>
+              {process.env.NEXT_PUBLIC_TOWN
+                ? `${process.env.NEXT_PUBLIC_TOWN}`
+                : ''}
+            </Town>
+            <img src="/static/loql-logo-light.svg" alt="" />
           </Logo>
         </Link>
 
@@ -67,7 +72,7 @@ export default function Header({ simple, preview }) {
               <a href="/">
                 <ShopBadge
                   style={{
-                    background: `url(${logoImage})`
+                    background: `url('/img/logo.png')`
                   }}
                 />
               </a>

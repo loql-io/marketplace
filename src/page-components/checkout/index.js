@@ -4,7 +4,7 @@ import { useBasket } from 'components/basket';
 import Layout from 'components/layout';
 import { useT } from 'lib/i18n';
 
-import { Outer, Container } from './styles';
+import { Outer, Container, ShopBadge } from './styles';
 
 import Order from './order';
 import Payment from './payment';
@@ -77,7 +77,11 @@ function Checkout() {
   return (
     <Outer>
       <Container>
-        <img src="static/shopBadge.svg" alt="Shop logo" width="60" />
+        <ShopBadge
+          style={{
+            background: `url('/img/logo.png')`
+          }}
+        />
         <CheckoutProgress steps={checkoutProgressSteps} currentStep={step} />
         <CurrentChildren
           onPrevious={handlePrevious}

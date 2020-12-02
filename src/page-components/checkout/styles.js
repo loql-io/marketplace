@@ -144,3 +144,14 @@ export const Inner = styled.div`
   max-width: 360px;
   margin: 0 auto;
 `;
+
+export const ShopBadge = styled.div`
+  margin-top: 20px;
+  width: 88px;
+  height: 88px;
+  display: inline-block;
+  border-radius: 50%;
+  background-size: 100% !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+`;
