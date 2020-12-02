@@ -7,7 +7,7 @@ import WidescreenRatio from 'ui/widescreen-ratio';
 export const Outer = styled.a`
   display: flex;
   flex-direction: column;
-  margin-top: -12px;
+  /*margin-top: -12px;*/
   ${(p) => (p.span ? `grid-column-end: span ${p.span}` : null)};
   background: #2f2b27;
   ${responsive.xs} {
@@ -57,7 +57,7 @@ export const Text = styled.div`
   height: 100px !important;
 
   /*padding: 3em var(--content-padding);*/
-  margin-top: -110px;
+  margin-top: -101px;
 
   z-index: 2;
 

@@ -3,8 +3,18 @@ import Grid from 'components/grid';
 import { responsive } from '../../../ui/responsive';
 
 export const GridContainer = styled.div`
-  background-color: #fff;
+  background-color: #2f2b27;
   margin-bottom: 20px;
+  border-bottom: solid 1px #2f2b27;
+
+  ${responsive.xs} {
+    background-color: #fff;
+  }
+
+  &:nth-child(3) {
+    border-bottom: none;
+  }
+
   &:nth-child(2) > h1 {
     background-color: #2f2b27;
     color: #fff !important;
