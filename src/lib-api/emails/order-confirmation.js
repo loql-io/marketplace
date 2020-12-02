@@ -204,7 +204,7 @@ export default async function sendOrderConfirmation(orderId) {
       to: email,
       from: 'orders@loql.ly',
       subject: 'Order Summary',
-      html
+      html: html
     });
   } catch (error) {
     Promise.resolve(error.stack);
