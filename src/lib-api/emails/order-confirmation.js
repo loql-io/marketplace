@@ -19,7 +19,11 @@ export default async function sendOrderConfirmation(orderId) {
     const order = response.data.orders.get;
     const { email } = order.customer.addresses[0];
 
-    const logo = `<img src="https://${process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER}.loql.ly/img/logo.png" >`;
+    const logo = `<img src="https://${
+      process.env.NEXT_PUBLIC_SHOP_SUBDOMAIN
+        ? process.env.NEXT_PUBLIC_SHOP_SUBDOMAIN
+        : process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER
+    }.loql.ly/img/logo.png" width="88" height="88">`;
 
     if (!email) {
       // Ideally an email address will always be provided, but if not...
@@ -32,14 +36,14 @@ export default async function sendOrderConfirmation(orderId) {
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
-        <title>Customer Order Confirmation Email</title>
+        <title>Order confirmed</title>
         <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;900&display=swap" rel="stylesheet">
         <style>
           ${styles.css}
         </style>
       </head>
       <body>
-      <table width="100%" style="text-align: center">
+      <table width="100%" style="text-align: center; background: #FAF6F6;">
         <tbody>
           <tr>
             <td align="center">
@@ -53,37 +57,52 @@ export default async function sendOrderConfirmation(orderId) {
                   <tr>
                     <td align="center" style="padding: 20px;">
                       <h1 class="main-header">Order confirmed</h1>
-                      <h2 style="color: #816E68; font-size: 24px; line-height: 28px; font-weight: 600; padding-bottom: 20px">No. #${
+                      <h2 style="color: #816E68; font-size: 24px; line-height: 28px; font-weight: 600; padding-bottom: 20px">Order ID: ${
                         order.id
                       }</h2>
-                      <p style="font-size: 16px; line-height: 22px">Your order has been received by <span style="font-weight: 600">${
-                        process.env.NEXT_PUBLIC_SHOP_NAME
-                      }</span></p>
+                      <p style="font-size: 16px; line-height: 22px">
+                        Your order has been received by<br />
+                        <span style="font-weight: 600">${
+                          process.env.NEXT_PUBLIC_SHOP_NAME
+                        }</span></p>
                     </td>
                   </tr>
                   <tr>
                     <td style="background-color: #ffffff; padding: 20px">
                       <table width="100%">
                         <tbody>
-                          ${order.cart.map(
-                            (item) => `<tr>
-                              <td style="padding: 0 15px 0 0;">${item.name} (${
-                              item.sku
-                            })</td>
-                              <td style="padding: 0 15px;">${item.quantity}</td>
-                              <td style="padding: 0 0 0 15px;">${formatCurrency(
+                          ${order.cart
+                            .map(
+                              (item) => `<tr>
+                              <td class="body-copy" style="padding-bottom: 10px">${
+                                item.name
+                              } <span class="small">(${item.sku})<span></td>
+                              <td class="body-copy" style="padding: 0 20px 10px 20px">${
+                                item.quantity
+                              }</td>
+                              <td class="body-copy" style="padding-bottom: 10px; text-align: right">${formatCurrency(
                                 {
                                   amount: item.price.gross * item.quantity,
                                   currency: item.price.currency
                                 }
                               )}</td>
                             </tr>`
-                          )}
+                            )
+                            .join('')}
+                          <tr>
+                            <td class="body-copy body-copy-bold" style="padding-bottom: 10px">Total</td>
+                            <td class="body-copy" style="padding-bottom: 10px"></td>
+                            <td class="body-copy body-copy-bold" style="padding-bottom: 10px; text-align: right">
+                              ${formatCurrency({
+                                amount: order.total.gross,
+                                currency: order.total.currency
+                              })}
+                            </td>
+                          </tr>
                         </tbody>
                       </table>
                     </td>
                   </tr>
-
                   <tr>
                     <td style="padding: 30px 20px 20px 20px">
                       <h4 class="body-header">Your details</h4>
@@ -95,10 +114,9 @@ export default async function sendOrderConfirmation(orderId) {
                       </p>
                     </td>
                   </tr>
-
                   <tr>
                     <td style="padding: 0 20px">
-                      <p class="body-copy body-copy-bold">To contact the restaurant please call:</p>
+                      <p class="body-copy body-copy-bold">To contact the store please call:</p>
                       <p class="body-copy phone-number">${
                         process.env.NEXT_PUBLIC_SHOP_PHONE
                       }</p>
@@ -151,59 +169,15 @@ export default async function sendOrderConfirmation(orderId) {
         </tbody>
       </table>
     </html>`;
-    /*
-    const { html } = mjml2html(`
-      <mjml>
-        <mj-body>
-        <mj-section>
-          <mj-column>
-            <mj-text>
-              <h1>Order Summary</h1>
-              <p>Thanks for your order! This email contains a copy of your order for your reference.</p>
-              <p>
-                Order Number: <strong>#${order.id}</strong>
-              </p>
-              <p>
-                First name: <strong>${order.customer.firstName}</strong><br />
-                Last name: <strong>${order.customer.lastName}</strong><br />
-                Email address: <strong>${email}</strong>
-              </p>
-              <p>
-                Total: <strong>${formatCurrency({
-                  amount: order.total.gross,
-                  currency: order.total.currency
-                })}</strong>
-              </p>
-            </mj-text>
-            <mj-table>
-              <tr style="border-bottom:1px solid #ecedee;text-align:left;">
-                <th style="padding: 0 15px 0 0;">Name</th>
-                <th style="padding: 0 15px;">Quantity</th>
-                <th style="padding: 0 0 0 15px;">Total</th>
-              </tr>
-              ${order.cart.map(
-                (item) => `<tr>
-                  <td style="padding: 0 15px 0 0;">${item.name} (${
-                  item.sku
-                })</td>
-                  <td style="padding: 0 15px;">${item.quantity}</td>
-                  <td style="padding: 0 0 0 15px;">${formatCurrency({
-                    amount: item.price.gross * item.quantity,
-                    currency: item.price.currency
-                  })}</td>
-                </tr>`
-              )}
-            </mj-table>
-          </mj-column>
-        </mj-section>
-        </mj-body>
-      </mjml>
-    `);
-*/
+
     await sendEmail({
       to: email,
       from: 'orders@loql.ly',
-      subject: 'Order Summary',
+      subject: `Thank you for your order from ${
+        process.env.NEXT_PUBLIC_SHOP_NAME
+          ? process.env.NEXT_PUBLIC_SHOP_NAME
+          : process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER
+      } (${order.id})`,
       html: html
     });
   } catch (error) {
