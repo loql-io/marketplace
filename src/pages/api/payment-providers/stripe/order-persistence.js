@@ -1,5 +1,8 @@
 import { createCrystallizeOrder } from 'lib-api/crystallize/order';
-import { emailOrderConfirmation } from 'lib-api/emails';
+import {
+  emailOrderConfirmation,
+  emailOrderConfirmationBusiness
+} from 'lib-api/emails';
 import { orderNormalizer } from 'lib-api/payment-providers/stripe';
 import { validatePaymentModel } from 'lib-api/util/checkout';
 
@@ -18,6 +21,10 @@ export default async (req, res) => {
     );
 
     await emailOrderConfirmation(
+      createCrystallizeOrderResponse.data.orders.create.id
+    );
+
+    await emailOrderConfirmationBusiness(
       createCrystallizeOrderResponse.data.orders.create.id
     );
 

@@ -28,7 +28,7 @@ export const Header = styled.div`
   }
   h1 {
     font-size: 2.4rem;
-    margin-bottom: 10px;
+    margin-bottom: 0;
     color: #2f2b27;
   }
 
