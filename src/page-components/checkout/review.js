@@ -15,12 +15,12 @@ const StrongText = styled(Typography)`
 export default function Review({ onPrevious, onNext, checkoutState }) {
   const basket = useBasket();
 
-  const { house, street, city, phone } = checkoutState;
+  const { house, street, city, phone, checkoutType } = checkoutState;
 
   return (
     <Container>
       <Typography variant="h1">Review</Typography>
-      <CartItemsTable basket={basket} />
+      <CartItemsTable basket={basket} checkoutType={checkoutType} />
       {checkoutState.checkoutType === 'delivery' && (
         <>
           <StrongText variant="h4">Delivery</StrongText>

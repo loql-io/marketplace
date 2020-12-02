@@ -30,7 +30,7 @@ const ItemName = styled(Typography)`
   max-width: 180px;
 `;
 
-export default function CartItemsTable({ basket }) {
+export default function CartItemsTable({ basket, checkoutType }) {
   const t = useT();
 
   const { cart } = basket;
@@ -65,7 +65,7 @@ export default function CartItemsTable({ basket }) {
           })}
         </Typography>
       </Row>
-      {basket.metadata.additionalInformation === 'delivery' && (
+      {checkoutType === 'delivery' && (
         <Row>
           <Typography variant="body1">Delivery</Typography>
           <Typography variant="body1">Free</Typography>
