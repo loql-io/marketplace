@@ -6,6 +6,7 @@ import Head from 'next/head';
 import { useLocale } from 'lib/app-config';
 import { useBasket } from 'components/basket';
 import StripeCheckout from './stripe';
+import generateOrderModel from 'lib-api/util/generateOrderModel';
 
 export default function Payment({ checkoutState, onPrevious }) {
   const locale = useLocale();
@@ -18,32 +19,13 @@ export default function Payment({ checkoutState, onPrevious }) {
     multilingualUrlPrefix = router.locale;
   }
 
-  const { firstName, lastName, email, phone } = checkoutState;
-
-  // Define the shared payment model for all payment providers
-  const paymentModel = {
-    multilingualUrlPrefix,
+  const paymentModel = generateOrderModel(
+    router,
+    checkoutState,
     locale,
     cart,
-    metadata,
-    additionalInformation: checkoutState.checkoutType,
-    customer: {
-      firstName,
-      lastName,
-      identifier: email,
-      addresses: [
-        {
-          type: 'delivery',
-          email,
-          phone,
-          street: checkoutState?.street,
-          postalCode: checkoutState?.postcode,
-          streetNumber: checkoutState?.house,
-          city: checkoutState?.city
-        }
-      ]
-    }
-  };
+    metadata
+  );
 
   return (
     <div>
@@ -57,13 +39,13 @@ export default function Payment({ checkoutState, onPrevious }) {
         onSuccess={(orderId) => {
           if (multilingualUrlPrefix) {
             router.push(
-              '/[locale]/confirmation/stripe/[orderId]',
-              `/${multilingualUrlPrefix}/confirmation/stripe/${orderId}`
+              '/[locale]/confirmation/order/[orderId]',
+              `/${multilingualUrlPrefix}/confirmation/order/${orderId}`
             );
           } else {
             router.push(
-              '/confirmation/stripe/[orderId]',
-              `/confirmation/stripe/${orderId}`
+              '/confirmation/order/[orderId]',
+              `/confirmation/order/${orderId}`
             );
           }
           scrollTo(0, 0);

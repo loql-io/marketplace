@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
-
+import { Button } from '@material-ui/core';
 import { useBasket } from 'components/basket';
 import Layout from 'components/layout';
 import { useT } from 'lib/i18n';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import CheckoutProgress from './checkout-progress';
 
 import { Outer, Container, ShopBadge } from './styles';
 
 import Order from './order';
 import Payment from './payment';
-import CheckoutProgress from './checkout-progress';
-import { Button } from '@material-ui/core';
 import Review from './review';
-import { useRouter } from 'next/router';
 
 function Checkout() {
   const basket = useBasket();
@@ -25,7 +24,7 @@ function Checkout() {
     lastName: '',
     phone: '',
     email: '',
-    checkoutType: 'collection'
+    checkoutType: ''
   });
 
   const [checkoutChildren, setCheckoutChildren] = useState([Order, Review]);
@@ -73,6 +72,8 @@ function Checkout() {
     router.replace('/');
     basket.actions.empty();
   }
+
+  console.log(basket);
 
   return (
     <Outer>
