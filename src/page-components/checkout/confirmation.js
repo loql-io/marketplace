@@ -41,15 +41,13 @@ export default function Confirmation({ order: orderData }) {
 
   const router = useRouter();
 
-  const [basketCopy, setBasketCopy] = useState(basket);
+  const [basketCopy] = useState(basket);
 
   const t = useT();
 
   const [emptied, setEmptied] = useState(false);
 
   useEffect(() => {
-    setBasketCopy(basket);
-
     if (!emptied) {
       basket.actions.empty();
       setEmptied(true);
@@ -77,6 +75,8 @@ export default function Confirmation({ order: orderData }) {
   function handleContinueShopping() {
     router.replace('/');
   }
+
+  console.log(basketCopy);
 
   return (
     <Layout title={t('checkout.confirmation.title')} headless>
