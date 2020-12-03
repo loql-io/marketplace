@@ -60,7 +60,7 @@ export default function CartItemsTable({ basket, checkoutType }) {
         <Typography variant="body1">Subtotal</Typography>
         <Typography variant="body1">
           {t('common.price', {
-            value: basket.total.net,
+            value: basket.total.gross,
             currency: basket.total.currency
           })}
         </Typography>
@@ -77,7 +77,7 @@ export default function CartItemsTable({ basket, checkoutType }) {
         </Typography>
         <Typography component="strong" variant="h5">
           {t('common.price', {
-            value: basket.total.net,
+            value: basket.total.gross,
             currency: basket.total.currency
           })}
         </Typography>
