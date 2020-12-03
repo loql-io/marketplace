@@ -134,6 +134,7 @@ export const Container = styled.div`
   flex-direction: column;
   background: #faf6f6;
   padding: 0 75px 50px 75px;
+  min-height: 85vh;
   ${responsive.smAndLess} {
     margin-bottom: 25px;
     padding: 0 40px 40px 40px;
