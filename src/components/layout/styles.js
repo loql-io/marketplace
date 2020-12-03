@@ -4,6 +4,9 @@ import styled from 'styled-components';
 export const Main = styled.main`
   padding-bottom: 50px;
   background: #fff;
+  &.about {
+    background: #faf6f6;
+  }
 `;
 
 export const LoadingWrapper = styled.div`

@@ -6,6 +6,7 @@ import Layout from 'components/layout';
 import { simplyFetchFromGraph } from 'lib/graph';
 import GridRelations from 'components/shape/components/grid-relations';
 import ParagraphCollection from 'components/shape/components/paragraph-collection';
+import ParagraphCollectionAbout from 'components/shape/componentsLoql/paragraph-collection-about';
 import { format, parseISO } from 'date-fns';
 
 import query from './query';
@@ -16,6 +17,7 @@ import {
   Date,
   Author,
   ArticleContainer,
+  ArticleContainerAbout,
   ArticleIntro,
   Article,
   ArticleData
@@ -43,60 +45,104 @@ export default function DocumentPage({ document, preview }) {
   const author = document?.components?.find((c) => c.name === 'Author')?.content
     ?.text;
 
-  return (
-    <Layout title={title || document.name} preview={preview}>
-      <Outer>
-        <Header centerContent />
-        <HeroImage>
-          {images?.content?.images?.map((img, i) => (
-            <Img
-              key={img.url}
-              {...img}
-              alt={img.altText}
-              sizes={i > 0 ? '40vw' : '80vw'}
-            />
-          ))}
-        </HeroImage>
-        <H1>{title}</H1>
-        <ArticleData>
-          <Author>{author}</Author>
-          <Date>{date ? format(parseISO(date), 'cccc do yyyy') : null}</Date>
-        </ArticleData>
-        <ArticleContainer>
-          <ArticleIntro>
-            <ContentTransformer {...description?.content?.json} />
-          </ArticleIntro>
-          <Article>
-            {document?.components?.map(({ type, ...component }, index) => {
-              if (type === 'paragraphCollection') {
-                let Component;
+  if (
+    process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER === 'loql' &&
+    document.path === '/about'
+  ) {
+    return (
+      <Layout title={title || document.name} preview={preview}>
+        <Outer>
+          <Header centerContent />
+          <ArticleContainerAbout>
+            <Article>
+              {document?.components?.map(({ type, ...component }, index) => {
+                if (type === 'paragraphCollection') {
+                  let Component;
 
-                if (!component.content.paragraphs) {
-                  return null;
+                  if (!component.content.paragraphs) {
+                    return null;
+                  }
+
+                  Component = Component || ParagraphCollectionAbout;
+
+                  return (
+                    <Component
+                      key={index}
+                      paragraphs={component.content.paragraphs}
+                      name={component.name}
+                    />
+                  );
                 }
+              })}
+            </Article>
+          </ArticleContainerAbout>
 
-                Component = Component || ParagraphCollection;
+          {document?.components?.map(({ type, ...component }, index) => {
+            if (type === 'gridRelations') {
+              let Component;
+              Component = Component || GridRelations;
+              return <Component key={index} grids={component.content.grids} />;
+            }
+          })}
+        </Outer>
+      </Layout>
+    );
+  } else {
+    return (
+      <Layout title={title || document.name} preview={preview}>
+        <Outer>
+          <Header centerContent />
+          <HeroImage>
+            {images?.content?.images?.map((img, i) => (
+              <Img
+                key={img.url}
+                {...img}
+                alt={img.altText}
+                sizes={i > 0 ? '40vw' : '80vw'}
+              />
+            ))}
+          </HeroImage>
+          <H1>{title}</H1>
+          <ArticleData>
+            <Author>{author}</Author>
+            <Date>{date ? format(parseISO(date), 'cccc do yyyy') : null}</Date>
+          </ArticleData>
+          <ArticleContainer>
+            <ArticleIntro>
+              <ContentTransformer {...description?.content?.json} />
+            </ArticleIntro>
+            <Article>
+              {document?.components?.map(({ type, ...component }, index) => {
+                if (type === 'paragraphCollection') {
+                  let Component;
 
-                return (
-                  <Component
-                    key={index}
-                    paragraphs={component.content.paragraphs}
-                    name={component.name}
-                  />
-                );
-              }
-            })}
-          </Article>
-        </ArticleContainer>
+                  if (!component.content.paragraphs) {
+                    return null;
+                  }
 
-        {document?.components?.map(({ type, ...component }, index) => {
-          if (type === 'gridRelations') {
-            let Component;
-            Component = Component || GridRelations;
-            return <Component key={index} grids={component.content.grids} />;
-          }
-        })}
-      </Outer>
-    </Layout>
-  );
+                  Component = Component || ParagraphCollection;
+
+                  return (
+                    <Component
+                      key={index}
+                      paragraphs={component.content.paragraphs}
+                      name={component.name}
+                    />
+                  );
+                }
+              })}
+            </Article>
+          </ArticleContainer>
+
+          {document?.components?.map(({ type, ...component }, index) => {
+            if (type === 'gridRelations') {
+              let Component;
+              Component = Component || GridRelations;
+              return <Component key={index} grids={component.content.grids} />;
+            }
+          })}
+        </Outer>
+      </Layout>
+    );
+  }
 }

@@ -46,12 +46,12 @@ const Navgation = [
           {
             logo: '',
             name: 'About',
-            url: '#'
+            url: 'https://loql-ly.vercel.app/about'
           },
           {
             logo: '',
             name: 'Join',
-            url: '#'
+            url: 'loql.ly/join.html'
           }
         ]
       }
