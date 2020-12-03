@@ -27,7 +27,8 @@ import FooterButtons from '../footer-buttons';
 import CustomTextInputField from 'components/custom-fields/custom-text-input';
 
 const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+  { stripeAccount: process.env.NEXT_PUBLIC_STRIPE_ACCOUNT_ID }
 );
 
 const options = {
