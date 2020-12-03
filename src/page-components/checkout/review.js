@@ -45,7 +45,7 @@ export default function Review({ onPrevious, onNext, checkoutState }) {
 
   async function handleNext() {
     if (process.env.NEXT_PUBLIC_STRIPE_ACCOUNT_ID) {
-      onNext();
+      return onNext();
     }
 
     // Handle locale with sub-path routing
@@ -104,7 +104,7 @@ export default function Review({ onPrevious, onNext, checkoutState }) {
       )}
       <FooterButtons
         onPrevious={onPrevious}
-        nextText={!hasStripe && 'Place order'}
+        nextText={!hasStripe ? 'Place order' : undefined}
         onNext={handleNext}
       />
     </Container>
