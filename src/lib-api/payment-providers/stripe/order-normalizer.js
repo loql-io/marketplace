@@ -5,7 +5,8 @@ export default async function stripeOrderNormalizer({
   paymentModel
 }) {
   const paymentIntent = await getClient().paymentIntents.retrieve(
-    paymentIntentId
+    paymentIntentId,
+    { stripeAccount: process.env.NEXT_PUBLIC_STRIPE_ACCOUNT_ID }
   );
 
   const { data } = paymentIntent.charges;

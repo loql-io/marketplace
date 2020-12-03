@@ -15,7 +15,9 @@ export default async (req, res) => {
       {
         amount,
         currency: validPaymentModel.total.currency,
-        application_fee_amount: calculateStripeFee(amount)
+        payment_method_types: ['card'],
+        application_fee_amount: calculateStripeFee(amount),
+        receipt_email: paymentModel.customer.addresses[0].email
       },
       { stripeAccount: connectedAccountId }
     );
