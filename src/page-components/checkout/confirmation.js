@@ -7,7 +7,7 @@ import { useBasket } from 'components/basket';
 import { Outer } from 'ui';
 import { useT } from 'lib/i18n';
 
-import { Container } from './styles';
+import { Container, ShopBadge } from './styles';
 import CartItemsTable from './CartItemsTable';
 import SecondaryButton from 'components/custom-fields/secondary-button';
 import { useRouter } from 'next/router';
@@ -82,7 +82,11 @@ export default function Confirmation({ order: orderData }) {
     <Layout title={t('checkout.confirmation.title')} headless>
       <Outer>
         <Container>
-          <img src="static/shopBadge.svg" alt="Shop logo" width="60" />
+          <ShopBadge
+            style={{
+              background: `url('/img/logo.png')`
+            }}
+          />
           <Title variant="h1">All done!</Title>
           <OrderNumText variant="h4">{`Order no. ${order.id.substring(
             0,
