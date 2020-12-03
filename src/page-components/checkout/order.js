@@ -16,6 +16,10 @@ const RadioGroupContainer = styled(FormControl)`
   margin-top: 20px !important;
   width: 100%;
 
+  .MuiRadio-colorSecondary.Mui-checked {
+    color: #2f2b27;
+  }
+
   label {
     justify-content: space-between;
     padding-left: 16px;
