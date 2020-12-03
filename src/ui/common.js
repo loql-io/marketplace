@@ -9,7 +9,7 @@ export const Outer = styled.div`
   margin: 0 auto;
   /*margin: -16px auto 0 auto;*/
   display: block;
-  min-height: 75vh;
+  min-height: 82vh;
   ${responsive.smAndLess} {
     /*padding: 0 1rem;*/
   }
