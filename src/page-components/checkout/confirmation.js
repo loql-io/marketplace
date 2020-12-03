@@ -1,50 +1,60 @@
 import React, { useState, useEffect } from 'react';
+import { Typography } from '@material-ui/core';
 import styled from 'styled-components';
-import is from 'styled-is';
 
 import Layout from 'components/layout';
 import { useBasket } from 'components/basket';
-import OrderItems from 'components/order-items';
-import { H1, H3, Outer, Header } from 'ui';
+import { Outer } from 'ui';
 import { useT } from 'lib/i18n';
 
-import BillingDetails from './billing-details';
+import { Container } from './styles';
+import CartItemsTable from './CartItemsTable';
+import SecondaryButton from 'components/custom-fields/secondary-button';
+import { useRouter } from 'next/router';
 
-const CustomHeader = styled(Header)`
-  margin-bottom: 0;
-  padding-bottom: 0;
+const StrongText = styled(Typography)`
+  font-weight: 800 !important;
 `;
 
-const Line = styled.div`
+const Title = styled(Typography)`
+  padding-top: 28px;
+`;
+
+const OrderNumText = styled(Typography)`
+  font-weight: 800;
+  color: #816e68;
+  padding: 20px 0;
+`;
+
+const Spacer = styled.div`
   margin: 20px 0;
-  border-bottom: 1px solid var(--color-main-background);
 `;
 
-const Totals = styled.div`
-  margin: 10px 15px;
-`;
-
-const TotalLine = styled.div`
-  text-align: right;
-  margin-top: 5px;
-
-  ${is('bold')`
-    font-size: 1.2rem;
-    font-weight: 600;
-  `};
+const CheckoutTypeContainer = styled.div`
+  width: 340px;
+  margin: 20px 0 34px;
+  padding: 0 8px;
 `;
 
 export default function Confirmation({ order: orderData }) {
   const basket = useBasket();
+
+  const router = useRouter();
+
+  const [basketCopy, setBasketCopy] = useState(basket);
+
   const t = useT();
+
   const [emptied, setEmptied] = useState(false);
 
   useEffect(() => {
+    setBasketCopy(basket);
+
     if (!emptied) {
       basket.actions.empty();
       setEmptied(true);
     }
-  }, [emptied, basket.actions]);
+  }, [emptied, basket]);
 
   const order = orderData.data.orders?.get;
 
@@ -60,47 +70,51 @@ export default function Confirmation({ order: orderData }) {
     return <Layout loading />;
   }
 
-  const cart = order.cart.map((item) => ({
-    ...item,
-    image: {
-      url: item.imageUrl
-    }
-  }));
-  const email = order.customer.addresses?.[0]?.email;
-  const { total } = order;
+  const { house, street, city, phone } = order.customer.addresses[0];
+
+  const { additionalInformation: checkoutType } = basketCopy.metadata;
+
+  function handleContinueShopping() {
+    router.replace('/');
+  }
 
   return (
-    <Layout title={t('checkout.confirmation.title')}>
+    <Layout title={t('checkout.confirmation.title')} headless>
       <Outer>
-        <CustomHeader>
-          <H1>{t('checkout.confirmation.title')}</H1>
-          <p>
-            {t('checkout.confirmation.shortStatus', {
-              context: email ? 'withEmail' : null,
-              email
-            })}
-          </p>
-          <Line />
-          <BillingDetails order={order} />
-          <Line />
-          <H3>{t('order.item', { count: cart.length })}</H3>
-          <OrderItems cart={cart} />
-          <Totals>
-            <TotalLine bold>
-              {t('order.total')}:{' '}
-              {t('common.price', {
-                value: total.gross,
-                currency: total.currency
-              })}
-            </TotalLine>
-            <TotalLine>
-              {t('common.vat', {
-                value: total.gross - total.net,
-                currency: total.currency
-              })}
-            </TotalLine>
-          </Totals>
-        </CustomHeader>
+        <Container>
+          <img src="static/shopBadge.svg" alt="Shop logo" width="60" />
+          <Title variant="h1">All done!</Title>
+          <OrderNumText variant="h4">{`Order no. ${order.id.substring(
+            0,
+            4
+          )}`}</OrderNumText>
+          <Typography variant="body1">
+            Your order has been received by
+          </Typography>
+          <StrongText variant="body1">
+            {process.env.NEXT_PUBLIC_SHOP_NAME}
+          </StrongText>
+          <Spacer />
+          <CartItemsTable basket={basketCopy} />
+          {checkoutType === 'delivery' && (
+            <CheckoutTypeContainer>
+              <StrongText variant="h4">Delivery</StrongText>
+              <Typography variant="body1">{`${house} ${street} ${city}`}</Typography>
+              <Typography variant="body1">{phone}</Typography>
+            </CheckoutTypeContainer>
+          )}
+          {checkoutType === 'collection' && (
+            <CheckoutTypeContainer>
+              <StrongText variant="h4">Collection</StrongText>
+              <Typography variant="body1">From store</Typography>
+            </CheckoutTypeContainer>
+          )}
+
+          <SecondaryButton
+            text="Continue shopping"
+            onClick={handleContinueShopping}
+          />
+        </Container>
       </Outer>
     </Layout>
   );

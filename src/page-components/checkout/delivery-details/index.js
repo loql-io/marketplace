@@ -8,10 +8,20 @@ import FooterButtons from '../footer-buttons';
 import PostCodeForm from 'components/postcode-form';
 
 const DetailsContainer = styled.div`
+  h3 {
+    padding: 20px 0;
+  }
+
   form {
     display: flex;
     flex-direction: column;
     max-width: 345px;
+  }
+
+  .checkbox-label {
+    background: white;
+    padding: 27px 0 27px 20px;
+    box-shadow: 0 1px 1px rgba(192, 169, 168, 0.25);
   }
 `;
 
@@ -52,7 +62,9 @@ export function DeliveryDetails({ onNext, checkoutState }) {
           postcode: checkoutState.postcode,
           house: checkoutState.house,
           street: checkoutState.street,
-          city: checkoutState.city
+          city: checkoutState.city,
+          businessNews: checkoutState.businessNews || false,
+          loqlNews: checkoutState.loqlNews || false
         }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
@@ -90,6 +102,26 @@ export function DeliveryDetails({ onNext, checkoutState }) {
               error={formik.touched.phone && !!formik.errors.phone}
             />
             <PostCodeForm formik={formik} checkoutState={checkoutState} />
+
+            {/* <FormControlLabel
+              className="checkbox-label"
+              labelPlacement="start"
+              name="businessNews"
+              value={formik.values.businessNews}
+              onChange={handleChange('businessNews')}
+              control={<CustomCheckbox checked={formik.values.businessNews} />}
+              label="Tick this box if you do want to receive emails from the business you order with."
+              style={{ margin: '0 0' }}
+            />
+            <FormControlLabel
+              className="checkbox-label"
+              labelPlacement="start"
+              value="loqlNews"
+              onChange={handleChange('loqlNews')}
+              control={<CustomCheckbox checked={formik.values.loqlNews} />}
+              label="Tick this box if you do want to receive emails from Loql."
+              style={{ margin: '1px 0' }}
+            /> */}
             <FooterButtons onNext={formik.submitForm} />
           </Form>
         )}

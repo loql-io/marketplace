@@ -16,9 +16,9 @@ export default async function stripeOrderNormalizer({
   return {
     cart: paymentModel.cart,
     total: paymentModel.total,
-    additionalInformation: paymentModel.additionalInformation,
+    additionalInformation: paymentModel.metadata.additionalInformation,
     customer: {
-      identifier: '',
+      identifier: paymentModel.customer.identifier,
       firstName: customerName[0],
       middleName: customerName.slice(1, customerName.length - 1).join(),
       lastName: customerName[customerName.length - 1],

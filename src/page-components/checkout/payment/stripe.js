@@ -33,9 +33,10 @@ const stripePromise = loadStripe(
 const options = {
   style: {
     base: {
-      fontSize: '18px',
+      fontSize: '16px',
       fontWeight: 'normal',
       fontFamily: 'Nunito Sans, sans-serif',
+
       '::placeholder': {
         fontFamily: 'Nunito Sans, sans-serif',
         color: '#2F2B27',
@@ -281,7 +282,12 @@ function Form({
               onChange={() => setIsBillingSame(!isBillingSame)}
               control={<CustomCheckbox checked={isBillingSame} />}
               label="Billing details same as delivery"
-              style={{ margin: '1px 0' }}
+              style={{
+                margin: '1px 0',
+                background: 'white',
+                justifyContent: 'space-between',
+                paddingLeft: 16
+              }}
             />
 
             {!isBillingSame && <BillingDetails formik={formik} />}
@@ -301,6 +307,9 @@ function Form({
 function BillingDetails({ formik }) {
   return (
     <>
+      <Typography variant="h3" style={{ margin: '20px 0' }}>
+        Billing details
+      </Typography>
       <CustomTextInputField
         value={formik.values.firstName}
         label="Your first name"
@@ -340,13 +349,17 @@ export default function StripeWrapper({ paymentModel, ...props }) {
     getClientSecret();
   }, [paymentModel]);
 
-  return (
-    <Elements locale="en-GB" stripe={stripePromise}>
-      <Form
-        {...props}
-        paymentModel={paymentModel}
-        clientSecret={clientSecret}
-      />
-    </Elements>
-  );
+  if (clientSecret) {
+    return (
+      <Elements locale="en-GB" stripe={stripePromise}>
+        <Form
+          {...props}
+          paymentModel={paymentModel}
+          clientSecret={clientSecret}
+        />
+      </Elements>
+    );
+  }
+
+  return <></>;
 }

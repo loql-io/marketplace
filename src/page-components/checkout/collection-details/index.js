@@ -1,16 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FormControlLabel, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
 import CustomTextInputField from 'components/custom-fields/custom-text-input';
 import FooterButtons from '../footer-buttons';
-import CustomCheckbox from 'components/custom-fields/custom-checkbox';
 
 const DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
+
+  h3 {
+    margin: 20px 0;
+  }
 
   form {
     max-width: 345px;
@@ -93,7 +96,7 @@ export function CollectionDetails({ onNext, checkoutState }) {
               helperText={formik.touched.phone ? formik.errors.phone : ''}
               error={formik.touched.phone && !!formik.errors.phone}
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               className="checkbox-label"
               labelPlacement="start"
               name="businessNews"
@@ -111,7 +114,7 @@ export function CollectionDetails({ onNext, checkoutState }) {
               control={<CustomCheckbox checked={formik.values.loqlNews} />}
               label="Tick this box if you do want to receive emails from Loql."
               style={{ margin: '1px 0' }}
-            />
+            /> */}
             <FooterButtons onNext={submitForm} />
           </Form>
         )}

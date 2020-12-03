@@ -2,15 +2,20 @@ import { makeStyles } from '@material-ui/styles';
 
 const styles = makeStyles({
   inputs: {
+    width: '340px',
+    background: 'white',
     border: '2px solid #C0A9A8',
     borderRadius: '5px',
     padding: '16px 12px',
+
     '&:hover': {
       borderColor: '#998685'
     },
+
     '&.StripeElement--focus': {
       borderColor: '#2F2B27'
     },
+
     '&.StripeElement--invalid': {
       borderColor: '#ff0000'
     },
@@ -31,25 +36,19 @@ const styles = makeStyles({
       border: '0',
       padding: '0',
       margin: '0'
-    },
-    '& legend': {
-      background: '#FAF6F6',
-      marginTop: '-9px',
-      position: 'absolute',
-      marginLeft: '12px',
-      paddingLeft: '5px',
-      paddingRight: '5px',
-      fontSize: '13.5px'
     }
   },
+
   title: {
     marginBottom: '40px',
     marginTop: '20px'
   },
+
   subTitle: {
     marginBottom: '10px',
     marginTop: '20px'
   },
+
   form: {
     width: '100%',
     marginTop: '20px',
@@ -79,13 +78,6 @@ const styles = makeStyles({
     color: '#544B3F',
     display: 'block',
     margin: '8px 0 0 16px'
-  },
-
-  formLabel: {
-    color: '#544B3F',
-    fontSize: '16px',
-    lineHeight: '22px',
-    marginBottom: '4px'
   }
 });
 
