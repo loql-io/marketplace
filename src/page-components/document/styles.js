@@ -112,6 +112,7 @@ export const ArticleContainerAbout = styled.div`
   padding-bottom: 20px;
   margin: 0 auto 20px auto;
   background: #faf6f6;
+  text-align: center;
   img {
     width: 60%;
     height: 100%;
