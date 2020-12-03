@@ -5,10 +5,12 @@ import { useT } from 'lib/i18n';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import CheckoutProgress from './checkout-progress';
+
+import { Outer, Container, ShopBadge } from './styles';
+
 import Order from './order';
 import Payment from './payment';
 import Review from './review';
-import { Container, Outer } from './styles';
 
 function Checkout() {
   const basket = useBasket();
@@ -76,7 +78,11 @@ function Checkout() {
   return (
     <Outer>
       <Container>
-        <img src="static/shopBadge.svg" alt="Shop logo" width="60" />
+        <ShopBadge
+          style={{
+            background: `url('/img/logo.png')`
+          }}
+        />
         <CheckoutProgress steps={checkoutProgressSteps} currentStep={step} />
         <CurrentChildren
           onPrevious={handlePrevious}

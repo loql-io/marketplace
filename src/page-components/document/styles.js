@@ -103,6 +103,121 @@ export const ArticleContainer = styled.div`
     margin-bottom: 10px;
   }
 `;
+
+export const ArticleContainerAbout = styled.div`
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-column-gap: 20px;
+  grid-template-columns: auto;
+  padding-bottom: 20px;
+  margin: 0 auto 20px auto;
+  background: #faf6f6;
+  text-align: center;
+  img {
+    width: 60%;
+    height: 100%;
+  }
+
+  ${responsive.xs} {
+    text-align: center;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    p {
+      text-align: center;
+    }
+  }
+
+  & > div > div > div:nth-child(1) {
+    margin: 0 -20px;
+    padding: 20px;
+    background: #faf6f6;
+    & > div {
+      max-width: 900px;
+      margin: 0 auto;
+      & > div:nth-child(2) {
+        text-align: center;
+      }
+    }
+    h3 {
+      font-weight: 900;
+      font-size: 44px;
+      line-height: 45px;
+    }
+    ${responsive.xs} {
+      margin: 0 -20px;
+    }
+  }
+
+  & > div > div > div:nth-child(2) {
+    margin: 0 -20px;
+    padding: 20px;
+    background: #2f2b27;
+    & > div {
+      max-width: 900px;
+      margin: 0 auto;
+      & > div:nth-child(2) {
+        text-align: center;
+      }
+    }
+    p,
+    h3 {
+      color: #fff;
+    }
+  }
+
+  & > div > div > div:nth-child(3) {
+    margin: 0 -20px;
+    padding: 20px;
+    background: #fff;
+
+    & > div {
+      max-width: 900px;
+      margin: 0 auto;
+      & > div:nth-child(2) {
+        text-align: center;
+      }
+    }
+
+    p,
+    h3 {
+      color: #2f2b27;
+    }
+    ${responsive.xs} {
+      margin: 0 -20px;
+    }
+  }
+
+  & > div > div > div:nth-child(4) {
+    margin: 0 -20px;
+    padding: 20px;
+    background: #faf6f6;
+
+    & > div {
+      max-width: 900px;
+      margin: 0 auto;
+      & > div:nth-child(2) {
+        text-align: center;
+      }
+    }
+    p,
+    h3 {
+      color: #2f2b27;
+    }
+    ${responsive.xs} {
+      margin: 0 -20px;
+    }
+  }
+
+  h3 {
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 36px;
+    margin-bottom: 10px;
+  }
+`;
+
 export const ArticleIntro = styled.div`
   padding: 0 20px;
   p {
