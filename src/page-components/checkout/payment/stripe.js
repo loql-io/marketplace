@@ -360,6 +360,4 @@ export default function StripeWrapper({ paymentModel, ...props }) {
       </Elements>
     );
   }
-
-  return <></>;
 }

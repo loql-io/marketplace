@@ -38,13 +38,17 @@ async function persistCollectionOrder({ orderModel }) {
 
 export default function Review({ onPrevious, onNext, checkoutState }) {
   const locale = useLocale();
+
   const router = useRouter();
+
   const basket = useBasket();
+
+  const hasStripe = !!process.env.NEXT_PUBLIC_STRIPE_ACCOUNT_ID;
 
   const { house, street, city, phone, checkoutType } = checkoutState;
 
   async function handleNext() {
-    if (process.env.NEXT_PUBLIC_STRIPE_ACCOUNT_ID) {
+    if (hasStripe) {
       return onNext();
     }
 
@@ -83,8 +87,6 @@ export default function Review({ onPrevious, onNext, checkoutState }) {
       console.log(error);
     }
   }
-
-  const hasStripe = !!process.env.NEXT_PUBLIC_STRIPE_ACCOUNT_ID;
 
   return (
     <Container>
