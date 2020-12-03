@@ -32,8 +32,14 @@ function Checkout() {
   const [step, setStep] = useState(0);
 
   const [checkoutProgressSteps, setCheckoutProgressSteps] = useState([
-    'Your order',
-    'Review'
+    {
+      title: 'Your order',
+      imageSrc: ''
+    },
+    {
+      title: 'Review',
+      imageSrc: ''
+    }
   ]);
 
   const CurrentChildren = checkoutChildren[step];
@@ -41,7 +47,10 @@ function Checkout() {
   useEffect(() => {
     if (process.env.NEXT_PUBLIC_STRIPE_ACCOUNT_ID) {
       setCheckoutChildren((prevState) => [...prevState, Payment]);
-      setCheckoutProgressSteps((prevState) => [...prevState, 'Payment']);
+      setCheckoutProgressSteps((prevState) => [
+        ...prevState,
+        { title: 'Payment', imageSrc: '' }
+      ]);
     }
   }, []);
 
@@ -69,11 +78,10 @@ function Checkout() {
   }
 
   function handleClearBasket() {
+    window.scroll(0, 0);
     router.replace('/');
     basket.actions.empty();
   }
-
-  console.log(basket);
 
   return (
     <Outer>

@@ -3,7 +3,8 @@ import styled, { css } from 'styled-components';
 export const ProgressContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 345px;
+  min-width: 340px;
+  max-width: 100%;
   justify-content: space-between;
   padding: 20px 0;
 `;
