@@ -4,7 +4,7 @@ import { responsive } from 'ui';
 export const Grid = styled.div``;
 
 export const NavContainer = styled.div`
-  margin-bottom: -71px;
+  margin-bottom: -21px;
   border-bottom: solid 1px #000;
   h3 {
     font-weight: 800;
