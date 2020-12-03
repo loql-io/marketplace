@@ -20,7 +20,7 @@ yarn install
 yarn dev
 ```
 Assumptions:
-You have a .env file with correct values see each shop repo for an example.
+You have a .env file with correct values see [example](https://github.com/loql-io/marketplace/blob/main/env.example).
 
 ### Bump all repos above to a particular version
 
