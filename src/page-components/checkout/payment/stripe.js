@@ -349,15 +349,13 @@ export default function StripeWrapper({ paymentModel, ...props }) {
     getClientSecret();
   }, [paymentModel]);
 
-  if (clientSecret) {
-    return (
-      <Elements locale="en-GB" stripe={stripePromise}>
-        <Form
-          {...props}
-          paymentModel={paymentModel}
-          clientSecret={clientSecret}
-        />
-      </Elements>
-    );
-  }
+  return (
+    <Elements locale="en-GB" stripe={stripePromise}>
+      <Form
+        {...props}
+        paymentModel={paymentModel}
+        clientSecret={clientSecret}
+      />
+    </Elements>
+  );
 }
