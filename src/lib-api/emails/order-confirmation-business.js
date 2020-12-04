@@ -35,7 +35,7 @@ export default async function emailOrderConfirmationBusiness(orderId) {
       process.env.NEXT_PUBLIC_SHOP_SUBDOMAIN
         ? process.env.NEXT_PUBLIC_SHOP_SUBDOMAIN
         : process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER
-    }.loql.ly/img/logo.png" width="88" height="88">`;
+    }.loql.ly/img/logo.png" style="border-radius:50%;width:126px;height:126px">`;
 
     const html = `<!doctype html>
     <html lang="en">
