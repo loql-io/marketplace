@@ -48,16 +48,14 @@ export default function Order({ onNext, checkoutState }) {
   }
 
   const showCollection = useMemo(
-    () => process.env.NEXT_PUBLIC_ORDER_COLLECTION,
+    () => (process.env.NEXT_PUBLIC_ORDER_COLLECTION === 'true' ? true : false),
     []
   );
 
   const showDelivery = useMemo(
-    () => process.env.NEXT_PUBLIC_ORDER_DELIVERY,
+    () => (process.env.NEXT_PUBLIC_ORDER_DELIVERY === 'true' ? true : false),
     []
   );
-
-  // console.log('collection', showCollection === true);
 
   return (
     <div>
