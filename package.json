@@ -60,6 +60,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-is": "^17.0.1",
+    "react-lottie": "^1.2.3",
     "react-material-ui-carousel": "^2.1.1",
     "react-sticky": "^6.0.3",
     "request-promise-native": "^1.0.9",
@@ -75,6 +76,7 @@
     "@babel/core": "^7.9.6",
     "babel-eslint": "^10.1.0",
     "babel-plugin-styled-components": "^1.10.7",
+    "dot-json": "^1.2.1",
     "eslint": "^7.0.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
@@ -85,7 +87,6 @@
     "handlebars": "^4.7.6",
     "husky": "^4.2.1",
     "lint-staged": "^10.2.2",
-    "prettier": "^2.0.5",
-    "dot-json": "^1.2.1"
+    "prettier": "^2.0.5"
   }
 }

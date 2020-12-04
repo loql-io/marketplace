@@ -7,6 +7,7 @@ export default async (req, res) => {
 
   try {
     const { paymentModel } = req.body;
+
     const validPaymentModel = await validatePaymentModel({ paymentModel });
 
     const amount = validPaymentModel.total.gross * 100;
@@ -17,7 +18,7 @@ export default async (req, res) => {
         currency: validPaymentModel.total.currency,
         payment_method_types: ['card'],
         application_fee_amount: calculateStripeFee(amount),
-        receipt_email: paymentModel.customer.addresses[0].email
+        receipt_email: paymentModel.customer.identifier
       },
       { stripeAccount: connectedAccountId }
     );

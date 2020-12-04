@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   FormControl,
   FormControlLabel,
@@ -47,6 +47,18 @@ export default function Order({ onNext, checkoutState }) {
     onNext({ ...state, checkoutType: value });
   }
 
+  const showCollection = useMemo(
+    () => process.env.NEXT_PUBLIC_ORDER_COLLECTION,
+    []
+  );
+
+  const showDelivery = useMemo(
+    () => process.env.NEXT_PUBLIC_ORDER_DELIVERY,
+    []
+  );
+
+  // console.log('collection', showCollection === true);
+
   return (
     <div>
       <Typography variant="h3">Collect or Deliver</Typography>
@@ -61,7 +73,7 @@ export default function Order({ onNext, checkoutState }) {
           value={value}
           onChange={handleChange}
         >
-          {process.env.NEXT_PUBLIC_ORDER_COLLECTION && (
+          {showCollection && (
             <FormControlLabel
               labelPlacement="start"
               value="collection"
@@ -70,7 +82,7 @@ export default function Order({ onNext, checkoutState }) {
             />
           )}
 
-          {process.env.NEXT_PUBLIC_ORDER_DELIVERY && (
+          {showDelivery && (
             <FormControlLabel
               labelPlacement="start"
               value="delivery"

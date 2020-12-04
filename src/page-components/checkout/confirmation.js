@@ -64,6 +64,12 @@ export default function Confirmation({ order: orderData }) {
     }
   }, [order]);
 
+  const orderNum = React.useMemo(() => {
+    const { id } = order;
+
+    return id.substr(id.length - 4, id.length);
+  }, [order]);
+
   if (!order) {
     return <Layout loading />;
   }
@@ -76,8 +82,6 @@ export default function Confirmation({ order: orderData }) {
     router.replace('/');
   }
 
-  console.log(basketCopy);
-
   return (
     <Layout title={t('checkout.confirmation.title')} headless>
       <Outer>
@@ -88,10 +92,7 @@ export default function Confirmation({ order: orderData }) {
             }}
           />
           <Title variant="h1">All done!</Title>
-          <OrderNumText variant="h4">{`Order no. ${order.id.substring(
-            0,
-            4
-          )}`}</OrderNumText>
+          <OrderNumText variant="h4">{`Order no. *${orderNum}`}</OrderNumText>
           <Typography variant="body1">
             Your order has been received by
           </Typography>
