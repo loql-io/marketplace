@@ -41,25 +41,38 @@ const HomeNavgation = [
         content: [
           {
             image:
-              'https://cdn.shopify.com/s/files/1/0301/0065/files/fall_background_image_landscape_tree_lake_mountain_scene_web_2048x2048.jpg?16615717205281063826',
-            title: '10 of the best wet weather running shoes',
-            intro: 'Keep your feet dry as you keep fit this winter',
-            url: 'http://www.google.com'
+              'https://media.crystallize.com/florist/20/11/27/2/@1920/shutterstock_3536818912.webp',
+            title: 'Seasonal arrangements',
+            intro: 'Fill your home with festive floral cheer',
+            url: 'https://petals.loql.ly/'
+          },
+
+          {
+            image:
+              'https://media.crystallize.com/berko-sports/20/12/4/17/@3200/adobestock_183505324.webp',
+            title: 'Trail shoes gifts',
+            intro: 'Take on those Ashridge hills!',
+            url: 'https://berko-sports.loql.ly'
           },
           {
             image:
-              'https://cdn.shopify.com/s/files/1/0301/0065/files/fall_background_image_landscape_tree_lake_mountain_scene_web_2048x2048.jpg?16615717205281063826',
-            title: 'The Meating Room',
-            intro:
-              'If you love a burger, you simply HAVE to try this bastion of burger brilliance',
-            url: 'http://www.google.com'
+              'https://media.crystallize.com/creative-collective/20/11/29/1/@1024/hot-haveli.webp',
+            title: 'Socially Conscious Gifts',
+            intro: 'A hothouse of lifestyle inspiration',
+            url: 'https://creative-collective.loql.ly/'
           },
           {
             image:
-              'https://cdn.shopify.com/s/files/1/0301/0065/files/fall_background_image_landscape_tree_lake_mountain_scene_web_2048x2048.jpg?16615717205281063826',
-            title: 'Birthday gifts',
-            intro: 'Bouquets and gifts for any birthday',
-            url: 'http://www.google.com'
+              'https://media.crystallize.com/hamlins-toys/20/12/4/3/adobestock_236592889.jpeg',
+            title: 'The best board games',
+            intro: 'Games to keep the whole family entertained',
+            url: 'https://hamlins.loql.ly'
+          },
+          {
+            image: 'https://loql-images.s3.us-east-1.amazonaws.com/xjwuMo2u3',
+            title: 'Berkos Best Burgers',
+            intro: 'It has to be The Meating Room',
+            url: 'https://loql-ly.vercel.app/berkos-best-burgers'
           }
         ]
       }

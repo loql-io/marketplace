@@ -37,10 +37,6 @@ const Navgation = [
         ]
       },
       {
-        type: 'Collections',
-        content: []
-      },
-      {
         type: 'footer',
         content: [
           {

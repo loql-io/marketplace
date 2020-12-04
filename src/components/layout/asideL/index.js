@@ -8,7 +8,7 @@ export default function AsideL() {
   return (
     <Aside>
       <Header>
-        <a href="http://loql.ly">
+        <a href="http://berko.loql.ly">
           <h3>Home</h3>
         </a>
       </Header>

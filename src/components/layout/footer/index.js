@@ -27,9 +27,11 @@ export default function Footer() {
         </GridItem>
         <GridItem>
           <FooterText>
-            Loql is a not for profit that helps high streets find resilience
-            through high quality, low cost digital tools that can be shared and
-            managed by the community.
+            Loql is a not for profit organisation to help protect our high
+            streets. We believe that communities of businesses, working with
+            rather than against each other can provide a sustainable and
+            convenient experience to customers. Made with love right here in
+            Berko. <a href="https://loql.ly">Find out more</a>
           </FooterText>
         </GridItem>
         <GridItem>
