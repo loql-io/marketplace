@@ -57,6 +57,12 @@ export default function Order({ onNext, checkoutState }) {
     []
   );
 
+  if (!showCollection && !showDelivery) {
+    window.alert(
+      'You must enable collection (NEXT_PUBLIC_ORDER_COLLECTION=true) or delivery (NEXT_PUBLIC_ORDER_DELIVERY=true) in the .env file for checkout to work'
+    );
+  }
+
   return (
     <div>
       <Typography variant="h3">Collect or Deliver</Typography>
