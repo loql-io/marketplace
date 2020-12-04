@@ -4,6 +4,7 @@ export default `
     $cart: [OrderItemInput!]!
     $payment: [PaymentInput!]
     $total: PriceInput
+    $additionalInformation:String
   ) {
     orders {
       create(
@@ -12,6 +13,7 @@ export default `
           cart: $cart
           payment: $payment
           total: $total
+          additionalInformation: $additionalInformation
         }
       ) {
         id
