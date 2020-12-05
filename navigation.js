@@ -47,7 +47,7 @@ const Navgation = [
           {
             logo: '',
             name: 'Join',
-            url: 'loql.ly/join.html'
+            url: 'https://matt775994.typeform.com/to/zlt7KAIk'
           }
         ]
       }
