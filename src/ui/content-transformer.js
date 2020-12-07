@@ -1,4 +1,4 @@
-/*eslint no-unreachable: "error"*/
+/* eslint-disable no-unreachable */
 
 import React from 'react';
 import styled from 'styled-components';
@@ -11,34 +11,46 @@ const commonTransfomerOverrides = {
 
     switch (rest.children[0].textContent) {
       case '[twitter]':
-        <SocialLink className="social" href={href}>
-          <img src="/static/TW.svg" />
-        </SocialLink>;
+        return (
+          <SocialLink className="social" href={href}>
+            <img src="/static/TW.svg" />
+          </SocialLink>
+        );
         break;
       case '[linkedin]':
-        <SocialLink className="social" href={href}>
-          <img src="/static/LI.svg" />
-        </SocialLink>;
+        return (
+          <SocialLink className="social" href={href}>
+            <img src="/static/LI.svg" />
+          </SocialLink>
+        );
         break;
       case '[facebook]':
-        <SocialLink className="social" href={href}>
-          <img src="/static/Facebook.svg" />
-        </SocialLink>;
+        return (
+          <SocialLink className="social" href={href}>
+            <img src="/static/Facebook.svg" />
+          </SocialLink>
+        );
         break;
       case '[instagram]':
-        <SocialLink className="social" href={href}>
-          <img src="/static/Instagram.svg" />
-        </SocialLink>;
+        return (
+          <SocialLink className="social" href={href}>
+            <img src="/static/Instagram.svg" />
+          </SocialLink>
+        );
         break;
       case '[pinterest]':
-        <SocialLink className="social" href={href}>
-          <img src="/static/Pinterest.svg" />
-        </SocialLink>;
+        return (
+          <SocialLink className="social" href={href}>
+            <img src="/static/Pinterest.svg" />
+          </SocialLink>
+        );
         break;
       default:
-        <a className="fancy-link" href={href}>
-          {renderNode(rest)}
-        </a>;
+        return (
+          <a className="fancy-link" href={href}>
+            {renderNode(rest)}
+          </a>
+        );
     }
   },
 
