@@ -42,13 +42,19 @@ export default function Footer() {
           </FindOurMoreButton>
         </GridItem>
         <GridItem>
-          <SocialLink href="">
+          <SocialLink
+            href="https://www.facebook.com/keepitloql"
+            target="_blank"
+          >
             <FacebookIcon />
           </SocialLink>
-          <SocialLink href="">
+          <SocialLink href="https://twitter.com/keepitloql" target="_blank">
             <TwitterIcon />
           </SocialLink>
-          <SocialLink href="">
+          <SocialLink
+            href="https://www.linkedin.com/company/loql"
+            target="_blank"
+          >
             <LinkedInIcon />
           </SocialLink>
         </GridItem>
