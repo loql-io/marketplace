@@ -1,3 +1,5 @@
+/*eslint no-unreachable: "error"*/
+
 import React from 'react';
 import styled from 'styled-components';
 import CrystallizeContentTransformer from '@crystallize/content-transformer/react';
@@ -6,24 +8,37 @@ const commonTransfomerOverrides = {
   // Example of a link override
   link({ metadata, renderNode, ...rest }) {
     const { href } = metadata;
-    if (rest.children[0].textContent === '[twitter]') {
-      return (
+
+    switch (rest.children[0].textContent) {
+      case '[twitter]':
         <SocialLink className="social" href={href}>
           <img src="/static/TW.svg" />
-        </SocialLink>
-      );
-    } else if (rest.children[0].textContent === '[linkedin]') {
-      return (
+        </SocialLink>;
+        break;
+      case '[linkedin]':
         <SocialLink className="social" href={href}>
           <img src="/static/LI.svg" />
-        </SocialLink>
-      );
-    } else {
-      return (
+        </SocialLink>;
+        break;
+      case '[facebook]':
+        <SocialLink className="social" href={href}>
+          <img src="/static/Facebook.svg" />
+        </SocialLink>;
+        break;
+      case '[instagram]':
+        <SocialLink className="social" href={href}>
+          <img src="/static/Instagram.svg" />
+        </SocialLink>;
+        break;
+      case '[pinterest]':
+        <SocialLink className="social" href={href}>
+          <img src="/static/Pinterest.svg" />
+        </SocialLink>;
+        break;
+      default:
         <a className="fancy-link" href={href}>
           {renderNode(rest)}
-        </a>
-      );
+        </a>;
     }
   },
 
@@ -47,6 +62,9 @@ const maxWidth = '100%';
 
 const SocialLink = styled.a`
   border-bottom: none;
+  img {
+    height: 30px;
+  }
 `;
 
 const PhoneContainer = styled.div`
