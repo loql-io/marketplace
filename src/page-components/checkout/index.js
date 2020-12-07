@@ -8,6 +8,10 @@ import CheckoutProgress from './checkout-progress';
 
 import { Outer, Container, ShopBadge } from './styles';
 
+import collectionIcon from '../../../public/static/collection.svg';
+import reviewIcon from '../../../public/static/review.svg';
+import paymentIcon from '../../../public/static/payment.svg';
+
 import Order from './order';
 import Payment from './payment';
 import Review from './review';
@@ -34,11 +38,11 @@ function Checkout() {
   const [checkoutProgressSteps, setCheckoutProgressSteps] = useState([
     {
       title: 'Your order',
-      imageSrc: ''
+      Icon: collectionIcon
     },
     {
       title: 'Review',
-      imageSrc: ''
+      Icon: reviewIcon
     }
   ]);
 
@@ -49,7 +53,7 @@ function Checkout() {
       setCheckoutChildren((prevState) => [...prevState, Payment]);
       setCheckoutProgressSteps((prevState) => [
         ...prevState,
-        { title: 'Payment', imageSrc: '' }
+        { title: 'Payment', Icon: paymentIcon }
       ]);
     }
   }, []);

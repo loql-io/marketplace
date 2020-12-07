@@ -10,7 +10,9 @@ import generateOrderModel from 'lib-api/util/generateOrderModel';
 
 export default function Payment({ checkoutState, onPrevious }) {
   const locale = useLocale();
+
   const router = useRouter();
+
   const { cart, metadata } = useBasket();
 
   // Handle locale with sub-path routing

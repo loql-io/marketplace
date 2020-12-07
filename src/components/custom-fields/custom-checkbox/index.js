@@ -9,7 +9,7 @@ export default function CustomCheckbox(props) {
     <Checkbox
       className={classes.checkbox}
       {...props}
-      icon={<img src="static/unchecked_checkbox.svg" />}
+      icon={<img src="/static/unchecked_checkbox.svg" />}
       checkedIcon={<img src="/static/checked_checkbox.svg" />}
     />
   );

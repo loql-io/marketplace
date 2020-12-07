@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import {
+  Fade,
   FormControl,
   FormControlLabel,
   Radio,
@@ -96,19 +97,26 @@ export default function Order({ onNext, checkoutState }) {
           )}
         </RadioGroup>
       </RadioGroupContainer>
-
       {value === 'collection' && (
-        <CollectionDetails
-          onNext={(state) => handleNext(state)}
-          checkoutState={checkoutState}
-        />
+        <Fade in={value === 'collection'} timeout={500}>
+          <div>
+            <CollectionDetails
+              onNext={(state) => handleNext(state)}
+              checkoutState={checkoutState}
+            />
+          </div>
+        </Fade>
       )}
 
       {value === 'delivery' && (
-        <DeliveryDetails
-          onNext={(state) => handleNext(state)}
-          checkoutState={checkoutState}
-        />
+        <Fade in={value === 'delivery'} timeout={500}>
+          <div>
+            <DeliveryDetails
+              onNext={(state) => handleNext(state)}
+              checkoutState={checkoutState}
+            />
+          </div>
+        </Fade>
       )}
     </div>
   );

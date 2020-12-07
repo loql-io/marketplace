@@ -194,8 +194,6 @@ function Form({
     }
   }
 
-  console.log(status);
-
   const checkError = (element) => {
     let helperID = 'card-error';
 
@@ -228,7 +226,7 @@ function Form({
 
   return (
     <div className={classes.formWrapper}>
-      {status === 'confirming' && <Loader message="Placing order" />}
+      {status === 'confirming' && <Loader message="Placing order..." />}
       <Typography
         component="h1"
         variant="h1"
@@ -337,16 +335,21 @@ export default function StripeWrapper({ paymentModel, ...props }) {
 
   useEffect(() => {
     async function getClientSecret() {
-      const { client_secret } = await doPost(
-        '/api/payment-providers/stripe/create-payment-intent',
-        {
-          body: JSON.stringify({
-            paymentModel
-          })
-        }
-      );
+      try {
+        const { client_secret } = await doPost(
+          '/api/payment-providers/stripe/create-payment-intent',
+          {
+            body: JSON.stringify({
+              paymentModel
+            })
+          }
+        );
 
-      setClientSecret(client_secret);
+        setClientSecret(client_secret);
+      } catch (error) {
+        //TODO set state to show error screen
+        console.log(error);
+      }
     }
 
     getClientSecret();
