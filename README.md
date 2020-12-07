@@ -31,7 +31,7 @@ Usage:
 
 ### Step 2:
 ```bash
-yarn bumpall <version>      without "v" eg. 0.0.2
+yarn bumpall <branch> <version>       without "v" eg. 0.0.2
 ```
 
 This will automatically bump all the shop repos to a specified version and then kick off a deployment.
