@@ -47,7 +47,7 @@ const Navgation = [
           {
             logo: '',
             name: 'Join',
-            url: 'https://matt775994.typeform.com/to/zlt7KAIk'
+            url: 'https://forms.gle/YRV4zeEsgUGSo9vS7'
           }
         ]
       }
