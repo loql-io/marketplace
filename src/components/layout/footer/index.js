@@ -4,6 +4,7 @@ import Link from 'next/link';
 import TwitterIcon from '../../../../public/static/TW.svg';
 import FacebookIcon from '../../../../public/static/Facebook.svg';
 import LinkedInIcon from '../../../../public/static/LI.svg';
+import data from '../../../../package.json';
 
 import {
   Outer,
@@ -15,7 +16,8 @@ import {
   Grid,
   GridItem,
   GridFooter,
-  SocialLink
+  SocialLink,
+  Version
 } from './styles';
 
 export default function Footer() {
@@ -83,6 +85,7 @@ export default function Footer() {
           </FooterLinks>
         </GridItem>
       </GridFooter>
+      <Version>{data.devDependencies['loql-marketplace']}</Version>
     </Outer>
   );
 }

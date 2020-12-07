@@ -134,3 +134,10 @@ export const SocialLink = styled.a`
     fill: #c0a9a8;
   }
 `;
+export const Version = styled.div`
+  color: #fff;
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  font-size: 9px;
+`;
