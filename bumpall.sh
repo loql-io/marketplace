@@ -1,10 +1,11 @@
 #!/bin/bash
-
-version=$1
+branch=$1
+version=$2
 
 bump_repo () {
   cd ..
   cd $1/
+  git checkout $branch || git checkout master || git checkout main
   git config pull.rebase false
   git pull
   dot-json package.json devDependencies.loql-marketplace "https://github.com/loql-io/marketplace.git#v$version"
