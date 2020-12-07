@@ -38,7 +38,10 @@ export default function Header({ simple, preview }) {
         </PreviewBar>
       )}
       <StyledAppBar position="static">
-        <Link href="/" passHref>
+        <Link
+          href={`https://loql.ly/${process.env.NEXT_PUBLIC_TOWN.toLowerCase()}`}
+          passHref
+        >
           <Logo>
             <Town>
               {process.env.NEXT_PUBLIC_TOWN

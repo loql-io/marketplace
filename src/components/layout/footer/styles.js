@@ -53,6 +53,7 @@ export const FooterText = styled.div`
     text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
+    padding: 0;
   }
 `;
 
@@ -64,19 +65,25 @@ export const FindOurMoreButton = styled(Button)`
   border-radius: 6px;
   color: #2f2b27;
   font-size: 14px !important;
+  ${responsive.xs} {
+    margin-bottom: 20px !important;
+  }
 `;
 
 export const Copyright = styled.span`
   color: #c0a9a8;
-  margin-top: 20px;
   display: inline-block;
+  text-align: center;
 `;
 
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   column-gap: 20px;
-  grid-template-columns: 25% auto 25%;
+  grid-template-columns: 25% auto 15% 15%;
+  ${responsive.sm} {
+    grid-template-columns: 25% auto 20% 20%;
+  }
   ${responsive.xs} {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -87,20 +94,43 @@ export const GridItem = styled.div`
 `;
 
 export const GridFooter = styled.div`
-  margin-right: 4.5%;
+  display: grid;
+  margin-top: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 20px;
+  grid-template-columns: 25% auto;
   ${responsive.xs} {
+    grid-template-columns: repeat(1, 1fr);
     margin-right: 0;
   }
 `;
 export const FooterLinks = styled.div`
   color: #c0a9a8;
   text-align: right;
-  margin-top: -20px;
   ${responsive.xs} {
     text-align: center;
     margin-top: 20px;
   }
   span {
     margin-right: 20px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+`;
+
+export const SocialLink = styled.a`
+  border-bottom: none;
+  margin-right: 10px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+  svg {
+    height: 30px;
+    width: 30px;
+  }
+  path {
+    fill: #c0a9a8;
   }
 `;

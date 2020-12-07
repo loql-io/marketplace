@@ -3,6 +3,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import CrystallizeContentTransformer from '@crystallize/content-transformer/react';
+import TwitterIcon from '../../public/static/TW.svg';
+import FacebookIcon from '../../public/static/Facebook.svg';
+import LinkedInIcon from '../../public/static/LI.svg';
+import InstagramIcon from '../../public/static/Instagram.svg';
+import PinterestIcon from '../../public/static/Pinterest.svg';
 
 const commonTransfomerOverrides = {
   // Example of a link override
@@ -12,36 +17,36 @@ const commonTransfomerOverrides = {
     switch (rest.children[0].textContent) {
       case '[twitter]':
         return (
-          <SocialLink className="social" href={href}>
-            <img src="/static/TW.svg" />
+          <SocialLink href={href}>
+            <TwitterIcon />
           </SocialLink>
         );
         break;
       case '[linkedin]':
         return (
-          <SocialLink className="social" href={href}>
-            <img src="/static/LI.svg" />
+          <SocialLink href={href}>
+            <LinkedInIcon />
           </SocialLink>
         );
         break;
       case '[facebook]':
         return (
-          <SocialLink className="social" href={href}>
-            <img src="/static/Facebook.svg" />
+          <SocialLink href={href}>
+            <FacebookIcon />
           </SocialLink>
         );
         break;
       case '[instagram]':
         return (
-          <SocialLink className="social" href={href}>
-            <img src="/static/Instagram.svg" />
+          <SocialLink href={href}>
+            <InstagramIcon />
           </SocialLink>
         );
         break;
       case '[pinterest]':
         return (
           <SocialLink className="social" href={href}>
-            <img src="/static/Pinterest.svg" />
+            <PinterestIcon />
           </SocialLink>
         );
         break;

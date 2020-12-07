@@ -1,6 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 
+import TwitterIcon from '../../../../public/static/TW.svg';
+import FacebookIcon from '../../../../public/static/Facebook.svg';
+import LinkedInIcon from '../../../../public/static/LI.svg';
+
 import {
   Outer,
   Logo,
@@ -10,7 +14,8 @@ import {
   Copyright,
   Grid,
   GridItem,
-  GridFooter
+  GridFooter,
+  SocialLink
 } from './styles';
 
 export default function Footer() {
@@ -23,15 +28,12 @@ export default function Footer() {
               <img src="/static/Dark-logo.svg" alt="" />
             </Logo>
           </a>
-          <Copyright>©2020 Loql</Copyright>
         </GridItem>
         <GridItem>
           <FooterText>
-            Loql is a not for profit organisation to help protect our high
-            streets. We believe that communities of businesses, working with
-            rather than against each other can provide a sustainable and
-            convenient experience to customers. Made with love right here in
-            Berko. <a href="https://loql.ly">Find out more</a>
+            Loql is a not for profit that helps high streets find resilience
+            through high quality, low cost digital tools that can be shared and
+            managed by the community.
           </FooterText>
         </GridItem>
         <GridItem>
@@ -39,8 +41,22 @@ export default function Footer() {
             Find out more
           </FindOurMoreButton>
         </GridItem>
+        <GridItem>
+          <SocialLink href="">
+            <FacebookIcon />
+          </SocialLink>
+          <SocialLink href="">
+            <TwitterIcon />
+          </SocialLink>
+          <SocialLink href="">
+            <LinkedInIcon />
+          </SocialLink>
+        </GridItem>
       </Grid>
       <GridFooter>
+        <GridItem>
+          <Copyright>©2020 Loql</Copyright>
+        </GridItem>
         <GridItem>
           <FooterLinks>
             <span>
