@@ -11,12 +11,12 @@ const Navgation = [
           },
           {
             logo: 'https://petals.loql.ly/img/logo.png',
-            name: 'Petals',
+            name: 'Petals Flowers',
             url: 'https://petals.loql.ly'
           },
           {
             logo: 'https://hamlins.loql.ly/img/logo.png',
-            name: 'Hamlins',
+            name: 'Hamlins Toys',
             url: 'https://hamlins.loql.ly'
           },
           {

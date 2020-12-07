@@ -43,35 +43,35 @@ const HomeNavgation = [
             image:
               'https://media.crystallize.com/florist/20/11/27/2/@1920/shutterstock_3536818912.webp',
             title: 'Seasonal arrangements',
-            intro: 'Fill your home with festive floral cheer',
+            intro: 'Fill Your Home With Festive Floral Cheer',
             url: 'https://petals.loql.ly/'
           },
 
           {
             image:
               'https://media.crystallize.com/berko-sports/20/12/4/17/@3200/adobestock_183505324.webp',
-            title: 'Trail shoes gifts',
-            intro: 'Take on those Ashridge hills!',
+            title: 'Trail Shoes Gifts',
+            intro: 'Take on Those Ashridge Hills!',
             url: 'https://berko-sports.loql.ly'
           },
           {
             image:
               'https://media.crystallize.com/creative-collective/20/11/29/1/@1024/hot-haveli.webp',
             title: 'Socially Conscious Gifts',
-            intro: 'A hothouse of lifestyle inspiration',
+            intro: 'A Hothouse of Lifestyle Inspiration',
             url: 'https://creative-collective.loql.ly/'
           },
           {
             image:
               'https://media.crystallize.com/hamlins-toys/20/12/4/3/adobestock_236592889.jpeg',
-            title: 'The best board games',
-            intro: 'Games to keep the whole family entertained',
+            title: 'The Best Board Games',
+            intro: 'Games to Keep the Whole Family Entertained',
             url: 'https://hamlins.loql.ly'
           },
           {
             image: 'https://loql-images.s3.us-east-1.amazonaws.com/xjwuMo2u3',
             title: 'Berkos Best Burgers',
-            intro: 'It has to be The Meating Room',
+            intro: 'It Has To Be The Meating Room',
             url: 'https://loql-ly.vercel.app/berkos-best-burgers'
           }
         ]
