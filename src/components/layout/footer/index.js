@@ -85,7 +85,11 @@ export default function Footer() {
           </FooterLinks>
         </GridItem>
       </GridFooter>
-      <Version>{data.devDependencies['loql-marketplace']}</Version>
+      <Version>
+        {data.devDependencies['loql-marketplace']
+          ? data.devDependencies['loql-marketplace'].split('#v').pop()
+          : ''}
+      </Version>
     </Outer>
   );
 }
