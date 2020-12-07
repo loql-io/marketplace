@@ -44,7 +44,7 @@ const HomeNavgation = [
               'https://media.crystallize.com/florist/20/11/27/2/@1920/shutterstock_3536818912.webp',
             title: 'Seasonal arrangements',
             intro: 'Fill Your Home With Festive Floral Cheer',
-            url: 'https://petals.loql.ly/'
+            url: 'https://petals.loql.ly/stories/seasonal-arrangements/'
           },
 
           {
@@ -52,21 +52,24 @@ const HomeNavgation = [
               'https://media.crystallize.com/berko-sports/20/12/4/17/@3200/adobestock_183505324.webp',
             title: 'Trail Shoes Gifts',
             intro: 'Take on Those Ashridge Hills!',
-            url: 'https://berko-sports.loql.ly'
+            url:
+              'https://berko-sports.loql.ly/collections/the-best-trail-shoes-for-2021/'
           },
           {
             image:
               'https://media.crystallize.com/creative-collective/20/11/29/1/@1024/hot-haveli.webp',
             title: 'Socially Conscious Gifts',
             intro: 'A Hothouse of Lifestyle Inspiration',
-            url: 'https://creative-collective.loql.ly/'
+            url:
+              'https://creative-collective.loql.ly/collections/socially-conscious-gifts'
           },
           {
             image:
               'https://media.crystallize.com/hamlins-toys/20/12/4/3/adobestock_236592889.jpeg',
             title: 'The Best Board Games',
             intro: 'Games to Keep the Whole Family Entertained',
-            url: 'https://hamlins.loql.ly'
+            url:
+              'https://hamlins.loql.ly/stories/games-to-keep-the-whole-family-entertained-this-christmas'
           },
           {
             image: 'https://loql-images.s3.us-east-1.amazonaws.com/xjwuMo2u3',
