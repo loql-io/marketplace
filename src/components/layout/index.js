@@ -60,21 +60,20 @@ export default function Layout({
   return (
     <>
       <Head>
-        <meta name="theme-color" content={theme.palette.primary.main} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GATAG}`}
+        />
         <script
           dangerouslySetInnerHTML={{
-            __html: `<!-- Global site tag (gtag.js) - Google Analytics -->
-                    <script async src="https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GATAG}"></script>
-                    <script>
-                      window.dataLayer = window.dataLayer || [];
-                      function gtag(){dataLayer.push(arguments);}
-                      gtag('js', new Date());
-                      gtag('config', '${process.env.NEXT_PUBLIC_GATAG}', { 'anonymize_ip': true });
-                    </script>
-                    {% endif %}`
+            __html: `window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GATAG}', { 'anonymize_ip': true });`
           }}
         />
+        <meta name="theme-color" content={theme.palette.primary.main} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title key="title">{`${shopName} - ${title}`}</title>
         {description && (
           <meta key="description" name="description" content={description} />
