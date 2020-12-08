@@ -124,7 +124,7 @@ export const Paragraphs = styled.div`
   font-size: 16px;
   line-height: 22px;
   margin: 20px 0;
-  min-height: 90px;
+  min-height: 110px;
   ${responsive.xs} {
     text-align: center;
   }
