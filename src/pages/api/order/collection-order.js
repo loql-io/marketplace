@@ -1,5 +1,8 @@
 import { createCrystallizeOrder } from 'lib-api/crystallize/order';
-import { emailOrderConfirmation } from 'lib-api/emails';
+import {
+  emailOrderConfirmation,
+  emailOrderConfirmationBusiness
+} from 'lib-api/emails';
 import collectionOrderNormalizer from 'lib-api/collection/order-normalizer';
 import { validatePaymentModel } from 'lib-api/util/checkout';
 
@@ -21,9 +24,15 @@ export default async (req, res) => {
       validCrystallizeOrder
     );
 
-    await emailOrderConfirmation(
-      createCrystallizeOrderResponse.data.orders.create.id
-    );
+    if (createCrystallizeOrderResponse?.data?.orders?.create?.id) {
+      await emailOrderConfirmation(
+        createCrystallizeOrderResponse.data.orders.create.id
+      );
+
+      await emailOrderConfirmationBusiness(
+        createCrystallizeOrderResponse.data.orders.create.id
+      );
+    }
 
     return res.status(200).send({
       success: true,
