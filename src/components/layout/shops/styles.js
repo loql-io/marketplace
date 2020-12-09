@@ -25,13 +25,16 @@ export const NavContainer = styled.div`
     grid-gap: 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    width: 700px;
+    margin: 0 auto;
 
     ${responsive.sm} {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
     }
 
     ${responsive.xs} {
       grid-template-columns: repeat(2, 1fr);
+      width: 340px;
     }
   }
   .collections {
