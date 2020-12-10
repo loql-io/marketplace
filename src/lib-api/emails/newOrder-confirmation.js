@@ -5,6 +5,7 @@ import newOrderShop from 'lib-api/emails/htmlTemplates/newOrder-shop';
 import { sendEmail } from './utils';
 
 export default async function sendOrderConfirmation(orderId) {
+  console.log(2, orderId);
   try {
     const response = await callOrdersApi({
       query: QUERY_ORDER_BY_ID,
@@ -13,8 +14,10 @@ export default async function sendOrderConfirmation(orderId) {
       },
       operationName: 'getOrder'
     });
+    console.log(3, response);
     const order = response.data.orders.get;
     const email = order.customer.identifier;
+    console.log(4, order, email);
     const logo = `<img src="https://${
       process.env.NEXT_PUBLIC_SHOP_SUBDOMAIN
         ? process.env.NEXT_PUBLIC_SHOP_SUBDOMAIN
@@ -54,6 +57,7 @@ export default async function sendOrderConfirmation(orderId) {
 
     if (response) {
       await sendEmail(newOrderEmails);
+      console.log(5, newOrderEmails[0].subject, newOrderEmails[1].subject);
     }
   } catch (error) {
     Promise.resolve(error.stack);
