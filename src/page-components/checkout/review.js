@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import { doPost } from 'lib/rest-api/helpers';
 import generateOrderModel from 'lib-api/util/generateOrderModel';
 import { useLocale } from 'lib/app-config';
+import Loader from 'components/Loader';
 
 const Container = styled.div`
   padding-top: 34px;
@@ -43,6 +44,8 @@ export default function Review({ onPrevious, onNext, checkoutState }) {
 
   const basket = useBasket();
 
+  const [loading, setLoading] = React.useState(false);
+
   const hasStripe = !!process.env.NEXT_PUBLIC_STRIPE_ACCOUNT_ID;
 
   const { house, street, city, phone, checkoutType } = checkoutState;
@@ -52,6 +55,7 @@ export default function Review({ onPrevious, onNext, checkoutState }) {
       return onNext();
     }
 
+    setLoading(true);
     // Handle locale with sub-path routing
     let multilingualUrlPrefix = '';
     if (window.location.pathname.startsWith(`/${router.locale}/`)) {
@@ -85,11 +89,13 @@ export default function Review({ onPrevious, onNext, checkoutState }) {
       scrollTo(0, 0);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   }
 
   return (
     <Container>
+      {loading && <Loader message="Placing order..." />}
       <CartItemsTable basket={basket} checkoutType={checkoutType} />
       {checkoutState.checkoutType === 'delivery' && (
         <CheckoutTypeContainer>
