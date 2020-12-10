@@ -38,6 +38,7 @@ export default `
         customer {
           firstName
           lastName
+          identifier
           addresses {
             type
             email

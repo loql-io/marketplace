@@ -1,9 +1,8 @@
-import { callOrdersApi } from 'lib-api/crystallize';
 import QUERY_ORDER_BY_ID from 'lib-api/crystallize/graph/queries/order-by-id';
+import { callOrdersApi } from 'lib-api/crystallize';
+import newOrderCustomer from 'lib-api/emails/htmlTemplates/newOrder-customer';
+import newOrderShop from 'lib-api/emails/htmlTemplates/newOrder-shop';
 import { sendEmail } from './utils';
-
-import newOrderCustomer from './htmlTemplates/newOrder-customer';
-import newOrderShop from './htmlTemplates/newOrder-shop';
 
 export default async function sendOrderConfirmation(orderId) {
   try {
@@ -15,8 +14,7 @@ export default async function sendOrderConfirmation(orderId) {
       operationName: 'getOrder'
     });
     const order = response.data.orders.get;
-    const { email } = order.customer.addresses[0];
-
+    const email = order.customer.identifier;
     const logo = `<img src="https://${
       process.env.NEXT_PUBLIC_SHOP_SUBDOMAIN
         ? process.env.NEXT_PUBLIC_SHOP_SUBDOMAIN

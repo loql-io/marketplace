@@ -24,6 +24,14 @@ const OrderNumText = styled(Typography)`
   font-weight: 800;
   color: #816e68;
   padding: 20px 0;
+  span {
+    text-overflow: ellipsis;
+    margin: -8px 0;
+    width: 80px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+  }
 `;
 
 const Spacer = styled.div`
@@ -54,7 +62,7 @@ export default function Confirmation({ order: orderData }) {
     }
   }, [emptied, basket]);
 
-  const order = orderData.data.orders?.get;
+  const order = orderData.data.orders.get;
 
   useEffect(() => {
     if (!order) {
@@ -64,11 +72,7 @@ export default function Confirmation({ order: orderData }) {
     }
   }, [order]);
 
-  const orderNum = React.useMemo(() => {
-    const { id } = order;
-
-    return id.substr(id.length - 4, id.length);
-  }, [order]);
+  const orderNum = order.id;
 
   if (!order) {
     return <Layout loading />;
@@ -92,7 +96,9 @@ export default function Confirmation({ order: orderData }) {
             }}
           />
           <Title variant="h1">All done!</Title>
-          <OrderNumText variant="h4">{`Order no. *${orderNum}`}</OrderNumText>
+          <OrderNumText variant="h4">
+            Order no. #<span>{orderNum}</span>
+          </OrderNumText>
           <Typography variant="body1">
             Your order has been received by
           </Typography>
