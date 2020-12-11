@@ -19,7 +19,8 @@ export default async (req, res) => {
 
     if (createCrystallizeOrderResponse.data.orders.create.id) {
       await emailOrderConfirmation(
-        createCrystallizeOrderResponse.data.orders.create.id
+        createCrystallizeOrderResponse.data.orders.create.id,
+        req.body
       );
     }
 

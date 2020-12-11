@@ -1,8 +1,15 @@
 import { formatCurrency } from 'lib/currency';
-
 const styles = require('./styles');
 
-export default function newOrderShop(order, email, subjectLine, logo) {
+export default function newOrderShopEmail(
+  order,
+  email,
+  subjectLine,
+  logo,
+  orderId,
+  total,
+  currency
+) {
   const html = `<!doctype html>
   <html lang="en">
     <head>
@@ -30,9 +37,7 @@ export default function newOrderShop(order, email, subjectLine, logo) {
                 <tr>
                   <td align="center" style="padding: 20px;">
                     <h1 class="main-header">Order confirmed</h1>
-                    <h2 style="color: #816E68; font-size: 24px; line-height: 28px; font-weight: 600; padding-bottom: 20px">Order ID: ${
-                      order.id
-                    }</h2>
+                    <h2 style="color: #816E68; font-size: 24px; line-height: 28px; font-weight: 600; padding-bottom: 20px">Order ID: ${orderId}</h2>
                     <p style="font-size: 16px; line-height: 22px">
                       ${subjectLine}
                     </p>
@@ -65,8 +70,8 @@ export default function newOrderShop(order, email, subjectLine, logo) {
                           <td class="body-copy" style="padding-bottom: 10px"></td>
                           <td class="body-copy body-copy-bold" style="padding-bottom: 10px; text-align: right">
                             ${formatCurrency({
-                              amount: order.total.gross,
-                              currency: order.total.currency
+                              amount: total,
+                              currency: currency
                             })}
                           </td>
                         </tr>
