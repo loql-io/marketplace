@@ -1,10 +1,9 @@
-let hostName =
-  'https://crystallize-nextjs-boilerplate-git-search.crystallize.vercel.app';
+let hostName = `https://${process.env.NEXT_PUBLIC_SHOP_SUBDOMAIN}.loql.vercel.app`;
 if (typeof window !== 'undefined') {
   const l = window.location;
   hostName = `${l.protocol}//${l.host}`;
 }
-
+console.log('hostName', hostName);
 export const doPost = async (url, options) => {
   try {
     const opts = {
@@ -21,7 +20,6 @@ export const doPost = async (url, options) => {
     }
 
     const response = await fetch(`${hostName}${url}`, opts);
-
     return response.json();
   } catch (error) {
     return {

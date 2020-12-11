@@ -18,7 +18,10 @@ export default async (req, res) => {
     const createCrystallizeOrderResponse = await createCrystallizeOrder(
       validCrystallizeOrder
     );
-
+    console.log(
+      'createCrystallizeOrderResponse',
+      createCrystallizeOrderResponse
+    );
     await emailOrderConfirmation(
       createCrystallizeOrderResponse.data.orders.create.id
     );
