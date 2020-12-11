@@ -17,9 +17,11 @@ export default async (req, res) => {
       validCrystallizeOrder
     );
 
-    await emailOrderConfirmation(
-      createCrystallizeOrderResponse.data.orders.create.id
-    );
+    if (createCrystallizeOrderResponse.data.orders.create.id) {
+      await emailOrderConfirmation(
+        createCrystallizeOrderResponse.data.orders.create.id
+      );
+    }
 
     return res.status(200).send({
       success: true,

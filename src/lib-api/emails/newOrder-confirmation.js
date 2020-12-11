@@ -55,7 +55,7 @@ export default async function sendOrderConfirmation(orderId) {
       }
     ];
 
-    if (response) {
+    if (order) {
       await sendEmail(newOrderEmails);
       console.log(5, newOrderEmails[0].subject, newOrderEmails[1].subject);
     }

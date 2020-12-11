@@ -18,13 +18,12 @@ export default async (req, res) => {
     const createCrystallizeOrderResponse = await createCrystallizeOrder(
       validCrystallizeOrder
     );
-    console.log(
-      'createCrystallizeOrderResponse',
-      createCrystallizeOrderResponse
-    );
-    await emailOrderConfirmation(
-      createCrystallizeOrderResponse.data.orders.create.id
-    );
+
+    if (createCrystallizeOrderResponse.data.orders.create.id) {
+      await emailOrderConfirmation(
+        createCrystallizeOrderResponse.data.orders.create.id
+      );
+    }
 
     return res.status(200).send({
       success: true,
