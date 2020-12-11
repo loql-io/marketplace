@@ -27,12 +27,18 @@ const StrongText = styled(Typography)`
 `;
 
 async function persistCollectionOrder({ orderModel }) {
-  console.log(orderModel);
-  const { data } = await doPost('/api/order/collection-order', {
-    body: JSON.stringify({
-      orderModel
-    })
-  });
+  console.log(
+    `${window.location.origin}/api/order/collection-order`,
+    orderModel
+  );
+  const { data } = await doPost(
+    `${window.location.origin}/api/order/collection-order`,
+    {
+      body: JSON.stringify({
+        orderModel
+      })
+    }
+  );
 
   return data.orders.create.id;
 }

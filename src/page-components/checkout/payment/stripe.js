@@ -68,7 +68,7 @@ const validationSchema = Yup.object().shape({
 // Persist by create order in Crystallize
 async function persistOrder({ paymentIntent, paymentModel }) {
   const { data } = await doPost(
-    '/api/payment-providers/stripe/order-persistence',
+    `${window.location.origin}/api/payment-providers/stripe/order-persistence`,
     {
       body: JSON.stringify({
         paymentIntentId: paymentIntent.id,
@@ -337,7 +337,7 @@ export default function StripeWrapper({ paymentModel, ...props }) {
     async function getClientSecret() {
       try {
         const { client_secret } = await doPost(
-          '/api/payment-providers/stripe/create-payment-intent',
+          `${window.location.origin}/api/payment-providers/stripe/create-payment-intent`,
           {
             body: JSON.stringify({
               paymentModel

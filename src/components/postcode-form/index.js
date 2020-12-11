@@ -44,7 +44,7 @@ const PostCodeForm = ({ formik }) => {
 
     const { postcode } = formik.values;
 
-    doGet(`/api/postcode/${postcode}`)
+    doGet(`${window.location.origin}/api/postcode/${postcode}`)
       .then((data) => {
         setLoader(false);
         if (data) {

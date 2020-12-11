@@ -1,9 +1,11 @@
+/*
 let hostName = `https://${process.env.NEXT_PUBLIC_SHOP_SUBDOMAIN}.loql.vercel.app`;
 if (typeof window !== 'undefined') {
   const l = window.location;
   hostName = `${l.protocol}//${l.host}`;
 }
 console.log('hostName', hostName);
+*/
 export const doPost = async (url, options) => {
   try {
     const opts = {
@@ -19,7 +21,7 @@ export const doPost = async (url, options) => {
       opts.body = JSON.stringify(opts.body);
     }
 
-    const response = await fetch(`${hostName}${url}`, opts);
+    const response = await fetch(`${url}`, opts);
     return response.json();
   } catch (error) {
     return {
@@ -29,5 +31,5 @@ export const doPost = async (url, options) => {
 };
 
 export function doGet(url, options) {
-  return fetch(`${hostName}${url}`, options).then((r) => r.json());
+  return fetch(`${url}`, options).then((r) => r.json());
 }
