@@ -6,7 +6,8 @@ import { sendEmail } from './utils';
 
 export default async function sendOrderConfirmation(orderId, body) {
   console.log(2, orderId);
-  console.log(body.orderModel.cart);
+  console.log(body?.orderModel?.cart);
+  console.log(body?.paymentModel?.cart);
 
   try {
     /*
@@ -22,8 +23,10 @@ export default async function sendOrderConfirmation(orderId, body) {
     //const order = response.data.orders.get;
     //const email = order.customer.identifier;
 
-    const order = body.orderModel;
-    const email = body.orderModel.customer.identifier;
+    const order = body?.orderModel ? body.orderModel : body.paymentModel;
+    const email = body?.orderModel
+      ? body.orderModel.customer.identifier
+      : body.paymentModel.customer.identifier;
     console.log(3, order, email);
     const logo = `<img src="https://${
       process.env.NEXT_PUBLIC_SHOP_SUBDOMAIN
