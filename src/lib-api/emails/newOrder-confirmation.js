@@ -41,7 +41,7 @@ export default async function sendOrderConfirmation(orderId, body) {
       process.env.NEXT_PUBLIC_SHOP_NAME
         ? process.env.NEXT_PUBLIC_SHOP_NAME
         : process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER
-    } (${order.id})`;
+    } (${orderId})`;
 
     const total = order.cart.reduce(
       (a, item) => a + item.price.gross * item.quantity,
@@ -78,13 +78,6 @@ export default async function sendOrderConfirmation(orderId, body) {
 
     if (order) {
       await sendEmail(newOrderEmails);
-      console.log(
-        4,
-        total,
-        currency,
-        newOrderEmails[0].subject,
-        newOrderEmails[1].subject
-      );
     }
   } catch (error) {
     Promise.resolve(error.stack);
