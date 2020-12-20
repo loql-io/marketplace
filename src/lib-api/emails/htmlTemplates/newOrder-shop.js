@@ -88,6 +88,9 @@ export default function newOrderShopEmail(
                     <p class="body-copy">
                       ${email}
                     </p>
+                    <p class="body-copy">
+                      ${order.customer.addresses[0].phone}
+                    </p>
                   </td>
                 </tr>
               </tbody>
