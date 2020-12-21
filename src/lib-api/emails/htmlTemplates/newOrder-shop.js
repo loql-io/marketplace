@@ -1,4 +1,6 @@
 import { formatCurrency } from 'lib/currency';
+import { getAddress } from './partials/address';
+
 const styles = require('./styles');
 
 export default function newOrderShopEmail(
@@ -41,6 +43,9 @@ export default function newOrderShopEmail(
                     <p style="font-size: 16px; line-height: 22px">
                       ${subjectLine}
                     </p>
+                    <h2 style="color: #f26968; font-size: 24px; line-height: 28px; font-weight: 600; padding: 20px; text-transform: capitalize;">${
+                      order.additionalInformation
+                    }</h2>
                   </td>
                 </tr>
                 <tr>
@@ -91,6 +96,7 @@ export default function newOrderShopEmail(
                     <p class="body-copy">
                       ${order.customer.addresses[0].phone}
                     </p>
+                    ${getAddress(order)}
                   </td>
                 </tr>
               </tbody>

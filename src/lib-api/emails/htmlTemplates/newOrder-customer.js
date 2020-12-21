@@ -1,4 +1,5 @@
 import { formatCurrency } from 'lib/currency';
+import { getAddress } from './partials/address';
 
 const styles = require('./styles');
 
@@ -90,6 +91,7 @@ export default function newOrderCustomer(
                     <p class="body-copy">
                       ${email}
                     </p>
+                    ${getAddress(order)}
                   </td>
                 </tr>
                 <tr>

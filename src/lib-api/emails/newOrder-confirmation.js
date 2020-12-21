@@ -1,5 +1,3 @@
-//import QUERY_ORDER_BY_ID from 'lib-api/crystallize/graph/queries/order-by-id';
-//import { callOrdersApi } from 'lib-api/crystallize';
 import newOrderCustomer from 'lib-api/emails/htmlTemplates/newOrder-customer';
 import newOrderShop from 'lib-api/emails/htmlTemplates/newOrder-shop';
 import { sendEmail } from './utils';
@@ -7,9 +5,11 @@ import { sendEmail } from './utils';
 export default async function sendOrderConfirmation(orderId, body) {
   try {
     const order = body?.orderModel ? body.orderModel : body.paymentModel;
+
     const email = body?.orderModel
       ? body.orderModel.customer.identifier
       : body.paymentModel.customer.identifier;
+
     const logo = `<img src="https://${
       process.env.NEXT_PUBLIC_SHOP_SUBDOMAIN
         ? process.env.NEXT_PUBLIC_SHOP_SUBDOMAIN
@@ -32,6 +32,7 @@ export default async function sendOrderConfirmation(orderId, body) {
       (a, item) => a + item.price.gross * item.quantity,
       0
     );
+
     const currency = order.cart[0].price.currency;
 
     const newOrderEmails = [
@@ -60,7 +61,6 @@ export default async function sendOrderConfirmation(orderId, body) {
         isMultiple: true
       }
     ];
-
     if (order) {
       await sendEmail(newOrderEmails);
     }

@@ -78,7 +78,13 @@ export default function Confirmation({ order: orderData }) {
     return <Layout loading />;
   }
 
-  const { house, street, city, phone } = order.customer.addresses[0];
+  const {
+    streetNumber,
+    street,
+    city,
+    phone,
+    postalCode
+  } = order.customer.addresses[0];
 
   const { additionalInformation: checkoutType } = basketCopy.metadata;
 
@@ -110,7 +116,7 @@ export default function Confirmation({ order: orderData }) {
           {checkoutType === 'delivery' && (
             <CheckoutTypeContainer>
               <StrongText variant="h4">Delivery</StrongText>
-              <Typography variant="body1">{`${house} ${street} ${city}`}</Typography>
+              <Typography variant="body1">{`${streetNumber} ${street} ${postalCode} ${city}`}</Typography>
               <Typography variant="body1">{phone}</Typography>
             </CheckoutTypeContainer>
           )}

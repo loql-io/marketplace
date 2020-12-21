@@ -42,6 +42,12 @@ export default `
           addresses {
             type
             email
+            street
+            street2
+            streetNumber
+            postalCode
+            city
+            phone
           }
         }
       }
