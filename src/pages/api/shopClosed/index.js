@@ -31,7 +31,6 @@ export const shopClosed = async () => {
         fragment component on Component {
         name
         type
-        id
         content {
           ...booleanContent
         }
