@@ -59,6 +59,7 @@ export default `
         ...gridRelations
         ...propertiesTableContent
         ...dateTimeContent
+        ...booleanContent
       }
     }
   }
@@ -197,6 +198,9 @@ export default `
     }
   }
 
+  fragment booleanContent on BooleanContent{
+      value
+  }
   fragment propertiesTableContent on PropertiesTableContent {
     sections {
       title

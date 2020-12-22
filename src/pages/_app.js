@@ -4,15 +4,21 @@ import { BasketProvider } from 'components/basket';
 import { simplyFetchFromGraph } from 'lib/graph';
 import { getLocaleFromContext, defaultLocale } from 'lib/app-config';
 import { I18nextProvider } from 'lib/i18n';
+import { shopClosed } from './api/shopClosed';
+import ClosedModal from 'components/ClosedModal';
 
 function MyApp({ Component, pageProps, commonData }) {
   const { mainNavigation, locale, localeResource } = commonData;
+
   return (
     <>
       <I18nextProvider locale={locale} localeResource={localeResource}>
         <SettingsProvider mainNavigation={mainNavigation}>
           <AuthProvider>
             <BasketProvider>
+              {commonData?.isShopClosed && (
+                <ClosedModal message="Sorry, we're now closed for the holidays." />
+              )}
               <Component {...pageProps} />
             </BasketProvider>
           </AuthProvider>
@@ -27,6 +33,8 @@ MyApp.getInitialProps = async function ({ router }) {
     const locale = getLocaleFromContext(router);
 
     const localeResource = await import(`../locales/${locale.appLanguage}`);
+
+    const isShopClosed = await shopClosed();
 
     /**
      * Get shared data for all pages
@@ -64,6 +72,9 @@ MyApp.getInitialProps = async function ({ router }) {
         localeResource: localeResource.default,
         locale,
         tenant,
+        isShopClosed: isShopClosed?.catalogue?.components?.filter(
+          (i) => i.name === 'Shop Closed'
+        )?.[0]?.content?.value,
         mainNavigation: mainNavigation?.filter((i) => !i.name.startsWith('_'))
       }
     };
