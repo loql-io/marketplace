@@ -19,7 +19,7 @@ export async function getData({ asPath, language, preview = null }) {
       version: preview ? 'draft' : 'published'
     }
   });
-  //console.log(data);
+
   return { ...data, preview };
 }
 
@@ -35,7 +35,7 @@ export default function FolderPage({ folder, preview }) {
     <Layout title={folder.name} preview={preview}>
       <Outer>
         <Header centerContent>
-          <H1>Berkhamsted Sports</H1>
+          <H1>{folder.name}</H1>
           <ShapeComponents components={rest} />
         </Header>
         {gridRelations?.length > 0

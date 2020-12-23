@@ -13,6 +13,7 @@ import Images from './images';
 import Videos from './videos';
 import ItemRelations from './item-relations';
 import GridRelations from './grid-relations';
+import Products from '../../../page-components/products';
 
 const ContentOuter = styled.div`
   margin: 1em var(--content-padding);
@@ -77,9 +78,7 @@ const ShapeComponents = ({ components, overrides }) => {
             if (!component.content.paragraphs) {
               return null;
             }
-
             Component = Component || ParagraphCollection;
-            //console.log(component.content.paragraphs)
             return (
               <Component key={key} paragraphs={component.content.paragraphs} />
             );
@@ -150,6 +149,12 @@ const ShapeComponents = ({ components, overrides }) => {
           if (type === 'gridRelations') {
             Component = Component || GridRelations;
             return <Component key={key} grids={component.content.grids} />;
+          }
+
+          if (type === 'boolean' && component.name === 'Products Filter') {
+            if (component.content.value) {
+              return <Products key={key} />;
+            }
           }
 
           if (process.env.NODE_ENV !== 'production') {
