@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { simplyFetchFromGraph } from 'lib/graph';
-import { Outer, Header, H1 } from 'ui';
+import { Outer, Header } from 'ui';
 import Layout from 'components/layout';
 import Grid, { GridItem } from 'components/grid';
 import ShapeComponents from 'components/shape/components';
 import ItemMicroformat from 'components/item-microformat';
 
-import { List } from './styles';
+import { List, SectionTitle } from './styles';
 import query from './query';
 
 export async function getData({ asPath, language, preview = null }) {
@@ -35,7 +35,7 @@ export default function FolderPage({ folder, preview }) {
     <Layout title={folder.name} preview={preview}>
       <Outer>
         <Header centerContent>
-          <H1>{folder.name}</H1>
+          <SectionTitle>{folder.name}</SectionTitle>
           <ShapeComponents components={rest} />
         </Header>
         {gridRelations?.length > 0

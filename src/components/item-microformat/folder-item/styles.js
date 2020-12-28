@@ -17,10 +17,10 @@ export const Outer = styled.a`
 `;
 
 export const ImageWrapper = styled.div`
-  position: relative;
+  /*position: relative;*/
   z-index: 1;
-  overflow: hidden;
-  height: 100%;
+  /*overflow: hidden;*/
+  /*height: 100%;*/
 `;
 
 export const Img = styled(Image)`

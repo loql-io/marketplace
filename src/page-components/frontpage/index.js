@@ -42,7 +42,7 @@ export default function FrontPage({ catalogue, preview }) {
   ///console.log(componentsRest[1].content.grids[0].rows[0].columns[0].item?.components)
 
   return (
-    <Layout title={catalogue.name} preview={preview}>
+    <Layout title={catalogue?.name} preview={preview}>
       <Outer>
         <Header centerContent>
           {process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER === 'loql' ? (
