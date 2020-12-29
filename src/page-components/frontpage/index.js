@@ -40,7 +40,6 @@ export async function getData({ language, preview = null }) {
 export default function FrontPage({ catalogue, preview }) {
   const componentsRest = catalogue?.components?.filter((c) => c.name);
   ///console.log(componentsRest[1].content.grids[0].rows[0].columns[0].item?.components)
-
   return (
     <Layout title={catalogue?.name} preview={preview}>
       <Outer>
