@@ -73,9 +73,7 @@ export const Body = styled.div`
   }
 `;
 
-export const Text = styled.div`
-  margin-bottom: 100px;
-`;
+export const Text = styled.div``;
 
 export const Button = styled(PrimaryButton)`
   background-color: #2f2b27 !important;
