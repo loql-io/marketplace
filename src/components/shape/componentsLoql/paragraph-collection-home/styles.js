@@ -7,10 +7,44 @@ export const Paragraphs = styled.div``;
 
 export const Outer = styled.div`
   margin: 0;
-  height: 320px;
-  background-size: cover;
-  background-position: center;
+  height: 280px;
+  background-color: #2f2b27;
   width: 100%;
+  ${responsive.smAndLess} {
+    height: auto;
+  }
+  padding-top: 20px;
+`;
+export const Content = styled.div`
+  display: inline-block;
+  max-width: 400px;
+  margin-top: 30px;
+  /*border: 1px solid;*/
+  ${responsive.smAndLess} {
+    margin-top: 20px;
+    max-width: auto;
+  }
+`;
+export const Image = styled.div`
+  background-size: auto;
+  background-position: right;
+  width: 50%;
+  height: 220px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  float: left;
+  margin-top: 10px;
+
+  /*border: 1px solid;*/
+  ${responsive.smAndLess} {
+    background-size: contain;
+    background-position: center;
+    margin: 0 auto;
+    height: 180px;
+    display: block;
+    float: none;
+    width: 80%;
+  }
 `;
 
 export const Title = styled.div`
@@ -18,20 +52,11 @@ export const Title = styled.div`
     font-family: Nunito Sans;
     font-weight: 900;
     font-size: 44px;
-    line-height: 45px;
     text-align: center;
     letter-spacing: -0.02em;
     color: #fff;
-    padding-top: 130px;
     margin: 0 auto 20px auto;
-    width: 500px;
-
-    ${responsive.xs} {
-      padding-top: 160px !important;
-      font-size: 30px;
-      line-height: 30px;
-      width: 300px;
-    }
+    line-height: 46px;
   }
 `;
 
