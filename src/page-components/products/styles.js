@@ -35,19 +35,22 @@ export const Items = styled.div`
   margin: 0 0 18px 18px;
   & img {
     display: block;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
     width: 100%;
     height: 100%;
+    /*
     -webkit-transform: scale(1);
     transform: scale(1);
     -webkit-transition: 0.3s ease-in-out;
     transition: 0.3s ease-in-out;
+    */
   }
+  /*
   &:hover img {
     -webkit-transform: scale(1.2);
     transform: scale(1.2);
-  }
+  }*/
   &:hover a {
     text-decoration: none;
   }
