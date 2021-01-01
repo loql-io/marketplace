@@ -26,14 +26,17 @@ const Products = () => {
     setProductsData(data);
   };
 
-  useEffect(async () => {
-    const responseCategories = await categories();
-    const filtered = responseCategories.topics[0].children.filter(
-      (item) => item.items.edges
-    );
-    setCategoryData(responseCategories.topics[0].children);
-    setProductsData(filtered[0].items.edges);
-    setSelectedFilter(filtered[0].name);
+  useEffect(() => {
+    async function fetchData() {
+      const responseCategories = await categories();
+      const filtered = responseCategories.topics[0].children.filter(
+        (item) => item.items.edges
+      );
+      setCategoryData(responseCategories.topics[0].children);
+      setProductsData(filtered[0].items.edges);
+      setSelectedFilter(filtered[0].name);
+    }
+    fetchData();
   }, []);
 
   return (
