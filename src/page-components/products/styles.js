@@ -68,6 +68,7 @@ export const ItemName = styled.div`
   font-size: 16px;
   line-height: 22px;
   margin-top: 10px;
+  width: 146px;
 `;
 
 export const ItemPrice = styled.div`
@@ -82,7 +83,7 @@ export const FadeIn = styled.div`
   -moz-animation: fadeIn ease 1.5s;
   -o-animation: fadeIn ease 1.5s;
   -ms-animation: fadeIn ease 1.5s;
-  display: inline-block;
+  display: inline-flex;
 
   @keyframes fadeIn {
     0% {
