@@ -18,9 +18,10 @@ export const Outer = styled.div`
 export const Content = styled.div`
   display: inline-block;
   max-width: 400px;
-  margin-top: 30px;
+  top: -30px;
+  position: relative;
   ${responsive.smAndLess} {
-    margin-top: 20px;
+    margin-top: 50px;
     max-width: auto;
   }
 `;
