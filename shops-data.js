@@ -33,6 +33,11 @@ const HomeNavgation = [
             logo: 'https://loql-images.s3.us-east-1.amazonaws.com/GJWwv3hS-',
             name: 'The Meating Room',
             url: 'https://app.loql.io/order/the-meating-room'
+          },
+          {
+            logo: 'https://loql-images.s3.us-east-1.amazonaws.com/7q6XggFsu',
+            name: 'The Olive Tree',
+            url: 'https://app.loql.io/order/the-olive-tree'
           }
         ]
       },
@@ -41,10 +46,10 @@ const HomeNavgation = [
         content: [
           {
             image:
-              'https://media.crystallize.com/florist/20/11/27/2/@1920/shutterstock_3536818912.webp',
-            title: 'Seasonal arrangements',
-            intro: 'Fill Your Home With Festive Floral Cheer',
-            url: 'https://petals.loql.ly/stories/seasonal-arrangements/'
+              'https://media.crystallize.com/florist/20/11/27/3/@1920/shutterstock_1151925305.webp',
+            title: 'Floral Gift Ideas',
+            intro: 'Cheer someone up during lockdown',
+            url: 'https://petals.loql.ly/stories/floral-gift-ideas/'
           },
 
           {
