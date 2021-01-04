@@ -33,6 +33,11 @@ const Navgation = [
             logo: 'https://loql-images.s3.us-east-1.amazonaws.com/GJWwv3hS-',
             name: 'The Meating Room',
             url: 'https://app.loql.io/order/the-meating-room'
+          },
+          {
+            logo: 'https://loql-images.s3.us-east-1.amazonaws.com/7q6XggFsu',
+            name: 'The Olive Tree',
+            url: 'https://app.loql.io/order/the-olive-tree'
           }
         ]
       },
