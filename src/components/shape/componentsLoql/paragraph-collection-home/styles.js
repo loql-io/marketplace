@@ -19,7 +19,6 @@ export const Content = styled.div`
   display: inline-block;
   max-width: 400px;
   margin-top: 30px;
-  /*border: 1px solid;*/
   ${responsive.smAndLess} {
     margin-top: 20px;
     max-width: auto;
@@ -27,15 +26,13 @@ export const Content = styled.div`
 `;
 export const Image = styled.div`
   background-size: auto;
-  background-position: right;
-  width: 50%;
+  background-position: center;
+  width: 400px;
   height: 220px;
   display: inline-block;
   background-repeat: no-repeat;
-  float: left;
   margin-top: 10px;
 
-  /*border: 1px solid;*/
   ${responsive.smAndLess} {
     background-size: contain;
     background-position: center;
