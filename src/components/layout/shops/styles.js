@@ -19,7 +19,9 @@ export const NavContainer = styled.div`
   .eating {
     grid-gap: 20px;
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    width: 340px;
+    margin: 0 auto;
   }
   .shops {
     grid-gap: 20px;
