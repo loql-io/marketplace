@@ -30,38 +30,40 @@ export const Chip = styled.div`
     background: #e9e2df;
   }
 `;
-
+export const ProductItems = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 4fr));
+  grid-gap: 80px 40px;
+  padding: 0 20px 40px 20px;
+  ${responsive.smAndLess} {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 4fr));
+    grid-gap: 20px;
+  }
+`;
 export const Items = styled.div`
-  margin: 0 0 18px 18px;
   & img {
     display: block;
-    object-fit: contain;
+    object-fit: scale-down;
     object-position: center;
     width: 100%;
-    height: 100%;
-    /*
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-transition: 0.3s ease-in-out;
-    transition: 0.3s ease-in-out;
-    */
+    max-height: 320px;
+
+    ${responsive.smAndLess} {
+      object-fit: contain;
+      max-height: 160px;
+    }
   }
-  /*
-  &:hover img {
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
-  }*/
   &:hover a {
     text-decoration: none;
   }
 `;
 
 export const ImageContainer = styled.div`
-  width: 146px;
-  height: 146px;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  ${responsive.xs} {
-    width: 160px;
+  ${responsive.smAndLess} {
+    width: 100%;
     height: 160px;
   }
 `;
@@ -71,7 +73,6 @@ export const ItemName = styled.div`
   font-size: 16px;
   line-height: 22px;
   margin-top: 10px;
-  width: 146px;
 `;
 
 export const ItemPrice = styled.div`

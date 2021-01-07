@@ -5,7 +5,7 @@ export const Paragraphs = styled.div``;
 
 export const Outer = styled.div`
   margin: 0;
-  height: 300px;
+  height: 140px;
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -30,14 +30,14 @@ export const Title = styled.div`
 `;
 
 export const Body = styled.div`
-  width: 600px;
-  margin: 0 auto;
-  ${responsive.xs} {
-    width: 100%;
-    padding: 0 20px;
+  width: 100%;
+  margin-top: 20px;
+  margin-left: 20px;
+  & p {
+    text-align: left !important;
   }
 `;
 
 export const Text = styled.div`
-  margin-bottom: 100px;
+  /*margin-bottom: 100px;*/
 `;

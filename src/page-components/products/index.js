@@ -10,7 +10,8 @@ import {
   ImageContainer,
   ItemName,
   ItemPrice,
-  FadeIn
+  FadeIn,
+  ProductItems
 } from './styles';
 
 const Products = () => {
@@ -55,27 +56,30 @@ const Products = () => {
             )
         )}
       </Chips>
-      {productsData.map(
-        (item, index) =>
-          item.node.variants && (
-            <FadeIn key={index}>
-              <Items>
-                <a href={`${item.node.path}`}>
-                  <ImageContainer>
-                    <img src={item.node.variants[0].images[0].url} />
-                  </ImageContainer>
-                  <ItemName>{item.node.variants[0].name}</ItemName>
-                  <ItemPrice>
-                    {t('common.price', {
-                      value: item.node.variants[0].price,
-                      currency: item.node.variants[0].priceVariants[0].currency
-                    })}
-                  </ItemPrice>
-                </a>
-              </Items>
-            </FadeIn>
-          )
-      )}
+      <ProductItems>
+        {productsData.map(
+          (item, index) =>
+            item.node.variants && (
+              <FadeIn key={index}>
+                <Items>
+                  <a href={`${item.node.path}`}>
+                    <ImageContainer>
+                      <img src={item.node.variants[0].images[0].url} />
+                    </ImageContainer>
+                    <ItemName>{item.node.variants[0].name}</ItemName>
+                    <ItemPrice>
+                      {t('common.price', {
+                        value: item.node.variants[0].price,
+                        currency:
+                          item.node.variants[0].priceVariants[0].currency
+                      })}
+                    </ItemPrice>
+                  </a>
+                </Items>
+              </FadeIn>
+            )
+        )}
+      </ProductItems>
     </ProductsFilter>
   );
 };
