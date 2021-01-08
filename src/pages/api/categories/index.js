@@ -23,8 +23,8 @@ export const categories = async () => {
                     priceVariants{
                       currency
                     }
-                    images{
-                      url
+                    image {
+                      ...image
                     }
                   }
                 }
@@ -33,6 +33,15 @@ export const categories = async () => {
             }
 
           }
+        }
+      }
+      fragment image on Image {
+        url
+        altText
+        variants {
+          url
+          width
+          height
         }
       }
       `

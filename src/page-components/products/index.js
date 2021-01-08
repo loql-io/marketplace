@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { categories } from '../../pages/api/categories';
 import { useT } from 'lib/i18n';
-
+import { screen } from 'ui';
 import {
   ProductsFilter,
   Chip,
@@ -11,12 +11,12 @@ import {
   ItemName,
   ItemPrice,
   FadeIn,
-  ProductItems
+  ProductItems,
+  Img
 } from './styles';
 
 const Products = () => {
   const t = useT();
-
   const [categoryData, setCategoryData] = React.useState([]);
   const [productsData, setProductsData] = React.useState([]);
   const [selectedFilter, setSelectedFilter] = React.useState('');
@@ -26,6 +26,20 @@ const Products = () => {
     setSelectedFilter(name);
     setProductsData(data);
   };
+
+  const imageMdWidth = 100 / (4 ?? 1);
+
+  function getImageSize({ variants } = {}) {
+    if (variants) {
+      const biggestImage = variants.sort((a, b) => b.width - a.width)[0];
+      const { width, height } = biggestImage;
+      return {
+        width,
+        height
+      };
+    }
+    return {};
+  }
 
   useEffect(() => {
     async function fetchData() {
@@ -64,7 +78,14 @@ const Products = () => {
                 <Items>
                   <a href={`${item.node.path}`}>
                     <ImageContainer>
-                      <img src={item.node.variants[0].images[0].url} />
+                      <Img
+                        {...item.node.variants[0].image}
+                        {...getImageSize(item.node.variants[0].image)}
+                        alt={name}
+                        sizes={`(min-width ${screen.xs}px) ${imageMdWidth}vw, 60vw`}
+                      />
+
+                      {/*  <img src={item.node.variants[0].images[0].url} />  */}
                     </ImageContainer>
                     <ItemName>{item.node.variants[0].name}</ItemName>
                     <ItemPrice>

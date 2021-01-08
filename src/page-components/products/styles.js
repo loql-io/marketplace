@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { responsive } from 'ui';
+import Image from '@crystallize/react-image';
 
 export const ProductsFilter = styled.div`
   text-align: left;
@@ -41,6 +42,8 @@ export const ProductItems = styled.div`
   }
 `;
 export const Items = styled.div`
+  margin: 0 auto;
+  /*
   & img {
     display: block;
     object-fit: scale-down;
@@ -55,6 +58,26 @@ export const Items = styled.div`
   }
   &:hover a {
     text-decoration: none;
+  }
+  */
+`;
+
+export const Img = styled(Image)`
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin: 0 auto;
+
+  > img {
+    display: block;
+    object-fit: scale-down;
+    object-position: center;
+    width: 100%;
+    max-height: 320px;
+    ${responsive.smAndLess} {
+      object-fit: contain;
+      max-height: 160px;
+    }
   }
 `;
 
