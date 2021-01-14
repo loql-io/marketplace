@@ -2,15 +2,20 @@ import React from 'react';
 import MainNav from '../main-nav';
 import Navgation from '../../../../navigation';
 
-import { Aside, Header } from './styles';
+import { Aside, Header, Logo, Town } from './styles';
 
 export default function AsideL() {
   return (
     <Aside>
       <Header>
-        <a href="http://berko.loql.ly">
-          <h3>Home</h3>
-        </a>
+        <Logo>
+          <Town>
+            {process.env.NEXT_PUBLIC_TOWN
+              ? `${process.env.NEXT_PUBLIC_TOWN}`
+              : ''}
+          </Town>
+          <img src="/static/Dark-logo.svg" alt="" />
+        </Logo>
       </Header>
       <MainNav data={Navgation} />
     </Aside>

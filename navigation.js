@@ -2,6 +2,10 @@ const Navgation = [
   {
     section: [
       {
+        type: 'Home',
+        content: []
+      },
+      {
         type: 'Shopping',
         content: [
           {
@@ -42,7 +46,7 @@ const Navgation = [
         ]
       },
       {
-        type: 'footer',
+        type: 'Footer',
         content: [
           {
             logo: '',
