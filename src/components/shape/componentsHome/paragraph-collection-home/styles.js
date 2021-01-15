@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { responsive } from '../../../../ui/responsive';
+//import { responsive } from '../../../../ui/responsive';
 
 export const Paragraphs = styled.div``;
 
@@ -11,27 +11,38 @@ export const Outer = styled.div`
   width: 100%;
 `;
 
-export const Title = styled.div`
-  h3 {
-    font-family: Nunito Sans;
-    font-weight: 900;
-    font-size: 44px;
-    line-height: 45px;
-    text-align: center;
-    letter-spacing: -0.02em;
-    color: #2f2b27;
-    padding-top: 120px;
-    margin-bottom: 20px;
-    ${responsive.xs} {
-      font-size: 30px;
-      line-height: 30px;
-    }
+export const Title = styled.h1`
+  font-weight: 800;
+  font-size: 24px !important;
+  line-height: 27px;
+  color: #2f2b27;
+  padding-top: 20px;
+  padding-left: 20px;
+  margin-bottom: 0px;
+  text-align: left;
+`;
+
+export const ShopDetails = styled.div`
+  margin-left: 20px;
+  margin-bottom: 30px;
+  text-align: left;
+  svg {
+    width: 16px;
+    display: inline-block;
+    margin-bottom: -10px;
+    margin-right: 4px;
   }
+`;
+
+export const PhoneNumber = styled.span`
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 19px;
 `;
 
 export const Body = styled.div`
   width: 100%;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-left: 20px;
   & p {
     text-align: left !important;

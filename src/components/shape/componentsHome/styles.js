@@ -36,8 +36,8 @@ export const GridContainer = styled.div`
 export const SectionTitle = styled.h1`
   font-size: 32px !important;
   line-height: 36px !important;
-  color: #2f2b27 !important;
-  background-color: #fff;
+  color: #fff !important;
+  background-color: #2f2b27;
   padding: 24px 0;
   font-weight: 900;
   ${responsive.xs} {
