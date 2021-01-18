@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AuthProvider } from 'components/auth-context';
 import { SettingsProvider } from 'components/settings-context';
 import { BasketProvider } from 'components/basket';
@@ -7,29 +7,45 @@ import { getLocaleFromContext, defaultLocale } from 'lib/app-config';
 import { I18nextProvider } from 'lib/i18n';
 import { shopClosed } from './api/shopClosed';
 import ClosedModal from 'components/ClosedModal';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import { useRouter } from 'next/router';
 
 function MyApp({ Component, pageProps, commonData }) {
+  const router = useRouter();
   const { mainNavigation, locale, localeResource } = commonData;
 
-  React.useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
-    }
-  }, []);
+  const [isLoading, setLoadingState] = useState(false);
+  useEffect(() => {
+    router.events.on('routeChangeStart', () => {
+      setLoadingState(true);
+    });
+
+    router.events.on('routeChangeComplete', () => {
+      setLoadingState(false);
+    });
+
+    router.events.on('routeChangeError', () => {
+      setLoadingState(false);
+    });
+  });
 
   return (
     <>
       <I18nextProvider locale={locale} localeResource={localeResource}>
         <SettingsProvider mainNavigation={mainNavigation}>
           <AuthProvider>
-            <BasketProvider>
-              {commonData?.isShopClosed && (
-                <ClosedModal message="Sorry, we're now closed for the holidays." />
-              )}
-              <Component {...pageProps} />
-            </BasketProvider>
+            {isLoading ? (
+              <div className="pageLoader">
+                <LinearProgress />
+              </div>
+            ) : (
+              <BasketProvider>
+                {commonData?.isShopClosed && (
+                  <ClosedModal message="Sorry, we're now closed for the holidays." />
+                )}
+                <Component {...pageProps} />
+              </BasketProvider>
+            )}
           </AuthProvider>
         </SettingsProvider>
       </I18nextProvider>
