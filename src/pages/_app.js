@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { AuthProvider } from 'components/auth-context';
 import { SettingsProvider } from 'components/settings-context';
 import { BasketProvider } from 'components/basket';
@@ -7,49 +8,38 @@ import { getLocaleFromContext, defaultLocale } from 'lib/app-config';
 import { I18nextProvider } from 'lib/i18n';
 import { shopClosed } from './api/shopClosed';
 import ClosedModal from 'components/ClosedModal';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import { useRouter } from 'next/router';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+
+export const cache = createCache({ key: 'css', prepend: true });
 
 function MyApp({ Component, pageProps, commonData }) {
-  const router = useRouter();
   const { mainNavigation, locale, localeResource } = commonData;
 
-  const [isLoading, setLoadingState] = useState(false);
-  useEffect(() => {
-    router.events.on('routeChangeStart', () => {
-      setLoadingState(true);
-    });
-
-    router.events.on('routeChangeComplete', () => {
-      setLoadingState(false);
-    });
-
-    router.events.on('routeChangeError', () => {
-      setLoadingState(false);
-    });
-  });
-
+  /*
+  React.useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  }, []);
+*/
   return (
-    <>
+    <CacheProvider value={cache}>
       <I18nextProvider locale={locale} localeResource={localeResource}>
         <SettingsProvider mainNavigation={mainNavigation}>
           <AuthProvider>
-            {isLoading ? (
-              <div className="pageLoader">
-                <LinearProgress />
-              </div>
-            ) : (
-              <BasketProvider>
-                {commonData?.isShopClosed && (
-                  <ClosedModal message="Sorry, we're now closed for the holidays." />
-                )}
-                <Component {...pageProps} />
-              </BasketProvider>
-            )}
+            <BasketProvider>
+              {commonData?.isShopClosed && (
+                <ClosedModal message="Sorry, we're now closed for the holidays." />
+              )}
+              <Component {...pageProps} />
+            </BasketProvider>
           </AuthProvider>
         </SettingsProvider>
       </I18nextProvider>
-    </>
+    </CacheProvider>
   );
 }
 
@@ -119,3 +109,8 @@ MyApp.getInitialProps = async function ({ router }) {
 };
 
 export default MyApp;
+
+MyApp.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+  pageProps: PropTypes.object.isRequired
+};
