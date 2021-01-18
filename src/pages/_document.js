@@ -5,7 +5,7 @@ import { ServerStyleSheet } from 'styled-components';
 
 let prefixer;
 let cleanCSS;
-if (process.env.NODE_ENV === 'production') {
+if (process.env.VERCEL_ENV === 'production') {
   /* eslint-disable global-require */
   const postcss = require('postcss');
   const autoprefixer = require('autoprefixer');
@@ -72,7 +72,7 @@ MyDocument.getInitialProps = async (ctx) => {
     const initialProps = await Document.getInitialProps(ctx);
     let css = materialSheets.toString();
 
-    if (css && process.env.NODE_ENV === 'production') {
+    if (css && process.env.VERCEL_ENV === 'production') {
       const result1 = await prefixer.process(css, { from: undefined });
       css = result1.css;
       css = cleanCSS.minify(css).styles;
