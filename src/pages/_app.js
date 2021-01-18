@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { AuthProvider } from 'components/auth-context';
 import { SettingsProvider } from 'components/settings-context';
 import { BasketProvider } from 'components/basket';
@@ -10,13 +9,15 @@ import { shopClosed } from './api/shopClosed';
 import ClosedModal from 'components/ClosedModal';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { CssBaseline } from '@material-ui/core';
+import createMuiTheme from '../ui/theme';
 
 export const cache = createCache({ key: 'css', prepend: true });
 
 function MyApp({ Component, pageProps, commonData }) {
   const { mainNavigation, locale, localeResource } = commonData;
 
-  /*
   React.useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -24,21 +25,24 @@ function MyApp({ Component, pageProps, commonData }) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
   }, []);
-*/
+
   return (
     <CacheProvider value={cache}>
-      <I18nextProvider locale={locale} localeResource={localeResource}>
-        <SettingsProvider mainNavigation={mainNavigation}>
-          <AuthProvider>
-            <BasketProvider>
-              {commonData?.isShopClosed && (
-                <ClosedModal message="Sorry, we're now closed for the holidays." />
-              )}
-              <Component {...pageProps} />
-            </BasketProvider>
-          </AuthProvider>
-        </SettingsProvider>
-      </I18nextProvider>
+      <ThemeProvider theme={createMuiTheme}>
+        <CssBaseline />
+        <I18nextProvider locale={locale} localeResource={localeResource}>
+          <SettingsProvider mainNavigation={mainNavigation}>
+            <AuthProvider>
+              <BasketProvider>
+                {commonData?.isShopClosed && (
+                  <ClosedModal message="Sorry, we're now closed for the holidays." />
+                )}
+                <Component {...pageProps} />
+              </BasketProvider>
+            </AuthProvider>
+          </SettingsProvider>
+        </I18nextProvider>
+      </ThemeProvider>
     </CacheProvider>
   );
 }
@@ -109,8 +113,3 @@ MyApp.getInitialProps = async function ({ router }) {
 };
 
 export default MyApp;
-
-MyApp.propTypes = {
-  Component: PropTypes.elementType.isRequired,
-  pageProps: PropTypes.object.isRequired
-};
