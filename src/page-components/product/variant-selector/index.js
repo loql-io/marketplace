@@ -1,6 +1,6 @@
 import React from 'react';
 import isEqual from 'lodash/isEqual';
-
+import styles from '../../../ui/mui/inputSelect';
 import {
   Outer
   // AttributeName,
@@ -15,8 +15,6 @@ import {
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-
-import styles from '../../../ui/mui/inputSelect';
 
 function reduceAttributes(variants) {
   return variants.reduce((acc, variant) => {
