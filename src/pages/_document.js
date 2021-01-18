@@ -3,6 +3,19 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import { ServerStyleSheet } from 'styled-components';
 
+let prefixer;
+let cleanCSS;
+if (process.env.NODE_ENV === 'production') {
+  /* eslint-disable global-require */
+  const postcss = require('postcss');
+  const autoprefixer = require('autoprefixer');
+  const CleanCSS = require('clean-css');
+  /* eslint-enable global-require */
+
+  prefixer = postcss([autoprefixer]);
+  cleanCSS = new CleanCSS();
+}
+
 export default class MyDocument extends Document {
   render() {
     return (
@@ -47,22 +60,39 @@ MyDocument.getInitialProps = async (ctx) => {
   const styledComponentsSheet = new ServerStyleSheet();
   const originalRenderPage = ctx.renderPage;
 
-  ctx.renderPage = () =>
-    originalRenderPage({
-      enhanceApp: (App) => (props) =>
-        styledComponentsSheet.collectStyles(
-          materialSheets.collect(<App {...props} />)
-        )
-    });
+  try {
+    ctx.renderPage = () =>
+      originalRenderPage({
+        enhanceApp: (App) => (props) =>
+          styledComponentsSheet.collectStyles(
+            materialSheets.collect(<App {...props} />)
+          )
+      });
 
-  const initialProps = await Document.getInitialProps(ctx);
+    const initialProps = await Document.getInitialProps(ctx);
+    let css = materialSheets.toString();
 
-  return {
-    ...initialProps,
-    // Styles fragment is rendered after the app and page rendering finish.
-    styles: [
-      ...React.Children.toArray(initialProps.styles),
-      materialSheets.getStyleElement()
-    ]
-  };
+    if (css && process.env.NODE_ENV === 'production') {
+      const result1 = await prefixer.process(css, { from: undefined });
+      css = result1.css;
+      css = cleanCSS.minify(css).styles;
+    }
+
+    return {
+      ...initialProps,
+      // Styles fragment is rendered after the app and page rendering finish.
+      styles: [
+        ...React.Children.toArray(initialProps.styles),
+        styledComponentsSheet.getStyleElement(),
+        <style
+          id="jss-server-side"
+          key="jss-server-side"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{ __html: css }}
+        />
+      ]
+    };
+  } finally {
+    styledComponentsSheet.seal();
+  }
 };
