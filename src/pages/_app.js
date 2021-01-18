@@ -9,9 +9,6 @@ import { shopClosed } from './api/shopClosed';
 import ClosedModal from 'components/ClosedModal';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
-import { ThemeProvider } from '@material-ui/core/styles';
-import { CssBaseline } from '@material-ui/core';
-import createMuiTheme from '../ui/theme';
 
 export const cache = createCache({ key: 'css', prepend: true });
 
@@ -28,21 +25,18 @@ function MyApp({ Component, pageProps, commonData }) {
 
   return (
     <CacheProvider value={cache}>
-      <ThemeProvider theme={createMuiTheme}>
-        <CssBaseline />
-        <I18nextProvider locale={locale} localeResource={localeResource}>
-          <SettingsProvider mainNavigation={mainNavigation}>
-            <AuthProvider>
-              <BasketProvider>
-                {commonData?.isShopClosed && (
-                  <ClosedModal message="Sorry, we're now closed for the holidays." />
-                )}
-                <Component {...pageProps} />
-              </BasketProvider>
-            </AuthProvider>
-          </SettingsProvider>
-        </I18nextProvider>
-      </ThemeProvider>
+      <I18nextProvider locale={locale} localeResource={localeResource}>
+        <SettingsProvider mainNavigation={mainNavigation}>
+          <AuthProvider>
+            <BasketProvider>
+              {commonData?.isShopClosed && (
+                <ClosedModal message="Sorry, we're now closed for the holidays." />
+              )}
+              <Component {...pageProps} />
+            </BasketProvider>
+          </AuthProvider>
+        </SettingsProvider>
+      </I18nextProvider>
     </CacheProvider>
   );
 }

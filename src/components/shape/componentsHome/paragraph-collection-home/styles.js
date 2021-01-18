@@ -27,10 +27,8 @@ export const ShopDetails = styled.div`
   margin-bottom: 30px;
   text-align: left;
   svg {
-    width: 16px;
     display: inline-block;
     margin-bottom: -10px;
-    margin-right: 4px;
   }
 `;
 

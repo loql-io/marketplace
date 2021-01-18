@@ -32,7 +32,7 @@ const Paragraph = ({
         <ShopDetails>
           {phone && (
             <>
-              <PhoneIcon />
+              <PhoneIcon viewBox="0 0 40 28" />
               <PhoneNumber>{phone}</PhoneNumber>
             </>
           )}
