@@ -59,7 +59,7 @@
     "lodash": "^4.17.15",
     "mjml": "^4.4.1",
     "next": "^10.0.1",
-    "postcss": "^8.1.0",
+    "postcss": "^8.0.0",
     "postcss-loader": "^4.1.0",
     "prop-types": "^15.7.2",
     "rc-slider": "^9.5.4",
