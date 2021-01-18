@@ -1,3 +1,4 @@
+import React from 'react';
 import { AuthProvider } from 'components/auth-context';
 import { SettingsProvider } from 'components/settings-context';
 import { BasketProvider } from 'components/basket';
@@ -9,6 +10,14 @@ import ClosedModal from 'components/ClosedModal';
 
 function MyApp({ Component, pageProps, commonData }) {
   const { mainNavigation, locale, localeResource } = commonData;
+
+  React.useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  }, []);
 
   return (
     <>
