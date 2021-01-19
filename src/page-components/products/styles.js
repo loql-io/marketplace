@@ -33,11 +33,11 @@ export const Chip = styled.div`
 `;
 export const ProductItems = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 4fr));
+  grid-template-columns: repeat(4, minmax(300px, 4fr));
   grid-gap: 80px 40px;
   padding: 0 20px 40px 20px;
   ${responsive.smAndLess} {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 4fr));
+    grid-template-columns: repeat(4, minmax(150px, 4fr));
     grid-gap: 20px;
   }
 `;
