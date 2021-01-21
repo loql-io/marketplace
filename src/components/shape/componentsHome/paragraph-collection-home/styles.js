@@ -1,14 +1,17 @@
 import styled from 'styled-components';
-//import { responsive } from '../../../../ui/responsive';
+import { responsive } from '../../../../ui/responsive';
 
 export const Paragraphs = styled.div``;
 
 export const Outer = styled.div`
-  margin: 0;
-  height: 140px;
+  width: 100vw;
+  height: auto;
+  display: flex;
+  position: relative;
+  min-height: 200px;
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
-  width: 100%;
 `;
 
 export const Title = styled.h1`
@@ -44,9 +47,42 @@ export const Body = styled.div`
   margin-left: 20px;
   & p {
     text-align: left !important;
+    padding-right: 30%;
+    ${responsive.smAndLess} {
+      padding-right: 20px;
+      margin-right: 20px;
+    }
   }
 `;
 
 export const Text = styled.div`
   /*margin-bottom: 100px;*/
+`;
+
+export const CollectDeliveryTimeContainer = styled.div`
+  padding: 20px;
+  width: 100%;
+  margin: 130px auto 0 auto;
+  display: flex;
+
+  ${responsive.sm} {
+    margin: 130px 0 0 0;
+  }
+
+  & span {
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 19px;
+  }
+`;
+
+export const Pill = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  background: #2f2b27;
+  padding: 0 10px;
+  color: #fff;
+  border-radius: 4px 4px 4px 4px;
 `;

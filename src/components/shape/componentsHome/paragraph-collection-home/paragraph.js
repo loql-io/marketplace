@@ -1,7 +1,16 @@
 import ContentTransformer from 'ui/content-transformer';
 //import { H3 } from 'ui';
 
-import { Outer, Body, Text, Title, ShopDetails, PhoneNumber } from './styles';
+import {
+  Outer,
+  Body,
+  Text,
+  Title,
+  ShopDetails,
+  PhoneNumber,
+  CollectDeliveryTimeContainer,
+  Pill
+} from './styles';
 //import Images from '../images';
 //import Videos from '../videos';
 
@@ -21,7 +30,22 @@ const Paragraph = ({
         style={{
           backgroundImage: `url(${images?.[0].url})`
         }}
-      ></Outer>
+      >
+        <CollectDeliveryTimeContainer>
+          {process.env.NEXT_PUBLIC_ORDER_COLLECTION &&
+            !process.env.NEXT_PUBLIC_ORDER_DELIVERY && (
+              <Pill>
+                <span>Collect only</span>
+              </Pill>
+            )}
+          {!process.env.NEXT_PUBLIC_ORDER_COLLECTION &&
+            process.env.NEXT_PUBLIC_ORDER_DELIVERY && (
+              <Pill>
+                <span>Delivery only</span>
+              </Pill>
+            )}
+        </CollectDeliveryTimeContainer>
+      </Outer>
       <Text>
         {!!title && title.text && <Title>{title.text}</Title>}
         {body?.json?.length > 0 && (
