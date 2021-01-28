@@ -27,7 +27,7 @@ export const MediaInner = styled.div`
   margin: 0;
   background-size: cover;
   width: 100%;
-  border: solid 1px #2f2b27;
+  /*border: solid 1px #2f2b27;*/
 `;
 
 export const Img = styled(Image)`

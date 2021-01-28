@@ -85,4 +85,5 @@ export const Pill = styled.div`
   padding: 0 10px;
   color: #fff;
   border-radius: 4px 4px 4px 4px;
+  margin-right: 10px;
 `;

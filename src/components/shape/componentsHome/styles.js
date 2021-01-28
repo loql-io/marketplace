@@ -48,6 +48,7 @@ export const SectionTitle = styled.h1`
 export const GridDiv = styled(Grid)`
   /*background-color: var(--color-text-main);*/
   /*margin-top: -12px;*/
+  border-bottom: solid 1px #2f2b27;
 `;
 
 export const More = styled.a`

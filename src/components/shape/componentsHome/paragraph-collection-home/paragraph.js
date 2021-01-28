@@ -44,6 +44,17 @@ const Paragraph = ({
                 <span>Delivery only</span>
               </Pill>
             )}
+          {process.env.NEXT_PUBLIC_ORDER_COLLECTION &&
+            process.env.NEXT_PUBLIC_ORDER_DELIVERY && (
+              <>
+                <Pill>
+                  <span>Collect</span>
+                </Pill>
+                <Pill>
+                  <span>Delivery</span>
+                </Pill>
+              </>
+            )}
         </CollectDeliveryTimeContainer>
       </Outer>
       <Text>

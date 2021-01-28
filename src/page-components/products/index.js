@@ -43,10 +43,28 @@ const Products = () => {
 
   useEffect(() => {
     async function fetchData() {
+      const all = [];
       const responseCategories = await categories();
+      const allItems = responseCategories.topics[0].children
+        .flatMap((item) => item.items.edges)
+        .map((item) => item?.node)
+        .filter((v, i, a) => a.findIndex((t) => t?.id === v?.id) === i);
+
+      Object.entries(allItems).forEach(function (item) {
+        all.push({ node: item[1] });
+      });
+
+      const allFiltered = all.filter((item) => item?.node?.variants);
+
+      responseCategories.topics[0].children.unshift({
+        name: 'All',
+        items: { edges: allFiltered }
+      });
+
       const filtered = responseCategories.topics[0].children.filter(
-        (item) => item.items.edges
+        (item) => item?.items?.edges
       );
+
       setCategoryData(responseCategories.topics[0].children);
       setProductsData(filtered[0].items.edges);
       setSelectedFilter(filtered[0].name);
@@ -59,7 +77,7 @@ const Products = () => {
       <Chips>
         {categoryData.map(
           (item, index) =>
-            item.items.edges && (
+            item?.items?.edges && (
               <Chip
                 key={index}
                 className={selectedFilter === item.name ? 'selected' : ''}
