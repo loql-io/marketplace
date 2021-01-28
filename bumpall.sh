@@ -15,7 +15,7 @@ bump_repo () {
 
 declare -a repos
 
-repos=("hamlins" "berko-sports" "creative-collective" "loql-ly" "petals" "colton-footwear")
+repos=("hamlins" "berko-sports" "creative-collective" "loql-ly" "petals" "colton-footwear" "hh-dickman-and-son-chemist")
 
 for repo in "${repos[@]}"; do
   bump_repo "$repo"
