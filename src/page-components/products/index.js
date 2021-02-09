@@ -10,7 +10,6 @@ import {
   ImageContainer,
   ItemName,
   ItemPrice,
-  FadeIn,
   ProductItems,
   Img
 } from './styles';
@@ -92,30 +91,27 @@ const Products = () => {
         {productsData.map(
           (item, index) =>
             item.node.variants && (
-              <FadeIn key={index}>
-                <Items>
-                  <a href={`${item.node.path}`}>
-                    <ImageContainer>
-                      <Img
-                        {...item.node.variants[0].image}
-                        {...getImageSize(item.node.variants[0].image)}
-                        alt={name}
-                        sizes={`(min-width ${screen.xs}px) ${imageMdWidth}vw, 60vw`}
-                      />
+              <Items key={index}>
+                <a href={`${item.node.path}`}>
+                  <ImageContainer>
+                    <Img
+                      {...item.node.variants[0].image}
+                      {...getImageSize(item.node.variants[0].image)}
+                      alt={name}
+                      sizes={`(min-width ${screen.xs}px) ${imageMdWidth}vw, 60vw`}
+                    />
 
-                      {/*  <img src={item.node.variants[0].images[0].url} />  */}
-                    </ImageContainer>
-                    <ItemName>{item.node.variants[0].name}</ItemName>
-                    <ItemPrice>
-                      {t('common.price', {
-                        value: item.node.variants[0].price,
-                        currency:
-                          item.node.variants[0].priceVariants[0].currency
-                      })}
-                    </ItemPrice>
-                  </a>
-                </Items>
-              </FadeIn>
+                    {/*  <img src={item.node.variants[0].images[0].url} />  */}
+                  </ImageContainer>
+                  <ItemName>{item.node.variants[0].name}</ItemName>
+                  <ItemPrice>
+                    {t('common.price', {
+                      value: item.node.variants[0].price,
+                      currency: item.node.variants[0].priceVariants[0].currency
+                    })}
+                  </ItemPrice>
+                </a>
+              </Items>
             )
         )}
       </ProductItems>
