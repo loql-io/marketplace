@@ -64,6 +64,8 @@ const getAddressDistance = async (value) => {
 export function DeliveryDetails({ onNext, checkoutState }) {
   const [open, setOpen] = useState(false);
 
+  const [outsideRadiusText, setOutsideRadiusText] = useState(false);
+
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -98,6 +100,7 @@ export function DeliveryDetails({ onNext, checkoutState }) {
           ) {
             const isOutsideRadius = await getAddressDistance(value);
             setOpen(isOutsideRadius);
+            setOutsideRadiusText(isOutsideRadius);
             return !isOutsideRadius;
           } else {
             return true;
@@ -174,7 +177,11 @@ export function DeliveryDetails({ onNext, checkoutState }) {
               helperText={formik.touched.phone ? formik.errors.phone : ''}
               error={formik.touched.phone && !!formik.errors.phone}
             />
-            <PostCodeForm formik={formik} checkoutState={checkoutState} />
+            <PostCodeForm
+              formik={formik}
+              checkoutState={checkoutState}
+              outsideRadiusText={outsideRadiusText}
+            />
 
             {/* <FormControlLabel
               className="checkbox-label"
