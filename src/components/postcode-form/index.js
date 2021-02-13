@@ -8,6 +8,8 @@ import { Spinner } from 'ui';
 import { doGet } from 'lib/rest-api/helpers';
 import SecondaryButton from 'components/custom-fields/secondary-button';
 
+const phone = process.env.NEXT_PUBLIC_SHOP_PHONE;
+
 const PostCodeForm = ({ formik, outsideRadiusText }) => {
   const [loader, setLoader] = useState(false);
 
@@ -91,7 +93,7 @@ const PostCodeForm = ({ formik, outsideRadiusText }) => {
           variant="h5"
         >
           It looks like you&apos;re outside our delivery area but why not give
-          us a call to check.
+          us a call on {phone} to check.
         </Typography>
       )}
 
