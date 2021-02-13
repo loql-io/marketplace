@@ -59,7 +59,7 @@ export default function DocumentPage({ document, preview }) {
                 if (type === 'paragraphCollection') {
                   let Component;
 
-                  if (!component.content.paragraphs) {
+                  if (!component?.content?.paragraphs) {
                     return null;
                   }
 
@@ -116,7 +116,7 @@ export default function DocumentPage({ document, preview }) {
                 if (type === 'paragraphCollection') {
                   let Component;
 
-                  if (!component.content.paragraphs) {
+                  if (!component?.content?.paragraphs) {
                     return null;
                   }
 
@@ -125,7 +125,7 @@ export default function DocumentPage({ document, preview }) {
                   return (
                     <Component
                       key={index}
-                      paragraphs={component.content.paragraphs}
+                      paragraphs={component?.content?.paragraphs}
                       name={component.name}
                     />
                   );
@@ -138,7 +138,9 @@ export default function DocumentPage({ document, preview }) {
             if (type === 'gridRelations') {
               let Component;
               Component = Component || GridRelations;
-              return <Component key={index} grids={component.content.grids} />;
+              return (
+                <Component key={index} grids={component?.content?.grids} />
+              );
             }
           })}
         </Outer>

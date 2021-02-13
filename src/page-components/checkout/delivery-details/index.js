@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Typography } from '@material-ui/core';
 import CustomTextInputField from 'components/custom-fields/custom-text-input';
@@ -6,6 +6,11 @@ import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import FooterButtons from '../footer-buttons';
 import PostCodeForm from 'components/postcode-form';
+import { doGet } from 'lib/rest-api/helpers';
+
+const deliveryRadius = process.env.NEXT_PUBLIC_DELIVERY_RADIUS;
+const postcode_from = process.env.NEXT_PUBLIC_SHOP_POSTCODE;
+const postcodeRegx = /([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})/;
 
 const DetailsContainer = styled.div`
   h3 {
@@ -25,7 +30,26 @@ const DetailsContainer = styled.div`
   }
 `;
 
+const getAddressDistance = async (value) => {
+  const outsideRadius = await doGet(
+    `${window.location.origin}/api/postcode-distance/${value}?postcode_from=${postcode_from}`
+  )
+    .then((data) => {
+      if (data.metres * 0.000621 > parseFloat(deliveryRadius)) {
+        return true;
+      } else {
+        return false;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  return outsideRadius;
+};
+
 export function DeliveryDetails({ onNext, checkoutState }) {
+  const [outsideRadiusText, setOutsideRadiusText] = useState(false);
+
   function handleSubmit(values) {
     onNext(values);
   }
@@ -41,9 +65,23 @@ export function DeliveryDetails({ onNext, checkoutState }) {
       }),
     postcode: Yup.string()
       .required('A valid postcode is required')
-      .matches(
-        /([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})/,
-        { message: 'Postcode is not valid.' }
+      .matches(postcodeRegx, { message: 'Postcode is not valid.' })
+      .test(
+        'delivery-radius',
+        'Postcode is outside our delivery area.',
+        async (value) => {
+          if (
+            postcodeRegx.test(value) &&
+            Number(deliveryRadius) > 0 &&
+            postcode_from
+          ) {
+            const isOutsideRadius = await getAddressDistance(value);
+            setOutsideRadiusText(isOutsideRadius);
+            return !isOutsideRadius;
+          } else {
+            return true;
+          }
+        }
       ),
     house: Yup.string().required(),
     street: Yup.string().required(),
@@ -101,7 +139,11 @@ export function DeliveryDetails({ onNext, checkoutState }) {
               helperText={formik.touched.phone ? formik.errors.phone : ''}
               error={formik.touched.phone && !!formik.errors.phone}
             />
-            <PostCodeForm formik={formik} checkoutState={checkoutState} />
+            <PostCodeForm
+              formik={formik}
+              checkoutState={checkoutState}
+              outsideRadiusText={outsideRadiusText}
+            />
 
             {/* <FormControlLabel
               className="checkbox-label"

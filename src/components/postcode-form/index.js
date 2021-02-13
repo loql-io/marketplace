@@ -8,7 +8,7 @@ import { Spinner } from 'ui';
 import { doGet } from 'lib/rest-api/helpers';
 import SecondaryButton from 'components/custom-fields/secondary-button';
 
-const PostCodeForm = ({ formik }) => {
+const PostCodeForm = ({ formik, outsideRadiusText }) => {
   const [loader, setLoader] = useState(false);
 
   const [addresses, setAddresses] = useState([]);
@@ -83,6 +83,17 @@ const PostCodeForm = ({ formik }) => {
         error={formik.touched.postcode && !!formik.errors.postcode}
         label="Postcode"
       />
+
+      {outsideRadiusText && (
+        <Typography
+          style={{ alignSelf: 'flex-start', color: 'red' }}
+          component="h5"
+          variant="h5"
+        >
+          It looks like you&apos;re outside our delivery area but why not give
+          us a call to check.
+        </Typography>
+      )}
 
       <SecondaryButton
         type="button"
