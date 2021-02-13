@@ -7,6 +7,8 @@ import * as Yup from 'yup';
 import FooterButtons from '../footer-buttons';
 import PostCodeForm from 'components/postcode-form';
 import { doGet } from 'lib/rest-api/helpers';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 const deliveryRadius = process.env.NEXT_PUBLIC_DELIVERY_RADIUS;
 const postcode_from = process.env.NEXT_PUBLIC_SHOP_POSTCODE;
@@ -30,6 +32,18 @@ const DetailsContainer = styled.div`
   }
 `;
 
+const StyledAlert = styled(Alert)`
+  background-color: #f26889 !important;
+  & .MuiAlert-message {
+    color: #2f2b27;
+    font-weight: 800;
+  }
+`;
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 const getAddressDistance = async (value) => {
   const outsideRadius = await doGet(
     `${window.location.origin}/api/postcode-distance/${value}?postcode_from=${postcode_from}`
@@ -48,7 +62,14 @@ const getAddressDistance = async (value) => {
 };
 
 export function DeliveryDetails({ onNext, checkoutState }) {
-  const [outsideRadiusText, setOutsideRadiusText] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
 
   function handleSubmit(values) {
     onNext(values);
@@ -68,7 +89,7 @@ export function DeliveryDetails({ onNext, checkoutState }) {
       .matches(postcodeRegx, { message: 'Postcode is not valid.' })
       .test(
         'delivery-radius',
-        'Postcode is outside our delivery area.',
+        `Postcode is outside our delivery area of ${deliveryRadius} miles.`,
         async (value) => {
           if (
             postcodeRegx.test(value) &&
@@ -76,7 +97,7 @@ export function DeliveryDetails({ onNext, checkoutState }) {
             postcode_from
           ) {
             const isOutsideRadius = await getAddressDistance(value);
-            setOutsideRadiusText(isOutsideRadius);
+            setOpen(isOutsideRadius);
             return !isOutsideRadius;
           } else {
             return true;
@@ -90,6 +111,20 @@ export function DeliveryDetails({ onNext, checkoutState }) {
 
   return (
     <DetailsContainer>
+      <Snackbar
+        open={open}
+        autoHideDuration={8000}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center'
+        }}
+      >
+        <StyledAlert onClose={handleClose} severity="warning">
+          Sorry, we can only deliver within {deliveryRadius} miles.
+        </StyledAlert>
+      </Snackbar>
+
       <Typography variant="h3">Delivery details</Typography>
       <Formik
         initialValues={{
@@ -139,11 +174,7 @@ export function DeliveryDetails({ onNext, checkoutState }) {
               helperText={formik.touched.phone ? formik.errors.phone : ''}
               error={formik.touched.phone && !!formik.errors.phone}
             />
-            <PostCodeForm
-              formik={formik}
-              checkoutState={checkoutState}
-              outsideRadiusText={outsideRadiusText}
-            />
+            <PostCodeForm formik={formik} checkoutState={checkoutState} />
 
             {/* <FormControlLabel
               className="checkbox-label"
