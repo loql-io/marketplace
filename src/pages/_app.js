@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AuthProvider } from 'components/auth-context';
 import { SettingsProvider } from 'components/settings-context';
 import { BasketProvider } from 'components/basket';
 import { simplyFetchFromGraph } from 'lib/graph';
 import { getLocaleFromContext, defaultLocale } from 'lib/app-config';
 import { I18nextProvider } from 'lib/i18n';
-import { shopClosed } from './api/shopClosed';
+import { homePageShape, booleanContent } from './api/homePageShape';
 import ClosedModal from 'components/ClosedModal';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
@@ -13,15 +13,26 @@ import createCache from '@emotion/cache';
 export const cache = createCache({ key: 'css', prepend: true });
 
 function MyApp({ Component, pageProps, commonData }) {
-  const { mainNavigation, locale, localeResource } = commonData;
+  const {
+    mainNavigation,
+    locale,
+    localeResource,
+    openDays,
+    shopClosedLabel
+  } = commonData;
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
-  }, []);
+
+    localStorage.setItem(
+      `openTimes_${process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER}`,
+      JSON.stringify(openDays)
+    );
+  }, [openDays]);
 
   return (
     <CacheProvider value={cache}>
@@ -30,7 +41,7 @@ function MyApp({ Component, pageProps, commonData }) {
           <AuthProvider>
             <BasketProvider>
               {commonData?.isShopClosed && (
-                <ClosedModal message="Sorry, we're now closed for the holidays." />
+                <ClosedModal message={shopClosedLabel} />
               )}
               <Component {...pageProps} />
             </BasketProvider>
@@ -47,7 +58,7 @@ MyApp.getInitialProps = async function ({ router }) {
 
     const localeResource = await import(`../locales/${locale.appLanguage}`);
 
-    const isShopClosed = await shopClosed();
+    const gethomePageShape = await homePageShape();
 
     /**
      * Get shared data for all pages
@@ -71,6 +82,7 @@ MyApp.getInitialProps = async function ({ router }) {
           }
 
           tenant(language: $language) {
+            id
             name
           }
         }
@@ -80,14 +92,54 @@ MyApp.getInitialProps = async function ({ router }) {
       }
     });
 
+    const getBooleanContent = await booleanContent(
+      gethomePageShape?.catalogue?.shape?.identifier,
+      tenant?.id
+    );
+
+    const shopClosedLabel = getBooleanContent?.shape?.get?.components?.find(
+      (c) => c.id === 'shop-closed'
+    )?.description;
+    const isShopClosed = getBooleanContent?.shape?.get?.items[0]?.components?.find(
+      (c) => c.componentId === 'shop-closed'
+    )?.content?.value;
+    const days = [
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday'
+    ];
+    const openDaysValue = gethomePageShape.catalogue.components.filter(
+      (x) => days.indexOf(x.name) !== -1
+    );
+    const openDaysTimes = getBooleanContent.shape.get.components.filter(
+      (x) => days.indexOf(x.name) !== -1
+    );
+    const openDays = [];
+
+    Object.keys(openDaysValue).forEach((key) => {
+      openDays.push({
+        day: openDaysValue[key].name,
+        open: openDaysValue[key].content.value,
+        time: openDaysTimes.find((c) => c.name === openDaysValue[key].name)
+          .description
+      });
+    });
+
+    //console.log(getBooleanContent.shape.get.components)
+    //console.log(getBooleanContent.shape.get.items[0].components)
+
     return {
       commonData: {
         localeResource: localeResource.default,
         locale,
         tenant,
-        isShopClosed: isShopClosed?.catalogue?.components?.filter(
-          (i) => i.name === 'Shop Closed'
-        )?.[0]?.content?.value,
+        openDays,
+        shopClosedLabel,
+        isShopClosed,
         mainNavigation: mainNavigation?.filter((i) => !i.name.startsWith('_'))
       }
     };

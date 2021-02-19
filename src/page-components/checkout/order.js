@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { useRouter } from 'next/router';
 import {
   Fade,
   FormControl,
@@ -39,6 +40,8 @@ export default function Order({ onNext, checkoutState }) {
 
   const basket = useBasket();
 
+  const router = useRouter();
+
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -62,6 +65,14 @@ export default function Order({ onNext, checkoutState }) {
     window.alert(
       'You must enable collection (NEXT_PUBLIC_ORDER_COLLECTION=true) or delivery (NEXT_PUBLIC_ORDER_DELIVERY=true) in the .env file for checkout to work'
     );
+  }
+
+  const minimumOrder = Number(process.env.NEXT_PUBLIC_SHOP_MIN_ORDER || 0);
+  const isAboveMinOrder =
+    minimumOrder > 0 ? basket.total.gross >= minimumOrder : true;
+
+  if (!isAboveMinOrder) {
+    router.replace('/');
   }
 
   return (

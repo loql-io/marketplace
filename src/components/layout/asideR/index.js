@@ -1,17 +1,18 @@
 import React from 'react';
-
 import { useBasket, TinyBasket } from 'components/basket';
 import PrimaryButton from '../../../components/custom-fields/primary-button';
 import { useT } from 'lib/i18n';
-
 import { Basket, Header, Footer } from './styles';
 
 export default function AsideR() {
   const t = useT();
   const basket = useBasket();
+  const minimumOrder = Number(process.env.NEXT_PUBLIC_SHOP_MIN_ORDER || 0);
+  const isAboveMinOrder =
+    minimumOrder > 0 ? basket.total.gross >= minimumOrder : true;
 
   const onCheckoutClick = (evt) => {
-    if (!basket.cart.length) {
+    if (!basket.cart.length && !isAboveMinOrder) {
       evt.preventDefault();
       return;
     }
@@ -27,9 +28,13 @@ export default function AsideR() {
       <TinyBasket />
       <Footer>
         <PrimaryButton
-          text={t('basket.goToCheckout')}
+          text={
+            isAboveMinOrder
+              ? t('basket.goToCheckout')
+              : `Minimum order £${minimumOrder}`
+          }
           style={{ width: '100%', margin: 0 }}
-          disabled={!basket.cart.length}
+          disabled={!basket.cart.length || !isAboveMinOrder}
           onClick={onCheckoutClick}
           href="/checkout"
         />

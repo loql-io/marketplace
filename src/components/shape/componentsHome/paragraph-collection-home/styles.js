@@ -56,6 +56,7 @@ export const Body = styled.div`
 `;
 
 export const Text = styled.div`
+  text-align: left;
   /*margin-bottom: 100px;*/
 `;
 

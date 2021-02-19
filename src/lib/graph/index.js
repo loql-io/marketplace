@@ -52,3 +52,29 @@ export function simplyFetchFromSearchGraph(args) {
     ...args
   });
 }
+
+export async function simplyFetchFromGraphQl({
+  uri = `https://pim.crystallize.com/graphql`,
+  query,
+  variables
+}) {
+  const body = JSON.stringify(safePathQuery({ query, variables }));
+
+  const response = await fetch(uri, {
+    method: 'post',
+    headers: {
+      'content-type': 'application/json',
+      'X-Crystallize-Access-Token-Secret':
+        process.env.NEXT_PUBLIC_CRYSTALLIZE_SECRET_TOKEN,
+      'X-Crystallize-Access-Token-Id':
+        process.env.NEXT_PUBLIC_CRYSTALLIZE_SECRET_TOKEN_ID
+    },
+    body
+  });
+
+  if (!response.ok) {
+    throw new Error(await response.text());
+  }
+
+  return response.json();
+}

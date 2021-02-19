@@ -43,6 +43,7 @@ export default `
     language
 
     components {
+      id
       name
       type
       meta {

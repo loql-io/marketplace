@@ -8,46 +8,83 @@ import FacebookIcon from '../../public/static/Facebook.svg';
 import LinkedInIcon from '../../public/static/LI.svg';
 import InstagramIcon from '../../public/static/Instagram.svg';
 import PinterestIcon from '../../public/static/Pinterest.svg';
+import WebsiteIcon from '../../public/static/Website.svg';
+import LocationIcon from '../../public/static/Location.svg';
+import ContactIcon from '../../public/static/Contact.svg';
+import { formatCurrency } from '../lib/currency';
+import IsOpenToday from '../components/openTimes';
+
+const minOrder = Number(process.env.NEXT_PUBLIC_SHOP_MIN_ORDER || 0);
 
 const commonTransfomerOverrides = {
   // Example of a link override
   link({ metadata, renderNode, ...rest }) {
     const { href } = metadata;
-
     switch (rest.children[0].textContent) {
       case '[twitter]':
         return (
-          <SocialLink href={href}>
+          <SocialLink href={href} target="_blank">
             <TwitterIcon />
           </SocialLink>
         );
         break;
       case '[linkedin]':
         return (
-          <SocialLink href={href}>
+          <SocialLink href={href} target="_blank">
             <LinkedInIcon />
           </SocialLink>
         );
         break;
       case '[facebook]':
         return (
-          <SocialLink href={href}>
+          <SocialLink href={href} target="_blank">
             <FacebookIcon />
           </SocialLink>
         );
         break;
       case '[instagram]':
         return (
-          <SocialLink href={href}>
+          <SocialLink href={href} target="_blank">
             <InstagramIcon />
           </SocialLink>
         );
         break;
       case '[pinterest]':
         return (
-          <SocialLink className="social" href={href}>
+          <SocialLink href={href} target="_blank">
             <PinterestIcon />
           </SocialLink>
+        );
+        break;
+      case '[website]':
+        return (
+          <BusinessLinks href={href} target="_blank">
+            <WebsiteIcon />
+            <span>Website</span>
+          </BusinessLinks>
+        );
+        break;
+      case '[location]':
+        return (
+          <BusinessLinks href={href} target="_blank">
+            <LocationIcon />
+            <span>Find us</span>
+          </BusinessLinks>
+        );
+        break;
+      case '[phone]':
+        return (
+          <BusinessLinks href={href}>
+            <ContactIcon />
+            <span>{href.replace(/tel:/, '')}</span>
+          </BusinessLinks>
+        );
+        break;
+      case '[opening-hours]':
+        return (
+          <BusinessLinks href={href}>
+            <span>View opening hours</span>
+          </BusinessLinks>
         );
         break;
       default:
@@ -60,6 +97,8 @@ const commonTransfomerOverrides = {
   },
 
   paragraph({ metadata, renderNode, ...rest }) {
+    const openData = IsOpenToday();
+
     if (rest.children[0]?.textContent?.includes('[icon-phone]')) {
       return (
         <PhoneContainer>
@@ -68,6 +107,31 @@ const commonTransfomerOverrides = {
             {rest.children[0]?.textContent?.replace('[icon-phone]', '')}
           </PhoneNumber>
         </PhoneContainer>
+      );
+    } else if (rest.children[0]?.textContent?.includes('[min-order]')) {
+      return (
+        minOrder > 0 && (
+          <BusinessInfo>
+            <Dot>•</Dot>
+            {minOrder > 0
+              ? rest.children[0]?.textContent?.replace(
+                  '[min-order]',
+                  `${formatCurrency({
+                    amount: minOrder,
+                    currency: 'gbp'
+                  })} min. order value`
+                )
+              : ''}
+          </BusinessInfo>
+        )
+      );
+    } else if (rest.children[0]?.textContent?.includes('[open-hours]')) {
+      return openData.isOpen ? (
+        <BusinessInfo>
+          Open now until {openData.openTimesToday.end}
+        </BusinessInfo>
+      ) : (
+        <BusinessInfo>Sorry, We&apos;re Closed</BusinessInfo>
       );
     } else {
       return <p>{renderNode(rest)}</p>;
@@ -84,9 +148,33 @@ const SocialLink = styled.a`
   }
 `;
 
+const BusinessLinks = styled.a`
+  border-bottom: none;
+  font-size: 14px;
+  svg {
+    position: absolute;
+    margin-top: 2px;
+  }
+  span {
+    margin: 0 10px 0 20px;
+    text-decoration: underline;
+  }
+`;
+
+const Dot = styled.a`
+  color: #c0a9a8;
+  margin: 0 10px;
+`;
+
 const PhoneContainer = styled.div`
   display: inline-flex;
   margin-bottom: 30px;
+`;
+
+const BusinessInfo = styled.div`
+  display: inline-block;
+  font-weight: 800;
+  margin-bottom: 20px;
 `;
 
 const PhoneNumber = styled.div`

@@ -18,7 +18,6 @@ import Review from './review';
 
 function Checkout() {
   const basket = useBasket();
-
   const t = useT();
 
   const router = useRouter();
