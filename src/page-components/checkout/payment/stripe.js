@@ -67,8 +67,14 @@ const validationSchema = Yup.object().shape({
 
 // Persist by create order in Crystallize
 async function persistOrder({ paymentIntent, paymentModel }) {
+  let windowLocation;
+
+  if (typeof window !== 'undefined') {
+    windowLocation = window.location.origin;
+  }
+
   const { data } = await doPost(
-    `${window.location.origin}/api/payment-providers/stripe/order-persistence`,
+    `${windowLocation}/api/payment-providers/stripe/order-persistence`,
     {
       body: JSON.stringify({
         paymentIntentId: paymentIntent.id,

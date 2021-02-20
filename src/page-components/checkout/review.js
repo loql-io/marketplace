@@ -27,12 +27,15 @@ const StrongText = styled(Typography)`
 `;
 
 async function persistCollectionOrder({ orderModel }) {
-  console.log(
-    `${window.location.origin}/api/order/collection-order`,
-    orderModel
-  );
+  let windowLocation;
+
+  if (typeof window !== 'undefined') {
+    windowLocation = window.location.origin;
+  }
+
+  console.log(`${windowLocation}/api/order/collection-order`, orderModel);
   const { data } = await doPost(
-    `${window.location.origin}/api/order/collection-order`,
+    `${windowLocation}/api/order/collection-order`,
     {
       body: JSON.stringify({
         orderModel
@@ -64,7 +67,14 @@ export default function Review({ onPrevious, onNext, checkoutState }) {
     setLoading(true);
     // Handle locale with sub-path routing
     let multilingualUrlPrefix = '';
-    if (window.location.pathname.startsWith(`/${router.locale}/`)) {
+
+    let windowLocation;
+
+    if (typeof window !== 'undefined') {
+      windowLocation = window.location.pathname;
+    }
+
+    if (windowLocation.startsWith(`/${router.locale}/`)) {
       multilingualUrlPrefix = router.locale;
     }
 

@@ -81,7 +81,10 @@ function Checkout() {
   }
 
   function handleClearBasket() {
-    window.scroll(0, 0);
+    if (typeof window !== 'undefined') {
+      window.scroll(0, 0);
+    }
+
     router.replace('/');
     basket.actions.empty();
   }

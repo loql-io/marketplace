@@ -7,7 +7,14 @@ export default function generateOrderModel(
 ) {
   // Handle locale with sub-path routing
   let multilingualUrlPrefix = '';
-  if (window.location.pathname.startsWith(`/${router.locale}/`)) {
+
+  let windowLocation;
+
+  if (typeof window !== 'undefined') {
+    windowLocation = window.location.pathname;
+  }
+
+  if (windowLocation.startsWith(`/${router.locale}/`)) {
     multilingualUrlPrefix = router.locale;
   }
 

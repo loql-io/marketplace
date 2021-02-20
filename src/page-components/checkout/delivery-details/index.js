@@ -45,8 +45,14 @@ function Alert(props) {
 }
 
 const getAddressDistance = async (value) => {
+  let windowLocation;
+
+  if (typeof window !== 'undefined') {
+    windowLocation = window.location.origin;
+  }
+
   const outsideRadius = await doGet(
-    `${window.location.origin}/api/postcode-distance/${value}?postcode_from=${postcode_from}`
+    `${windowLocation}/api/postcode-distance/${value}?postcode_from=${postcode_from}`
   )
     .then((data) => {
       if (data.metres * 0.000621 > parseFloat(deliveryRadius)) {
