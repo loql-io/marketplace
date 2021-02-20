@@ -1,7 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/prop-types */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+
 import { MenuItem, Typography } from '@material-ui/core';
 import CustomTextInputField from 'components/custom-fields/custom-text-input';
 import { Spinner } from 'ui';
@@ -17,15 +18,9 @@ const PostCodeForm = ({ formik, outsideRadiusText }) => {
 
   const [searched, setSearched] = useState(true);
 
-  const [windowLocation, setWindowLocation] = useState('');
-
   const [manualInputText, setManualInputText] = useState(
     'Or enter it yourself'
   );
-
-  useEffect(() => {
-    setWindowLocation(window.location.origin);
-  }, []);
 
   const formattedPostcode = (p) => {
     p = p.match(/^([A-Z]{1,2}[\dA-Z]{1,2})[ ]?(\d[A-Z]{2})$/i);
@@ -51,6 +46,12 @@ const PostCodeForm = ({ formik, outsideRadiusText }) => {
     handleSetFieldValue('city', '');
 
     const { postcode } = formik.values;
+
+    let windowLocation;
+
+    if (typeof window !== 'undefined') {
+      windowLocation = window.location.origin;
+    }
 
     doGet(`${windowLocation}/api/postcode/${postcode}`)
       .then((data) => {
