@@ -20,12 +20,20 @@ export default function IsOpenToday() {
     const date = parseJSON(new Date());
     const today = format(date, 'eeee');
     const times = arr?.find((c) => c.day === today && c.open)?.time;
-    const startTime = times?.split('-')[0];
-    const endTime = times?.split('-')[1];
+    const startTime = `${String(times?.split('-')[0].split(':')[0]).padStart(
+      2,
+      '0'
+    )}:${times?.split('-')[0].split(':')[1]}`;
+    const endTime = `${String(times?.split('-')[1].split(':')[0]).padStart(
+      2,
+      '0'
+    )}:${times?.split('-')[1].split(':')[1]}`;
+
     const parsedStartTime = parseISO(
       `${format(date, 'yyyy-MM-dd')}T${startTime}`
     );
     const parsedEndTime = parseISO(`${format(date, 'yyyy-MM-dd')}T${endTime}`);
+
     const isOpen = times
       ? isWithinInterval(date, { start: parsedStartTime, end: parsedEndTime })
       : false;

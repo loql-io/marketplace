@@ -62,6 +62,9 @@ export const booleanContent = async (identifier, tenantId) => {
                 type
                 name
                 description
+                config{
+                  ...componentConfig
+                }
               }
             items(language: "en"){
               components{
@@ -69,17 +72,39 @@ export const booleanContent = async (identifier, tenantId) => {
                 componentId
                 content{
                   ...booleanContent
-                }
-              }
+                  ...chunkContent
 
-            }
-
+                	}
+              	}
+            	}
             }
           }
-
         }
+
         fragment booleanContent on BooleanContent{
           value
+        }
+
+        fragment chunkContent on ContentChunkContent{
+          chunks{
+            name
+            componentId
+            content{
+               ...booleanContent
+            }
+          }
+        }
+
+        fragment componentConfig on ComponentConfig {
+          ...contentChunkComponentConfig
+        }
+
+        fragment contentChunkComponentConfig on ContentChunkComponentConfig{
+          components{
+            name
+            id
+            description
+          }
         }
       `
   });

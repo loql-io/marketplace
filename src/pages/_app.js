@@ -112,12 +112,22 @@ MyApp.getInitialProps = async function ({ router }) {
       'Friday',
       'Saturday'
     ];
-    const openDaysValue = gethomePageShape.catalogue.components.filter(
+
+    const openWeek = getBooleanContent.shape.get.items[0].components.filter(
+      (x) => x.name === 'Opening Hours'
+    )[0].content.chunks[0];
+    const openWeekTimes = getBooleanContent.shape.get.components.filter(
+      (x) => x.name === 'Opening Hours'
+    )[0].config.components;
+
+    const openDaysValue = openWeek.filter(
+      (x) => days.indexOf(x.name) !== -1 && x.content.value
+    );
+
+    const openDaysTimes = openWeekTimes.filter(
       (x) => days.indexOf(x.name) !== -1
     );
-    const openDaysTimes = getBooleanContent.shape.get.components.filter(
-      (x) => days.indexOf(x.name) !== -1
-    );
+
     const openDays = [];
 
     Object.keys(openDaysValue).forEach((key) => {
@@ -128,9 +138,6 @@ MyApp.getInitialProps = async function ({ router }) {
           .description
       });
     });
-
-    //console.log(getBooleanContent.shape.get.components)
-    //console.log(getBooleanContent.shape.get.items[0].components)
 
     return {
       commonData: {
