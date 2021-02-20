@@ -4,6 +4,8 @@
  * https://caniuse.com/#feat=broadcastchannel
  */
 
+import window from 'global';
+
 let channel;
 
 if (typeof window !== 'undefined' && 'BroadcastChannel' in window) {

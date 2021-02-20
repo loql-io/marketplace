@@ -5,7 +5,7 @@ import { useT } from 'lib/i18n';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import CheckoutProgress from './checkout-progress';
-
+import window from 'global';
 import { Outer, Container, ShopBadge } from './styles';
 
 import collectionIcon from '../../../public/static/collection.svg';
@@ -81,10 +81,7 @@ function Checkout() {
   }
 
   function handleClearBasket() {
-    if (typeof window !== 'undefined') {
-      window.scroll(0, 0);
-    }
-
+    window.scroll(0, 0);
     router.replace('/');
     basket.actions.empty();
   }

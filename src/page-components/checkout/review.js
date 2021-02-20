@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 import { useBasket } from 'components/basket';
 import styled from 'styled-components';
-
+import window from 'global';
 import CartItemsTable from './CartItemsTable';
 import FooterButtons from './footer-buttons';
 import { useRouter } from 'next/router';
@@ -27,15 +27,12 @@ const StrongText = styled(Typography)`
 `;
 
 async function persistCollectionOrder({ orderModel }) {
-  let windowLocation;
-
-  if (typeof window !== 'undefined') {
-    windowLocation = window.location.origin;
-  }
-
-  console.log(`${windowLocation}/api/order/collection-order`, orderModel);
+  console.log(
+    `${window.location.origin}/api/order/collection-order`,
+    orderModel
+  );
   const { data } = await doPost(
-    `${windowLocation}/api/order/collection-order`,
+    `${window.location.origin}/api/order/collection-order`,
     {
       body: JSON.stringify({
         orderModel
@@ -68,13 +65,7 @@ export default function Review({ onPrevious, onNext, checkoutState }) {
     // Handle locale with sub-path routing
     let multilingualUrlPrefix = '';
 
-    let windowLocation;
-
-    if (typeof window !== 'undefined') {
-      windowLocation = window.location.pathname;
-    }
-
-    if (windowLocation.startsWith(`/${router.locale}/`)) {
+    if (window.location.pathname.startsWith(`/${router.locale}/`)) {
       multilingualUrlPrefix = router.locale;
     }
 

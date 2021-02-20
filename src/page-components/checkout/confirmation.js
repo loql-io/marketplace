@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Typography } from '@material-ui/core';
 import styled from 'styled-components';
-
+import window from 'global';
 import Layout from 'components/layout';
 import { useBasket } from 'components/basket';
 import { Outer } from 'ui';

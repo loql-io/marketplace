@@ -9,7 +9,7 @@ import PostCodeForm from 'components/postcode-form';
 import { doGet } from 'lib/rest-api/helpers';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-
+import window from 'global';
 const deliveryRadius = process.env.NEXT_PUBLIC_DELIVERY_RADIUS;
 const postcode_from = process.env.NEXT_PUBLIC_SHOP_POSTCODE;
 const postcodeRegx = /([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})/;
@@ -45,14 +45,8 @@ function Alert(props) {
 }
 
 const getAddressDistance = async (value) => {
-  let windowLocation;
-
-  if (typeof window !== 'undefined') {
-    windowLocation = window.location.origin;
-  }
-
   const outsideRadius = await doGet(
-    `${windowLocation}/api/postcode-distance/${value}?postcode_from=${postcode_from}`
+    `${window.location.origin}/api/postcode-distance/${value}?postcode_from=${postcode_from}`
   )
     .then((data) => {
       if (data.metres * 0.000621 > parseFloat(deliveryRadius)) {

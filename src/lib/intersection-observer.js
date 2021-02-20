@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import window from 'global';
 
 export function useIntersectionObserver({ ref, ...options }) {
   const [isIntersecting, setIsIntersecting] = useState(false);
@@ -12,7 +13,7 @@ export function useIntersectionObserver({ ref, ...options }) {
       if (window.IntersectionObserver) {
         const observer = new IntersectionObserver(onObservation, {
           rootMargin: '50% 0px',
-          ...options,
+          ...options
         });
 
         observer.observe(ref.current);

@@ -2,7 +2,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-
+import window from 'global';
 import { useLocale } from 'lib/app-config';
 import { useBasket } from 'components/basket';
 import StripeCheckout from './stripe';
@@ -18,13 +18,7 @@ export default function Payment({ checkoutState, onPrevious }) {
   // Handle locale with sub-path routing
   let multilingualUrlPrefix = '';
 
-  let windowLocation;
-
-  if (typeof window !== 'undefined') {
-    windowLocation = window.location.pathname;
-  }
-
-  if (windowLocation.startsWith(`/${router.locale}/`)) {
+  if (window.location.pathname.startsWith(`/${router.locale}/`)) {
     multilingualUrlPrefix = router.locale;
   }
 

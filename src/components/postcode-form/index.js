@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 
 import React, { useState } from 'react';
+import window from 'global';
 
 import { MenuItem, Typography } from '@material-ui/core';
 import CustomTextInputField from 'components/custom-fields/custom-text-input';
@@ -47,13 +48,7 @@ const PostCodeForm = ({ formik, outsideRadiusText }) => {
 
     const { postcode } = formik.values;
 
-    let windowLocation;
-
-    if (typeof window !== 'undefined') {
-      windowLocation = window.location.origin;
-    }
-
-    doGet(`${windowLocation}/api/postcode/${postcode}`)
+    doGet(`${window.location.origin}/api/postcode/${postcode}`)
       .then((data) => {
         setLoader(false);
         if (data) {

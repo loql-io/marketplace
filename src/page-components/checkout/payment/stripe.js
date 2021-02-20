@@ -12,7 +12,7 @@ import {
 import CustomCheckbox from 'components/custom-fields/custom-checkbox';
 import PostCodeForm from 'components/postcode-form';
 import { useFormik } from 'formik';
-
+import window from 'global';
 import * as Yup from 'yup';
 import {
   FormHelperText,
@@ -67,14 +67,8 @@ const validationSchema = Yup.object().shape({
 
 // Persist by create order in Crystallize
 async function persistOrder({ paymentIntent, paymentModel }) {
-  let windowLocation;
-
-  if (typeof window !== 'undefined') {
-    windowLocation = window.location.origin;
-  }
-
   const { data } = await doPost(
-    `${windowLocation}/api/payment-providers/stripe/order-persistence`,
+    `${window.location.origin}/api/payment-providers/stripe/order-persistence`,
     {
       body: JSON.stringify({
         paymentIntentId: paymentIntent.id,

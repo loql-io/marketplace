@@ -1,3 +1,5 @@
+import window from 'global';
+
 export default function generateOrderModel(
   router,
   checkoutState,
@@ -8,13 +10,7 @@ export default function generateOrderModel(
   // Handle locale with sub-path routing
   let multilingualUrlPrefix = '';
 
-  let windowLocation;
-
-  if (typeof window !== 'undefined') {
-    windowLocation = window.location.pathname;
-  }
-
-  if (windowLocation.startsWith(`/${router.locale}/`)) {
+  if (window.location.pathname.startsWith(`/${router.locale}/`)) {
     multilingualUrlPrefix = router.locale;
   }
 
