@@ -62,7 +62,7 @@ export default function Order({ onNext, checkoutState }) {
   );
 
   if (!showCollection && !showDelivery) {
-    window.alert(
+    console.log(
       'You must enable collection (NEXT_PUBLIC_ORDER_COLLECTION=true) or delivery (NEXT_PUBLIC_ORDER_DELIVERY=true) in the .env file for checkout to work'
     );
   }
