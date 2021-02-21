@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "engines": {
-    "node": ">=10.10"
+    "node": ">=14.15"
   },
   "repository": {
     "url": "git@github.com:loql-io/marketplace.git",
