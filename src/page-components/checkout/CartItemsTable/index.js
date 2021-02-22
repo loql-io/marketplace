@@ -49,20 +49,20 @@ export default function CartItemsTable({ basket, checkoutType }) {
             {item.quantity > 1 && <span>{` x${item.quantity}`}</span>}
           </ItemName>
           <Typography variant="body1">
-            {t('common.price', {
+            {`${t('common.price', {
               value: (item.price?.gross ?? 0) * item.quantity,
               currency: item.price?.currency
-            })}
+            })}`}
           </Typography>
         </Row>
       ))}
       <Row>
         <Typography variant="body1">Subtotal</Typography>
         <Typography variant="body1">
-          {t('common.price', {
+          {`${t('common.price', {
             value: basket.total.gross,
             currency: basket.total.currency
-          })}
+          })}`}
         </Typography>
       </Row>
       {checkoutType === 'delivery' && (
@@ -76,10 +76,10 @@ export default function CartItemsTable({ basket, checkoutType }) {
           Total
         </Typography>
         <Typography component="strong" variant="h5">
-          {t('common.price', {
+          {`${t('common.price', {
             value: basket.total.gross,
             currency: basket.total.currency
-          })}
+          })}`}
         </Typography>
       </Row>
     </Container>
