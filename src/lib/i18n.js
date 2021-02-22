@@ -12,6 +12,8 @@ export const useT = () => {
 export function I18nextProvider({ locale, localeResource, children }) {
   const lng = locale.appLanguage;
 
+  console.log('---', localeResource);
+
   i18n.init({
     resources: {
       [lng]: localeResource
