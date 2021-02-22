@@ -21,6 +21,8 @@ function MyApp({ Component, pageProps, commonData }) {
     shopClosedLabel
   } = commonData;
 
+  console.log('commonData', commonData);
+
   useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -30,7 +32,7 @@ function MyApp({ Component, pageProps, commonData }) {
 
     localStorage.setItem(
       `openTimes_${process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER}`,
-      JSON.stringify(openDays)
+      JSON.stringify(openDays ? openDays : [])
     );
   }, [openDays]);
 

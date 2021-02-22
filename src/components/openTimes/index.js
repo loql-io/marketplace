@@ -17,17 +17,20 @@ export default function IsOpenToday() {
         `openTimes_${process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER}`
       )
     );
+
     const date = parseJSON(new Date());
     const today = format(date, 'eeee');
     const times = arr?.find((c) => c.day === today && c.open)?.time;
-    const startTime = `${String(times?.split('-')[0].split(':')[0]).padStart(
-      2,
-      '0'
-    )}:${times?.split('-')[0].split(':')[1]}`;
-    const endTime = `${String(times?.split('-')[1].split(':')[0]).padStart(
-      2,
-      '0'
-    )}:${times?.split('-')[1].split(':')[1]}`;
+    const startTime = times?.split('-')[0]
+      ? `${String(times?.split('-')[0].split(':')[0]).padStart(2, '0')}:${
+          times?.split('-')[0].split(':')[1]
+        }`
+      : null;
+    const endTime = times?.split('-')[1]
+      ? `${String(times?.split('-')[1].split(':')[0]).padStart(2, '0')}:${
+          times?.split('-')[1].split(':')[1]
+        }`
+      : null;
 
     const parsedStartTime = parseISO(
       `${format(date, 'yyyy-MM-dd')}T${startTime}`
@@ -48,6 +51,5 @@ export default function IsOpenToday() {
       }
     });
   }, []);
-
   return isOpenToday;
 }
