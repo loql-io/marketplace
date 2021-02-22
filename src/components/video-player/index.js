@@ -24,8 +24,8 @@ const Loader = styled.div`
 
 const VideoPlayer = dynamic(() => {
   import('./player');
-  import('dashjs');
-  import('videojs-contrib-dash');
+  //import('dashjs');
+  //import('videojs-contrib-dash');
 });
 
 export default function Video({
