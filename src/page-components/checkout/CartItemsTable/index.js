@@ -1,5 +1,5 @@
 import { Typography } from '@material-ui/core';
-import { useT } from 'lib/i18n';
+//import { useT } from 'lib/i18n';
 import React from 'react';
 
 import styled from 'styled-components';
@@ -31,7 +31,7 @@ const ItemName = styled(Typography)`
 `;
 
 export default function CartItemsTable({ basket, checkoutType }) {
-  const t = useT();
+  //const t = useT();
 
   const { cart } = basket;
 
@@ -49,20 +49,22 @@ export default function CartItemsTable({ basket, checkoutType }) {
             {item.quantity > 1 && <span>{` x${item.quantity}`}</span>}
           </ItemName>
           <Typography variant="body1">
-            {`${t('common.price', {
+            {/*t('common.price', {
               value: (item.price?.gross ?? 0) * item.quantity,
               currency: item.price?.currency
-            })}`}
+            })*/}
+            {`£${(item.price?.gross ?? 0) * item.quantity}`}
           </Typography>
         </Row>
       ))}
       <Row>
         <Typography variant="body1">Subtotal</Typography>
         <Typography variant="body1">
-          {`${t('common.price', {
+          {/*t('common.price', {
             value: basket.total.gross,
             currency: basket.total.currency
-          })}`}
+          })*/}
+          {`£${basket.total.gross}`}
         </Typography>
       </Row>
       {checkoutType === 'delivery' && (
@@ -76,10 +78,11 @@ export default function CartItemsTable({ basket, checkoutType }) {
           Total
         </Typography>
         <Typography component="strong" variant="h5">
-          {`${t('common.price', {
+          {/*t('common.price', {
             value: basket.total.gross,
             currency: basket.total.currency
-          })}`}
+          })*/}
+          {`£${basket.total.gross}`}
         </Typography>
       </Row>
     </Container>

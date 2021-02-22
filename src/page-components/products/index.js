@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { categories } from '../../pages/api/categories';
-import { useT } from 'lib/i18n';
+//import { useT } from 'lib/i18n';
 import { screen } from 'ui';
 import {
   ProductsFilter,
@@ -15,7 +15,7 @@ import {
 } from './styles';
 
 const Products = () => {
-  const t = useT();
+  //const t = useT();
   const [categoryData, setCategoryData] = React.useState([]);
   const [productsData, setProductsData] = React.useState([]);
   const [selectedFilter, setSelectedFilter] = React.useState('');
@@ -105,10 +105,11 @@ const Products = () => {
                   </ImageContainer>
                   <ItemName>{item.node.variants[0].name}</ItemName>
                   <ItemPrice>
-                    {`${t('common.price', {
+                    {/*t('common.price', {
                       value: item.node.variants[0].price,
                       currency: item.node.variants[0].priceVariants[0].currency
-                    })}`}
+                    })*/}
+                    {`£${item.node.variants[0].price}`}
                   </ItemPrice>
                 </a>
               </Items>
