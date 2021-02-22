@@ -105,10 +105,10 @@ const Products = () => {
                   </ImageContainer>
                   <ItemName>{item.node.variants[0].name}</ItemName>
                   <ItemPrice>
-                    {t('common.price', {
+                    {`${t('common.price', {
                       value: item.node.variants[0].price,
                       currency: item.node.variants[0].priceVariants[0].currency
-                    })}
+                    })}`}
                   </ItemPrice>
                 </a>
               </Items>
