@@ -53,7 +53,7 @@ export default function CartItemsTable({ basket, checkoutType }) {
               value: (item.price?.gross ?? 0) * item.quantity,
               currency: item.price?.currency
             })*/}
-            {`£${((item.price?.gross ?? 0) * item.quantity).toFixed(2)}`}
+            {`£${Number((item.price?.gross ?? 0) * item.quantity).toFixed(2)}`}
           </Typography>
         </Row>
       ))}
@@ -64,7 +64,7 @@ export default function CartItemsTable({ basket, checkoutType }) {
             value: basket.total.gross,
             currency: basket.total.currency
           })*/}
-          {`£${basket.total.gross.toFixed(2)}`}
+          {`£${Number(basket.total.gross).toFixed(2)}`}
         </Typography>
       </Row>
       {checkoutType === 'delivery' && (
@@ -82,7 +82,7 @@ export default function CartItemsTable({ basket, checkoutType }) {
             value: basket.total.gross,
             currency: basket.total.currency
           })*/}
-          {`£${basket.total.gross.toFixed(2)}`}
+          {`£${Number(basket.total.gross).toFixed(2)}`}
         </Typography>
       </Row>
     </Container>
