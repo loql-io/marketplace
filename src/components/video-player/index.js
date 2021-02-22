@@ -22,7 +22,11 @@ const Loader = styled.div`
   justify-content: center;
 `;
 
-const VideoPlayer = dynamic(() => import('./player'));
+const VideoPlayer = dynamic(() => {
+  import('./player');
+  import('dashjs');
+  import('videojs-contrib-dash');
+});
 
 export default function Video({
   playlists,
