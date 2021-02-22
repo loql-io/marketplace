@@ -109,7 +109,7 @@ const Products = () => {
                       value: item.node.variants[0].price,
                       currency: item.node.variants[0].priceVariants[0].currency
                     })*/}
-                    {`£${item.node.variants[0].price}`}
+                    {`£${item.node.variants[0].price.toFixed(2)}`}
                   </ItemPrice>
                 </a>
               </Items>
