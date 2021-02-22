@@ -52,7 +52,9 @@ export default function CartItemsTable({ basket, checkoutType }) {
             {/*t('common.price', {
               value: (item.price?.gross ?? 0) * item.quantity,
               currency: item.price?.currency
-            })*/}
+            })
+            //For some reason doesn't render i18n function on confirmation page so using the below
+            */}
             {`£${Number((item.price?.gross ?? 0) * item.quantity).toFixed(2)}`}
           </Typography>
         </Row>

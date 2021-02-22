@@ -108,7 +108,9 @@ const Products = () => {
                     {/*t('common.price', {
                       value: item.node.variants[0].price,
                       currency: item.node.variants[0].priceVariants[0].currency
-                    })*/}
+                    })
+                    //For some reason doesn't render i18n function on confirmation page so using the below
+                    */}
                     {`£${Number(item.node.variants[0].price).toFixed(2)}`}
                   </ItemPrice>
                 </a>

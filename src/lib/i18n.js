@@ -29,12 +29,6 @@ export function I18nextProvider({ locale, localeResource, children }) {
           if (typeof value === 'undefined' || !currency) {
             return 'N/A';
           }
-          console.log(
-            new Intl.NumberFormat(locale, {
-              style: 'currency',
-              currency
-            }).format(value)
-          );
           return new Intl.NumberFormat(locale, {
             style: 'currency',
             currency
