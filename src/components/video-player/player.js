@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import videojs from 'video.js';
 //import 'dashjs';
 //import 'videojs-contrib-dash';
-//import 'video.js/dist/video-js.css';
+import 'video.js/dist/video-js.css';
 
 const HLS_EXTENSION = /\.(m3u8)($|\?)/i;
 const DASH_EXTENSION = /\.(mpd)($|\?)/i;
