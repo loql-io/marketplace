@@ -21,8 +21,6 @@ function MyApp({ Component, pageProps, commonData }) {
     shopClosedLabel
   } = commonData;
 
-  console.log('commonData', commonData);
-
   useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -117,29 +115,32 @@ MyApp.getInitialProps = async function ({ router }) {
 
     const openWeek = getBooleanContent.shape.get.items[0].components.filter(
       (x) => x.name === 'Opening Hours'
-    )[0].content.chunks[0];
+    )?.[0]?.content?.chunks[0];
+
     const openWeekTimes = getBooleanContent.shape.get.components.filter(
       (x) => x.name === 'Opening Hours'
-    )[0].config.components;
+    )?.[0]?.config?.components;
 
-    const openDaysValue = openWeek.filter(
+    const openDaysValue = openWeek?.filter(
       (x) => days.indexOf(x.name) !== -1 && x.content.value
     );
 
-    const openDaysTimes = openWeekTimes.filter(
+    const openDaysTimes = openWeekTimes?.filter(
       (x) => days.indexOf(x.name) !== -1
     );
 
     const openDays = [];
 
-    Object.keys(openDaysValue).forEach((key) => {
-      openDays.push({
-        day: openDaysValue[key].name,
-        open: openDaysValue[key].content.value,
-        time: openDaysTimes.find((c) => c.name === openDaysValue[key].name)
-          .description
+    if (openDaysValue) {
+      Object.keys(openDaysValue).forEach((key) => {
+        openDays.push({
+          day: openDaysValue[key].name,
+          open: openDaysValue[key].content?.value,
+          time: openDaysTimes.find((c) => c.name === openDaysValue[key].name)
+            .description
+        });
       });
-    });
+    }
 
     return {
       commonData: {
