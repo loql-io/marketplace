@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-
+import Image from '@crystallize/react-image';
 import is from 'styled-is';
 
 export const Outer = styled.div`
-  margin: 30px 0;
+  margin-bottom: 30px;
 `;
 
 export const Variant = styled.div`
@@ -40,38 +40,73 @@ export const Button = styled.button.attrs(() => ({
 `;
 
 export const AttributeName = styled.h4`
-  text-transform: uppercase;
-  margin-bottom: 0.2rem;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.4);
-  font-size: 13px;
+  margin: 10px 0;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: left;
 `;
 
 export const AttributeSelector = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(150px, 1fr));
+  gap: 10px;
   margin-bottom: 0.5rem;
 `;
 
 export const AttributeButton = styled.button`
   flex-grow: 1;
   flex-basis: 0;
-  text-transform: capitalize;
-  font-weight: bold;
+  font-weight: 800;
   padding: 0.8rem;
+  font-size: 18px;
+  border: solid 2px #c0a9a8;
+  background-color: white;
+
+  text-align: left;
+  min-width: 50%;
+
+  &:focus {
+    outline: 0;
+  }
 
   ${is('selected')`
-    background: var(--color-text-main);
-    color: var(--color-main-background);
+    border-color: #75DB86;
+    background-color: #E9E2DF;
   `};
 
   &:first-child {
-    border-top-left-radius: 0.2rem;
-    border-bottom-left-radius: 0.2rem;
   }
 
   &:last-child {
-    border-top-right-radius: 0.2rem;
-    border-bottom-right-radius: 0.2rem;
-    border-right: none;
   }
+`;
+
+export const VariantImage = styled.div`
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  max-width: 100px;
+  position: relative;
+  width: 100%;
+`;
+export const Img = styled(Image)`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  > img {
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+`;
+export const Price = styled.div`
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: 700;
 `;
