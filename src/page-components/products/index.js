@@ -69,7 +69,6 @@ const Products = () => {
     }
     fetchData();
   }, []);
-  console.log(productsData);
 
   return (
     <ProductsFilter>

@@ -1,5 +1,3 @@
-//const withCSS = require('@zeit/next-css');
-//module.exports = withCSS();
 module.exports = {
   // For more information on internationalized routing,
   // check out the Next.js docs:

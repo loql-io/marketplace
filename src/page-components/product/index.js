@@ -51,22 +51,23 @@ export default function ProductPage({ product, preview }) {
   const [price, setPrice] = useState(
     selectedVariant.priceVariants.find((c) => c.identifier === 'default').price
   );
-
+  /*
   const [currency, setCurrency] = useState(
     selectedVariant.priceVariants.find((c) => c.identifier === 'default')
       .currency
   );
-
-  console.log(currency);
+*/
 
   function onVariantChange(variant) {
     setSelectedVariant(variant);
     setPrice(
       variant.priceVariants.find((c) => c.identifier === 'default').price
     );
+    /*
     setCurrency(
       variant.priceVariants.find((c) => c.identifier === 'default').currency
     );
+    */
   }
 
   const summaryComponent = product.components?.find(
@@ -82,13 +83,14 @@ export default function ProductPage({ product, preview }) {
 
   const images = [];
 
-  Object.entries(selectedVariant?.images).forEach(([key, value]) => {
-    images.push({
-      original: value.url,
-      thumbnail: value.variants[0].url,
-      key: key
+  if (selectedVariant?.images) {
+    Object.values(selectedVariant?.images).forEach((value) => {
+      images.push({
+        original: value.url,
+        thumbnail: value.variants[0].url
+      });
     });
-  });
+  }
 
   return (
     <Layout title={product.name} preview={preview}>
@@ -101,6 +103,7 @@ export default function ProductPage({ product, preview }) {
                 showNav={false}
                 showFullscreenButton={false}
                 showPlayButton={false}
+                showThumbnails={images.length > 1}
               />
             </MediaInner>
           </Media>
