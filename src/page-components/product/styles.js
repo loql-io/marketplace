@@ -91,28 +91,38 @@ export const Media = styled.div`
 export const MediaInner = styled.div`
   & .image-gallery {
     margin-bottom: 30px;
+    ${responsive.smAndLess} {
+      margin: 0 -10px 30px -10px;
+    }
   }
 
   & .image-gallery-thumbnail {
-    border: 3px solid #e9e2df;
+    border: 2px solid #fff;
+    opacity: 0.5;
+    width: 75px;
+    margin: 6px 0 0 6px;
+    ${responsive.smAndLess} {
+      width: 56px;
+    }
   }
 
   & .image-gallery-thumbnail.active,
   & .image-gallery-thumbnail:focus {
     outline: none;
-    border: 3px solid #79d288;
+    border: 2px solid #79d288;
+    opacity: 1;
   }
 
   & .image-gallery-thumbnail:hover {
     outline: none;
-    border: 3px solid #c0a9a8;
+    border: 2px solid #c0a9a8;
   }
 
   & .image-gallery-thumbnail-inner img {
-    min-height: 90px;
+    min-height: 71px;
 
     ${responsive.smAndLess} {
-      min-height: 70px;
+      min-height: 50px;
     }
   }
 
@@ -133,8 +143,8 @@ export const MediaInner = styled.div`
       }
 
       ${responsive.mdPlus} {
-        height: 600px;
-        min-height: 600px;
+        height: 700px;
+        min-height: 700px;
       }
 
       ${responsive.sm} {
@@ -144,8 +154,8 @@ export const MediaInner = styled.div`
       }
       ${responsive.xs} {
         object-fit: cover;
-        height: 240px;
-        min-height: 240px;
+        height: 300px;
+        min-height: 300px;
       }
     }
 
@@ -154,13 +164,13 @@ export const MediaInner = styled.div`
     }
 
     ${responsive.mdPlus} {
-      height: 600px;
+      height: 700px;
     }
     ${responsive.sm} {
       height: 400px;
     }
     ${responsive.xs} {
-      height: 240px;
+      height: 300px;
     }
   }
 
