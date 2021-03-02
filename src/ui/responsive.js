@@ -11,7 +11,8 @@ export const responsive = new Proxy(
     mdPlus: `@media (min-width: ${screen.mdMin}px)`,
     md: `@media (min-width: ${screen.mdMin}px) and (max-width: ${screen.mdMax}px)`,
     lg: `@media (min-width: ${screen.lgMin}px) and (max-width: ${screen.lgMax}px)`,
-    lgPlus: `@media (min-width: ${screen.xlMin}px)`
+    lgPlus: `@media (min-width: ${screen.xlMin}px)`,
+    carouselCustom: `@media (min-width: 440px) and (max-width: 768px)`
   },
   {
     get(obj, prop) {

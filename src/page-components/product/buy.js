@@ -3,7 +3,7 @@ import { LayoutContext } from '@crystallize/react-layout';
 
 //import { Button } from 'ui';
 import { useBasket } from 'components/basket';
-import { useT } from 'lib/i18n';
+//import { useT } from 'lib/i18n';
 import { useLocale } from 'lib/app-config';
 
 import { ProductFooter } from './styles';
@@ -14,7 +14,7 @@ import styles from '../../ui/mui/primaryButton';
 export default function BuyButton({ product, selectedVariant }) {
   const basket = useBasket();
   const layout = useContext(LayoutContext);
-  const t = useT();
+  //const t = useT();
   const locale = useLocale();
 
   const { identifier, currency } =
@@ -47,7 +47,8 @@ export default function BuyButton({ product, selectedVariant }) {
         variant="outlined"
         className={classes.button}
       >
-        {t('product.addToBasket')}
+        Add to Basket
+        {/*t('product.addToBasket')*/}
       </Button>
     </ProductFooter>
   );

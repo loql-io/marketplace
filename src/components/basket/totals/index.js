@@ -1,21 +1,23 @@
 import React from 'react';
 
-import { useT } from 'lib/i18n';
+//import { useT } from 'lib/i18n';
 import { useBasket } from '../index';
 
 import { Outer, Row, Rows } from './styles';
 
 export const Totals = () => {
-  const t = useT();
+  //const t = useT();
   const { total } = useBasket();
 
   return (
     <Outer>
       <Rows>
         <Row modifier="total-price">
-          <span>{t('basket.totalPrice')}:</span>
+          {/*<span>{t('basket.totalPrice')}:</span>*/}
+          <span>Total price:</span>
           <span>
-            {t('common.price', { value: total.net, currency: total.currency })}
+            {/*t('common.price', { value: total.net, currency: total.currency })*/}
+            {`£${Number(total.net).toFixed(2)}`}
           </span>
         </Row>
         {/* {discount && (
@@ -34,18 +36,22 @@ export const Totals = () => {
         )} */}
 
         <Row modifier="total-vat">
-          <span>{t('basket.vat')}:</span>
+          {/*<span>{t('basket.vat')}:</span>*/}
+          <span>VAT:</span>
           <span>
-            {t('common.price', { value: total.vat, currency: total.currency })}
+            {/*t('common.price', { value: total.vat, currency: total.currency })*/}
+            {`£${Number(total.vat).toFixed(2)}`}
           </span>
         </Row>
         <Row modifier="to-pay">
-          <span>{t('basket.totalToPay')}:</span>
+          {/*<span>{t('basket.totalToPay')}:</span>*/}
+          <span>To pay:</span>
           <span>
-            {t('common.price', {
+            {/*t('common.price', {
               value: total.gross,
               currency: total.currency
-            })}
+            })*/}
+            {`£${Number(total.gross).toFixed(2)}`}
           </span>
         </Row>
       </Rows>

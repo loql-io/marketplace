@@ -25,6 +25,7 @@ export const Media = styled.div`
 export const OuterReview = styled.div`
   background: #faf6f6;
   min-height: 200px;
+  margin-bottom: 30px;
   ${responsive.smAndLess} {
     padding: 10px 0;
   }

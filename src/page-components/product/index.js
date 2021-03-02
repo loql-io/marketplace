@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import Img from '@crystallize/react-image';
+//import Img from '@crystallize/react-image';
 import ContentTransformer from 'ui/content-transformer';
-import { useT } from 'lib/i18n';
+//import { useT } from 'lib/i18n';
 import { simplyFetchFromGraph } from 'lib/graph';
-import { screen } from 'ui';
+//import { screen } from 'ui';
 import Layout from 'components/layout';
 import ShapeComponents from 'components/shape/components';
-import Carousel from 'react-material-ui-carousel';
-
 import VariantSelector from './variant-selector';
 import Buy from './buy';
 import query from './query';
-//import Topics from 'components/topics';
+import 'react-image-gallery/styles/css/image-gallery.css';
+
+import ImageGallery from 'react-image-gallery';
 
 import {
   Outer,
@@ -42,7 +42,7 @@ export async function getData({ asPath, language, preview = null }) {
 }
 
 export default function ProductPage({ product, preview }) {
-  const t = useT();
+  //const t = useT();
   // Set the selected variant to the default
   const [selectedVariant, setSelectedVariant] = useState(
     product.variants.find((v) => v.isDefault)
@@ -56,6 +56,8 @@ export default function ProductPage({ product, preview }) {
     selectedVariant.priceVariants.find((c) => c.identifier === 'default')
       .currency
   );
+
+  console.log(currency);
 
   function onVariantChange(variant) {
     setSelectedVariant(variant);
@@ -78,36 +80,38 @@ export default function ProductPage({ product, preview }) {
     (c) => !['Summary', 'Description', 'Specs'].includes(c.name)
   );
 
+  const images = [];
+
+  Object.entries(selectedVariant?.images).forEach(([key, value]) => {
+    images.push({
+      original: value.url,
+      thumbnail: value.variants[0].url,
+      key: key
+    });
+  });
+
   return (
     <Layout title={product.name} preview={preview}>
       <Outer>
         <Sections>
           <Media>
             <MediaInner>
-              <Carousel
-                autoPlay={false}
-                navButtonsAlwaysInvisible={true}
-                animation="fade"
-              >
-                {selectedVariant?.images?.map((item, i) => (
-                  <Img
-                    key={i}
-                    {...item}
-                    sizes={`(max-width: ${screen.sm}px) 400px, 60vw`}
-                    alt={product.name}
-                  />
-                ))}
-              </Carousel>
+              <ImageGallery
+                items={images}
+                showNav={false}
+                showFullscreenButton={false}
+                showPlayButton={false}
+              />
             </MediaInner>
           </Media>
           <Info>
             <Name>{product.name}</Name>
-            {process.env.foo}
             <ProductPrice>
-              {t('common.price', {
+              {/*t('common.price', {
                 value: price,
                 currency
-              })}
+              })*/}
+              {`£${Number(price).toFixed(2)}`}
             </ProductPrice>
             <Content>
               {descriptionComponent && (

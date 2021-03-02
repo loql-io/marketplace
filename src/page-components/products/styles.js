@@ -33,7 +33,7 @@ export const Chip = styled.div`
 `;
 export const ProductItems = styled.div`
   display: grid;
-  grid-gap: 80px 40px;
+  grid-gap: 20px 20px;
   padding: 0 20px 40px 20px;
   ${responsive.lgPlus} {
     grid-template-columns: repeat(5, minmax(300px, 1fr));
@@ -45,51 +45,27 @@ export const ProductItems = styled.div`
     grid-template-columns: repeat(3, minmax(300px, 1fr));
   }
   ${responsive.sm} {
-    grid-template-columns: repeat(2, minmax(300px, 1fr));
-    grid-gap: 20px;
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
   }
   ${responsive.xs} {
     grid-template-columns: repeat(2, minmax(150px, 1fr));
-    grid-gap: 20px;
   }
 `;
-export const Items = styled.div`
-  margin: 0 auto;
-  /*
-  & img {
-    display: block;
-    object-fit: scale-down;
-    object-position: center;
-    width: 100%;
-    max-height: 320px;
-
-    ${responsive.smAndLess} {
-      object-fit: contain;
-      max-height: 160px;
-    }
-  }
-  &:hover a {
-    text-decoration: none;
-  }
-  */
-`;
+export const Items = styled.div``;
 
 export const Img = styled(Image)`
-  width: 100%;
-  height: 100%;
-  display: block;
-  margin: 0 auto;
-
   > img {
-    display: block;
-    object-fit: scale-down;
-    object-position: center;
-    width: 100%;
-    max-height: 320px;
-    ${responsive.smAndLess} {
-      object-fit: contain;
-      max-height: 160px;
-    }
+  width: 100vw;
+  height: 40vh;
+  object-fit: cover;
+  ${responsive.md} {
+    height: 38vh;
+  }
+  ${responsive.smAndLess} {
+    height: 30vh;
+  }
+  ${responsive.xs} {
+    height: 20vh;
   }
 `;
 
@@ -97,9 +73,12 @@ export const ImageContainer = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
+
   ${responsive.smAndLess} {
-    width: 100%;
+    /*
+    width: 160px;
     height: 160px;
+    */
   }
 `;
 

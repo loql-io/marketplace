@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import DocumentItem from 'components/item-microformat/document-item';
 import { screen } from 'ui';
-import { useT } from 'lib/i18n';
+//import { useT } from 'lib/i18n';
 import { useLocale } from 'lib/app-config';
 import PrimaryButton from '../../custom-fields/primary-button';
 
@@ -47,7 +47,7 @@ export const truncate = (str, length, ending) => {
 };
 
 export default function GridItem({ data, gridCell, extra }) {
-  const t = useT();
+  //const t = useT();
   const locale = useLocale();
 
   if (!data) {
@@ -74,7 +74,7 @@ export default function GridItem({ data, gridCell, extra }) {
       : defaultVariant;
     const { priceVariants, image: i } = variant;
 
-    const { price, currency } =
+    const { price } =
       priceVariants?.find(
         (pv) => pv.identifier === locale.crystallizePriceVariant
       ) || {};
@@ -84,10 +84,11 @@ export default function GridItem({ data, gridCell, extra }) {
       <Header>
         <Title>{name}</Title>
         <Price>
-          {t('common.price', {
+          {/*t('common.price', {
             value: price,
             currency
-          })}
+          })*/}
+          {`£${Number(price).toFixed(2)}`}
         </Price>
       </Header>
     );
@@ -114,7 +115,8 @@ export default function GridItem({ data, gridCell, extra }) {
               )}
             </ImageWrapper>
             <Paragraphs>{truncate(singleParagraph, 150, '...')}</Paragraphs>
-            <PrimaryButton text={t('product.buy')} />
+            {/*<PrimaryButton text={t('product.buy')} />*/}
+            <PrimaryButton text="Buy now" />
             {/*<hr />*/}
           </Outer>
         </Extra>

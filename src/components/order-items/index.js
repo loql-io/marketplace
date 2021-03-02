@@ -1,7 +1,7 @@
 import React from 'react';
 
 import AttributeList from 'components/attribute-list';
-import { useT } from 'lib/i18n';
+//import { useT } from 'lib/i18n';
 
 import {
   Item,
@@ -15,7 +15,7 @@ import {
 } from './styles';
 
 export default function OrderItems({ cart }) {
-  const t = useT();
+  //const t = useT();
 
   return (
     <Items>
@@ -35,16 +35,18 @@ export default function OrderItems({ cart }) {
           <ItemAmount>
             <ItemQuantity>
               {item.quantity} x{' '}
-              {t('common.price', {
+              {/*t('common.price', {
                 value: item.price?.gross ?? 0,
                 currency: item.price?.currency
-              })}
+              })*/}
+              {`£${Number(item.price?.gross ?? 0).toFixed(2)}`}
             </ItemQuantity>
             <ItemPrice>
-              {t('common.price', {
+              {/*t('common.price', {
                 value: (item.price?.gross ?? 0) * item.quantity,
                 currency: item.price?.currency
-              })}
+              })*/}
+              {`£${Number(item.price?.gross ?? 0).toFixed(2)}`}
             </ItemPrice>
           </ItemAmount>
         </Item>

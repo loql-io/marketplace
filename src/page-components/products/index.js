@@ -7,7 +7,6 @@ import {
   Chip,
   Chips,
   Items,
-  ImageContainer,
   ItemName,
   ItemPrice,
   ProductItems,
@@ -70,6 +69,7 @@ const Products = () => {
     }
     fetchData();
   }, []);
+  console.log(productsData);
 
   return (
     <ProductsFilter>
@@ -93,24 +93,20 @@ const Products = () => {
             item.node.variants && (
               <Items key={index}>
                 <a href={`${item.node.path}`}>
-                  <ImageContainer>
-                    <Img
-                      {...item.node.variants[0].image}
-                      {...getImageSize(item.node.variants[0].image)}
-                      alt={name}
-                      sizes={`(min-width ${screen.xs}px) ${imageMdWidth}vw, 60vw`}
-                    />
-
-                    {/*  <img src={item.node.variants[0].images[0].url} />  */}
-                  </ImageContainer>
+                  <Img
+                    {...item.node.variants[0].image}
+                    {...getImageSize(item.node.variants[0].image)}
+                    alt={name}
+                    sizes={`(min-width ${screen.xs}px) ${imageMdWidth}vw, 60vw`}
+                  />
                   <ItemName>{item.node.variants[0].name}</ItemName>
                   <ItemPrice>
                     {/*t('common.price', {
-                      value: item.node.variants[0].price,
-                      currency: item.node.variants[0].priceVariants[0].currency
-                    })
-                    //For some reason doesn't render i18n function on confirmation page so using the below
-                    */}
+                    value: item.node.variants[0].price,
+                    currency: item.node.variants[0].priceVariants[0].currency
+                  })
+                  //For some reason doesn't render i18n function on confirmation page so using the below
+                  */}
                     {`£${Number(item.node.variants[0].price).toFixed(2)}`}
                   </ItemPrice>
                 </a>

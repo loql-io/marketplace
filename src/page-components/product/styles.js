@@ -3,7 +3,7 @@ import Image from '@crystallize/react-image';
 import { H1, H2 as H, responsive } from 'ui';
 
 export const Outer = styled.div`
-  max-width: 1600px;
+  max-width: 1440px;
   margin: 0 auto;
 `;
 
@@ -73,26 +73,118 @@ export const Description = styled.div`
 export const Media = styled.div`
   flex: 0 0 65%;
   position: relative;
+  min-height: 48vh;
   /*padding: 3rem;*/
-  ${responsive.mdAndLess} {
+
+  ${responsive.mdPlus} {
+    margin: 0 2em 0 0;
+  }
+
+  ${responsive.smAndLess} {
     display: block;
     padding: 0;
+    margin: 0;
+    min-height: 20vh;
   }
 `;
 
 export const MediaInner = styled.div`
-  ${responsive.mdAndLess} {
-    margin: 2em;
+  & .image-gallery {
+    margin-bottom: 30px;
   }
 
+  & .image-gallery-thumbnail {
+    border: 3px solid #e9e2df;
+  }
+
+  & .image-gallery-thumbnail.active,
+  & .image-gallery-thumbnail:focus {
+    outline: none;
+    border: 3px solid #79d288;
+  }
+
+  & .image-gallery-thumbnail:hover {
+    outline: none;
+    border: 3px solid #c0a9a8;
+  }
+
+  & .image-gallery-thumbnail-inner img {
+    min-height: 90px;
+
+    ${responsive.smAndLess} {
+      min-height: 70px;
+    }
+  }
+
+  & .image-gallery-slide {
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  & .image-gallery-slide-wrapper {
+    & .image-gallery-image {
+      object-fit: cover;
+
+      ${responsive.carouselCustom} {
+        object-fit: cover !important;
+        height: 500px !important;
+        min-height: 500px !important;
+      }
+
+      ${responsive.mdPlus} {
+        height: 600px;
+        min-height: 600px;
+      }
+
+      ${responsive.sm} {
+        object-fit: contain;
+        height: 400px;
+        min-height: 400px;
+      }
+      ${responsive.xs} {
+        object-fit: cover;
+        height: 240px;
+        min-height: 240px;
+      }
+    }
+
+    ${responsive.carouselCustom} {
+      height: 500px !important;
+    }
+
+    ${responsive.mdPlus} {
+      height: 600px;
+    }
+    ${responsive.sm} {
+      height: 400px;
+    }
+    ${responsive.xs} {
+      height: 240px;
+    }
+  }
+
+  /*
+  & .image-gallery-slide-wrapper {
+    position: relative;
+
+    & .image-gallery-swipe {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+*/
+
   img {
-    object-fit: contain;
-    max-height: 45vh;
+    object-fit: cover;
+    /*min-height: 48vh;*/
+    min-height: 76vh;
     width: 100%;
     height: 100%;
 
-    ${responsive.mdAndLess} {
-      max-height: 40vh;
+    ${responsive.smAndLess} {
+      min-height: 20vh;
     }
   }
 `;
@@ -155,7 +247,7 @@ export const Price = styled.div`
 `;
 export const Related = styled.div`
   border-top: 2px solid #efefef;
-  max-width: 1600px;
+  max-width: 1440px;
   padding: 100px 100px 0 100px;
   margin: 100px auto;
   display: block;

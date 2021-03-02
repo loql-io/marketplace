@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import AttributeList from 'components/attribute-list';
-import { useT } from 'lib/i18n';
+//import { useT } from 'lib/i18n';
 
 import {
   ControlPointRounded,
@@ -25,7 +25,7 @@ import {
 } from './styles';
 
 export default function TinyBasketItem({ actions, item }) {
-  const t = useT();
+  //const t = useT();
   const [drawAttention, setDrawAttention] = useState(false);
 
   const { id, attributes, addItemTime, images } = item;
@@ -72,19 +72,21 @@ export default function TinyBasketItem({ actions, item }) {
         <PriceWrapper>
           <PriceWrap>
             <Price>
-              {t('common.price', {
+              {/*t('common.price', {
                 value: item.price?.gross ?? 0,
                 currency: item.price?.currency
-              })}
+              })*/}
+              {`£${Number(item.price?.gross ?? 0).toFixed(2)}`}
             </Price>
           </PriceWrap>
 
           <PriceVat>
             <span>
-              {t('common.vat', {
+              {/*t('common.vat', {
                 value: item.price?.vat ?? 0,
                 currency: item.price?.currency
-              })}
+              })*/}
+              {`£${Number(item.price?.vat ?? 0).toFixed(2)}`}
             </span>
           </PriceVat>
         </PriceWrapper>

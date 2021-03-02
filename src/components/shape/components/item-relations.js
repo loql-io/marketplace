@@ -20,8 +20,9 @@ export default function ItemRelations({ items }) {
 
   const getPrice = (item) => {
     const price = item?.price || 0;
-    const currency = item?.currency || 'gbp';
-    return `${t('common.price', { value: price, currency })}`;
+    //const currency = item?.currency || 'gbp';
+    //return `${t('common.price', { value: price, currency })}`;
+    return `£${Number(price).toFixed(2)}`;
   };
   // console.log('items', items[0])
   return (

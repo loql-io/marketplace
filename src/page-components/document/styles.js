@@ -65,7 +65,7 @@ export const H2 = styled(H)`
 
 export const Related = styled.div`
   border-top: 2px solid #efefef;
-  max-width: 1600px;
+  max-width: 1440px;
   padding: 100px 100px 0 100px;
   margin: 100px auto;
   display: block;

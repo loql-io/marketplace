@@ -1,14 +1,14 @@
 import React from 'react';
 
 import Link from 'next/link';
-import { useT } from 'lib/i18n';
+//import { useT } from 'lib/i18n';
 import { H3 } from 'ui';
 import { useLocale } from 'lib/app-config';
 
 import { Outer, Text, ImageWrapper, Img, Price, Inner } from './styles';
 
 export default function ProductItem({ data }) {
-  const t = useT();
+  //const t = useT();
   const locale = useLocale();
 
   if (!data) {
@@ -18,7 +18,7 @@ export default function ProductItem({ data }) {
   const { name, path, type, variants, matchingVariant } = data;
   const { priceVariants, images } =
     matchingVariant || variants?.find((variant) => variant.isDefault) || {};
-  const { price, currency } = priceVariants?.find(
+  const { price } = priceVariants?.find(
     (pv) => pv.identifier === locale.crystallizePriceVariant
   ) || {
     price: matchingVariant?.price || 'n/a',
@@ -34,10 +34,11 @@ export default function ProductItem({ data }) {
           </ImageWrapper>
           <Text>
             <Price>
-              {t('common.price', {
+              {/*t('common.price', {
                 value: price,
                 currency
-              })}
+              })*/}
+              {`£${Number(price).toFixed(2)}`}
             </Price>
             <H3>{name}</H3>
           </Text>

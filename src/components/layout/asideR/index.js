@@ -1,11 +1,11 @@
 import React from 'react';
 import { useBasket, TinyBasket } from 'components/basket';
 import PrimaryButton from '../../../components/custom-fields/primary-button';
-import { useT } from 'lib/i18n';
+//import { useT } from 'lib/i18n';
 import { Basket, Header, Footer } from './styles';
 
 export default function AsideR() {
-  const t = useT();
+  //const t = useT();
   const basket = useBasket();
   const minimumOrder = Number(process.env.NEXT_PUBLIC_SHOP_MIN_ORDER || 0);
   const isAboveMinOrder =
@@ -19,18 +19,19 @@ export default function AsideR() {
   };
 
   if (basket.status !== 'ready') {
-    return t('basket.loading');
+    return 'Hold on. Getting your basket...'; //t('basket.loading');
   }
 
   return (
     <Basket>
-      <Header>{t('basket.title')}</Header>
+      <Header>Basket</Header>
+      {/*<Header>{t('basket.title')}</Header>*/}
       <TinyBasket />
       <Footer>
         <PrimaryButton
           text={
             isAboveMinOrder
-              ? t('basket.goToCheckout')
+              ? 'Go to checkout' //t('basket.goToCheckout')
               : `Minimum order £${minimumOrder}`
           }
           style={{ width: '100%', margin: 0 }}
