@@ -12,7 +12,9 @@ export const responsive = new Proxy(
     md: `@media (min-width: ${screen.mdMin}px) and (max-width: ${screen.mdMax}px)`,
     lg: `@media (min-width: ${screen.lgMin}px) and (max-width: ${screen.lgMax}px)`,
     lgPlus: `@media (min-width: ${screen.xlMin}px)`,
-    carouselCustom: `@media (min-width: 440px) and (max-width: 768px)`
+    carouselCustom: `@media (min-width: 440px) and (max-width: 768px)`,
+    variantGrid1: `@media (min-width: 844px) and (max-width: 1023px)`,
+    variantGrid2: `@media (min-width: 543px) and (max-width: 843px)`
   },
   {
     get(obj, prop) {

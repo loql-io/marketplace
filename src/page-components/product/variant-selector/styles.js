@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Image from '@crystallize/react-image';
 import is from 'styled-is';
+import { responsive } from 'ui';
 
 export const Outer = styled.div`
   margin-bottom: 30px;
@@ -48,9 +49,16 @@ export const AttributeName = styled.h4`
 
 export const AttributeSelector = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, minmax(150px, 1fr));
+  grid-template-columns: repeat(2, minmax(130px, 1fr));
   gap: 10px;
   margin-bottom: 0.5rem;
+
+  ${responsive.variantGrid1} {
+    grid-template-columns: repeat(5, minmax(130px, 1fr));
+  }
+  ${responsive.variantGrid2} {
+    grid-template-columns: repeat(3, minmax(130px, 1fr));
+  }
 `;
 
 export const AttributeButton = styled.button`
