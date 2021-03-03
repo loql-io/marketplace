@@ -44,7 +44,7 @@ export const PhoneNumber = styled.span`
 export const Body = styled.div`
   width: 100%;
   margin-top: 10px;
-  margin-left: 20px;
+  padding-left: 20px;
   & p {
     text-align: left !important;
     padding-right: 30%;
