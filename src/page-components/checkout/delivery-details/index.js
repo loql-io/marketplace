@@ -109,7 +109,8 @@ export function DeliveryDetails({ onNext, checkoutState }) {
       ),
     house: Yup.string().required(),
     street: Yup.string().required(),
-    city: Yup.string().required()
+    city: Yup.string().required(),
+    deliveryNote: Yup.string()
   });
 
   return (
@@ -140,7 +141,8 @@ export function DeliveryDetails({ onNext, checkoutState }) {
           street: checkoutState.street,
           city: checkoutState.city,
           businessNews: checkoutState.businessNews || false,
-          loqlNews: checkoutState.loqlNews || false
+          loqlNews: checkoutState.loqlNews || false,
+          deliveryNote: checkoutState.deliveryNote
         }}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
@@ -181,6 +183,19 @@ export function DeliveryDetails({ onNext, checkoutState }) {
               formik={formik}
               checkoutState={checkoutState}
               outsideRadiusText={outsideRadiusText}
+            />
+            <CustomTextInputField
+              value={formik.values.deliveryNote}
+              label="Delivery note (optional)"
+              onChange={formik.handleChange('deliveryNote')}
+              helperText={
+                formik.touched.deliveryNote
+                  ? formik.errors.deliveryNote
+                  : 'e.g. Happy Birthday!'
+              }
+              error={
+                formik.touched.deliveryNote && !!formik.errors.deliveryNote
+              }
             />
 
             {/* <FormControlLabel

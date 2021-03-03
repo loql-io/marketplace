@@ -1,4 +1,13 @@
-export function getAddress(order) {
+export function getAddress(order, deliveryNote) {
+  let deliveryNoteBlock = '';
+
+  if (deliveryNote) {
+    deliveryNoteBlock = `<h4 class="body-header">Delivery note</h4>
+      <p class="body-copy">
+        ${deliveryNote}
+      </p>`;
+  }
+
   if (
     order.additionalInformation === 'delivery' &&
     order.customer.addresses[0]
@@ -9,7 +18,7 @@ export function getAddress(order) {
         ${order.customer.addresses[0].street}
         ${order.customer.addresses[0].postalCode}
         ${order.customer.addresses[0].city}
-      </p>`;
+      </p>${deliveryNoteBlock}`;
   } else {
     return '';
   }

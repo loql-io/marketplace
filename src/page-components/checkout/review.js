@@ -26,6 +26,10 @@ const StrongText = styled(Typography)`
   padding-bottom: 16px;
 `;
 
+const DeliveryNoteContainer = styled.div`
+  margin: 20px 0 0;
+`;
+
 async function persistCollectionOrder({ orderModel }) {
   console.log(
     `${window.location.origin}/api/order/collection-order`,
@@ -54,7 +58,14 @@ export default function Review({ onPrevious, onNext, checkoutState }) {
 
   const hasStripe = !!process.env.NEXT_PUBLIC_STRIPE_ACCOUNT_ID;
 
-  const { house, street, city, phone, checkoutType } = checkoutState;
+  const {
+    house,
+    street,
+    city,
+    phone,
+    checkoutType,
+    deliveryNote
+  } = checkoutState;
 
   async function handleNext() {
     if (hasStripe) {
@@ -108,6 +119,12 @@ export default function Review({ onPrevious, onNext, checkoutState }) {
           <StrongText variant="h4">Delivery</StrongText>
           <Typography variant="body1">{`${house} ${street} ${city}`}</Typography>
           <Typography variant="body1">{phone}</Typography>
+          {deliveryNote && (
+            <DeliveryNoteContainer>
+              <StrongText variant="h4">Delivery note</StrongText>
+              <Typography variant="body1">{deliveryNote}</Typography>
+            </DeliveryNoteContainer>
+          )}
         </CheckoutTypeContainer>
       )}
       {checkoutState.checkoutType === 'collection' && (

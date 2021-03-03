@@ -37,7 +37,7 @@ export default async function stripeOrderNormalizer({
           paymentMethodId: charge.payment_method,
           paymentIntentId: charge.payment_intent,
           subscriptionId: charge.subscription,
-          metadata: ''
+          metadata: paymentModel.metadata.deliveryNote
         }
       }
     ]

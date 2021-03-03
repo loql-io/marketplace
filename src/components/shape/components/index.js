@@ -37,14 +37,12 @@ const ShapeComponents = ({ components, overrides, pageType }) => {
 
   const productFooterTable = (pageType, component, key) => {
     if (pageType === 'product') {
-      //console.log(1)
       return (
         <ProductFooter key={key}>
           <PropertiesTable {...component.content} />
         </ProductFooter>
       );
     } else {
-      //console.log(2)
       return (
         <ContentOuter key={key}>
           <PropertiesTable {...component.content} />

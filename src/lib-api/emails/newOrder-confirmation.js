@@ -28,6 +28,10 @@ export default async function sendOrderConfirmation(orderId, body) {
         : process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER
     } (${orderId})`;
 
+    const deliveryNote = body.paymentModel
+      ? body.paymentModel.metadata.deliveryNote
+      : '';
+
     const total = order.cart.reduce(
       (a, item) => a + item.price.gross * item.quantity,
       0
@@ -40,7 +44,15 @@ export default async function sendOrderConfirmation(orderId, body) {
         to: email,
         from: process.env.NEXT_PUBLIC_LOQL_EMAIL,
         subject: subjectLineCustomer,
-        html: newOrderCustomer(order, email, logo, orderId, total, currency)
+        html: newOrderCustomer(
+          order,
+          email,
+          logo,
+          orderId,
+          total,
+          currency,
+          deliveryNote
+        )
       },
       {
         to: [
@@ -56,7 +68,8 @@ export default async function sendOrderConfirmation(orderId, body) {
           logo,
           orderId,
           total,
-          currency
+          currency,
+          deliveryNote
         ),
         isMultiple: true
       }

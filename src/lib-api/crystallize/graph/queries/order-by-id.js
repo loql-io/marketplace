@@ -14,7 +14,12 @@ export default `
         }
         payment {
           ... on StripePayment {
+            orderId
+            customerId
             paymentMethod
+            paymentIntentId
+            subscriptionId
+            metadata
           }
           ... on CustomPayment {
             provider

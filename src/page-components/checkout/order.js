@@ -47,7 +47,10 @@ export default function Order({ onNext, checkoutState }) {
   };
 
   function handleNext(state) {
-    basket.actions.setMetadata({ additionalInformation: value });
+    basket.actions.setMetadata({
+      additionalInformation: value,
+      deliveryNote: state.deliveryNote
+    });
     onNext({ ...state, checkoutType: value });
   }
 

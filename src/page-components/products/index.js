@@ -98,7 +98,7 @@ const Products = () => {
                     alt={name}
                     sizes={`(min-width ${screen.xs}px) ${imageMdWidth}vw, 60vw`}
                   />
-                  <ItemName>{item.node.variants[0].name}</ItemName>
+                  <ItemName>{item.node.name}</ItemName>
                   <ItemPrice>
                     {/*t('common.price', {
                     value: item.node.variants[0].price,

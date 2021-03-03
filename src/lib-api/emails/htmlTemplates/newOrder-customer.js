@@ -9,7 +9,8 @@ export default function newOrderCustomer(
   logo,
   orderId,
   total,
-  currency
+  currency,
+  deliveryNote
 ) {
   const html = `<!doctype html>
   <html lang="en">
@@ -91,7 +92,7 @@ export default function newOrderCustomer(
                     <p class="body-copy">
                       ${email}
                     </p>
-                    ${getAddress(order)}
+                    ${getAddress(order, deliveryNote)}
                   </td>
                 </tr>
                 <tr>

@@ -44,6 +44,10 @@ const CheckoutTypeContainer = styled.div`
   padding: 0 8px;
 `;
 
+const DeliveryNoteContainer = styled.div`
+  margin: 20px 0 0;
+`;
+
 export default function Confirmation({ order: orderData }) {
   const basket = useBasket();
 
@@ -86,7 +90,10 @@ export default function Confirmation({ order: orderData }) {
     postalCode
   } = order.customer.addresses[0];
 
-  const { additionalInformation: checkoutType } = basketCopy.metadata;
+  const {
+    additionalInformation: checkoutType,
+    deliveryNote: deliveryNote
+  } = basketCopy.metadata;
 
   function handleContinueShopping() {
     router.replace('/');
@@ -118,6 +125,12 @@ export default function Confirmation({ order: orderData }) {
               <StrongText variant="h4">Delivery</StrongText>
               <Typography variant="body1">{`${streetNumber} ${street} ${postalCode} ${city}`}</Typography>
               <Typography variant="body1">{phone}</Typography>
+              {deliveryNote && (
+                <DeliveryNoteContainer>
+                  <StrongText variant="h4">Delivery note</StrongText>
+                  <Typography variant="body1">{deliveryNote}</Typography>
+                </DeliveryNoteContainer>
+              )}
             </CheckoutTypeContainer>
           )}
           {checkoutType === 'collection' && (

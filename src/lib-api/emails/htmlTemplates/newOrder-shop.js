@@ -10,7 +10,8 @@ export default function newOrderShopEmail(
   logo,
   orderId,
   total,
-  currency
+  currency,
+  deliveryNote
 ) {
   const html = `<!doctype html>
   <html lang="en">
@@ -96,7 +97,7 @@ export default function newOrderShopEmail(
                     <p class="body-copy">
                       ${order.customer.addresses[0].phone}
                     </p>
-                    ${getAddress(order)}
+                    ${getAddress(order, deliveryNote)}
                   </td>
                 </tr>
               </tbody>

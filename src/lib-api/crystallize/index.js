@@ -11,7 +11,7 @@ function createApiCaller(uri) {
       },
       body: JSON.stringify({ operationName, query, variables })
     });
-    console.log('callApi', response);
+
     return response.json();
   };
 }
