@@ -9,6 +9,21 @@ export default async function collectionOrderNormalizer({ orderModel }) {
       lastName: orderModel.customer.lastName,
       birthDate: Date,
       addresses: [...orderModel.customer?.addresses]
-    }
+    },
+    payment: [
+      {
+        provider: 'stripe',
+        stripe: {
+          stripe: null,
+          customerId: null,
+          orderId: null,
+          paymentMethod: null,
+          paymentMethodId: null,
+          paymentIntentId: null,
+          subscriptionId: null,
+          metadata: orderModel.metadata.deliveryNote
+        }
+      }
+    ]
   };
 }
