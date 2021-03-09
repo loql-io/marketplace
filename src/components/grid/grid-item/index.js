@@ -59,7 +59,7 @@ export default function GridItem({ data, gridCell, extra }) {
   const cellSize = `cell-${gridCell?.layout?.rowspan}x${gridCell?.layout?.colspan}`;
 
   const singleParagraph = data.components.find((i) => i.name === 'Description')
-    ?.content?.paragraphs?.[0].body?.json?.[0]?.children?.[0]?.textContent;
+    ?.content?.paragraphs?.[0]?.body?.json?.[0]?.children?.[0]?.textContent;
 
   let image;
   let text;
