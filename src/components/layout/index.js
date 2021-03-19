@@ -83,6 +83,7 @@ export default function Layout({
           href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
           rel="stylesheet"
         />
+        <link href="/static/home.css" rel="stylesheet" />
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
