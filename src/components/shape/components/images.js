@@ -39,7 +39,7 @@ export default function Images({ images }) {
   if (images.length === 1) {
     return (
       <Outer>
-        <Image {...images[0]} sizes="8vw" />
+        <Image {...images[0]} />
       </Outer>
     );
   }

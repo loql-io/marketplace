@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import DocumentItem from 'components/item-microformat/document-item';
+import DocumentBlogRelatedItem from 'components/item-microformat/document-blog-related-item';
 import { screen } from 'ui';
-//import { useT } from 'lib/i18n';
 import { useLocale } from 'lib/app-config';
 import PrimaryButton from '../../custom-fields/primary-button';
 
@@ -17,6 +17,9 @@ import {
   Extra,
   Paragraphs
 } from './styles';
+
+const TENANT = process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER;
+const isBlog = TENANT === 'loql-blog';
 
 function getImageSize({ variants } = {}) {
   if (variants) {
@@ -47,7 +50,6 @@ export const truncate = (str, length, ending) => {
 };
 
 export default function GridItem({ data, gridCell, extra }) {
-  //const t = useT();
   const locale = useLocale();
 
   if (!data) {
@@ -83,19 +85,17 @@ export default function GridItem({ data, gridCell, extra }) {
     text = (
       <Header>
         <Title>{name}</Title>
-        <Price>
-          {/*t('common.price', {
-            value: price,
-            currency
-          })*/}
-          {`£${Number(price).toFixed(2)}`}
-        </Price>
+        <Price>{`£${Number(price).toFixed(2)}`}</Price>
       </Header>
     );
   }
 
   if (type === 'document') {
-    return <DocumentItem data={data} colSpan="1" />;
+    return isBlog ? (
+      <DocumentBlogRelatedItem data={data} colSpan="1" />
+    ) : (
+      <DocumentItem data={data} colSpan="1" />
+    );
   }
 
   if (extra) {
@@ -115,9 +115,7 @@ export default function GridItem({ data, gridCell, extra }) {
               )}
             </ImageWrapper>
             <Paragraphs>{truncate(singleParagraph, 150, '...')}</Paragraphs>
-            {/*<PrimaryButton text={t('product.buy')} />*/}
             <PrimaryButton text="Buy now" />
-            {/*<hr />*/}
           </Outer>
         </Extra>
       </Link>

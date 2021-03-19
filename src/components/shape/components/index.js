@@ -13,15 +13,12 @@ import ItemRelations from './item-relations';
 import GridRelations from './grid-relations';
 
 const ContentOuter = styled.div`
-  /*margin: 1em var(--content-padding);*/
-
   ${responsive.xs} {
     margin: 0;
   }
 `;
 
 const ProductFooter = styled.div`
-  /*margin: 1em var(--content-padding);*/
   width: 50%;
   min-height: 55px;
   display: inline-grid;
@@ -128,7 +125,11 @@ const ShapeComponents = ({ components, overrides, pageType }) => {
             Component = Component || 'div';
             return (
               <ContentOuter key={key}>
-                <Component>{component.content.text}</Component>
+                <Component>
+                  <p>{component.content.text}</p>
+                </Component>
+                <br />
+                <br />
               </ContentOuter>
             );
           }

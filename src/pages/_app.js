@@ -9,6 +9,7 @@ import { homePageShape, booleanContent } from './api/homePageShape';
 import ClosedModal from 'components/ClosedModal';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
+import '../static/home/home.css';
 
 export const cache = createCache({ key: 'css', prepend: true });
 
@@ -113,11 +114,11 @@ MyApp.getInitialProps = async function ({ router }) {
       'Saturday'
     ];
 
-    const openWeek = getBooleanContent.shape.get.items[0].components.filter(
+    const openWeek = getBooleanContent?.shape?.get?.items[0]?.components.filter(
       (x) => x.name === 'Opening Hours'
     )?.[0]?.content?.chunks[0];
 
-    const openWeekTimes = getBooleanContent.shape.get.components.filter(
+    const openWeekTimes = getBooleanContent?.shape?.get?.components.filter(
       (x) => x.name === 'Opening Hours'
     )?.[0]?.config?.components;
 

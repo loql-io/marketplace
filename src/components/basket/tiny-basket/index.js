@@ -1,7 +1,4 @@
 import React from 'react';
-
-//import { useT } from 'lib/i18n';
-
 import { useBasket } from '../index';
 import { Totals } from '../totals';
 import TinyBasketItem from './item';
@@ -9,7 +6,6 @@ import TinyBasketItem from './item';
 import { Outer, Items, ItemOuter, BasketIsEmpty } from './styles';
 
 export function TinyBasket() {
-  //const t = useT();
   const { status, cart, actions } = useBasket();
 
   if (status !== 'ready') {
@@ -19,12 +15,11 @@ export function TinyBasket() {
   if (!cart?.length) {
     return (
       <Outer>
-        {/*<BasketIsEmpty>{t('basket.empty')}</BasketIsEmpty>*/}
         <BasketIsEmpty>Your basket is empty</BasketIsEmpty>
       </Outer>
     );
   }
-  //console.log(cart)
+
   return (
     <Outer>
       <Items>

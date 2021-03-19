@@ -17,9 +17,7 @@ export const Title = styled.div`
   margin: 1em 0;
 `;
 
-export const Body = styled.div`
-  /*margin: 1em var(--content-padding);*/
-`;
+export const Body = styled.div``;
 
 export const Text = styled.div`
   margin-bottom: 20px;

@@ -11,25 +11,35 @@ import { Sticky } from 'react-sticky';
 import {
   Logo,
   PreviewBar,
-  //NavActions,
+  NavActions,
   IconBar,
   StyledAppBar,
   ShopNav,
   ShopBadge,
-  Town
+  Town,
+  LeftAligned,
+  Signin,
+  NavLink,
+  Join,
+  Dot
 } from './styles';
 
+const TENANT = process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER;
+const isBlog = TENANT === 'loql-blog';
+const isLoql = TENANT === 'loql';
+
 export default function Header({ simple, preview }) {
-  //const t = useT();
-  //const auth = useAuth();
   const router = useRouter();
 
   const [navOpen, setNavOpen] = useState(false);
 
+  const isPosts = router.query?.catalogue?.toString() === 'posts';
+  const isAbout = router.query?.catalogue?.toString() === 'about';
+
   return (
     <>
       {preview && (
-        <PreviewBar>
+        <PreviewBar isBlog={isBlog}>
           You are in preview mode (
           <a href={'/api/preview?leave=' + encodeURIComponent(router.asPath)}>
             leave
@@ -38,37 +48,53 @@ export default function Header({ simple, preview }) {
         </PreviewBar>
       )}
       <StyledAppBar position="static">
-        <Link
-          href={`https://loql.ly/${process.env.NEXT_PUBLIC_TOWN.toLowerCase()}`}
-          passHref
-        >
-          <Logo>
-            <Town>
-              {process.env.NEXT_PUBLIC_TOWN
-                ? `${process.env.NEXT_PUBLIC_TOWN}`
-                : ''}
-            </Town>
-            <img src="/static/loql-logo-light.svg" alt="" />
-          </Logo>
-        </Link>
+        {isBlog ? (
+          <LeftAligned>
+            <Link href="/" passHref>
+              <Logo>
+                <img src="/static/loql-logo-light.svg" alt="" />
+              </Logo>
+            </Link>
+          </LeftAligned>
+        ) : (
+          <Link
+            href={`https://loql.ly/${process.env.NEXT_PUBLIC_TOWN.toLowerCase()}`}
+            passHref
+          >
+            <Logo>
+              <Town>
+                {process.env.NEXT_PUBLIC_TOWN
+                  ? `${process.env.NEXT_PUBLIC_TOWN}`
+                  : ''}
+              </Town>
+              <img src="/static/loql-logo-light.svg" alt="" />
+            </Logo>
+          </Link>
+        )}
 
-        {/*
-      <Nav open={navOpen}>
-        <NavList>
-          {mainNavigation?.map((category) => (
-            <NavListItem key={category.path}>
-              <Link href={category.path}>
-                <a onClick={() => setNavOpen(false)}>{category.name}</a>
-              </Link>
-            </NavListItem>
-          ))}
-        </NavList>
-      </Nav>
-      */}
+        <BurgerButton
+          isBlog={isBlog}
+          active={navOpen}
+          onClick={() => setNavOpen(!navOpen)}
+        />
 
-        <BurgerButton active={navOpen} onClick={() => setNavOpen(!navOpen)} />
+        {isBlog && (
+          <NavActions open={navOpen}>
+            <NavLink href="/posts" active={isPosts}>
+              Latest{isPosts && <Dot />}
+            </NavLink>
+            <NavLink href="/about" active={isAbout}>
+              About{isAbout && <Dot />}
+            </NavLink>
+            <Join href={process.env.NEXT_PUBLIC_BLOG_JOIN_URL}>Join</Join>
+            <Signin href={process.env.NEXT_PUBLIC_BLOG_SIGNIN_URL}>
+              Sign in
+            </Signin>
+          </NavActions>
+        )}
       </StyledAppBar>
-      {process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER !== 'loql' && (
+
+      {!isLoql && !isBlog && (
         <Sticky topOffset={48}>
           {({ style }) => (
             <ShopNav style={style}>
@@ -79,20 +105,6 @@ export default function Header({ simple, preview }) {
                   }}
                 />
               </a>
-
-              {/*
-            <NavActions open={navOpen}>
-              {auth.isLoggedIn ? (
-                <button type="button" onClick={auth.logout}>
-                  Logout
-                </button>
-              ) : (
-                <Link href="/login">
-                  <a>{t('customer.login.title')}</a>
-                </Link>
-              )}
-            </NavActions>
-            */}
               {!simple && (
                 <IconBar>
                   <BasketButton />

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import React from 'react';
 import { LayoutContext } from '@crystallize/react-layout';
+import { responsive } from 'ui';
+
 const Outer = styled.button.attrs(() => ({
   type: 'button'
 }))`
@@ -16,12 +18,29 @@ const Outer = styled.button.attrs(() => ({
   padding: 0;
 `;
 
-export default function BurgerButton({ active }) {
+const HideOnMobiles = styled.span`
+  display: contents;
+  ${responsive.smPlus} {
+    display: none;
+  }
+`;
+
+export default function BurgerButton({ active, isBlog }) {
   const layout = React.useContext(LayoutContext);
 
-  return (
-    <Outer open={active} onClick={layout?.actions?.showLeft}>
-      <img src="/static/burger.svg" />
-    </Outer>
-  );
+  if (isBlog) {
+    return (
+      <HideOnMobiles>
+        <Outer open={active} onClick={layout?.actions?.showLeft}>
+          <img src="/static/burger.svg" />
+        </Outer>
+      </HideOnMobiles>
+    );
+  } else {
+    return (
+      <Outer open={active} onClick={layout?.actions?.showLeft}>
+        <img src="/static/burger.svg" />
+      </Outer>
+    );
+  }
 }

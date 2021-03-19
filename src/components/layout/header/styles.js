@@ -145,33 +145,25 @@ export const BasketQuantity = styled.div`
 `;
 
 export const NavActions = styled.div`
-  margin: 8px 10px 0;
   display: flex;
-  text-transform: uppercase;
   align-items: center;
-  right: 63px;
+  right: 10px;
   position: absolute;
-  top: 8px;
+  top: 6px;
 
   button,
   a {
     padding: 5px 10px;
-    font-size: 14px;
-    font-weight: 500;
-    border: 1.4px solid var(--color-text-main);
     color: var(--color-text-main);
     white-space: nowrap;
-
     cursor: pointer;
 
     &:hover {
-      background: var(--color-text-main);
-      color: var(--color-main-background);
       text-decoration: none;
     }
   }
 
-  ${responsive.smAndLess} {
+  ${responsive.xs} {
     display: none;
     position: absolute;
     top: 40px;
@@ -212,9 +204,12 @@ export const StyledAppBar = styled.header`
   box-sizing: border-box;
   flex-shrink: 0;
   flex-direction: column;
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+
+  ${!is('isBlog')`
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  `};
 `;
 
 export const ShopNav = styled.div`
@@ -240,4 +235,61 @@ export const ShopBadge = styled.div`
   background-size: 100% !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
+`;
+
+export const LeftAligned = styled.div`
+  margin-left: 10px;
+  ${responsive.xs} {
+    display: contents;
+  }
+`;
+
+export const Signin = styled.a`
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+`;
+
+export const NavLink = styled.a`
+  font-size: 18px;
+  line-height: 26px;
+  position: relative;
+  &:hover {
+    text-decoration: underline !important;
+  }
+  ${is('active')`
+    font-weight: 800;
+    color: #75DB86 !important;
+  `};
+`;
+
+export const Dot = styled.span`
+  height: 8px;
+  width: 8px;
+  background-color: #75db86;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  bottom: -4px;
+  left: calc(50% - 2px);
+`;
+
+export const Join = styled.a`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30px;
+  position: static;
+  width: 60px;
+  height: 28px;
+  font-weight: 800;
+  background: #79d288;
+  box-shadow: 0px 1px 0px rgba(47, 43, 39, 0.25);
+  border-radius: 6px;
 `;

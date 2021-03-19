@@ -79,7 +79,7 @@ const ShapeComponents = ({ components, overrides }) => {
             }
 
             Component = Component || ParagraphCollection;
-            //console.log(component.content.paragraphs)
+
             return (
               <Component key={key} paragraphs={component.content.paragraphs} />
             );

@@ -4,6 +4,7 @@ import { H2 as H, responsive } from 'ui';
 import Grid from 'components/grid';
 
 export const Related = styled.div`
+  margin-left: 20px;
   ${responsive.smAndLess} {
   }
 `;
@@ -132,9 +133,12 @@ export const SectionTitle = styled.h1`
   }
 `;
 export const GridDiv = styled(Grid)`
-  /*background-color: var(--color-text-main);*/
-  /*margin-top: -12px;*/
   grid-gap: 20px;
+`;
+
+export const GridBlogDiv = styled(Grid)`
+  grid-gap: 1px;
+  padding-bottom: 1px;
 `;
 
 export const Hr = styled.h1`

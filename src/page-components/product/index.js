@@ -37,13 +37,11 @@ export async function getData({ asPath, language, preview = null }) {
       version: preview ? 'draft' : 'published'
     }
   });
-  //console.log(data)
+
   return { ...data, preview };
 }
 
 export default function ProductPage({ product, preview }) {
-  //const t = useT();
-  // Set the selected variant to the default
   const [selectedVariant, setSelectedVariant] = useState(
     product.variants.find((v) => v.isDefault)
   );
@@ -51,23 +49,12 @@ export default function ProductPage({ product, preview }) {
   const [price, setPrice] = useState(
     selectedVariant.priceVariants.find((c) => c.identifier === 'default').price
   );
-  /*
-  const [currency, setCurrency] = useState(
-    selectedVariant.priceVariants.find((c) => c.identifier === 'default')
-      .currency
-  );
-*/
 
   function onVariantChange(variant) {
     setSelectedVariant(variant);
     setPrice(
       variant.priceVariants.find((c) => c.identifier === 'default').price
     );
-    /*
-    setCurrency(
-      variant.priceVariants.find((c) => c.identifier === 'default').currency
-    );
-    */
   }
 
   const summaryComponent = product.components?.find(
@@ -109,13 +96,7 @@ export default function ProductPage({ product, preview }) {
           </Media>
           <Info>
             <Name>{product.name}</Name>
-            <ProductPrice>
-              {/*t('common.price', {
-                value: price,
-                currency
-              })*/}
-              {`£${Number(price).toFixed(2)}`}
-            </ProductPrice>
+            <ProductPrice>{`£${Number(price).toFixed(2)}`}</ProductPrice>
             <Content>
               {descriptionComponent && (
                 <Description>
@@ -151,8 +132,6 @@ export default function ProductPage({ product, preview }) {
             )}
           </Info>
         </Sections>
-
-        {/*product?.topics?.length && <Topics topicMaps={product.topics} />*/}
 
         {<ShapeComponents components={componentsRest} pageType="product" />}
       </Outer>

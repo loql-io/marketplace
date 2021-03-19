@@ -42,3 +42,68 @@ export const Logo = styled.a`
     height: 100%;
   }
 `;
+
+export const BlogSide = styled.div`
+  & a {
+    height: auto;
+  }
+`;
+
+export const NavLinkContainer = styled.div`
+  text-align: center;
+  & a {
+    display: block;
+    margin-bottom: 25px;
+  }
+`;
+
+export const Signin = styled.a`
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 26px;
+  text-decoration: none;
+  color: #fff;
+`;
+
+export const NavLink = styled.a`
+  font-size: 22px;
+  line-height: 29px;
+  color: #fff;
+
+  &:hover {
+    text-decoration: underline !important;
+  }
+`;
+
+export const Join = styled.a`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 20px 7px;
+  margin: 0px auto;
+  position: static;
+  width: 86px;
+  height: 40px;
+  font-weight: 800;
+  background: #79d288;
+  box-shadow: 0px 1px 0px rgba(47, 43, 39, 0.25);
+  border-radius: 6px;
+  font-size: 18px;
+`;
+
+export const Bottom = styled.div`
+  position: absolute;
+  bottom: 60px;
+  width: 300px;
+  @media only screen and (max-height: 600px) {
+    position: inherit;
+  }
+`;
+
+export const Copyright = styled.div`
+  font-size: 14px;
+  line-height: 19px;
+  color: #c0a9a8;
+  margin-top: 50px;
+`;

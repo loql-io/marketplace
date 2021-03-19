@@ -7,8 +7,12 @@ import { Header } from 'ui';
 import { Outer } from './styles';
 import ShapeComponentsHome from 'components/shape/componentsHome';
 import ShapeComponentsLoql from 'components/shape/componentsLoql';
+import StaticHome from '../../static/home';
 import ShopsData from '../../../shops-data';
 import Shops from '../../components/layout/shops';
+
+const TENANT = process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER;
+const isBlog = TENANT === 'loql-blog';
 
 export async function getData({ language, preview = null }) {
   try {
@@ -20,12 +24,11 @@ export async function getData({ language, preview = null }) {
             ...product
           }
         }
-
         ${fragments}
       `,
       variables: {
         language,
-        path: '/home',
+        path: isBlog ? '/blog-home' : '/home',
         version: preview ? 'draft' : 'published'
       }
     });
@@ -39,16 +42,17 @@ export async function getData({ language, preview = null }) {
 
 export default function FrontPage({ catalogue, preview }) {
   const componentsRest = catalogue?.components?.filter((c) => c.name);
-  ///console.log(componentsRest[1].content.grids[0].rows[0].columns[0].item?.components)
   return (
     <Layout title={catalogue?.name} preview={preview}>
       <Outer>
         <Header centerContent>
-          {process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER === 'loql' ? (
+          {TENANT === 'loql' ? (
             <>
               <ShapeComponentsLoql components={componentsRest} />
               <Shops data={ShopsData} />
             </>
+          ) : isBlog ? (
+            <StaticHome />
           ) : (
             <ShapeComponentsHome components={componentsRest} />
           )}

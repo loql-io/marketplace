@@ -41,6 +41,10 @@ export default `
     type
     path
     language
+    topics {
+     id
+     name
+   }
 
     components {
       id
@@ -169,6 +173,10 @@ export default `
             path
             type
             language
+            topics {
+             id
+             name
+           }
             ... on Product {
               defaultVariant {
                 priceVariants {

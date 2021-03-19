@@ -12,7 +12,6 @@ const Paragraph = ({
   videos,
   headingComponent: HeadingComponent = H3
 }) => {
-  //console.log(body.json)
   return (
     <Outer>
       <Text>

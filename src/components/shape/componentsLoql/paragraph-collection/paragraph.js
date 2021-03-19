@@ -1,7 +1,7 @@
 import ContentTransformer from 'ui/content-transformer';
 import { H3 } from 'ui';
 
-import { Outer, Title, Body, Text, Media } from './styles';
+import { Outer, Title, Text, Media, Body } from './styles';
 import Images from '../images';
 import Videos from '../videos';
 
@@ -12,7 +12,6 @@ const Paragraph = ({
   videos,
   headingComponent: HeadingComponent = H3
 }) => {
-  //console.log(body.json)
   return (
     <Outer>
       <Text>

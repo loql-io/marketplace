@@ -246,3 +246,19 @@ export const Author = styled.span`
   font-weight: bold;
   margin-right: 10px;
 `;
+
+export const TopicsContainer = styled.div`
+  & a {
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 19px;
+    border-color: #c0a9a8;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+  padding: 0;
+`;
