@@ -9,7 +9,8 @@ import { homePageShape, booleanContent } from './api/homePageShape';
 import ClosedModal from 'components/ClosedModal';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
-import StaticCss from 'components/staticCss';
+import '../static/home/style.css';
+
 export const cache = createCache({ key: 'css', prepend: true });
 
 function MyApp({ Component, pageProps, commonData }) {
@@ -36,7 +37,6 @@ function MyApp({ Component, pageProps, commonData }) {
 
   return (
     <CacheProvider value={cache}>
-      <StaticCss />
       <I18nextProvider locale={locale} localeResource={localeResource}>
         <SettingsProvider mainNavigation={mainNavigation}>
           <AuthProvider>
