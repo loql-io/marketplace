@@ -20,6 +20,9 @@ export default function TopicsPage() {
     query: { slug }
   } = router;
 
+  const topic = capitalize(slug.toString());
+  const title = `${topic}`;
+
   //TODO: redirect to a 404
   useEffect(() => {
     if (!isBlog) {
@@ -39,9 +42,6 @@ export default function TopicsPage() {
   if (!isBlog) {
     return null;
   }
-
-  const topic = capitalize(slug.toString());
-  const title = `${topic}`;
 
   let topicsData = [];
 

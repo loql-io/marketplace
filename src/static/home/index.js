@@ -202,7 +202,7 @@ export default function HomePage() {
             </section>
             <section>
               <img src="/static/headshots.webp" alt="people" />
-              <h3 className="h-m">We&lsquo;re in this together</h3>
+              <h3 className="h-m">We&rsquo;re in this together</h3>
               <p>
                 Loql enables collective change within communities that has
                 long-lasting impact for the entire planet.
