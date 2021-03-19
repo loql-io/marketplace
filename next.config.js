@@ -16,6 +16,9 @@ module.exports = {
 
     return config;
   },
+  cssLoaderOptions: {
+    url: false
+  },
   async redirects() {
     return [
       /*
