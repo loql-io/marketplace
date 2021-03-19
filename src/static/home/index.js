@@ -1,6 +1,5 @@
 import React from 'react';
 import LatestPost from '../../page-components/latest-post';
-//import { Css } from './styles';
 
 export default function HomePage() {
   React.useEffect(() => {
