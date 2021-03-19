@@ -20,7 +20,7 @@ const MainNav = ({ data }) => {
           <NavSections key={i}>
             <NavInner>
               {type !== 'footer' ? <h3>{type}</h3> : <Spacer />}
-              <Grid className={type.toLowerCase()}>
+              <Grid className={type?.toLowerCase()}>
                 {content.map(({ logo, url, image, title, intro }, x) => (
                   <NavItem key={x}>
                     {image ? (

@@ -156,16 +156,17 @@ export default function DocumentPage({ document, preview }) {
                 }
               })}
               <TopicsContainer>
-                {Object.values(topics).map(({ name }, i) => (
-                  <Chip
-                    key={i}
-                    label={name}
-                    component="a"
-                    href={`/topics/${name.toLowerCase()}`}
-                    clickable
-                    variant="outlined"
-                  />
-                ))}
+                {topics &&
+                  Object.values(topics).map(({ name }, i) => (
+                    <Chip
+                      key={i}
+                      label={name}
+                      component="a"
+                      href={`/topics/${name?.toLowerCase()}`}
+                      clickable
+                      variant="outlined"
+                    />
+                  ))}
               </TopicsContainer>
             </Article>
           </ArticleContainer>

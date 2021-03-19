@@ -23,7 +23,7 @@ export default function Topics() {
           key={i}
           label={name}
           component="a"
-          href={`/topics/${name.toLowerCase()}`}
+          href={`/topics/${name?.toLowerCase()}`}
           clickable
           variant="outlined"
         />

@@ -6,7 +6,7 @@ import { Outer, Header } from 'ui';
 import Layout from 'components/layout';
 import ItemMicroformat from 'components/item-microformat';
 import Topics from 'components/blog/topics';
-import { List, SectionTitle } from './styles';
+import { List, SectionTitle } from 'components/blog/topics/styles';
 
 const TENANT = process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER;
 const isBlog = TENANT === 'loql-blog';

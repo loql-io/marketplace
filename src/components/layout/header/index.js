@@ -58,7 +58,7 @@ export default function Header({ simple, preview }) {
           </LeftAligned>
         ) : (
           <Link
-            href={`https://loql.ly/${process.env.NEXT_PUBLIC_TOWN.toLowerCase()}`}
+            href={`https://loql.ly/${process.env.NEXT_PUBLIC_TOWN?.toLowerCase()}`}
             passHref
           >
             <Logo>

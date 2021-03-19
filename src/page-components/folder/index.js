@@ -35,17 +35,19 @@ export default function FolderPage({ folder, preview }) {
 
   let sorted = [];
 
-  Object.values(children).forEach(function (item, index) {
-    if (item.type === 'document') {
-      sorted.push({
-        blogPost: isBlog ? true : false,
-        index: index,
-        date: item.components.find((x) => x.type === 'datetime')?.content
-          .datetime,
-        ...item
-      });
-    }
-  });
+  if (children) {
+    Object.values(children).forEach(function (item, index) {
+      if (item.type === 'document') {
+        sorted.push({
+          blogPost: isBlog ? true : false,
+          index: index,
+          date: item.components.find((x) => x.type === 'datetime')?.content
+            .datetime,
+          ...item
+        });
+      }
+    });
+  }
 
   sorted.sort((a, b) => new Date(b.date) - new Date(a.date));
 
