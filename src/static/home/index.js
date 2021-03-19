@@ -192,7 +192,7 @@ export default function HomePage() {
             <div className="container">
               <div className="setup-wrapper-grid">
                 <section>
-                  <img src="/static/pizza.webp" alt="Loql" />
+                  <img src="/static/Pizza.svg" alt="Loql" />
                   <h3 className="h-m">We love all things local</h3>
                   <p>
                     Our goal is to help keep local profits, jobs, expertise and
@@ -200,7 +200,7 @@ export default function HomePage() {
                   </p>
                 </section>
                 <section>
-                  <img src="/static/scales.webp" alt="scales" />
+                  <img src="/static/Scales.svg" alt="scales" />
                   <h3 className="h-m">We only take what we need</h3>
                   <p>
                     Loql is a not for profit so every penny we make goes into
@@ -208,7 +208,7 @@ export default function HomePage() {
                   </p>
                 </section>
                 <section>
-                  <img src="/static/headshots.webp" alt="people" />
+                  <img src="/static/Headshots.svg" alt="people" />
                   <h3 className="h-m">We&rsquo;re in this together</h3>
                   <p>
                     Loql enables collective change within communities that has

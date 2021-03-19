@@ -124,6 +124,7 @@ export const SectionTitle = styled.h1`
     font-size: 28px !important;
     line-height: 28px !important;
     padding: 20px 0;
+    padding-left: 20px;
   }
   ${responsive.md} {
     padding: 20px 0;

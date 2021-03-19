@@ -593,7 +593,7 @@ export const Css = styled.main`
     }
 
     .setup-wrapper .image-container img {
-      max-width: 360px;
+      max-width: 330px;
     }
 
     .about-title p {
@@ -619,6 +619,7 @@ export const Css = styled.main`
         text-align: center;
       }
       .setup-wrapper img {
+        width: 370px;
       }
 
       .setup-wrapper-grid img {
@@ -768,6 +769,10 @@ export const Css = styled.main`
     @media screen and (max-width: 768px) {
       .about .image section p {
         margin-top: 20px;
+      }
+
+      .about .image section {
+        margin: 0;
       }
     }
   }
