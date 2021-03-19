@@ -143,6 +143,7 @@ const maxWidth = '100%';
 
 const SocialLink = styled.a`
   border-bottom: none;
+  margin: 0 auto;
   img {
     height: 30px;
   }
@@ -198,7 +199,7 @@ const ContentTransformerOuter = styled.div`
   h5,
   h6 {
     margin: 0 auto;
-    text-align: center;
+    text-align: left;
     max-width: ${maxWidth};
     color: #2f2b27;
   }
@@ -219,6 +220,7 @@ const ContentTransformerOuter = styled.div`
     font-size: 16px;
     line-height: 22px;
     margin-bottom: 20px;
+    display: flex;
   }
 
   ul {

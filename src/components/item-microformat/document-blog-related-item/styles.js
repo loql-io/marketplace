@@ -69,7 +69,7 @@ export const TextMain = styled.div`
 `;
 export const Text = styled.div`
   position: absolute;
-  bottom: 40px;
+  bottom: 20px;
   left: 20px;
   ${responsive.xs} {
     margin-top: -134px;

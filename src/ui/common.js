@@ -33,7 +33,7 @@ export const Header = styled.div`
   }
 
   p {
-    text-align: ${(p) => (p.centerContent ? 'center !important' : 'left')};
+    /*text-align: ${(p) => (p.centerContent ? 'center !important' : 'left')};*/
     font-size: 18px;
     line-height: 1.8rem;
     color: var(--color-text-sub);
