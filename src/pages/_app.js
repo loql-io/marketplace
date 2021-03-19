@@ -9,7 +9,7 @@ import { homePageShape, booleanContent } from './api/homePageShape';
 import ClosedModal from 'components/ClosedModal';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
-import 'static/home/home.css';
+import 'static/css/main.css';
 
 export const cache = createCache({ key: 'css', prepend: true });
 
