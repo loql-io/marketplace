@@ -491,6 +491,7 @@ export const Css = styled.main`
       font-size: 16px;
       line-height: 22px;
       margin-bottom: 10px;
+      margin-top: -1px;
     }
 
     .content p {

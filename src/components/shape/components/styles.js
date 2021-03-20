@@ -140,6 +140,7 @@ export const GridDiv = styled(Grid)`
 export const GridBlogDiv = styled(Grid)`
   grid-gap: 1px;
   padding-bottom: 1px;
+  display: grid !important;
 `;
 
 export const Hr = styled.h1`
