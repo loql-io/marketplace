@@ -10,6 +10,8 @@ export default async (req, res) => {
 
     const validPaymentModel = await validatePaymentModel({ paymentModel });
 
+    console.log(' validPaymentModel', paymentModel);
+
     const amount = validPaymentModel.total.gross * 100;
 
     const paymentIntent = await getClient().paymentIntents.create(

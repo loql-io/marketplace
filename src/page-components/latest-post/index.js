@@ -15,7 +15,7 @@ const Products = () => {
       Object.values(posts.catalogue.children).forEach(function (item) {
         sorted.push({
           date: item.components.find((x) => x.type === 'datetime')?.content
-            .datetime,
+            ?.datetime,
           ...item
         });
       });

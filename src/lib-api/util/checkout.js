@@ -69,6 +69,8 @@ export async function validatePaymentModel({ paymentModel }) {
 
   const productsFromApi = cart.map((_, i) => response.data[`product${i}`]);
 
+  console.log('productsFromApi', productsFromApi);
+
   const validatedCart = cart
     .map((cartItem) => {
       const product = productsFromApi.find((product) =>

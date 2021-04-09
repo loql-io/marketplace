@@ -13,6 +13,7 @@ import styled from 'styled-components';
 import { CollectionDetails } from './collection-details';
 import { DeliveryDetails } from './delivery-details';
 import { useBasket } from 'components/basket';
+import Vouchers from './vouchers';
 
 const RadioGroupContainer = styled(FormControl)`
   margin-top: 20px !important;
@@ -38,6 +39,8 @@ const RadioGroupContainer = styled(FormControl)`
 export default function Order({ onNext, checkoutState }) {
   const [value, setValue] = useState(checkoutState.checkoutType || '');
 
+  const [code, setCode] = useState(null);
+
   const basket = useBasket();
 
   const router = useRouter();
@@ -46,12 +49,17 @@ export default function Order({ onNext, checkoutState }) {
     setValue(event.target.value);
   };
 
-  function handleNext(state) {
+  const handleCodeState = (code) => {
+    setCode(code);
+  };
+
+  function handleNext(state, code) {
     basket.actions.setMetadata({
       additionalInformation: value,
-      deliveryNote: state.deliveryNote
+      deliveryNote: state.deliveryNote,
+      voucherCode: code
     });
-    onNext({ ...state, checkoutType: value });
+    onNext({ ...state, checkoutType: value, code });
   }
 
   const showCollection = useMemo(
@@ -78,6 +86,7 @@ export default function Order({ onNext, checkoutState }) {
     router.replace('/');
   }
 
+  console.log('parent', code, basket);
   return (
     <div>
       <Typography variant="h3">Collect or Deliver</Typography>
@@ -111,11 +120,14 @@ export default function Order({ onNext, checkoutState }) {
           )}
         </RadioGroup>
       </RadioGroupContainer>
+
+      <Vouchers code={code} handleCodeState={handleCodeState} />
+
       {value === 'collection' && (
         <Fade in={value === 'collection'} timeout={500}>
           <div>
             <CollectionDetails
-              onNext={(state) => handleNext(state)}
+              onNext={(state) => handleNext(state, code)}
               checkoutState={checkoutState}
             />
           </div>
@@ -126,7 +138,7 @@ export default function Order({ onNext, checkoutState }) {
         <Fade in={value === 'delivery'} timeout={500}>
           <div>
             <DeliveryDetails
-              onNext={(state) => handleNext(state)}
+              onNext={(state) => handleNext(state, code)}
               checkoutState={checkoutState}
             />
           </div>

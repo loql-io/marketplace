@@ -28,7 +28,7 @@ export default function Payment({ checkoutState, onPrevious }) {
     cart,
     metadata
   );
-
+  console.log('paymentModel', paymentModel);
   return (
     <div>
       <Head>
