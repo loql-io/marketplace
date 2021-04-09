@@ -42,7 +42,7 @@ export default function FolderPage({ folder, preview }) {
           blogPost: isBlog ? true : false,
           index: index,
           date: item.components.find((x) => x.type === 'datetime')?.content
-            .datetime,
+            ?.datetime,
           ...item
         });
       }

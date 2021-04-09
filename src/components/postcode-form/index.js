@@ -22,9 +22,9 @@ const PostCodeForm = ({ formik, outsideRadiusText }) => {
   );
 
   const formattedPostcode = (p) => {
-    p = p.match(/^([A-Z]{1,2}[\dA-Z]{1,2})[ ]?(\d[A-Z]{2})$/i);
-    p.shift();
-    return p.join(' ').toUpperCase();
+    p = p?.match(/^([A-Z]{1,2}[\dA-Z]{1,2})[ ]?(\d[A-Z]{2})$/i);
+    p?.shift();
+    return p?.join(' ').toUpperCase();
   };
 
   const handleSetFieldValue = async (fieldName, value) => {

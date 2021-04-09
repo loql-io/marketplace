@@ -51,7 +51,7 @@ export default function TopicsPage() {
       topicsData[index].blogPost = true;
       topicsData[index].date = item.node.components?.find(
         (x) => x.type === 'datetime'
-      )?.content.datetime;
+      )?.content?.datetime;
       topicsData[index].type = 'document';
     });
   }
