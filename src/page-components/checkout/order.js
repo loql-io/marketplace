@@ -86,7 +86,7 @@ export default function Order({ onNext, checkoutState }) {
     router.replace('/');
   }
 
-  console.log('parent', code, basket);
+  //console.log('parent', code, basket);
   return (
     <div>
       <Typography variant="h3">Collect or Deliver</Typography>

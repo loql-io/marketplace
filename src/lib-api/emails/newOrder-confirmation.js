@@ -39,6 +39,26 @@ export default async function sendOrderConfirmation(orderId, body) {
 
     const currency = order.cart[0].price.currency;
 
+    const totalBeforeDiscount = total;
+
+    const voucherData = order.metadata?.voucherCode;
+
+    const hasVoucher = voucherData?.code.length > 0;
+
+    const code = voucherData?.code;
+
+    const subtractDiscount = voucherData?.discountPercent
+      ? totalBeforeDiscount * (voucherData?.discountPercent / 100)
+      : voucherData?.discountAmount;
+
+    const voucher = voucherData?.discountPercent
+      ? `-${voucherData?.discountPercent}%`
+      : `-£${voucherData?.discountAmount}`;
+
+    const totalWithDiscount = hasVoucher
+      ? totalBeforeDiscount - subtractDiscount
+      : totalBeforeDiscount;
+
     const newOrderEmails = [
       {
         to: email,
@@ -51,7 +71,11 @@ export default async function sendOrderConfirmation(orderId, body) {
           orderId,
           total,
           currency,
-          deliveryNote
+          deliveryNote,
+          totalWithDiscount,
+          hasVoucher,
+          voucher,
+          code
         )
       },
       {
@@ -69,7 +93,11 @@ export default async function sendOrderConfirmation(orderId, body) {
           orderId,
           total,
           currency,
-          deliveryNote
+          deliveryNote,
+          totalWithDiscount,
+          hasVoucher,
+          voucher,
+          code
         ),
         isMultiple: true
       }
