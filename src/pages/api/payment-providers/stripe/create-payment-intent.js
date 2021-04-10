@@ -10,9 +10,21 @@ export default async (req, res) => {
 
     const validPaymentModel = await validatePaymentModel({ paymentModel });
 
-    console.log(' validPaymentModel', paymentModel);
+    const totalBeforeDiscount = validPaymentModel.total.gross;
 
-    const amount = validPaymentModel.total.gross * 100;
+    const voucherData = validPaymentModel.metadata?.voucherCode;
+
+    const hasVoucher = voucherData?.code;
+
+    const subtractDiscount = voucherData?.discountPercent
+      ? totalBeforeDiscount * (voucherData?.discountPercent / 100)
+      : voucherData?.discountAmount;
+
+    const totalWithDiscount = hasVoucher
+      ? totalBeforeDiscount - subtractDiscount
+      : totalBeforeDiscount;
+
+    const amount = totalWithDiscount * 100;
 
     const paymentIntent = await getClient().paymentIntents.create(
       {

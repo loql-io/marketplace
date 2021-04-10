@@ -4,54 +4,50 @@ import CustomTextInputField from 'components/custom-fields/custom-text-input';
 import { Typography } from '@material-ui/core';
 import SecondaryButton from 'components/custom-fields/secondary-button';
 import styled from 'styled-components';
-import ServiceApi from 'lib/service-api';
-import GET_VOUCHER from './get-voucher-query.js';
+import getCrystallizeVouchers from './validate-vouchers';
 
 export default function Vouchers(props) {
   const basket = useBasket();
 
-  const [discountCode, setDiscountCode] = useState(
-    basket.metadata?.voucherCode?.code || null
-  );
+  const [discountCode, setDiscountCode] = useState('');
   const [discountCodeHint, setDiscountCodeHint] = useState('');
 
   const validateCode = async (e) => {
     e.preventDefault();
+
     const voucherCode = e.target.discountCode.value;
-    const response = await ServiceApi({
-      query: GET_VOUCHER,
-      variables: { code: voucherCode }
-    });
 
-    setDiscountCode(response.data.voucher.voucher?.code);
+    const response = await getCrystallizeVouchers(voucherCode);
 
-    const discountPercent = response.data.voucher.voucher?.discountPercent;
-    const discountAmount = response.data.voucher.voucher?.discountAmount;
+    setDiscountCode(response.voucher?.code);
+
+    const discountPercent = response.voucher?.discountPercent;
+    const discountAmount = response.voucher?.discountAmount;
 
     if (!voucherCode) {
       setDiscountCodeHint('');
-    } else if (!response.data.voucher.isValid) {
+    } else if (!response.isValid) {
       setDiscountCodeHint(`Invalid code ${voucherCode}`);
-      //basket.actions.addVoucherCode(voucherCode);
     } else {
       setDiscountCodeHint(
         `Code applied (${
           discountPercent ? `${discountPercent}%` : `£${discountAmount}`
         } off)`
       );
-      //setCode(response.data.voucher.voucher?.code)
-      props.handleCodeState(response.data.voucher.voucher);
-      //basket.actions.addVoucherCode(voucherCode);
+      props.handleCodeState(response.voucher);
+      //to do: Add to basket
     }
-
-    console.log('child', basket);
   };
+
+  console.log('cart', basket.cart);
 
   const removeCode = (e) => {
     e.preventDefault();
     setDiscountCode('');
     setDiscountCodeHint('');
   };
+
+  //console.log('child', basket);
 
   const DiscountCode = styled.form`
     display: inline-flex;

@@ -1,5 +1,6 @@
 import { formatCurrency } from 'lib/currency';
 import { getAddress } from './partials/address';
+import { voucherRow } from './partials/vouchers';
 
 const styles = require('./styles');
 
@@ -10,7 +11,11 @@ export default function newOrderCustomer(
   orderId,
   total,
   currency,
-  deliveryNote
+  deliveryNote,
+  totalWithDiscount,
+  hasVoucher,
+  voucher,
+  code
 ) {
   const html = `<!doctype html>
   <html lang="en">
@@ -69,12 +74,23 @@ export default function newOrderCustomer(
                           </tr>`
                           )
                           .join('')}
+                          <tr>
+                            <td class="body-copy body-copy-bold" style="padding-bottom: 10px">Sub total</td>
+                            <td class="body-copy" style="padding-bottom: 10px"></td>
+                            <td class="body-copy body-copy-bold" style="padding-bottom: 10px; text-align: right">
+                              ${formatCurrency({
+                                amount: total,
+                                currency: currency
+                              })}
+                            </td>
+                          </tr>
+                          ${voucherRow(hasVoucher, voucher, code)}
                         <tr>
                           <td class="body-copy body-copy-bold" style="padding-bottom: 10px">Total</td>
                           <td class="body-copy" style="padding-bottom: 10px"></td>
                           <td class="body-copy body-copy-bold" style="padding-bottom: 10px; text-align: right">
                             ${formatCurrency({
-                              amount: total,
+                              amount: totalWithDiscount,
                               currency: currency
                             })}
                           </td>
