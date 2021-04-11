@@ -17,12 +17,16 @@ module.exports = {
   },
   async redirects() {
     return [
-      /*
       {
-        source: '/web-frontpage',
+        source: '/vouchers',
         destination: '/',
         permanent: true
-      }*/
+      },
+      {
+        source: '/vouchers/:slug*',
+        destination: '/',
+        permanent: true
+      }
     ];
   },
   async headers() {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useBasket } from 'components/basket';
+//import { useBasket } from 'components/basket';
 import CustomTextInputField from 'components/custom-fields/custom-text-input';
 import { Typography } from '@material-ui/core';
 import SecondaryButton from 'components/custom-fields/secondary-button';
@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import getCrystallizeVouchers from './validate-vouchers';
 
 export default function Vouchers(props) {
-  const basket = useBasket();
+  //const basket = useBasket();
 
   const [discountCode, setDiscountCode] = useState('');
   const [discountCodeHint, setDiscountCodeHint] = useState('');
@@ -39,7 +39,7 @@ export default function Vouchers(props) {
     }
   };
 
-  console.log('cart', basket.cart);
+  //console.log('cart', basket.cart)
 
   const removeCode = (e) => {
     e.preventDefault();
