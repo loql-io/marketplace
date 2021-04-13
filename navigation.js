@@ -14,9 +14,9 @@ const Navgation = [
             url: 'https://berko-sports.loql.ly'
           },
           {
-            logo: 'https://petals.loql.ly/img/logo.png',
-            name: 'Petals Flowers',
-            url: 'https://petals.loql.ly'
+            logo: 'https://creative-collective.loql.ly/img/logo.png',
+            name: 'Creative Collective',
+            url: 'https://creative-collective.loql.ly'
           },
           {
             logo: 'https://hamlins.loql.ly/img/logo.png',
@@ -24,9 +24,14 @@ const Navgation = [
             url: 'https://hamlins.loql.ly'
           },
           {
-            logo: 'https://creative-collective.loql.ly/img/logo.png',
-            name: 'Creative Collective',
-            url: 'https://creative-collective.loql.ly'
+            logo: 'https://petals.loql.ly/img/logo.png',
+            name: 'Petals Flowers',
+            url: 'https://petals.loql.ly'
+          },
+          {
+            logo: 'https://tobias-oliver.loql.ly/img/logo.png',
+            name: 'Tobias Oliver Interiors',
+            url: 'https://tobias-oliver.loql.ly'
           }
         ]
       },
