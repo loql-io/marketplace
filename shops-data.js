@@ -5,6 +5,11 @@ const HomeNavgation = [
         type: 'Shops',
         content: [
           {
+            logo: 'https://tobias-oliver.loql.ly/img/logo.png',
+            name: 'Tobias Oliver Interiors',
+            url: 'https://tobias-oliver.loql.ly'
+          },
+          {
             logo: 'https://berko-sports.loql.ly/img/logo.png',
             name: 'Berkhamsted Sports',
             url: 'https://berko-sports.loql.ly'
@@ -44,6 +49,13 @@ const HomeNavgation = [
       {
         type: 'Collections',
         content: [
+          {
+            image:
+              'https://media.crystallize.com/tobias-oliver/21/4/9/13/@768/closs-hamblin-christian-lacroix-frivolites-set-of-2-shaped-jigsaw-puzzles-adult-p35099-41401_image-1.webp',
+            title: 'Tobias Oliver Interiors',
+            intro: 'Find the perfect gift right on our high street',
+            url: 'https://tobias-oliver.loql.ly/stories/the-perfect-gift'
+          },
           {
             image:
               'https://media.crystallize.com/florist/20/11/27/3/@1920/shutterstock_1151925305.webp',
