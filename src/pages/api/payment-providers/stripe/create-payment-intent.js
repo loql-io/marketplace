@@ -11,9 +11,14 @@ export default async (req, res) => {
 
     const validPaymentModel = await validatePaymentModel({ paymentModel });
 
-    const voucher = GetVoucherData(validPaymentModel);
+    const hasVoucher = validPaymentModel.metadata?.voucherCode;
 
-    const amount = voucher.totalWithDiscount * 100;
+    let amount = validPaymentModel.total.gross * 100;
+
+    if (hasVoucher) {
+      const voucher = await GetVoucherData(validPaymentModel);
+      amount = voucher?.totalWithDiscount * 100;
+    }
 
     const paymentIntent = await getClient().paymentIntents.create(
       {

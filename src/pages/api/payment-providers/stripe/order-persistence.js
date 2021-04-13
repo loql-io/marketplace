@@ -15,13 +15,12 @@ export default async (req, res) => {
       paymentModel: validPaymentModel
     });
 
-    const currency = validCrystallizeOrder.cart[0].price.currency || 'gbp';
+    const hasVoucher = validPaymentModel.metadata?.voucherCode;
 
-    const voucher = GetVoucherData(validPaymentModel);
-
-    const voucherCartItem = AddVoucherItemToCart(voucher, currency);
-
-    if (voucher.hasVoucher) {
+    if (hasVoucher) {
+      const voucher = await GetVoucherData(validPaymentModel);
+      const currency = validCrystallizeOrder.cart[0].price.currency || 'gbp';
+      const voucherCartItem = await AddVoucherItemToCart(voucher, currency);
       validCrystallizeOrder.cart.push(voucherCartItem);
     }
 
