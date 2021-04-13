@@ -2,6 +2,8 @@ import { createCrystallizeOrder } from 'lib-api/crystallize/order';
 import { emailOrderConfirmation } from 'lib-api/emails';
 import { orderNormalizer } from 'lib-api/payment-providers/stripe';
 import { validatePaymentModel } from 'lib-api/util/checkout';
+import GetVoucherData from 'components/vouchers/getVoucherData';
+import AddVoucherItemToCart from 'components/vouchers/addVoucherItemToCart';
 
 export default async (req, res) => {
   try {
@@ -12,6 +14,16 @@ export default async (req, res) => {
       paymentIntentId,
       paymentModel: validPaymentModel
     });
+
+    const currency = validCrystallizeOrder.cart[0].price.currency || 'gbp';
+
+    const voucher = GetVoucherData(validPaymentModel);
+
+    const voucherCartItem = AddVoucherItemToCart(voucher, currency);
+
+    if (voucher.hasVoucher) {
+      validCrystallizeOrder.cart.push(voucherCartItem);
+    }
 
     const createCrystallizeOrderResponse = await createCrystallizeOrder(
       validCrystallizeOrder

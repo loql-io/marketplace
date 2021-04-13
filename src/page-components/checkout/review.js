@@ -109,7 +109,7 @@ export default function Review({ onPrevious, onNext, checkoutState }) {
       setLoading(false);
     }
   }
-  //console.log(basket);
+
   return (
     <Container>
       {loading && <Loader message="Placing order..." />}

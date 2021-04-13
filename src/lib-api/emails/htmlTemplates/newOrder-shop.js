@@ -15,8 +15,7 @@ export default function newOrderShopEmail(
   deliveryNote,
   totalWithDiscount,
   hasVoucher,
-  voucher,
-  code
+  discount
 ) {
   const html = `<!doctype html>
   <html lang="en">
@@ -86,7 +85,7 @@ export default function newOrderShopEmail(
                               })}
                             </td>
                           </tr>
-                          ${voucherRow(hasVoucher, voucher, code)}
+                          ${voucherRow(hasVoucher, discount)}
                         <tr>
                           <td class="body-copy body-copy-bold" style="padding-bottom: 10px">Total</td>
                           <td class="body-copy" style="padding-bottom: 10px"></td>

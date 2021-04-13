@@ -1,6 +1,7 @@
 import { getClient } from 'lib-api/payment-providers/stripe';
 import calculateStripeFee from 'lib-api/util/calculateStripeFee';
 import { validatePaymentModel } from 'lib-api/util/checkout';
+import GetVoucherData from 'components/vouchers/getVoucherData';
 
 export default async (req, res) => {
   const connectedAccountId = process.env.NEXT_PUBLIC_STRIPE_ACCOUNT_ID;
@@ -10,21 +11,9 @@ export default async (req, res) => {
 
     const validPaymentModel = await validatePaymentModel({ paymentModel });
 
-    const totalBeforeDiscount = validPaymentModel.total.gross;
+    const voucher = GetVoucherData(validPaymentModel);
 
-    const voucherData = validPaymentModel.metadata?.voucherCode;
-
-    const hasVoucher = voucherData?.code;
-
-    const subtractDiscount = voucherData?.discountPercent
-      ? totalBeforeDiscount * (voucherData?.discountPercent / 100)
-      : voucherData?.discountAmount;
-
-    const totalWithDiscount = hasVoucher
-      ? totalBeforeDiscount - subtractDiscount
-      : totalBeforeDiscount;
-
-    const amount = totalWithDiscount * 100;
+    const amount = voucher.totalWithDiscount * 100;
 
     const paymentIntent = await getClient().paymentIntents.create(
       {

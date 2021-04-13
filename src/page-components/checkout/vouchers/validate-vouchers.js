@@ -7,6 +7,7 @@ module.exports = async function getCrystallizeVouchers(voucherCode) {
         catalogue(language: "en", path: "/vouchers") {
           children {
             name
+            id
             code: component(id: "code") {
               content {
                 ... on SingleLineContent {
@@ -54,6 +55,8 @@ module.exports = async function getCrystallizeVouchers(voucherCode) {
         discountAmount = discountComponent.content.number;
       }
       return {
+        productId: voucherFromCrystallize.id,
+        name: voucherFromCrystallize.name,
         code: voucherFromCrystallize.code.content.text,
         discountAmount,
         discountPercent

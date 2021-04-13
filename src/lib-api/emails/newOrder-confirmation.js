@@ -1,6 +1,7 @@
 import newOrderCustomer from 'lib-api/emails/htmlTemplates/newOrder-customer';
 import newOrderShop from 'lib-api/emails/htmlTemplates/newOrder-shop';
 import { sendEmail } from './utils';
+import GetVoucherData from 'components/vouchers/getVoucherData';
 
 export default async function sendOrderConfirmation(orderId, body) {
   try {
@@ -39,25 +40,11 @@ export default async function sendOrderConfirmation(orderId, body) {
 
     const currency = order.cart[0].price.currency;
 
-    const totalBeforeDiscount = total;
+    const voucher = GetVoucherData(order, total);
 
-    const voucherData = order.metadata?.voucherCode;
-
-    const hasVoucher = voucherData?.code.length > 0;
-
-    const code = voucherData?.code;
-
-    const subtractDiscount = voucherData?.discountPercent
-      ? totalBeforeDiscount * (voucherData?.discountPercent / 100)
-      : voucherData?.discountAmount;
-
-    const voucher = voucherData?.discountPercent
-      ? `-${voucherData?.discountPercent}%`
-      : `-£${voucherData?.discountAmount}`;
-
-    const totalWithDiscount = hasVoucher
-      ? totalBeforeDiscount - subtractDiscount
-      : totalBeforeDiscount;
+    const { totalWithDiscount } = voucher;
+    const { hasVoucher } = voucher;
+    const { discount } = voucher;
 
     const newOrderEmails = [
       {
@@ -74,8 +61,7 @@ export default async function sendOrderConfirmation(orderId, body) {
           deliveryNote,
           totalWithDiscount,
           hasVoucher,
-          voucher,
-          code
+          discount
         )
       },
       {
@@ -96,8 +82,7 @@ export default async function sendOrderConfirmation(orderId, body) {
           deliveryNote,
           totalWithDiscount,
           hasVoucher,
-          voucher,
-          code
+          discount
         ),
         isMultiple: true
       }

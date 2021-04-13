@@ -1,6 +1,7 @@
 import { Typography } from '@material-ui/core';
 
 import React from 'react';
+import GetVoucherData from 'components/vouchers/getVoucherData';
 
 import styled from 'styled-components';
 
@@ -33,23 +34,7 @@ const ItemName = styled(Typography)`
 export default function CartItemsTable({ basket, checkoutType }) {
   const { cart } = basket;
 
-  const totalBeforeDiscount = Number(basket.total.gross).toFixed(2);
-
-  const voucherData = basket.metadata?.voucherCode;
-
-  const hasVoucher = voucherData?.code;
-
-  const discount = voucherData?.discountPercent
-    ? `-${voucherData?.discountPercent}%`
-    : `-£${voucherData?.discountAmount}`;
-
-  const subtractDiscount = voucherData?.discountPercent
-    ? totalBeforeDiscount * (voucherData?.discountPercent / 100)
-    : voucherData?.discountAmount;
-
-  const totalWithDiscount = hasVoucher
-    ? totalBeforeDiscount - subtractDiscount
-    : totalBeforeDiscount;
+  const voucher = GetVoucherData(basket);
 
   return (
     <Container>
@@ -71,13 +56,13 @@ export default function CartItemsTable({ basket, checkoutType }) {
       ))}
       <Row>
         <Typography variant="body1">Subtotal</Typography>
-        <Typography variant="body1">{`£${totalBeforeDiscount}`}</Typography>
+        <Typography variant="body1">{`£${voucher.totalBeforeDiscount}`}</Typography>
       </Row>
 
-      {hasVoucher && (
+      {voucher.hasVoucher && (
         <Row>
           <Typography variant="body1">Discount</Typography>
-          <Typography variant="body1">{discount}</Typography>
+          <Typography variant="body1">{voucher.discount}</Typography>
         </Row>
       )}
 
@@ -92,7 +77,7 @@ export default function CartItemsTable({ basket, checkoutType }) {
           Total
         </Typography>
         <Typography component="strong" variant="h5">
-          {`£${totalWithDiscount}`}
+          {`£${Number(voucher.totalWithDiscount).toFixed(2)}`}
         </Typography>
       </Row>
     </Container>

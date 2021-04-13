@@ -35,19 +35,14 @@ export default function Vouchers(props) {
         } off)`
       );
       props.handleCodeState(response.voucher);
-      //to do: Add to basket
     }
   };
-
-  //console.log('cart', basket.cart)
 
   const removeCode = (e) => {
     e.preventDefault();
     setDiscountCode('');
     setDiscountCodeHint('');
   };
-
-  //console.log('child', basket);
 
   const DiscountCode = styled.form`
     display: inline-flex;
