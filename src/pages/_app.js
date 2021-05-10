@@ -5,7 +5,11 @@ import { BasketProvider } from 'components/basket';
 import { simplyFetchFromGraph } from 'lib/graph';
 import { getLocaleFromContext, defaultLocale } from 'lib/app-config';
 import { I18nextProvider } from 'lib/i18n';
-import { homePageShape, booleanContent } from './api/homePageShape';
+import {
+  homePageShape,
+  booleanContent,
+  sideNavigation
+} from './api/homePageShape';
 import ClosedModal from 'components/ClosedModal';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
@@ -18,7 +22,8 @@ function MyApp({ Component, pageProps, commonData }) {
     locale,
     localeResource,
     openDays,
-    shopClosedLabel
+    shopClosedLabel,
+    sideNavigationData
   } = commonData;
 
   useEffect(() => {
@@ -32,7 +37,11 @@ function MyApp({ Component, pageProps, commonData }) {
       `openTimes_${process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER}`,
       JSON.stringify(openDays ? openDays : [])
     );
-  }, [openDays]);
+    localStorage.setItem(
+      `sideNavigation_${process.env.NEXT_PUBLIC_TOWN}`,
+      JSON.stringify(sideNavigationData)
+    );
+  }, [openDays, sideNavigationData]);
 
   return (
     <CacheProvider value={cache}>
@@ -58,7 +67,14 @@ MyApp.getInitialProps = async function ({ router }) {
 
     const localeResource = await import(`../locales/${locale.appLanguage}`);
 
-    const gethomePageShape = await homePageShape();
+    const getHomePageShape = await homePageShape();
+
+    const getSideNavigation = await sideNavigation(
+      process.env.NEXT_PUBLIC_NAVIGATION_ID
+    );
+
+    const sideNavigationData =
+      getSideNavigation.folder.get.components[0].content.sections;
 
     /**
      * Get shared data for all pages
@@ -93,7 +109,7 @@ MyApp.getInitialProps = async function ({ router }) {
     });
 
     const getBooleanContent = await booleanContent(
-      gethomePageShape?.catalogue?.shape?.identifier,
+      getHomePageShape?.catalogue?.shape?.identifier,
       tenant?.id
     );
 
@@ -150,7 +166,8 @@ MyApp.getInitialProps = async function ({ router }) {
         openDays,
         shopClosedLabel,
         isShopClosed,
-        mainNavigation: mainNavigation?.filter((i) => !i.name.startsWith('_'))
+        mainNavigation: mainNavigation?.filter((i) => !i.name.startsWith('_')),
+        sideNavigationData
       }
     };
   } catch (error) {

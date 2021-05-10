@@ -1,4 +1,5 @@
 import React from 'react';
+import Community from '../../community';
 
 import {
   NavContainer,
@@ -12,10 +13,33 @@ import {
   Text
 } from './styles';
 
-const MainNav = ({ data }) => {
+const MainNav = () => {
+  const { shopping } = Community();
+  const { eating } = Community();
+  const { collections } = Community();
+
+  const Navgation = [
+    {
+      section: [
+        {
+          type: 'Shops',
+          content: shopping
+        },
+        {
+          type: 'Eating',
+          content: eating
+        },
+        {
+          type: 'Collections',
+          content: collections
+        }
+      ]
+    }
+  ];
+
   return (
     <NavContainer>
-      {data.map(({ section }) =>
+      {Navgation.map(({ section }) =>
         section.map(({ type, content }, i) => (
           <NavSections key={i}>
             <NavInner>

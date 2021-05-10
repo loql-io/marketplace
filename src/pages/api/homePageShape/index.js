@@ -111,4 +111,49 @@ export const booleanContent = async (identifier, tenantId) => {
   return { ...data };
 };
 
+export const sideNavigation = async (id) => {
+  const { data } = await simplyFetchFromGraphQl({
+    query: `
+    query {
+    	folder {
+    		get(id: "${id}", language: "en", versionLabel: current) {
+    			...item
+    		}
+    	}
+    }
+
+    fragment item on Item {
+    	id
+    	name
+    	type
+    	components {
+    		...component
+    	}
+    }
+
+    fragment component on Component {
+    	name
+    	type
+    	content {
+    		...content
+    	}
+    }
+
+    fragment content on ComponentContent {
+    	...propertiesTable
+    }
+
+    fragment propertiesTable on PropertiesTableContent {
+    	sections {
+    		title
+    		properties {
+    			key
+    			value
+    		}
+    	}
+    }`
+  });
+  return { ...data };
+};
+
 export default homePageShape;

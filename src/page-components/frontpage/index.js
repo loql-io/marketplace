@@ -8,7 +8,6 @@ import { Outer } from './styles';
 import ShapeComponentsHome from 'components/shape/componentsHome';
 import ShapeComponentsLoql from 'components/shape/componentsLoql';
 import StaticHome from '../../static/home';
-import ShopsData from '../../../shops-data';
 import Shops from '../../components/layout/shops';
 
 const TENANT = process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER;
@@ -49,7 +48,7 @@ export default function FrontPage({ catalogue, preview }) {
           {TENANT === 'loql' ? (
             <>
               <ShapeComponentsLoql components={componentsRest} />
-              <Shops data={ShopsData} />
+              <Shops />
             </>
           ) : isBlog ? (
             <StaticHome />

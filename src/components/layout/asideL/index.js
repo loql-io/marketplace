@@ -1,7 +1,6 @@
 import React from 'react';
 import MainNav from '../main-nav';
-import Navgation from '../../../../navigation';
-
+import Community from '../../community';
 import {
   Aside,
   Header,
@@ -17,6 +16,43 @@ import {
 } from './styles';
 
 export default function AsideL() {
+  const { shopping } = Community();
+  const { eating } = Community();
+
+  const Navgation = [
+    {
+      section: [
+        {
+          type: 'Home',
+          content: []
+        },
+        {
+          type: 'Shopping',
+          content: shopping
+        },
+        {
+          type: 'Eating',
+          content: eating
+        },
+        {
+          type: 'Footer',
+          content: [
+            {
+              logo: '',
+              name: 'About',
+              url: 'https://loql-ly.vercel.app/about'
+            },
+            {
+              logo: '',
+              name: 'Join',
+              url: 'https://forms.gle/YRV4zeEsgUGSo9vS7'
+            }
+          ]
+        }
+      ]
+    }
+  ];
+
   return (
     <Aside>
       {process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER === 'loql-blog' ? (

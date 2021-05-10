@@ -26,6 +26,11 @@ module.exports = {
         source: '/vouchers/:slug*',
         destination: '/',
         permanent: true
+      },
+      {
+        source: '/navigation',
+        destination: '/',
+        permanent: true
       }
     ];
   },

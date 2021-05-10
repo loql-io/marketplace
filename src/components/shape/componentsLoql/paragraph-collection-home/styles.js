@@ -18,11 +18,12 @@ export const Outer = styled.div`
 export const Content = styled.div`
   display: inline-block;
   max-width: 400px;
-  top: -30px;
+  top: -70px;
   position: relative;
   ${responsive.smAndLess} {
     margin-top: 50px;
     max-width: auto;
+    top: -30px;
   }
 `;
 export const Image = styled.div`
