@@ -28,7 +28,7 @@ const MainNav = ({ data }) => {
               ) : (
                 <Spacer />
               )}
-              {content.map(({ logo, name, url }, x) => (
+              {content?.map(({ logo, name, url }, x) => (
                 <NavItem key={x}>
                   <a href={url}>
                     {logo && (

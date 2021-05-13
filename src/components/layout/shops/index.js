@@ -1,6 +1,5 @@
 import React from 'react';
-import Community from '../../community';
-
+import { useAppContext } from 'components/community-context';
 import {
   NavContainer,
   NavSections,
@@ -14,24 +13,22 @@ import {
 } from './styles';
 
 const MainNav = () => {
-  const { shopping } = Community();
-  const { eating } = Community();
-  const { collections } = Community();
+  const { communityData } = useAppContext();
 
   const Navgation = [
     {
       section: [
         {
           type: 'Shops',
-          content: shopping
+          content: communityData.shopping
         },
         {
           type: 'Eating',
-          content: eating
+          content: communityData.eating
         },
         {
           type: 'Collections',
-          content: collections
+          content: communityData.collections
         }
       ]
     }
@@ -45,7 +42,7 @@ const MainNav = () => {
             <NavInner>
               {type !== 'footer' ? <h3>{type}</h3> : <Spacer />}
               <Grid className={type?.toLowerCase()}>
-                {content.map(({ logo, url, image, title, intro }, x) => (
+                {content?.map(({ logo, url, image, title, intro }, x) => (
                   <NavItem key={x}>
                     {image ? (
                       <a href={url}>

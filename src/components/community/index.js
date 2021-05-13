@@ -1,26 +1,15 @@
-import { useEffect, useState } from 'react';
-
-export const Community = () => {
-  const [sideNavigationData, setNavigationData] = useState([]);
-
-  useEffect(() => {
-    const sideNavigationData = JSON.parse(
-      localStorage.getItem(`sideNavigation_${process.env.NEXT_PUBLIC_TOWN}`)
-    );
-    setNavigationData(sideNavigationData);
-  }, []);
-
+export const Community = (sideNavigationData) => {
   let eating = [];
   let shopping = [];
   let collections = [];
 
-  const eatingNavigation = sideNavigationData.filter(
+  const eatingNavigation = sideNavigationData?.filter(
     (x) => x.title === 'Eating'
   )[0]?.properties;
-  const shoppingNavigation = sideNavigationData.filter(
+  const shoppingNavigation = sideNavigationData?.filter(
     (x) => x.title === 'Shopping'
   )[0]?.properties;
-  const collectionsNavigation = sideNavigationData.filter(
+  const collectionsNavigation = sideNavigationData?.filter(
     (x) => x.title === 'Collections'
   )[0]?.properties;
 

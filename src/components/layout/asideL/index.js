@@ -1,6 +1,6 @@
 import React from 'react';
+import { useAppContext } from 'components/community-context';
 import MainNav from '../main-nav';
-import Community from '../../community';
 import {
   Aside,
   Header,
@@ -16,10 +16,9 @@ import {
 } from './styles';
 
 export default function AsideL() {
-  const { shopping } = Community();
-  const { eating } = Community();
+  const { communityData } = useAppContext();
 
-  const Navgation = [
+  const navgation = [
     {
       section: [
         {
@@ -28,11 +27,11 @@ export default function AsideL() {
         },
         {
           type: 'Shopping',
-          content: shopping
+          content: communityData.shopping
         },
         {
           type: 'Eating',
-          content: eating
+          content: communityData.eating
         },
         {
           type: 'Footer',
@@ -86,7 +85,7 @@ export default function AsideL() {
               <img src="/static/Dark-logo.svg" alt="" />
             </Logo>
           </Header>
-          <MainNav data={Navgation} />
+          <MainNav data={navgation} />
         </>
       )}
     </Aside>

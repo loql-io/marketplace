@@ -13,6 +13,8 @@ import {
 import ClosedModal from 'components/ClosedModal';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
+import Community from 'components/community';
+import { AppWrapper } from 'components/community-context';
 
 export const cache = createCache({ key: 'css', prepend: true });
 
@@ -23,7 +25,7 @@ function MyApp({ Component, pageProps, commonData }) {
     localeResource,
     openDays,
     shopClosedLabel,
-    sideNavigationData
+    communityData
   } = commonData;
 
   useEffect(() => {
@@ -37,27 +39,25 @@ function MyApp({ Component, pageProps, commonData }) {
       `openTimes_${process.env.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER}`,
       JSON.stringify(openDays ? openDays : [])
     );
-    localStorage.setItem(
-      `sideNavigation_${process.env.NEXT_PUBLIC_TOWN}`,
-      JSON.stringify(sideNavigationData)
-    );
-  }, [openDays, sideNavigationData]);
+  }, [openDays]);
 
   return (
-    <CacheProvider value={cache}>
-      <I18nextProvider locale={locale} localeResource={localeResource}>
-        <SettingsProvider mainNavigation={mainNavigation}>
-          <AuthProvider>
-            <BasketProvider>
-              {commonData?.isShopClosed && (
-                <ClosedModal message={shopClosedLabel} />
-              )}
-              <Component {...pageProps} />
-            </BasketProvider>
-          </AuthProvider>
-        </SettingsProvider>
-      </I18nextProvider>
-    </CacheProvider>
+    <AppWrapper communityData={communityData}>
+      <CacheProvider value={cache}>
+        <I18nextProvider locale={locale} localeResource={localeResource}>
+          <SettingsProvider mainNavigation={mainNavigation}>
+            <AuthProvider>
+              <BasketProvider>
+                {commonData?.isShopClosed && (
+                  <ClosedModal message={shopClosedLabel} />
+                )}
+                <Component {...pageProps} />
+              </BasketProvider>
+            </AuthProvider>
+          </SettingsProvider>
+        </I18nextProvider>
+      </CacheProvider>
+    </AppWrapper>
   );
 }
 
@@ -69,18 +69,27 @@ MyApp.getInitialProps = async function ({ router }) {
 
     const getHomePageShape = await homePageShape();
 
-    const getSideNavigation = await sideNavigation(
-      process.env.NEXT_PUBLIC_NAVIGATION_ID
-    );
-
-    const sideNavigationData =
-      getSideNavigation.folder.get.components[0].content.sections;
-
     /**
      * Get shared data for all pages
      * - Tenant settings
      * - Main navigation
+     * - Comunity navigation data
      */
+
+    const getSideNavigation = await sideNavigation(
+      process.env.NEXT_PUBLIC_NAVIGATION_ID
+    );
+
+    const { shopping, eating, collections } = await Community(
+      getSideNavigation.folder.get.components[0].content.sections
+    );
+
+    const communityData = {
+      shopping,
+      eating,
+      collections
+    };
+
     const {
       data: {
         tenant,
@@ -167,7 +176,7 @@ MyApp.getInitialProps = async function ({ router }) {
         shopClosedLabel,
         isShopClosed,
         mainNavigation: mainNavigation?.filter((i) => !i.name.startsWith('_')),
-        sideNavigationData
+        communityData
       }
     };
   } catch (error) {
