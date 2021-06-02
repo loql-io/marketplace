@@ -32,6 +32,29 @@ export const Logo = styled.a`
     height: 100%;
   }
 `;
+
+export const LoqlLogo = styled.a`
+  margin: 0 auto;
+  height: 44px;
+  object-fit: contain;
+  margin-top: 8px;
+  margin-left: 20px;
+  display: inline-flex;
+  &:hover {
+    text-decoration: none;
+  }
+  img,
+  svg {
+    height: 100%;
+  }
+
+  @media (max-width: 768px) {
+    margin: 0 auto;
+    top: 10px;
+    position: relative;
+  }
+`;
+
 export const Town = styled.div`
   font-size: 24px;
   font-weight: 900;
@@ -153,7 +176,7 @@ export const NavActions = styled.div`
 
   button,
   a {
-    padding: 5px 10px;
+    padding: 5px 14px;
     color: var(--color-text-main);
     white-space: nowrap;
     cursor: pointer;

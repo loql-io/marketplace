@@ -10,6 +10,7 @@ import { Sticky } from 'react-sticky';
 
 import {
   Logo,
+  LoqlLogo,
   PreviewBar,
   NavActions,
   IconBar,
@@ -51,9 +52,9 @@ export default function Header({ simple, preview }) {
         {isBlog ? (
           <LeftAligned>
             <Link href="/" passHref>
-              <Logo>
+              <LoqlLogo>
                 <img src="/static/loql-logo-light.svg" alt="" />
-              </Logo>
+              </LoqlLogo>
             </Link>
           </LeftAligned>
         ) : (
