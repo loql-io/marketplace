@@ -80,9 +80,10 @@ export const Text = styled.div`
 export const TitleMain = styled.div`
   color: #fff;
   font-weight: 800;
-  font-size: 36px;
-  line-height: 37px;
+  font-size: 24px;
+  line-height: 28px;
   margin-bottom: 10px;
+  margin-right: 20px;
 `;
 
 export const Title = styled.div`
@@ -155,6 +156,7 @@ export const Intro = styled.div`
   font-size: 16px;
   line-height: 22px;
   margin-bottom: 20px;
+  margin-right: 20px;
 `;
 
 export const Topics = styled.div`

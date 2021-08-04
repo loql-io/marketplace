@@ -34,7 +34,8 @@ const Products = () => {
     <div
       className="setup-wrapper image-bg latest-post"
       style={{
-        backgroundImage: `url('${latestPostImage?.content?.images[0].url}')`
+        backgroundImage: `linear-gradient(0deg, rgba(47, 43, 39, 0.5), rgba(47, 43, 39, 0.5)), url('${latestPostImage?.content?.images[0].url}')`,
+        backgroundPosition: 'center'
       }}
     >
       <div className="container">

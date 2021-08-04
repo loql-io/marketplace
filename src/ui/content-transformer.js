@@ -208,8 +208,8 @@ const ContentTransformerOuter = styled.div`
   }
   p,
   li {
-    font-size: 1.1rem;
-    line-height: 1.6rem;
+    font-size: 16px;
+    line-height: 22px;
   }
 
   p {
@@ -220,9 +220,13 @@ const ContentTransformerOuter = styled.div`
     font-size: 16px;
     line-height: 22px;
     margin-bottom: 20px;
-    display: flex;
   }
-
+  ol {
+    margin-left: 20px;
+    > li {
+      margin-top: 10px;
+    }
+  }
   ul {
     max-width: ${maxWidth};
     margin: 0 auto;
@@ -262,6 +266,13 @@ const ContentTransformerOuter = styled.div`
     background: rgb(243, 244, 246);
     border-radius: 5px;
     overflow: auto;
+  }
+
+  blockquote {
+    font-size: 16px;
+    line-height: 22px;
+    border-left: solid 10px #d0d0d0;
+    padding-left: 1em;
   }
 `;
 
