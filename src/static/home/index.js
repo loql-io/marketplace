@@ -118,15 +118,13 @@ export default function HomePage() {
                       information about joining.
                     </p>
                   </div>
-                  <button className="collapsible">
-                    What&#39;s your pricing?
-                  </button>
+                  <button className="collapsible">What’s your pricing?</button>
                   <div className="content">
                     <p>
                       Our objective is to be sustainable, but leave independent
                       businesses with as much profit as possible. We charge just
-                      3.2&percnt; on online purchases, which includes card
-                      processing. For click &amp; collect it&#39;s free&excl;
+                      3.2% on online purchases, which includes card processing.
+                      For click & collect it’s free!
                     </p>
                   </div>
                 </div>
