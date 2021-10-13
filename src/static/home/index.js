@@ -119,7 +119,7 @@ export default function HomePage() {
                     </p>
                   </div>
                   <button className="collapsible">
-                    How do I join a Loql community?
+                    What&#39;s your pricing?
                   </button>
                   <div className="content">
                     <p>
