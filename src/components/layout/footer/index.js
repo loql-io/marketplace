@@ -63,7 +63,7 @@ export default function Footer() {
       </Grid>
       <GridFooter>
         <GridItem>
-          <Copyright>©2020 Loql</Copyright>
+          <Copyright>©2021 Loql</Copyright>
         </GridItem>
         <GridItem>
           <FooterLinks>
