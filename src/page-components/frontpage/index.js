@@ -41,8 +41,11 @@ export async function getData({ language, preview = null }) {
 
 export default function FrontPage({ catalogue, preview }) {
   const componentsRest = catalogue?.components?.filter((c) => c.name);
+  const title = isBlog
+    ? `Home page: Digital solutions to power the high street`
+    : catalogue?.name;
   return (
-    <Layout title={catalogue?.name} preview={preview}>
+    <Layout title={title} preview={preview}>
       <Outer>
         <Header centerContent>
           {TENANT === 'loql' ? (

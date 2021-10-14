@@ -53,11 +53,13 @@ export default function FolderPage({ folder, preview }) {
 
   const childrenData = sorted ? sorted : children;
 
+  const title = isBlog ? 'Latest thinking' : folder.name;
+
   return (
-    <Layout title={folder.name} preview={preview}>
+    <Layout title={title} preview={preview}>
       <Outer>
         <Header centerContent>
-          <SectionTitle>{isBlog ? 'Latest' : folder.name}</SectionTitle>
+          <SectionTitle>{title}</SectionTitle>
 
           <ShapeComponents components={rest} />
         </Header>

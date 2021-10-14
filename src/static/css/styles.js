@@ -336,10 +336,6 @@ export const Css = styled.main`
       .setup-wrapper section {
         list-style: none;
       }
-
-      .setup-wrapper section {
-        min-width: 360px;
-      }
     }
     @media screen and (max-width: 768px) {
       .setup-wrapper section {

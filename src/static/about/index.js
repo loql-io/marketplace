@@ -6,7 +6,7 @@ export default function AboutPage() {
       <div className="css_wrapper">
         <div className="wrapper about">
           <section className="about-title centered">
-            <h1 className="h-xl">About</h1>
+            <h1 className="h-xl">About Loql</h1>
             <p>
               Viable high streets, sustainable local transport and low-cost last
               mile delivery

@@ -48,7 +48,7 @@ export default function Header({ simple, preview }) {
           )
         </PreviewBar>
       )}
-      <StyledAppBar position="static">
+      <StyledAppBar position="static" isBlog={isBlog}>
         {isBlog ? (
           <LeftAligned>
             <Link href="/" passHref>

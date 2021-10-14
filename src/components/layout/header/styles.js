@@ -172,7 +172,7 @@ export const NavActions = styled.div`
   align-items: center;
   right: 10px;
   position: absolute;
-  top: 6px;
+  top: 10px;
 
   button,
   a {
@@ -216,9 +216,7 @@ export const IconBar = styled.div`
   top: 12px;
   position: absolute;
 `;
-
 export const StyledAppBar = styled.header`
-  height: 48px;
   background-color: #fff;
   position: relative;
   width: 100%;
@@ -227,6 +225,11 @@ export const StyledAppBar = styled.header`
   box-sizing: border-box;
   flex-shrink: 0;
   flex-direction: column;
+  height: 48px;
+
+  ${is('isBlog')`
+    height: auto;
+  `};
 
   ${!is('isBlog')`
     box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),

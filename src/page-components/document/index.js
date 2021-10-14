@@ -47,7 +47,7 @@ export default function DocumentPage({ document, preview }) {
   /* static about page only for loql blog */
   if (!document.components && isBlog && document.name === 'About') {
     return (
-      <Layout title={document.name}>
+      <Layout title={`${document.name} Loql`}>
         <Outer>
           <Header centerContent>
             <StaticAbout />
