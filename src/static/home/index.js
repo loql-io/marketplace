@@ -34,8 +34,8 @@ export default function HomePage() {
                 <span className="oregano">local people</span>
               </h1>
               <p>
-                Viable high streets, sustainable local transport and low-cost
-                last mile delivery
+                Viable high streets, powered by brilliant, affordable digital
+                solutions.
               </p>
             </section>
           </div>
@@ -91,43 +91,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="setup-wrapper white-bg">
-            <div className="container">
-              <h2 className="h-xl oregano">Sustainable local logistics</h2>
-              <h3 className="h-l">
-                A range of electric vehicles that bring people and things
-                together in a more affordable and environmentally-friendly way
-              </h3>
-
-              <br />
-              <br />
-
-              <div className="image">
-                <img src="/static/bike.png" alt="berko-car" />
-
-                <section>
-                  <h3 className="h-m">Electric-powered delivery</h3>
-                  <p>
-                    Look out for our incredible new delivery vehicles in your
-                    high street soon!
-                  </p>
-                  <br />
-                  <h3 className="h-m">Shared distribution</h3>
-                  <p>
-                    We believe that by pooling supply and demand for delivery,
-                    we can make it affordable - while rewarding drivers fairly.
-                  </p>
-                  <br />
-                  <h3 className="h-m">Keeping locals on the move</h3>
-                  <p>
-                    We’re working with local and national organisations to
-                    accelerate the switch from the combustion engine.
-                  </p>
-                </section>
-              </div>
-            </div>
-          </div>
-
           <div className="setup-wrapper sea-salt-bg collapsible-grid-wrapper">
             <div className="container">
               <h2 className="h-xl">So, tell me...</h2>
@@ -153,6 +116,15 @@ export default function HomePage() {
                       Berkhamsted, Herts. If you are a business business in the
                       town please get in touch with Berkhamsted Loql for more
                       information about joining.
+                    </p>
+                  </div>
+                  <button className="collapsible">What’s your pricing?</button>
+                  <div className="content">
+                    <p>
+                      Our objective is to be sustainable, but leave independent
+                      businesses with as much profit as possible. We charge just
+                      3.2% on online purchases, which includes card processing.
+                      For click & collect it’s free!
                     </p>
                   </div>
                 </div>
